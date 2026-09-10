@@ -37,7 +37,7 @@ async function main() {
 
   console.log('\nЗаявка с сайта');
   const unique = Date.now();
-  const lead = await fetch(`${BASE}/api/lead`, {
+  const lead = await fetch(`${BASE}/api/lead/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -56,14 +56,14 @@ async function main() {
   check('заявка принята', lead.status === 200 && leadBody.ok === true, JSON.stringify(leadBody));
   check('присвоен номер', typeof leadBody.num === 'string', leadBody.num);
 
-  const bad = await fetch(`${BASE}/api/lead`, {
+  const bad = await fetch(`${BASE}/api/lead/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fio: 'x', phone: '', consent: false }),
   });
   check('невалидная заявка отклонена', bad.status === 400, String(bad.status));
 
-  const honeypot = await fetch(`${BASE}/api/lead`, {
+  const honeypot = await fetch(`${BASE}/api/lead/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

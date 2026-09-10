@@ -37,7 +37,9 @@ export function LeadForm({ subject }: Props) {
     };
 
     try {
-      const res = await fetch('/api/lead', {
+      // Слэш на конце обязателен: при trailingSlash адрес без него
+      // отвечает редиректом 308, а не обработчиком.
+      const res = await fetch('/api/lead/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
