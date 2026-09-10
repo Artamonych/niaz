@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url('/'), changeFrequency: 'weekly', priority: 1 },
     { url: url('/produktsiya/'), changeFrequency: 'weekly', priority: 0.9 },
     { url: url('/tendery/'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: url('/inzheneriya/'), changeFrequency: 'monthly', priority: 0.7 },
 
     ...LANDINGS.map((l) => ({
       url: url(`/${l.slug}/`),

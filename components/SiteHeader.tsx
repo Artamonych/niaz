@@ -69,6 +69,13 @@ export function SiteHeader() {
             </button>
           ))}
           <Link
+            href="/inzheneriya"
+            className={`u-underline ${styles.tab}`}
+            onMouseEnter={() => setOpen(null)}
+          >
+            Инженерия
+          </Link>
+          <Link
             href="/tendery"
             className={`u-underline ${styles.tab}`}
             onMouseEnter={() => setOpen(null)}
@@ -147,6 +154,7 @@ export function SiteHeader() {
           <div className={`shell ${styles.mobileInner}`}>
             {[
               { label: 'Спецтехника', href: '/produktsiya' },
+              { label: 'Инженерия', href: '/inzheneriya' },
               { label: 'Тендерам', href: '/tendery' },
               { label: 'Гарантии', href: '/garantii' },
               { label: 'О заводе', href: '/o-kompanii' },

@@ -36,6 +36,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/inzheneriya" className={`u-underline ${styles.link}`}>
+                Инженерия и производство
+              </Link>
+            </li>
+            <li>
               <Link href="/sertifikatsiya" className={`u-underline ${styles.link}`}>
                 Сертификация
               </Link>

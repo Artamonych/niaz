@@ -84,4 +84,4 @@ export type { CategoryKey };
  * Слаги, у которых есть собственный роут: динамический [slug] их не обслуживает,
  * иначе Next получит два источника для одного адреса.
  */
-export const RESERVED_SLUGS = new Set(['produktsiya', 'tendery']);
+export const RESERVED_SLUGS = new Set(['produktsiya', 'tendery', 'inzheneriya']);
