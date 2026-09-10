@@ -6,7 +6,9 @@
 #   runner   — то, что работает постоянно: standalone-сервер без node_modules.
 #
 # Разделение нужно потому, что prisma CLI тянет много транзитивных пакетов
-# (@prisma/config → effect и прочее). Тащить их в постоянный образ незачем.
+# (@prisma/config → effect и прочее), а клиент Prisma 7 генерируется в виде
+# исходников TypeScript — их нужно чем-то исполнять. Тащить всё это в
+# постоянный образ незачем.
 
 FROM node:24-alpine AS deps
 WORKDIR /app
@@ -30,7 +32,7 @@ RUN npm run build
 # досоздаёт то, без чего CRM не запустить (стадии, услуги, администратор).
 FROM builder AS migrator
 WORKDIR /app
-CMD ["sh", "-c", "npx prisma migrate deploy && node deploy/bootstrap.mjs"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx tsx prisma/bootstrap.ts"]
 
 FROM node:24-alpine AS runner
 WORKDIR /app
