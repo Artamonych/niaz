@@ -9,6 +9,10 @@ import busRedirects from './data/content/redirects.json';
  * Цепочек A→B→C быть не должно: алиасы указывают сразу на конечный адрес.
  */
 const nextConfig: NextConfig = {
+  // Сборка в самодостаточный сервер: на VPS едет только .next/standalone,
+  // без node_modules целиком.
+  output: 'standalone',
+
   // Действующие URL донора оканчиваются слэшем — §6.1 требует сохранить и его,
   // иначе каждая живая страница получает лишний 301.
   trailingSlash: true,

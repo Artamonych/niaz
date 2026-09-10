@@ -1,0 +1,26 @@
+# Тестовый стенд НиАЗ. Сертификат Caddy получает сам при первом запросе.
+
+{$SITE_DOMAIN} {
+	encode zstd gzip
+
+	# Главная защита от индексации: заголовок сильнее robots.txt — он запрещает
+	# не обход, а само попадание страницы в индекс, включая случай, когда на
+	# стенд кто-то сослался. Снять только при переезде на боевой домен.
+	header {
+		X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# CRM закрыта отдельно: на стенде она доступна по паролю поверх входа.
+	# Хэш задаётся командой: docker compose exec caddy caddy hash-password
+	# Пока пароль не задан, блок закомментирован и работает только вход CRM.
+	# @crm path /crm /crm/*
+	# basic_auth @crm {
+	# 	niaz ЗАМЕНИТЬ_НА_ХЭШ
+	# }
+
+	reverse_proxy app:3000
+}

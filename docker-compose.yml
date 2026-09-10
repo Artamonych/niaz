@@ -1,0 +1,44 @@
+# Тестовый стенд: приложение + Caddy, который сам получает сертификат
+# и добавляет заголовок запрета индексации.
+#
+# Запуск на VPS:
+#   cp .env.example .env && отредактировать
+#   docker compose up -d --build
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: file:/app/data-db/niaz.db
+      AUTH_SECRET: ${AUTH_SECRET}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+      # Пусто или что угодно кроме true — стенд закрыт от поисковиков.
+      SITE_INDEXABLE: ${SITE_INDEXABLE:-false}
+    volumes:
+      - db:/app/data-db
+    expose:
+      - '3000'
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+
+volumes:
+  db:
+  caddy_data:
+  caddy_config:
