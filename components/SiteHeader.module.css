@@ -1,172 +1,321 @@
+/* Шапка прототипа: полупрозрачная подложка с размытием и волосяная граница. */
 .header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--ink-900);
-  border-bottom: 1px solid var(--ink-500);
+  backdrop-filter: blur(14px);
+}
+
+.dark {
+  background: rgba(14, 18, 20, 0.93);
+  border-bottom: 1px solid var(--ink-400);
+  --line: var(--accent);
+  --fg: var(--text-on-dark);
+  --fg-dim: var(--text-on-dark-dim2);
+  --panel-bg: var(--ink-800);
+  --panel-border: var(--ink-400);
+  --panel-rule: var(--ink-500);
+  --item-border: var(--ink-560);
+}
+
+.light {
+  background: rgba(216, 221, 223, 0.92);
+  border-bottom: 1px solid #dbe0e2;
+  --line: var(--accent-deep);
+  --fg: var(--text-on-light);
+  --fg-dim: var(--text-on-light-dim2);
+  --panel-bg: var(--paper-100);
+  --panel-border: #dbe0e2;
+  --panel-rule: #dbe0e2;
+  --item-border: var(--paper-500);
 }
 
 .bar {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3vw, 40px);
-  height: 72px;
+  gap: clamp(14px, 2.6vw, 36px);
+  min-height: 72px;
 }
 
 .logo {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex-shrink: 0;
+  align-items: center;
+  gap: 11px;
+  flex: none;
+}
+
+.markBox {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font: 800 13px/1 var(--font-display);
+  color: var(--line);
 }
 
 .mark {
-  font: 700 22px/1 var(--font-display);
+  display: block;
+  font: 700 14px/1.1 var(--font-display);
   letter-spacing: 0.04em;
-  color: var(--text-on-dark);
+  color: var(--fg);
 }
 
 .markSub {
+  display: block;
+  margin-top: 3px;
   font: 400 9px/1.2 var(--font-mono);
-  letter-spacing: 0.08em;
-  color: var(--text-on-dark-dim);
-  max-width: 150px;
+  letter-spacing: 0.12em;
+  color: var(--fg-dim);
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.6vw, 24px);
-  margin-inline-start: auto;
+  gap: clamp(12px, 2vw, 28px);
+  margin-inline-start: clamp(8px, 2vw, 28px);
 }
 
 .tab {
+  --u-line: var(--line);
   appearance: none;
   border: 0;
-  background: none;
-  padding: 8px 2px;
-  font: 500 13.5px/1 var(--font-body);
-  color: var(--text-on-dark);
+  /* Только background-color: сокращённый background затирает градиент подчёркивания. */
+  background-color: transparent;
+  padding: 0 0 5px;
+  font: 500 12.5px/1 var(--font-body);
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  white-space: nowrap;
   cursor: pointer;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.18s, color 0.18s;
 }
 
 .tab:hover,
 .tab[aria-expanded='true'] {
   color: var(--accent);
-  border-bottom-color: var(--accent);
+  background-size: 100% 1px;
 }
 
 .contact {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
+  gap: 18px;
+  flex: none;
+  margin-inline-start: auto;
+}
+
+.lang {
+  display: flex;
+  gap: 7px;
+  font: 500 10px/1.4 var(--font-mono);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.langOn {
+  color: var(--fg);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 3px;
+}
+
+.langOff {
+  color: var(--fg-dim);
+  padding-bottom: 3px;
 }
 
 .phone {
-  font-size: 13px;
-  font-weight: 500;
+  font: 500 13px/1 var(--font-mono);
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+/* Тёмная шапка: контурная кнопка с дочерчиванием угла. */
+.dark .cta {
+  --u-line: var(--accent);
+  background-color: transparent;
+  border: 1px solid var(--ink-400);
   color: var(--text-on-dark);
+  padding: 11px 18px;
+  font: 500 11.5px/1 var(--font-body);
   white-space: nowrap;
 }
 
-.cta {
-  padding: 10px 18px;
-  background: var(--accent);
-  color: var(--ink-900);
-  font: 600 12.5px/1 var(--font-body);
-  white-space: nowrap;
-  transition: background 0.18s;
+.dark .cta:hover {
+  border-color: var(--accent);
 }
 
-.cta:hover {
-  background: #56bcd9;
+/* Светлая шапка: залитая кнопка. */
+.light .cta {
+  background-color: var(--text-on-light);
+  border: 1px solid var(--text-on-light);
+  color: #fff;
+  padding: 11px 18px;
+  font: 500 11.5px/1 var(--font-body);
+  white-space: nowrap;
+  background-image: none;
+}
+
+.light .cta:hover {
+  background-color: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+
+.mobileBar {
+  display: none;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+}
+
+.phoneSm {
+  font: 500 11px/1 var(--font-mono);
+  color: var(--fg);
+  white-space: nowrap;
 }
 
 .burger {
-  display: none;
+  display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 11px;
   border: 0;
   background: none;
-  padding: 8px;
   cursor: pointer;
 }
 
 .burger span {
   display: block;
-  width: 20px;
-  height: 1.5px;
-  background: var(--text-on-dark);
+  height: 1px;
+  background: var(--fg);
 }
 
-.mega {
-  border-top: 1px solid var(--ink-500);
-  background: var(--ink-800);
-  padding: clamp(24px, 3vw, 40px) 0;
+/* Выпадающие панели: подложка + линия, которая дочерчивается слева направо. */
+.panel,
+.mobilePanel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--panel-border);
+  animation: niazPanel 0.34s var(--ease) both;
+  overflow: hidden;
 }
 
-.megaGrid {
-  display: grid;
-  gap: clamp(20px, 3vw, 48px);
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-.colTitle {
-  margin: 0 0 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--ink-500);
-}
-
-.colList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 9px;
-}
-
-.colLink {
-  font: 400 13.5px/1.4 var(--font-body);
-  color: var(--text-on-dark-dim);
-  transition: color 0.16s;
-}
-
-.colLink:hover {
-  color: var(--text-on-dark);
-}
-
-.mobile {
-  display: none;
-  border-top: 1px solid var(--ink-500);
-  background: var(--ink-800);
-  padding: 24px 0 32px;
+.mobilePanel {
   max-height: 70vh;
   overflow-y: auto;
 }
 
-.mobileCol + .mobileCol {
-  margin-top: 24px;
+.panelRule {
+  height: 1px;
+  background: var(--line);
+  transform-origin: left;
+  animation: niazDraw 0.5s var(--ease) both;
 }
 
-@media (max-width: 1080px) {
+.megaGrid {
+  display: grid;
+  gap: clamp(20px, 3vw, 44px);
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  padding-block: clamp(26px, 3vw, 40px) clamp(30px, 3.4vw, 48px);
+}
+
+.megaCol {
+  animation: niazUp 0.42s var(--ease) both;
+}
+
+.colTitle {
+  color: var(--line);
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--panel-rule);
+}
+
+.colList {
+  list-style: none;
+  margin: 15px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+  justify-items: start;
+}
+
+.colLink {
+  --u-line: var(--line);
+  display: inline-block;
+  font: 400 12.5px/1.3 var(--font-body);
+  padding-bottom: 3px;
+  color: var(--fg-dim);
+}
+
+.colLink:hover {
+  color: var(--fg);
+}
+
+.mobileInner {
+  padding-block: 8px 24px;
+}
+
+.mobileItem {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--item-border);
+  font: 500 16px/1.3 var(--font-display);
+  color: var(--fg);
+  animation: niazUp 0.34s var(--ease) both;
+}
+
+.mobileCatsTitle {
+  margin-top: 20px;
+  color: var(--line);
+}
+
+.mobileCats {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.mobileCat {
+  font: 400 13px/1.4 var(--font-body);
+  color: var(--fg-dim);
+  animation: niazUp 0.34s var(--ease) both;
+}
+
+.mobileCall {
+  display: block;
+  margin-top: 24px;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid var(--line);
+  color: var(--line);
+  font: 600 13px/1 var(--font-body);
+}
+
+@media (max-width: 1180px) {
   .nav,
   .contact {
     display: none;
   }
 
-  .burger {
+  .mobileBar {
     display: flex;
-    margin-inline-start: auto;
   }
 
-  .mega {
+  .panel {
     display: none;
   }
+}
 
-  .mobile {
-    display: block;
+@media (min-width: 1181px) {
+  .mobilePanel {
+    display: none;
   }
 }

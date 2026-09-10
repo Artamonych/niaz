@@ -1,10 +1,12 @@
 .head {
-  padding: clamp(12px, 1.6vw, 20px) 0 clamp(28px, 3.4vw, 44px);
+  padding: clamp(20px, 2.6vw, 40px) 0 clamp(28px, 3.4vw, 44px);
   border-bottom: 1px solid var(--paper-500);
 }
 
 .h1 {
+  margin: 0;
   font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  letter-spacing: -0.028em;
   color: var(--text-on-light);
 }
 
@@ -27,14 +29,10 @@
 }
 
 .item {
+  --u-line: var(--accent-deep);
   display: block;
-  background: var(--paper-200);
+  background-color: var(--paper-200);
   padding: clamp(20px, 2.4vw, 28px);
-  transition: background 0.16s;
-}
-
-.item:hover {
-  background: #eff2f3;
 }
 
 .itemTitle {

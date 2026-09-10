@@ -4,22 +4,22 @@ import styles from './SiteFooter.module.css';
 
 export function SiteFooter() {
   return (
-    <footer className={`grid-bg ${styles.footer}`}>
+    <footer className={styles.footer}>
       <div className={`shell ${styles.grid}`}>
         <div>
           <p className={styles.mark}>НиАЗ</p>
           <p className={styles.about}>
-            ООО «Нижегородский автомобильный завод» — производство специализированного
-            транспорта и переоборудование на базе шасси ведущих марок.
+            ООО «Нижегородский автомобильный завод». Производство и переоборудование
+            специализированного транспорта.
           </p>
         </div>
 
         <div>
-          <p className="label">Продукция</p>
+          <p className={styles.colTitle}>Каталог</p>
           <ul className={styles.list}>
             {CATEGORIES.map((c) => (
               <li key={c.key}>
-                <Link href={`/${c.slug}`} className={styles.link}>
+                <Link href={`/${c.slug}`} className={`u-underline ${styles.link}`}>
                   {c.short}
                 </Link>
               </li>
@@ -28,29 +28,64 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p className="label">Заводу</p>
+          <p className={styles.colTitle}>Заказчикам</p>
           <ul className={styles.list}>
-            <li><Link href="/o-kompanii" className={styles.link}>О компании</Link></li>
-            <li><Link href="/sertifikatsiya" className={styles.link}>Сертификация</Link></li>
-            <li><Link href="/garantii" className={styles.link}>Гарантии</Link></li>
-            <li><Link href="/partnery" className={styles.link}>Партнёры</Link></li>
-            <li><Link href="/novosti" className={styles.link}>Новости</Link></li>
+            <li>
+              <Link href="/tendery" className={`u-underline ${styles.link}`}>
+                Тендерам
+              </Link>
+            </li>
+            <li>
+              <Link href="/sertifikatsiya" className={`u-underline ${styles.link}`}>
+                Сертификация
+              </Link>
+            </li>
+            <li>
+              <Link href="/garantii" className={`u-underline ${styles.link}`}>
+                Гарантии
+              </Link>
+            </li>
+            <li>
+              <Link href="/partnery" className={`u-underline ${styles.link}`}>
+                Партнёры
+              </Link>
+            </li>
+            <li>
+              <Link href="/o-kompanii" className={`u-underline ${styles.link}`}>
+                О заводе
+              </Link>
+            </li>
+            <li>
+              <Link href="/novosti" className={`u-underline ${styles.link}`}>
+                Новости
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <p className="label">Контакты</p>
+          <p className={styles.colTitle}>Реквизиты</p>
+          <p className={styles.reqs}>
+            607655, Нижегородская обл.,
+            <br />
+            г. Кстово, ул. 1 Мая, стр. 1
+            <br />
+            <a href="tel:88005504455">8 800 550-44-55</a>
+            <br />
+            <a href="mailto:niaz@com-transport.ru">niaz@com-transport.ru</a>
+          </p>
           <ul className={styles.list}>
-            <li><a href="tel:88005504455" className={`mono ${styles.link}`}>8 800 550-44-55</a></li>
-            <li><a href="mailto:niaz@com-transport.ru" className={`mono ${styles.link}`}>niaz@com-transport.ru</a></li>
-            <li><Link href="/kontakty" className={styles.link}>Адрес и реквизиты</Link></li>
-            <li><Link href="/tendery" className={styles.link}>Тендерам и госзаказчикам</Link></li>
+            <li>
+              <Link href="/kontakty" className={`u-underline ${styles.link}`}>
+                Адрес и реквизиты
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className={`shell ${styles.legal}`}>
-        <span className="mono">© {new Date().getFullYear()} ООО «Нижегородский автомобильный завод»</span>
+        <span>© {new Date().getFullYear()} ООО «Нижегородский автомобильный завод»</span>
         <Link href="/politika-konfidentsialnosti" className={styles.legalLink}>
           Политика конфиденциальности
         </Link>

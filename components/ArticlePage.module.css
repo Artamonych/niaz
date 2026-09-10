@@ -1,14 +1,18 @@
 .article {
-  max-width: 78ch;
-}
-
-.head {
-  padding: clamp(12px, 1.6vw, 20px) 0 clamp(24px, 3vw, 36px);
+  padding-bottom: clamp(28px, 3.4vw, 44px);
   border-bottom: 1px solid var(--paper-500);
 }
 
+/* Текст держим в комфортной колонке, галерея идёт на всю ширину. */
+.head {
+  max-width: 78ch;
+  padding: clamp(20px, 2.6vw, 40px) 0 0;
+}
+
 .h1 {
-  font: 700 clamp(24px, 3.2vw, 44px)/1.1 var(--font-display);
+  margin: 0;
+  font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  letter-spacing: -0.028em;
   color: var(--text-on-light);
 }
 
@@ -21,18 +25,17 @@
 
 .gallery {
   display: grid;
-  gap: 1px;
+  gap: clamp(10px, 1.2vw, 16px);
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   margin-top: clamp(28px, 3.4vw, 44px);
-  background: var(--paper-500);
-  border: 1px solid var(--paper-500);
 }
 
 .photo {
   display: block;
   width: 100%;
   height: auto;
-  background: var(--paper-200);
+  background: var(--paper-300);
+  border: 1px solid var(--paper-500);
 }
 
 .cta {

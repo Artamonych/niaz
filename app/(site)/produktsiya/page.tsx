@@ -18,7 +18,7 @@ export default function CatalogRootPage() {
       <Breadcrumbs items={[{ name: 'Продукция' }]} />
 
       <header className={styles.head}>
-        <p className="label">Каталог</p>
+        <p className="label label-deep">Каталог</p>
         <h1 className={styles.h1}>Продукция завода</h1>
         <p className={styles.lead}>
           {PRODUCTS.length} исполнений в шести производственных линейках. Любое из них
@@ -30,7 +30,7 @@ export default function CatalogRootPage() {
         {CATEGORIES.map((category) => {
           const items = productsOf(category.key);
           return (
-            <section key={category.key} className={styles.cat}>
+            <section key={category.key} className={`u-corner ${styles.cat}`}>
               <div className={styles.catHead}>
                 <span className={`mono ${styles.no}`}>{category.no}</span>
                 <h2 className={styles.catTitle}>

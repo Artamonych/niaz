@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { CATEGORIES } from '@/lib/catalog';
+import { PRODUCTS } from '@/lib/content';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { LeadForm } from '@/components/LeadForm';
 import styles from './tendery.module.css';
@@ -70,84 +72,112 @@ const STEPS = [
   },
 ];
 
+const STATS = [
+  { v: String(PRODUCTS.length), k: 'исполнений в каталоге' },
+  { v: String(CATEGORIES.length), k: 'производственных линеек' },
+  { v: '1 день', k: 'на ответ по запросу' },
+  { v: '44 · 223', k: 'федеральных закона' },
+];
+
 export default function TendersPage() {
   return (
-    <div className="shell">
-      <Breadcrumbs items={[{ name: 'Тендерам и госзаказчикам' }]} />
+    <>
+      <div className="shell">
+        <Breadcrumbs items={[{ name: 'Тендерам и госзаказчикам' }]} />
+      </div>
 
-      <header className={styles.head}>
-        <p className="label">44-ФЗ · 223-ФЗ</p>
-        <h1 className={styles.h1}>Тендерам и госзаказчикам</h1>
-        <p className={styles.lead}>
-          Завод-изготовитель специализированного транспорта. Собрали здесь всё, что
-          тендерный отдел обычно выпрашивает по телефону: документы предприятия,
-          подтверждение соответствия и гарантийные обязательства.
-        </p>
-      </header>
-
-      <section className={styles.steps}>
-        {STEPS.map((step) => (
-          <div key={step.n} className={styles.step}>
-            <span className={`mono ${styles.stepNo}`}>{step.n}</span>
-            <h2 className={styles.stepTitle}>{step.t}</h2>
-            <p className={styles.stepText}>{step.d}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className={styles.docsSection}>
-        <div className={styles.docsHead}>
-          <p className="label">Пакет документов</p>
-          <h2 className={styles.h2}>Документы для обоснования закупки</h2>
-        </div>
-
-        <ul className={styles.docs}>
-          {DOCS.map((doc) => {
-            const body = (
-              <>
-                <span className={`mono ${styles.fmt}`}>{doc.ready ? 'СТР' : 'PDF'}</span>
-                <span className={styles.docBody}>
-                  <span className={styles.docTitle}>{doc.t}</span>
-                  <span className={styles.docNote}>{doc.note}</span>
-                </span>
-                <span className={`mono ${styles.docState}`}>
-                  {doc.ready ? 'Открыть' : 'По запросу'}
-                </span>
-              </>
-            );
-
-            return (
-              <li key={doc.t} className={styles.doc}>
-                {doc.href ? (
-                  <a href={doc.href} className={styles.docLink}>
-                    {body}
-                  </a>
-                ) : (
-                  <span className={styles.docLink}>{body}</span>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-
-        <p className={styles.docsNote}>
-          Документы, отмеченные «по запросу», высылаем в день обращения — оставьте
-          заявку ниже или позвоните{' '}
-          <a href="tel:88005504455" className="mono">8 800 550-44-55</a>.
-        </p>
-      </section>
-
-      <section className={styles.formSection} id="zapros">
-        <div>
-          <p className="label">Запрос</p>
-          <h2 className={styles.h2}>Запросить пакет документов и КП</h2>
-          <p className={styles.formLead}>
-            Укажите ИНН организации — подготовим комплект сразу под вашу закупку,
-            с реквизитами и спецификацией.
+      <section className={`grid-bg ${styles.hero}`}>
+        <div className="shell">
+          <p className="label">44-ФЗ · 223-ФЗ · нацрежим</p>
+          <h1 className={styles.h1}>Тендерам и госзаказчикам</h1>
+          <p className={styles.lead}>
+            Завод-изготовитель специализированного транспорта. Собрали здесь всё, что
+            тендерный отдел обычно выпрашивает по телефону: документы предприятия,
+            подтверждение соответствия и гарантийные обязательства.
           </p>
+
+          <dl className={styles.stats}>
+            {STATS.map((s) => (
+              <div key={s.k} className={styles.stat}>
+                <dt className={`mono ${styles.statV}`}>{s.v}</dt>
+                <dd className={`mono ${styles.statK}`}>{s.k}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-        <LeadForm subject="Пакет документов для тендера" />
       </section>
-    </div>
+
+      <div className={`shell ${styles.body}`}>
+        <section className={styles.docsSection}>
+          <h2 className={styles.h2}>Пакет документов</h2>
+          <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
+
+          <ul className={styles.docs}>
+            {DOCS.map((doc) => {
+              const body = (
+                <>
+                  <span className={styles.docBody}>
+                    <span className={`mono ${styles.fmt}`}>{doc.ready ? 'СТР' : 'PDF'}</span>
+                    <span className={styles.docTitle}>{doc.t}</span>
+                    <span className={styles.docNote}>{doc.note}</span>
+                  </span>
+                  <span className={styles.docState}>{doc.ready ? 'Открыть' : 'По запросу'}</span>
+                </>
+              );
+
+              return (
+                <li key={doc.t} className={styles.doc}>
+                  {doc.href ? (
+                    <a href={doc.href} className={styles.docLink}>
+                      {body}
+                    </a>
+                  ) : (
+                    <span className={styles.docLink}>{body}</span>
+                  )}
+                </li>
+              );
+            })}
+
+            <li className={styles.docsFoot}>
+              <span className={`mono ${styles.docsFootNote}`}>
+                Документы «по запросу» высылаем в день обращения
+              </span>
+              <a href="tel:88005504455" className={styles.docsFootCta}>
+                Позвонить 8 800 550-44-55
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section className={styles.stepsSection}>
+          <h2 className={styles.h2}>Как проходит закупка</h2>
+          <div className={styles.steps}>
+            {STEPS.map((step) => (
+              <div key={step.n} className={styles.step}>
+                <p className={`label label-deep ${styles.stepNo}`}>Шаг {step.n}</p>
+                <h3 className={styles.stepTitle}>{step.t}</h3>
+                <p className={styles.stepText}>{step.d}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.formSection} id="zapros">
+          <div className={styles.formGrid}>
+            <div>
+              <h2 className={styles.h3}>Запросить пакет документов и КП</h2>
+              <p className={styles.formLead}>
+                Укажите ИНН организации — подготовим комплект сразу под вашу закупку,
+                с реквизитами и спецификацией.
+              </p>
+              <p className={`mono ${styles.formNote}`}>
+                Форма передаёт страницу и предмет запроса в CRM завода
+              </p>
+            </div>
+            <LeadForm subject="Пакет документов для тендера" />
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

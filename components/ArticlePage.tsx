@@ -52,7 +52,7 @@ export function ArticlePage({ page }: { page: StaticPage }) {
 
       <section className={styles.cta} id="zapros">
         <div>
-          <p className="label">Вопрос заводу</p>
+          <p className="label label-deep">Вопрос заводу</p>
           <h2 className={styles.h2}>Нужна консультация?</h2>
           <p className={styles.ctaLead}>
             Опишите задачу — специалист отдела продаж перезвонит и ответит по существу.

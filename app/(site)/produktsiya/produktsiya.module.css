@@ -1,11 +1,12 @@
 .head {
-  padding: clamp(12px, 1.6vw, 20px) 0 clamp(28px, 3.4vw, 44px);
+  padding: clamp(20px, 2.6vw, 40px) 0 clamp(28px, 3.4vw, 44px);
   border-bottom: 1px solid var(--paper-500);
 }
 
 .h1 {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  letter-spacing: -0.028em;
   color: var(--text-on-light);
 }
 
@@ -19,17 +20,17 @@
 
 .grid {
   display: grid;
-  gap: 1px;
+  gap: clamp(12px, 1.4vw, 20px);
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   margin: clamp(28px, 3.4vw, 44px) 0 0;
-  background: var(--paper-500);
-  border: 1px solid var(--paper-500);
 }
 
 .cat {
+  --u-line: var(--accent-deep);
   display: flex;
   flex-direction: column;
-  background: var(--paper-200);
+  background-color: var(--paper-200);
+  border: 1px solid var(--paper-500);
   padding: clamp(22px, 2.6vw, 34px);
 }
 
@@ -84,6 +85,7 @@
 
 .more {
   margin-top: 18px;
+  align-self: flex-start;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;

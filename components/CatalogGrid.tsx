@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import styles from './CatalogGrid.module.css';
@@ -11,10 +12,15 @@ export type CatalogItem = {
   brand: string;
   cls: string;
   specCount: number;
+  image?: string;
 };
 
 const ALL = 'Все';
 
+/**
+ * Каталог по образцу прототипа: слева — колонка фильтров и блок подбора под ТЗ,
+ * справа — карточки с фотографией, ключевыми строками и переходом в карточку.
+ */
 export function CatalogGrid({ items, showClass }: { items: CatalogItem[]; showClass: boolean }) {
   const [brand, setBrand] = useState(ALL);
   const [cls, setCls] = useState(ALL);
@@ -33,40 +39,96 @@ export function CatalogGrid({ items, showClass }: { items: CatalogItem[]; showCl
   );
 
   return (
-    <>
-      <div className={styles.filters}>
+    <div className={styles.layout}>
+      <aside className={styles.aside}>
         {showClass && classes.length > 2 && (
-          <FilterRow label="Класс" options={classes} value={cls} onChange={setCls} />
+          <FilterRow label="Класс по ГОСТ" options={classes} value={cls} onChange={setCls} />
         )}
         {brands.length > 2 && (
-          <FilterRow label="Базовое шасси" options={brands} value={brand} onChange={setBrand} />
+          <FilterRow label="Шасси" options={brands} value={brand} onChange={setBrand} />
         )}
+
+        <div className={styles.tzCard}>
+          <p className={`label label-deep ${styles.tzTitle}`}>Подбор под ТЗ</p>
+          <p className={styles.tzText}>
+            Пришлите техническое задание — вернём спецификацию и расчёт в течение
+            1 рабочего дня.
+          </p>
+          <Link href="#zapros" className={styles.tzButton}>
+            Отправить ТЗ
+          </Link>
+        </div>
+      </aside>
+
+      <div className={styles.results}>
         <p className={`mono ${styles.count}`} role="status">
           Найдено: {filtered.length}
         </p>
-      </div>
 
-      {filtered.length === 0 ? (
-        <p className={styles.empty}>
-          По выбранным условиям исполнений нет. Сбросьте фильтр или{' '}
-          <Link href="/tendery#zapros" className={styles.emptyLink}>запросите подбор</Link>.
-        </p>
-      ) : (
-        <div className={styles.grid}>
-          {filtered.map((item) => (
-            <Link key={item.slug} href={`/${item.slug}`} className={styles.card}>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              {item.chassis && (
-                <p className={`mono ${styles.cardChassis}`}>{item.chassis}</p>
-              )}
-              <span className={`mono ${styles.cardMeta}`}>
-                {item.specCount > 0 ? `${item.specCount} позиций комплектации` : 'Комплектация по запросу'}
-              </span>
+        {filtered.length === 0 ? (
+          <p className={styles.empty}>
+            По выбранным условиям исполнений нет. Сбросьте фильтр или{' '}
+            <Link href="#zapros" className={styles.emptyLink}>
+              запросите подбор
             </Link>
-          ))}
-        </div>
-      )}
-    </>
+            .
+          </p>
+        ) : (
+          <div className={styles.grid}>
+            {filtered.map((item) => (
+              <Link key={item.slug} href={`/${item.slug}`} className={`u-corner ${styles.card}`}>
+                <span className={styles.photo}>
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={800}
+                      height={500}
+                      className={styles.img}
+                    />
+                  ) : (
+                    <span className={`mono ${styles.photoStub}`}>ФОТО ГОТОВИТСЯ</span>
+                  )}
+                  {(item.cls || item.brand) && (
+                    <span className={`mono ${styles.badge}`}>
+                      {item.cls ? `КЛАСС ${item.cls}` : item.brand}
+                    </span>
+                  )}
+                </span>
+
+                <span className={styles.body}>
+                  <span className={styles.cardTitle}>{item.title}</span>
+
+                  <span className={styles.rows}>
+                    {item.chassis && (
+                      <span className={styles.row}>
+                        <span>Базовое шасси</span>
+                        <span className={`mono ${styles.rowV}`}>{item.chassis}</span>
+                      </span>
+                    )}
+                    <span className={styles.row}>
+                      <span>Соответствие</span>
+                      <span className={`mono ${styles.rowV}`}>ТР ТС 018/2011</span>
+                    </span>
+                    <span className={styles.row}>
+                      <span>Комплектация</span>
+                      <span className={`mono ${styles.rowV}`}>
+                        {item.specCount > 0 ? `${item.specCount} позиций` : 'по запросу'}
+                      </span>
+                    </span>
+                  </span>
+
+                  <span className={styles.foot}>
+                    <span className={`mono ${styles.footPrice}`}>Цена по запросу</span>
+                    <span className={styles.footLink}>Карточка →</span>
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

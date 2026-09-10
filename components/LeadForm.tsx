@@ -59,7 +59,7 @@ export function LeadForm({ subject }: Props) {
   if (state.kind === 'sent') {
     return (
       <div className={styles.done} role="status">
-        <p className="label">Заявка принята</p>
+        <p className="label label-deep">Заявка принята</p>
         <p className={styles.doneTitle}>
           {state.num ? `Номер заявки ${state.num}` : 'Заявка отправлена'}
         </p>

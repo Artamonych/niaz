@@ -1,20 +1,26 @@
 /*
  * Дизайн-система «НиАЗ» — инженерный минимализм из прототипа:
- * металл и асфальт, тонкая сетка, моноширинный шрифт на технических данных.
- * Значения токенов перенесены из прототипа один в один.
+ * металл и асфальт, тонкая чертёжная сетка, моноширинный шрифт на технических
+ * данных, никаких скруглений и теней. Значения токенов перенесены из
+ * прототипа (NiAZ-prototype-standalone) один в один.
  */
 
 :root {
-  /* Тёмная зона: шапка, герой, подвал, CRM */
+  /* Тёмная зона: шапка и герой главной, подвал, тендерный блок, CRM */
   --ink-900: #0b0e10;
   --ink-800: #0e1214;
   --ink-700: #12171a;
+  --ink-650: #14181b;
+  --ink-620: #161b1f;
   --ink-600: #1c2328;
+  --ink-560: #1d2427;
+  --ink-540: #22292d;
   --ink-500: #232b2f;
   --ink-400: #2a3236;
 
-  /* Светлая зона: каталог, карточки, документы */
-  --paper-100: #f4f6f7;
+  /* Светлая зона: внутренние страницы, каталог, карточки, документы */
+  --paper-000: #d8dddf;
+  --paper-100: #dee3e5;
   --paper-200: #e4e8ea;
   --paper-300: #dde2e4;
   --paper-400: #d2d8da;
@@ -22,8 +28,11 @@
 
   --text-on-dark: #eef2f4;
   --text-on-dark-dim: #7c878d;
+  --text-on-dark-dim2: #8b979d;
+  --text-on-dark-dim3: #96a1a6;
   --text-on-light: #242d31;
   --text-on-light-dim: #525c61;
+  --text-on-light-dim2: #555f64;
 
   --accent: #3fa9c9;
   --accent-deep: #1b6076;
@@ -38,6 +47,9 @@
 
   --shell: 1440px;
   --gutter: clamp(20px, 5vw, 80px);
+
+  /* Единая кривая всех движений прототипа. */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   color-scheme: light;
 }
@@ -54,7 +66,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper-100);
+  background: var(--paper-000);
   color: var(--text-on-light);
   font: 400 16px/1.6 var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -84,6 +96,14 @@ img {
   height: auto;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+button {
+  font-family: inherit;
+}
+
 /* Технические данные всегда моноширинные — это язык завода, а не украшение. */
 .mono {
   font-family: var(--font-mono);
@@ -95,6 +115,11 @@ img {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
+  margin: 0;
+}
+
+.label-deep {
+  color: var(--accent-deep);
 }
 
 .shell {
@@ -103,12 +128,79 @@ img {
   padding-inline: var(--gutter);
 }
 
-/* Фоновая сетка тёмных секций — «чертёжный» слой. */
+/* Фоновая сетка тёмных секций — «чертёжный» слой, который медленно плывёт. */
 .grid-bg {
   background-color: var(--ink-800);
   background-image:
     repeating-linear-gradient(0deg, var(--ink-600) 0 1px, transparent 1px 120px),
     repeating-linear-gradient(90deg, var(--ink-600) 0 1px, transparent 1px 120px);
+  animation: niazGrid 60s linear infinite;
+}
+
+/* Полоса прогресса чтения. */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  z-index: 200;
+  pointer-events: none;
+}
+
+/*
+ * Линия-разделитель, которую дочерчивает SiteMotion при попадании в кадр.
+ * Без JS остаётся видимой: scaleX выставляется скриптом.
+ */
+.rule {
+  height: 1px;
+  background: var(--paper-500);
+  transform-origin: left;
+  transition: transform 0.8s var(--ease);
+}
+
+.rule-dark {
+  background: var(--ink-400);
+}
+
+/*
+ * Подчёркивание, вырастающее слева направо: ссылки навигации и текстовые CTA.
+ * Работает поверх любого фона, цвет линии задаётся через --u-line.
+ */
+.u-underline {
+  --u-line: var(--accent);
+  padding-bottom: 5px;
+  background-image: linear-gradient(var(--u-line), var(--u-line));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 1px;
+  transition: background-size 0.3s var(--ease), color 0.25s;
+}
+
+.u-underline:hover,
+.u-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+/*
+ * «Обводка угла»: по наведению дочерчивается верхняя и правая грань.
+ * Элементу нужен background-color (не сокращённый background), иначе
+ * фон затрёт градиенты.
+ */
+.u-corner {
+  --u-line: var(--accent);
+  background-image: linear-gradient(var(--u-line), var(--u-line)),
+    linear-gradient(var(--u-line), var(--u-line));
+  background-repeat: no-repeat;
+  background-position: left top, right top;
+  background-size: 0% 1px, 1px 0%;
+  transition: background-size 0.5s var(--ease), border-color 0.3s, background-color 0.25s;
+}
+
+.u-corner:hover,
+.u-corner:focus-visible {
+  background-size: 100% 1px, 1px 100%;
 }
 
 .sr-only {
@@ -125,6 +217,46 @@ img {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+@keyframes niazDraw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes niazPanel {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes niazGrid {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 120px 120px, 120px 120px;
+  }
+}
+
+@keyframes niazUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

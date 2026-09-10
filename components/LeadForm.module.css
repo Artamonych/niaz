@@ -1,27 +1,28 @@
+/*
+ * Форма прототипа: без рамки и заливки — только подчёркнутые поля,
+ * моноширинные подписи и одна залитая кнопка.
+ */
 .form {
   display: grid;
-  gap: 16px;
-  background: var(--paper-200);
-  border: 1px solid var(--paper-500);
-  padding: clamp(20px, 2.6vw, 32px);
+  gap: 18px;
 }
 
 .row {
   display: grid;
-  gap: 16px;
+  gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 .field {
   display: grid;
-  gap: 6px;
+  gap: 9px;
 }
 
 .labelText {
-  font: 500 10.5px/1 var(--font-mono);
+  font: 500 10px/1 var(--font-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-on-light-dim);
+  color: var(--text-on-light-dim2);
 }
 
 .req {
@@ -32,21 +33,28 @@
 .input,
 .textarea {
   width: 100%;
-  padding: 11px 13px;
-  background: #fff;
-  border: 1px solid var(--paper-500);
+  border: 0;
+  border-bottom: 1px solid var(--paper-500);
+  background: transparent;
+  padding: 9px 0;
   font: 400 14px/1.4 var(--font-body);
   color: var(--text-on-light);
+  outline: none;
+  transition: border-color 0.3s;
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: var(--accent);
-  outline: none;
+  border-bottom-color: var(--accent-deep);
 }
 
 .input[aria-invalid='true'] {
-  border-color: var(--danger);
+  border-bottom-color: var(--danger);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #8d979b;
 }
 
 .textarea {
@@ -54,8 +62,8 @@
 }
 
 .hint {
-  font-size: 11.5px;
-  color: var(--text-on-light-dim);
+  font-size: 11px;
+  color: var(--text-on-light-dim2);
 }
 
 .error {
@@ -76,9 +84,14 @@
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.5;
-  color: var(--text-on-light-dim);
+  color: var(--text-on-light-dim2);
+}
+
+.consent input {
+  margin-top: 2px;
+  accent-color: var(--accent-deep);
 }
 
 .consentLink {
@@ -88,17 +101,18 @@
 
 .submit {
   justify-self: start;
-  padding: 14px 28px;
-  border: 0;
+  padding: 15px 28px;
+  border: 1px solid var(--accent-deep);
   background: var(--accent-deep);
   color: #fff;
   font: 600 13px/1 var(--font-body);
   cursor: pointer;
-  transition: background 0.18s;
+  transition: background 0.25s, border-color 0.25s;
 }
 
 .submit:hover:not(:disabled) {
-  background: #17506a;
+  background: var(--text-on-light);
+  border-color: var(--text-on-light);
 }
 
 .submit:disabled {
@@ -109,7 +123,7 @@
 .done {
   background: var(--paper-200);
   border: 1px solid var(--paper-500);
-  border-top: 3px solid var(--ok);
+  border-top: 2px solid var(--ok);
   padding: clamp(24px, 3vw, 40px);
 }
 
@@ -121,7 +135,7 @@
 
 .doneText {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13.5px;
+  line-height: 1.65;
   color: var(--text-on-light-dim);
 }

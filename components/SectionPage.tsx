@@ -19,7 +19,7 @@ export function SectionPage({ section }: { section: SectionIndex }) {
         <ul className={styles.list}>
           {section.items.map((item) => (
             <li key={item.slug}>
-              <Link href={`/${item.slug}/`} className={styles.item}>
+              <Link href={`/${item.slug}/`} className={`u-corner ${styles.item}`}>
                 <h2 className={styles.itemTitle}>{item.title}</h2>
                 {item.lead && <p className={styles.itemLead}>{item.lead}</p>}
               </Link>

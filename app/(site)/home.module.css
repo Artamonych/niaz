@@ -1,21 +1,68 @@
+/* ————— Герой ————— */
+
 .hero {
-  padding: clamp(48px, 7vw, 104px) 0 clamp(40px, 5vw, 72px);
-  border-bottom: 1px solid var(--ink-500);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(40px, 6vw, 88px) 0 clamp(40px, 5vw, 72px);
+}
+
+/* Направляющие колонок: четыре волосяные линии на всю высоту героя. */
+.guides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.guides span {
+  border-left: 1px solid #191f23;
+}
+
+.guides span:last-child {
+  border-right: 1px solid #191f23;
 }
 
 .heroInner {
-  color: var(--text-on-dark);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+.heroText {
+  flex: 1 1 380px;
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 clamp(18px, 2vw, 28px);
+}
+
+.eyebrowRule {
+  width: clamp(28px, 4vw, 56px);
+  flex: none;
+  background: var(--accent);
+  transition: transform 0.7s var(--ease);
 }
 
 .h1 {
-  margin: clamp(14px, 2vw, 22px) 0 0;
-  font: 700 clamp(32px, 5.4vw, 76px)/1.05 var(--font-display);
+  margin: 0;
+  font: 700 clamp(30px, 4.9vw, 76px)/1.05 var(--font-display);
   color: var(--text-on-dark);
+  letter-spacing: -0.025em;
 }
 
 .heroLead {
   margin: clamp(18px, 2.4vw, 32px) 0 0;
-  max-width: 52ch;
+  max-width: 46ch;
   font-size: clamp(14px, 1.35vw, 18px);
   line-height: 1.6;
   color: var(--text-on-dark-dim);
@@ -30,191 +77,348 @@
 
 .primary {
   display: inline-block;
-  padding: 14px 26px;
+  padding: 16px 26px;
   background: var(--accent);
-  color: var(--ink-900);
+  border: 1px solid var(--accent);
+  color: #08131a;
   font: 600 13px/1 var(--font-body);
-  transition: background 0.18s;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
 
 .primary:hover {
-  background: #56bcd9;
+  background: var(--text-on-dark);
+  border-color: var(--text-on-dark);
 }
 
 .secondary {
   display: inline-block;
-  padding: 14px 26px;
+  padding: 16px 26px;
+  background-color: transparent;
   border: 1px solid var(--ink-400);
   color: var(--text-on-dark);
-  font: 500 13px/1 var(--font-body);
-  transition: border-color 0.18s, color 0.18s;
+  font: 600 13px/1 var(--font-body);
 }
 
-.secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: clamp(24px, 3vw, 44px) 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--ink-560);
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-dim2);
+}
+
+/* Рамка чертёжного листа с угловыми маркерами. */
+.sheet {
+  flex: 1.45 1 520px;
+  min-width: 0;
+  position: relative;
+  padding: 10px;
+}
+
+.bracket {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+}
+
+.bracketTl {
+  left: 0;
+  top: 0;
+  border-left: 1px solid var(--accent);
+  border-top: 1px solid var(--accent);
+}
+
+.bracketTr {
+  right: 0;
+  top: 0;
+  border-right: 1px solid var(--accent);
+  border-top: 1px solid var(--accent);
+}
+
+.bracketBl {
+  left: 0;
+  bottom: 0;
+  border-left: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.bracketBr {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.sheetInner {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--ink-650);
+  border: 1px solid var(--ink-400);
+  overflow: hidden;
+}
+
+/* ————— Счётчики ————— */
+
+.countersBand {
+  border-top: 1px solid var(--ink-560);
+  border-bottom: 1px solid var(--ink-560);
 }
 
 .counters {
   display: grid;
-  gap: 1px;
+  gap: clamp(20px, 3vw, 48px);
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  margin: clamp(40px, 5vw, 72px) 0 0;
-  background: var(--ink-500);
-  border: 1px solid var(--ink-500);
+  margin: 0;
+  padding-block: clamp(28px, 3.4vw, 56px);
 }
 
 .counter {
-  background: var(--ink-800);
-  padding: clamp(18px, 2.2vw, 28px);
+  min-width: 0;
 }
 
 .counterV {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
   margin: 0;
-  font-size: clamp(24px, 3vw, 38px);
-  font-weight: 600;
+  font: 700 clamp(30px, 4.2vw, 58px)/1 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--text-on-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.counterSuffix {
+  font-size: clamp(16px, 1.8vw, 24px);
   color: var(--accent);
 }
 
 .counterK {
-  margin: 8px 0 0;
-  font-size: 12px;
-  line-height: 1.4;
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-on-dark-dim);
 }
 
-.section {
-  padding: clamp(56px, 7vw, 104px) var(--gutter);
+/* ————— Линейки продукции ————— */
+
+.catsSection {
+  padding: clamp(44px, 5.6vw, 104px) 0;
 }
 
 .sectionHead {
-  margin-bottom: clamp(28px, 3.6vw, 48px);
-}
-
-.h2 {
-  margin: 12px 0 0;
-  font: 700 clamp(24px, 3.4vw, 44px)/1.1 var(--font-display);
-  color: var(--text-on-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(22px, 2.6vw, 40px);
 }
 
 .h2Dark {
-  composes: h2;
+  margin: 0;
+  font: 700 clamp(22px, 2.9vw, 40px)/1.1 var(--font-display);
+  letter-spacing: -0.022em;
   color: var(--text-on-dark);
+}
+
+.allLink {
+  display: inline-block;
+  font: 500 12px/1 var(--font-body);
+  color: var(--accent);
+}
+
+.headRule {
+  margin-bottom: clamp(22px, 2.6vw, 40px);
 }
 
 .cats {
   display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  background: var(--paper-500);
-  border: 1px solid var(--paper-500);
+  gap: clamp(12px, 1.4vw, 20px);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .cat {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: var(--paper-200);
-  padding: clamp(22px, 2.6vw, 34px);
-  transition: background 0.18s;
+  display: block;
+  border: 1px solid var(--ink-540);
+  background-color: var(--ink-700);
 }
 
-.cat:hover {
-  background: #eff2f3;
+.catPhoto {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--ink-620);
+  overflow: hidden;
+}
+
+.catImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) contrast(1.05);
+}
+
+.catPhotoStub {
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--text-on-dark-dim2);
+}
+
+.catBody {
+  display: block;
+  padding: 18px 20px 22px;
 }
 
 .catNo {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: var(--accent-deep);
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
 }
 
 .catTitle {
-  font: 600 clamp(16px, 1.5vw, 20px)/1.25 var(--font-display);
-  color: var(--text-on-light);
+  display: block;
+  margin-top: 12px;
+  font: 600 15px/1.3 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--text-on-dark);
 }
 
 .catLead {
-  margin: 0;
-  flex: 1;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--text-on-light-dim);
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-on-dark-dim);
 }
 
 .catCount {
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  display: block;
+  margin-top: 14px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-on-light-dim);
+  color: var(--text-on-dark-dim2);
 }
 
-.dark {
-  padding: clamp(56px, 7vw, 104px) 0;
-  border-block: 1px solid var(--ink-500);
+/* ————— Тендерный блок ————— */
+
+.tenders {
+  background: var(--paper-300);
+  padding: clamp(44px, 5.6vw, 104px) 0;
 }
 
-.darkGrid {
+.tendersGrid {
   display: grid;
-  gap: clamp(32px, 4vw, 64px);
+  gap: clamp(28px, 4vw, 72px);
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: start;
 }
 
-.darkLead {
-  margin: 18px 0 28px;
-  max-width: 44ch;
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--text-on-dark-dim);
+.h2 {
+  margin: 16px 0 0;
+  font: 700 clamp(24px, 3.4vw, 46px)/1.08 var(--font-display);
+  letter-spacing: -0.026em;
+  color: var(--text-on-light);
+}
+
+.tendersLead {
+  margin: 18px 0 0;
+  max-width: 42ch;
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.6;
+  color: var(--text-on-light-dim);
+}
+
+.dark {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 16px 26px;
+  background: var(--text-on-light);
+  border: 1px solid var(--text-on-light);
+  color: #fff;
+  font: 600 13px/1 var(--font-body);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.dark:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
 }
 
 .docs {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 1px;
-  background: var(--ink-500);
-  border: 1px solid var(--ink-500);
+  border: 1px solid var(--paper-500);
+  background: var(--paper-200);
 }
 
 .doc {
   display: flex;
+  align-items: center;
   gap: 16px;
-  align-items: flex-start;
-  background: var(--ink-800);
-  padding: 18px 20px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--paper-400);
+  transition: background 0.2s;
+}
+
+.doc:hover {
+  background: var(--paper-300);
 }
 
 .docFmt {
-  flex-shrink: 0;
-  padding: 4px 8px;
-  border: 1px solid var(--ink-400);
+  flex: none;
+  width: 34px;
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: var(--text-on-light-dim2);
+}
+
+.docBody {
+  flex: 1;
+  min-width: 0;
 }
 
 .docTitle {
   display: block;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--text-on-dark);
+  font: 500 13px/1.4 var(--font-body);
+  color: var(--text-on-light);
 }
 
 .docNote {
   display: block;
-  margin-top: 4px;
-  font-size: 12px;
-  color: var(--text-on-dark-dim);
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-on-light-dim2);
 }
 
-.formGrid {
+.docsMore {
+  padding: 16px 20px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-on-light-dim2);
+}
+
+/* ————— Форма ————— */
+
+.formSection {
   display: grid;
   gap: clamp(32px, 4vw, 64px);
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: start;
+  padding-block: clamp(44px, 5.6vw, 104px);
 }
 
 .formLead {
@@ -223,4 +427,13 @@
   font-size: 14.5px;
   line-height: 1.65;
   color: var(--text-on-light-dim);
+}
+
+.formNote {
+  margin: 18px 0 0;
+  font-size: 10.5px;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-on-light-dim2);
 }
