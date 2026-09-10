@@ -44,15 +44,37 @@
   flex: none;
 }
 
+/* Знак: буква в квадратных скобках — скобки рисуются псевдоэлементами. */
 .markBox {
+  position: relative;
   width: 34px;
   height: 34px;
   flex: none;
-  border: 1px solid var(--line);
   display: grid;
   place-items: center;
   font: 800 13px/1 var(--font-display);
   color: var(--line);
+}
+
+.markBox::before,
+.markBox::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+}
+
+.markBox::before {
+  left: 0;
+  border: 1px solid var(--line);
+  border-right: 0;
+}
+
+.markBox::after {
+  right: 0;
+  border: 1px solid var(--line);
+  border-left: 0;
 }
 
 .mark {
@@ -62,11 +84,17 @@
   color: var(--fg);
 }
 
+/*
+ * Полное название длиннее прежнего «КСТОВО · ЗАВОД» втрое, поэтому идёт
+ * в две строки уменьшенным кеглем: на 1181px — самой узкой ширине, где ещё
+ * виден полный набор пунктов — у шапки запас всего 61px.
+ */
 .markSub {
   display: block;
   margin-top: 3px;
-  font: 400 9px/1.2 var(--font-mono);
-  letter-spacing: 0.12em;
+  font: 400 8px/1.25 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--fg-dim);
 }
 

@@ -50,7 +50,11 @@ export function SiteHeader() {
           </span>
           <span>
             <span className={styles.mark}>НиАЗ</span>
-            <span className={`mono ${styles.markSub}`}>КСТОВО · ЗАВОД</span>
+            <span className={`mono ${styles.markSub}`}>
+              Нижегородский
+              <br />
+              автомобильный завод
+            </span>
           </span>
         </Link>
 
