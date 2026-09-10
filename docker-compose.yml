@@ -6,12 +6,31 @@
 #   docker compose up -d --build
 
 services:
+  # Отрабатывает и завершается: миграции и первичное наполнение базы.
+  migrate:
+    build:
+      context: .
+      target: migrator
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+    environment:
+      DATABASE_URL: file:/app/data-db/niaz.db
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_FIO: ${ADMIN_FIO}
+    volumes:
+      - db:/app/data-db
+    restart: 'no'
+
   app:
     build:
       context: .
       args:
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
     restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
     environment:
       DATABASE_URL: file:/app/data-db/niaz.db
       AUTH_SECRET: ${AUTH_SECRET}

@@ -1,5 +1,12 @@
-# Сборка сайта и CRM в самодостаточный образ.
-# Многослойно: зависимости отдельно от исходников, чтобы пересборка была быстрой.
+# Сборка сайта и CRM.
+#
+# Три образа из одного файла:
+#   deps     — только зависимости, чтобы пересборка кода не тянула npm ci;
+#   migrator — полный набор с prisma CLI, выполняет миграции разово на старте;
+#   runner   — то, что работает постоянно: standalone-сервер без node_modules.
+#
+# Разделение нужно потому, что prisma CLI тянет много транзитивных пакетов
+# (@prisma/config → effect и прочее). Тащить их в постоянный образ незачем.
 
 FROM node:24-alpine AS deps
 WORKDIR /app
@@ -19,6 +26,12 @@ ARG NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 RUN npm run build
 
+# Одноразовый контейнер обслуживания базы: приводит схему в порядок и
+# досоздаёт то, без чего CRM не запустить (стадии, услуги, администратор).
+FROM builder AS migrator
+WORKDIR /app
+CMD ["sh", "-c", "npx prisma migrate deploy && node deploy/bootstrap.mjs"]
+
 FROM node:24-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
@@ -30,22 +43,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Prisma нужна в рантайме: миграции и наполнение базы выполняются на старте.
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
-COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
-COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
-
-# Клиент Prisma и bcrypt нужны скрипту первичного наполнения.
-COPY --from=builder /app/lib/generated ./lib/generated
-COPY --from=builder /app/node_modules/bcryptjs ./node_modules/bcryptjs
-COPY --from=builder /app/node_modules/@prisma/adapter-better-sqlite3 ./node_modules/@prisma/adapter-better-sqlite3
-COPY --from=builder /app/node_modules/better-sqlite3 ./node_modules/better-sqlite3
-COPY deploy/bootstrap.mjs ./deploy/bootstrap.mjs
-COPY deploy/entrypoint.sh ./deploy/entrypoint.sh
-RUN chmod +x ./deploy/entrypoint.sh
-
 # Каталог под файл SQLite: он монтируется томом, иначе база умрёт с контейнером.
 RUN mkdir -p /app/data-db && chown nextjs:nodejs /app/data-db
 
@@ -53,4 +50,4 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000 HOSTNAME=0.0.0.0
 
-ENTRYPOINT ["./deploy/entrypoint.sh"]
+CMD ["node", "server.js"]

@@ -4,6 +4,24 @@
 #   docker compose -f docker-compose.vps.yml up -d --build
 
 services:
+  # Отрабатывает и завершается: миграции и первичное наполнение базы.
+  # Приложение не стартует, пока этот шаг не пройдёт успешно.
+  migrate:
+    build:
+      context: .
+      target: migrator
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+    container_name: niaz-migrate
+    environment:
+      DATABASE_URL: file:/app/data-db/niaz.db
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_FIO: ${ADMIN_FIO}
+    volumes:
+      - db:/app/data-db
+    restart: 'no'
+
   app:
     build:
       context: .
@@ -11,14 +29,14 @@ services:
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
     container_name: niaz-app
     restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
     environment:
       DATABASE_URL: file:/app/data-db/niaz.db
       AUTH_SECRET: ${AUTH_SECRET}
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
       SITE_INDEXABLE: ${SITE_INDEXABLE:-false}
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
-      ADMIN_FIO: ${ADMIN_FIO}
     volumes:
       - db:/app/data-db
     # Только на петлю: снаружи контейнер недоступен, всё идёт через nginx.
