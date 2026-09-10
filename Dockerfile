@@ -17,7 +17,12 @@ WORKDIR /app
 # достучится до хранилища, npm молча уходит собирать модуль из исходников.
 # Без Python и компилятора сборка в этот момент падает — ставим их заранее,
 # чтобы результат не зависел от везения с сетью.
-RUN apk add --no-cache python3 make g++
+#
+# Зеркало: dl-cdn (Fastly) с нашего VPS регулярно виснет на крупных пакетах —
+# соединение живо, данные не идут, сборка стоит часами на установке gcc.
+# Через зеркало Яндекса та же установка проходит за 49 секунд. dl-cdn
+# остаётся запасным: если зеркало недоступно, собираемся как раньше.
+RUN set -eu;     cp /etc/apk/repositories /etc/apk/repositories.dl-cdn;     sed -i 's|https://dl-cdn.alpinelinux.org/alpine|https://mirror.yandex.ru/mirrors/alpine|g' /etc/apk/repositories;     timeout 300 apk add --no-cache python3 make g++ || {       echo 'Зеркало Яндекса не ответило, пробуем dl-cdn';       cp /etc/apk/repositories.dl-cdn /etc/apk/repositories;       timeout 600 apk add --no-cache python3 make g++;     }
 
 COPY package.json package-lock.json ./
 RUN npm ci
