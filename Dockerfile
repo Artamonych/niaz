@@ -12,6 +12,13 @@
 
 FROM node:24-alpine AS deps
 WORKDIR /app
+
+# better-sqlite3 ставится готовым бинарником, но если prebuild-install не
+# достучится до хранилища, npm молча уходит собирать модуль из исходников.
+# Без Python и компилятора сборка в этот момент падает — ставим их заранее,
+# чтобы результат не зависел от везения с сетью.
+RUN apk add --no-cache python3 make g++
+
 COPY package.json package-lock.json ./
 RUN npm ci
 
