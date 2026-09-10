@@ -1,0 +1,142 @@
+/*
+ * Дизайн-система «НиАЗ» — инженерный минимализм из прототипа:
+ * металл и асфальт, тонкая сетка, моноширинный шрифт на технических данных.
+ * Значения токенов перенесены из прототипа один в один.
+ */
+
+:root {
+  /* Тёмная зона: шапка, герой, подвал, CRM */
+  --ink-900: #0b0e10;
+  --ink-800: #0e1214;
+  --ink-700: #12171a;
+  --ink-600: #1c2328;
+  --ink-500: #232b2f;
+  --ink-400: #2a3236;
+
+  /* Светлая зона: каталог, карточки, документы */
+  --paper-100: #f4f6f7;
+  --paper-200: #e4e8ea;
+  --paper-300: #dde2e4;
+  --paper-400: #d2d8da;
+  --paper-500: #c6cdd0;
+
+  --text-on-dark: #eef2f4;
+  --text-on-dark-dim: #7c878d;
+  --text-on-light: #242d31;
+  --text-on-light-dim: #525c61;
+
+  --accent: #3fa9c9;
+  --accent-deep: #1b6076;
+
+  --ok: #5fbf8a;
+  --warn: #e0a33e;
+  --danger: #d9694f;
+
+  --font-display: var(--font-display-loaded), Manrope, system-ui, sans-serif;
+  --font-body: var(--font-body-loaded), Inter, system-ui, sans-serif;
+  --font-mono: var(--font-mono-loaded), ui-monospace, monospace;
+
+  --shell: 1440px;
+  --gutter: clamp(20px, 5vw, 80px);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper-100);
+  color: var(--text-on-light);
+  font: 400 16px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Технические данные всегда моноширинные — это язык завода, а не украшение. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font: 500 10.5px/1 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.shell {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* Фоновая сетка тёмных секций — «чертёжный» слой. */
+.grid-bg {
+  background-color: var(--ink-800);
+  background-image:
+    repeating-linear-gradient(0deg, var(--ink-600) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(90deg, var(--ink-600) 0 1px, transparent 1px 120px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

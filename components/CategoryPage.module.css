@@ -1,0 +1,50 @@
+.head {
+  padding: clamp(12px, 1.6vw, 20px) 0 clamp(28px, 3.4vw, 44px);
+  border-bottom: 1px solid var(--paper-500);
+  margin-bottom: clamp(28px, 3.4vw, 44px);
+}
+
+.no {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--accent-deep);
+  margin-bottom: 10px;
+}
+
+.h1 {
+  font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.lead {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.65;
+  color: var(--text-on-light-dim);
+}
+
+.cta {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: start;
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-top: clamp(36px, 4vw, 56px);
+  border-top: 1px solid var(--paper-500);
+}
+
+.h2 {
+  margin: 12px 0 0;
+  font: 700 clamp(22px, 2.8vw, 34px)/1.15 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.ctaLead {
+  margin: 14px 0 0;
+  max-width: 44ch;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-on-light-dim);
+}

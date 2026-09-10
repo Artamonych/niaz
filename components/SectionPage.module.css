@@ -1,0 +1,60 @@
+.head {
+  padding: clamp(12px, 1.6vw, 20px) 0 clamp(28px, 3.4vw, 44px);
+  border-bottom: 1px solid var(--paper-500);
+}
+
+.h1 {
+  font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.lead {
+  margin: 16px 0 0;
+  max-width: 58ch;
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.65;
+  color: var(--text-on-light-dim);
+}
+
+.list {
+  list-style: none;
+  margin: clamp(28px, 3.4vw, 44px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--paper-500);
+  border: 1px solid var(--paper-500);
+}
+
+.item {
+  display: block;
+  background: var(--paper-200);
+  padding: clamp(20px, 2.4vw, 28px);
+  transition: background 0.16s;
+}
+
+.item:hover {
+  background: #eff2f3;
+}
+
+.itemTitle {
+  font: 600 16px/1.35 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.itemLead {
+  margin: 8px 0 0;
+  max-width: 80ch;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-on-light-dim);
+}
+
+.empty {
+  margin-top: 40px;
+  padding: 40px;
+  background: var(--paper-200);
+  border: 1px solid var(--paper-500);
+  text-align: center;
+  color: var(--text-on-light-dim);
+}

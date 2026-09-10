@@ -1,0 +1,40 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "scrape:donor": "tsx scripts/scrape-donor.ts",
+    "scrape:html": "tsx scripts/scrape-donor-html.ts",
+    "build:content": "tsx scripts/build-content.ts",
+    "check:urls": "tsx scripts/check-urls.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "db:inspect": "tsx scripts/inspect-db.ts",
+    "clean:test-leads": "tsx scripts/clean-test-leads.ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "jose": "^6.2.12",
+    "next": "16.3.4",
+    "prisma": "^7.10.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^4.6.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tsx": "^4.23.13",
+    "typescript": "^5"
+  }
+}

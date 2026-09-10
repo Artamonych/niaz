@@ -1,0 +1,129 @@
+// Мини-CRM завода. SQLite на тестовом домене; на бою меняется provider на
+// postgresql без правок моделей — типы полей выбраны совместимые.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  fio          String
+  phone        String?
+  role         String   @default("MANAGER")
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  leads    Lead[]
+  clients  Client[]
+  events   Event[]
+}
+
+/// Стадия канбана. Список стадий в прототипе редактируемый, поэтому хранится строкой.
+model Stage {
+  id     String @id @default(cuid())
+  key    String @unique
+  title  String
+  accent String
+  order  Int
+
+  leads Lead[]
+}
+
+model Lead {
+  id      Int    @id @default(autoincrement())
+  /// Человекочитаемый номер заявки — его называют в переписке с заказчиком.
+  num     String @unique
+  fio     String
+  phone   String
+  email   String?
+  org     String?
+  inn     String?
+  comment String?
+  /// Что запрашивали: категория каталога или конкретное исполнение.
+  subject String?
+  /// Страница, с которой пришла заявка — нужна для аналитики заявок (§12 ТЗ).
+  sourceUrl String?
+  source    String @default("Форма на сайте")
+
+  stageId String
+  stage   Stage  @relation(fields: [stageId], references: [id])
+
+  ownerId String?
+  owner   User?   @relation(fields: [ownerId], references: [id])
+
+  clientId String?
+  client   Client? @relation(fields: [clientId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  events Event[]
+
+  @@index([stageId])
+  @@index([createdAt])
+}
+
+model Client {
+  id      String  @id @default(cuid())
+  name    String
+  inn     String?
+  kpp     String?
+  city    String?
+  contact String?
+  phone   String?
+  email   String?
+  status  String  @default("В работе")
+  comment String?
+  source  String?
+
+  // Банковские реквизиты — тендерным закупкам они нужны в карточке контрагента.
+  bankAccount String?
+  bankBik     String?
+  bankName    String?
+  bankCorr    String?
+  address     String?
+
+  managerId String?
+  manager   User?   @relation(fields: [managerId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  leads  Lead[]
+  events Event[]
+}
+
+model Service {
+  id    String @id @default(cuid())
+  name  String @unique
+  price Int    @default(0)
+}
+
+/// Лента событий: системные записи о смене стадии и комментарии менеджеров.
+model Event {
+  id   String @id @default(cuid())
+  kind String @default("comment") // comment | system
+  text String
+
+  authorId String?
+  author   User?   @relation(fields: [authorId], references: [id])
+  /// Подпись автора на момент события — сохраняется, даже если сотрудника удалили.
+  authorName String
+
+  leadId Int?
+  lead   Lead? @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  clientId String?
+  client   Client? @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([clientId])
+}

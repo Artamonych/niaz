@@ -1,0 +1,322 @@
+[
+  {
+    "source": "/author/admin_top7",
+    "destination": "/o-kompanii/",
+    "permanent": true
+  },
+  {
+    "source": "/avtobus-turist-19-mest",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/avtobus-vip",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/avtobus-vip-klassa",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/avtobusy",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/avtobusy-4",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/category/dostizheniya",
+    "destination": "/dostizheniya/",
+    "permanent": true
+  },
+  {
+    "source": "/category/informatsionnyy-razdel",
+    "destination": "/informatsionnyy-razdel/",
+    "permanent": true
+  },
+  {
+    "source": "/category/novosti",
+    "destination": "/novosti/",
+    "permanent": true
+  },
+  {
+    "source": "/crafter-35-new-vip-turist",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gaz-next-shkolnyy",
+    "destination": "/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami/",
+    "permanent": true
+  },
+  {
+    "source": "/gaz-next-shkolnyy-2",
+    "destination": "/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-avtobusy-citroen",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-avtobusy-gaz",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-avtobusy-mercedes",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-avtobusy-peugeot",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-avtobusy-renault",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-avtobusy-volkswagen",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskie-mikroavtobusy",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoe-taksi",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-mercedes-benz-sprinter",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-peugeot-boxer-16-6",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-peugeot-boxer-18-4",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-peugeot-boxer-19-3",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-renault-master-layn-16-6",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-renault-master-layn-19-3",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-renault-master-layn-20-2",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-renault-master-layn-21-1",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-avtobus-sprinter-classic",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-layn",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-citroen-jumper-16-6",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-citroen-jumper-18-4",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-citroen-jumper-19-3",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-layn-13-1-mest",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-layn-16-1-mest",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-layn-26-mest",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/gorodskoy-mikroavtobus-layn-26-mest-komfort",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/mikroavtobus-turist-na-baze-gazel-next",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/shkolnye-avtobusy",
+    "destination": "/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami/",
+    "permanent": true
+  },
+  {
+    "source": "/shkolnyy-avtobus",
+    "destination": "/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami/",
+    "permanent": true
+  },
+  {
+    "source": "/shkolnyy-avtobus-mercedes",
+    "destination": "/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami/",
+    "permanent": true
+  },
+  {
+    "source": "/shkolnyy-avtobus-volkswagen",
+    "destination": "/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami/",
+    "permanent": true
+  },
+  {
+    "source": "/turist",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turist-biznes",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turist-dvd-bagazhnik",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turist-klassik",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turist-lyuks",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turist-sidenya-turtsiya-navesnoy-bagazhnik",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turist-volkswagen-crafter-new-siniy",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-avtobusy-citroen",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-avtobusy-gaz",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-avtobusy-mercedes",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-avtobusy-peugeot",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-avtobusy-renault",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-avtobusy-volkswagen",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskie-mikroavtobusy",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy-2",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy-avtobus-citroen-jumper",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy-avtobus-mercedes-sprinter",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy-avtobus-peugeot",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy-avtobus-turist-16-mest",
+    "destination": "/produktsiya/",
+    "permanent": true
+  },
+  {
+    "source": "/turisticheskiy-mikroavtobus-turist-lyuks-16-mest",
+    "destination": "/produktsiya/",
+    "permanent": true
+  }
+]

@@ -1,0 +1,105 @@
+.filters {
+  display: grid;
+  gap: 16px;
+  padding: clamp(18px, 2.2vw, 26px);
+  background: var(--paper-200);
+  border: 1px solid var(--paper-500);
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+.filterRow {
+  display: grid;
+  gap: 10px;
+}
+
+.filterLabel {
+  color: var(--text-on-light-dim);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 14px;
+  border: 1px solid var(--paper-500);
+  background: #fff;
+  font: 500 12.5px/1 var(--font-body);
+  color: var(--text-on-light-dim);
+  cursor: pointer;
+  transition: all 0.16s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+  color: #fff;
+}
+
+.count {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-light-dim);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  background: var(--paper-500);
+  border: 1px solid var(--paper-500);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--paper-200);
+  padding: clamp(20px, 2.4vw, 28px);
+  transition: background 0.18s;
+}
+
+.card:hover {
+  background: #eff2f3;
+}
+
+.cardTitle {
+  font: 600 15.5px/1.3 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.cardChassis {
+  margin: 0;
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-on-light-dim);
+}
+
+.cardMeta {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.empty {
+  padding: 40px;
+  background: var(--paper-200);
+  border: 1px solid var(--paper-500);
+  text-align: center;
+  color: var(--text-on-light-dim);
+}
+
+.emptyLink {
+  color: var(--accent-deep);
+  text-decoration: underline;
+}

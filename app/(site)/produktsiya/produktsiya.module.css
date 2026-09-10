@@ -1,0 +1,91 @@
+.head {
+  padding: clamp(12px, 1.6vw, 20px) 0 clamp(28px, 3.4vw, 44px);
+  border-bottom: 1px solid var(--paper-500);
+}
+
+.h1 {
+  margin: 12px 0 0;
+  font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.lead {
+  margin: 16px 0 0;
+  max-width: 58ch;
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.65;
+  color: var(--text-on-light-dim);
+}
+
+.grid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin: clamp(28px, 3.4vw, 44px) 0 0;
+  background: var(--paper-500);
+  border: 1px solid var(--paper-500);
+}
+
+.cat {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-200);
+  padding: clamp(22px, 2.6vw, 34px);
+}
+
+.catHead {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--paper-400);
+}
+
+.no {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--accent-deep);
+  margin-bottom: 8px;
+}
+
+.catTitle {
+  font: 600 clamp(17px, 1.6vw, 21px)/1.25 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.catTitle a:hover {
+  color: var(--accent-deep);
+}
+
+.catLead {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-on-light-dim);
+}
+
+.items {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  flex: 1;
+}
+
+.item {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-on-light-dim);
+  transition: color 0.16s;
+}
+
+.item:hover {
+  color: var(--accent-deep);
+}
+
+.more {
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}

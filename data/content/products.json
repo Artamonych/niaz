@@ -1,0 +1,5233 @@
+[
+  {
+    "slug": "avariynaya-gaz-next",
+    "category": "spec",
+    "title": "Аварийная ГАЗ NEXT",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a939ea7e3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4d5c1edd5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2c3c55920_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/48f25cbf2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e0b2cefec_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6d2d5950d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8f7b7ee3e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9bf97375c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6ba7fe4d1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9659e9bb8_800x510.png"
+    ]
+  },
+  {
+    "slug": "avariynaya-spasatelnaya-sluzhba-mchs-volkswagen-transporter",
+    "category": "spec",
+    "title": "Аварийная-спасательная служба МЧС Volkswagen Transporter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f2eea998c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/52299cb1e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6455d425e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5536bc75d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/74886edb9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6662fa1e9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/dd22e9606_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/73c8bddcb_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/66d0247b0_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtobus-dlya-perevozki-invalidov-gaz",
+    "category": "mgn",
+    "title": "Автобус для перевозки инвалидов ГАЗ",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f0040b729_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4c2234556_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a8fa09a32_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/20197d34b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d427c9d2f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6d06dd0ea_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6ee6f1f2d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ee2648209_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cdb881ad5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/35e2093cd_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7aacbcea0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b9163dc64_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0be55fd1e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f9e598dc3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/692efa90a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/dd4812bb1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/79b2df9c4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/605dd4e0c_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtolavka",
+    "category": "spec",
+    "title": "Автолавка",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Витрина холодильная двухстворчатая Tefcold FSC 100",
+        "text": "Температурный режим Среднетемпер.(0…+10 С)"
+      },
+      {
+        "no": "Полезный объем, л:",
+        "text": "60"
+      },
+      {
+        "no": "Витрина морозильная Tefcold UF100G",
+        "text": "замок, подсветка, есть"
+      },
+      {
+        "no": "Полезный объем",
+        "text": "88 Литров"
+      },
+      {
+        "no": "Температурный режим",
+        "text": "-24…-12 °C"
+      },
+      {
+        "no": "замок, подсветка,",
+        "text": "есть"
+      },
+      {
+        "no": "Витрина холодильная интегрированная",
+        "text": "Производство «НиАЗ»"
+      },
+      {
+        "no": "полезный объем",
+        "text": "0,5м3"
+      },
+      {
+        "no": "Температурный режим",
+        "text": "-5…+5 °C"
+      },
+      {
+        "no": "Потребление холодильного агрегата",
+        "text": "450Вт"
+      },
+      {
+        "no": "Оборудование шкафа с мойкой",
+        "text": "Закрывание- роль-ставни"
+      },
+      {
+        "no": "мойка",
+        "text": "1шт."
+      },
+      {
+        "no": "смеситель",
+        "text": "1шт."
+      },
+      {
+        "no": "Ёмкость для читой воды (ПТМБ-50)",
+        "text": "50л."
+      },
+      {
+        "no": "Ёмкость для грязной воды (ПТМБ-50)",
+        "text": "50л."
+      },
+      {
+        "no": "Дозатор для жидкого мыла Ksitex SD 2628-1000",
+        "text": "1шт."
+      },
+      {
+        "no": "Насос чистой воды SHURFLO Aqua King 12V",
+        "text": "Арт. 2901-0213)"
+      },
+      {
+        "no": "Насос грязной воды мацераторный",
+        "text": "12В TMC 700GPH (Арт. 06205)"
+      },
+      {
+        "no": "Водонагреватель Atmor AT-1505A",
+        "text": "1шт."
+      },
+      {
+        "no": "Объем",
+        "text": "15 литров"
+      },
+      {
+        "no": "Максимальная температура воды",
+        "text": "80С"
+      },
+      {
+        "no": "Макс. время для нагрева",
+        "text": "25 мин"
+      },
+      {
+        "no": "Осветительное оборудование:",
+        "text": "Светодиодная лента наличие"
+      },
+      {
+        "no": "подсветка хол витрины",
+        "text": "наличие"
+      },
+      {
+        "no": "зона над витриной",
+        "text": "наличие"
+      },
+      {
+        "no": "3полки стеллажа",
+        "text": "наличие"
+      },
+      {
+        "no": "2 точечных светильника по габаритам",
+        "text": "наличие"
+      },
+      {
+        "no": "подъемной панели",
+        "text": "наличие"
+      },
+      {
+        "no": "Мебель",
+        "text": "Шкаф под установку холдильной и морозильной витрин 1шт."
+      },
+      {
+        "no": "Стеллаж 4полки, рейлинг с крючками для навески товара",
+        "text": "1шт."
+      },
+      {
+        "no": "Шкаф с мойкой",
+        "text": "1шт."
+      },
+      {
+        "no": "корпус интегрированной витрины (прав.борт)",
+        "text": "1шт."
+      },
+      {
+        "no": "Полка над витриной (прав.борт)",
+        "text": "1шт."
+      },
+      {
+        "no": "Подъемная панель (пластик) , окрашенная в цвет кузова с электроприводом",
+        "text": "1шт. наличие"
+      },
+      {
+        "no": "Зимнее остекление салона",
+        "text": "1 комплект наличие"
+      },
+      {
+        "no": "АКБ",
+        "text": "3 шт. наличие"
+      },
+      {
+        "no": "Дополнительные опции:",
+        "text": "Генератор , обеспечивающий работу оборудования без внешнего источника питания 4.0 кВт"
+      },
+      {
+        "no": "Витрина объемом 150 л",
+        "text": "охл.-2…+5 °C"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7d33146ef_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b95529c70_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f1caf76c9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bbb38c9a6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/499a85d07_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtolavka-mercedes-benz-sprinter-classic-311",
+    "category": "spec",
+    "title": "Автолавка Mercedes-Benz Sprinter Classic 311",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Модель:",
+        "text": "Mercedes-Benz Sprinter Classic"
+      },
+      {
+        "no": "Тип автомобиля:",
+        "text": "311 CDI KA"
+      },
+      {
+        "no": "Колесная формула:",
+        "text": "4X2"
+      },
+      {
+        "no": "Базовая модель шасси:",
+        "text": "90963313000"
+      },
+      {
+        "no": "Мощность двигателя:",
+        "text": "80 кВт(109 л.с.)"
+      },
+      {
+        "no": "Колесная база:",
+        "text": "4025 мм"
+      },
+      {
+        "no": "Допустимая полная масса:",
+        "text": "3500 кг"
+      },
+      {
+        "no": "Расположение органов управления:",
+        "text": "слева"
+      },
+      {
+        "no": "Страна:",
+        "text": "РФ"
+      },
+      {
+        "no": "Окраска MB 9147",
+        "text": "арктический белый"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c2fad2de1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/704fbccd8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/831e8302f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/511ec44a8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/af9969e32_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8c8e218c9_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-na-baze-volkswagen-caddy",
+    "category": "mgn",
+    "title": "Автомобиль для перевозки лиц с ограниченными возможностями на базе Volkswagen Caddy",
+    "lead": "Стоимость автомобиля в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/77119a4ae_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fda46bc74_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d66e8631c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a48c27cb7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5ce0b764e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f227d72fa_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0397adab6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ce49257a5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2450a394a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9c19fddf0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/180f95d7c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/67fb5a67d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4235e69d5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/813129a33_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0f4a8a857_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/93de10764_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-sotsialnyy-na-baze-volkswagen-caddy",
+    "category": "mgn",
+    "title": "Автомобиль для перевозки лиц с ограниченными возможностями «Социальный» на базе Volkswagen Caddy",
+    "lead": "Стоимость автомобиля в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e27817934_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0fd3e301d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2b5b4f223_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a337cfce7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/206a3ea64_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/59c99afd5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/657d6022c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6e946f4dc_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/28fe17916_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/64d1813c3_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-sotsialnyy-na-baze-volkswagen-crafter-35-50",
+    "category": "mgn",
+    "title": "Автомобиль для перевозки лиц с ограниченными возможностями «Социальный» на базе Volkswagen Crafter 35, 50",
+    "lead": "Стоимость автомобиля в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d9c56b609_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1e3a40c8a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/af19b980e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ed42c58ec_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fb00b49e3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb7668e88_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/aa13cc469_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/add11011d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/253bf826a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/211f81071_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ae9c0783d_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/shema.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-sotsialnyy-na-baze-volkswagen-transporter",
+    "category": "mgn",
+    "title": "Автомобиль для перевозки лиц с ограниченными возможностями «Социальный» на базе Volkswagen Transporter",
+    "lead": "Стоимость автомобиля в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3edb485e9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9b9de7a9f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a1938187e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/910a6a721_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/472d5f1d2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d2d96922f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cacd01b5a_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-radiokompanii",
+    "category": "spec",
+    "title": "Автомобиль для радиокомпании",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/31a2b8480_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ec5a4c93a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3e8b4f92c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6fafb3d70_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/815a0796c_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-ritualnyh-uslug-mercedes",
+    "category": "ritual",
+    "title": "Автомобиль для ритуальных услуг Mercedes",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3e9900bad_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb90de5af_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/81e6407a5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/13a6c643f_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-ritualnyh-uslug-mercedes-2",
+    "category": "ritual",
+    "title": "Автомобиль для ритуальных услуг Mercedes",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/25a713f5b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/73f7d8912_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bb65ae800_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/8-mest-ritual-e1468585441715-300x131.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-ritualnyh-uslug-mercedes-3",
+    "category": "ritual",
+    "title": "Автомобиль для ритуальных услуг Mercedes",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e37a4ba65_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4bb8f81eb_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c00597bde_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/81501cace_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e0a5efbbf_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0f5cb654c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ff4fb0030_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/26dd43604_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/895622a36_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f0674c927_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/121fe67ad_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e36592bc2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2ddcac3c3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0151f447a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cd8e524b3_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-ritualnyh-uslug-peugeot-boxer",
+    "category": "ritual",
+    "title": "Автомобиль для ритуальных услуг Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/46da44183_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2b58fe12f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4d160734a_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/1234.jpg"
+    ]
+  },
+  {
+    "slug": "avtomobil-dlya-ritualnyh-uslug-renault",
+    "category": "ritual",
+    "title": "Автомобиль для ритуальных услуг Renault",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/25ad7114d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/be516296a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ca4c6655e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a9ba56a45_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/bezymyannyy1.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-dps-volkswagen-caddy",
+    "category": "spec",
+    "title": "Автомобиль ДПС Volkswagen Caddy",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7a08793cf_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1895dbb89_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/83a45fe8c_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-amarok",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Amarok",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2ccc7bdb1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/96a81bd90_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/928e4db44_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2768cb73d_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-citroen",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Citroen",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6778b4fa7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e963e10a7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2f341940a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8eff07d0b_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-a-caddy-maxi-model",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Класса А Caddy Maxi модель",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "№",
+        "text": "Наименование  Примечание"
+      },
+      {
+        "no": "1.1",
+        "text": "Кузов — Volkswagen Caddy Maxi наличие"
+      },
+      {
+        "no": "2.1",
+        "text": "Размеры салона (длина, мм/ высота, мм/ ширина, мм) 2250/ 1257/ 1558"
+      },
+      {
+        "no": "2.2",
+        "text": "Теплоизоляция медицинского салона наличие"
+      },
+      {
+        "no": "2.3",
+        "text": "Армирование кузова для закрепления приборов и оборудования наличие"
+      },
+      {
+        "no": "2.4",
+        "text": "Отделка бортов и потолка салона композитным материалом (устойчивым к воздействию лекарственных препаратов и моюще-дезинфицирующих средств, имеющим гладкую поверхность, не впитывающим запахи) наличие"
+      },
+      {
+        "no": "3.1",
+        "text": "Покрытие напольное водонепроницаемое, антистатическое, противоскользящее, устойчивое к воздействию моюще-дезинфицирующих средств наличие"
+      },
+      {
+        "no": "3.2",
+        "text": "Бордюр по нижней части боковых панелей из нержавеющей стали (высота, мм) 50"
+      },
+      {
+        "no": "3.3",
+        "text": "Гидроизоляция швов наличие"
+      },
+      {
+        "no": "4.1",
+        "text": "Перегородка между кабиной и салоном со сдвижным матированным окном наличие"
+      },
+      {
+        "no": "5.1",
+        "text": "Остекление задних дверей наличие заводское, штатное"
+      },
+      {
+        "no": "5.2",
+        "text": "Остекление боковой двери салона с сдвижным окном наличие"
+      },
+      {
+        "no": "5.3",
+        "text": "Матирование 2/3 высоты стекол дверей салона наличие"
+      },
+      {
+        "no": "6.1",
+        "text": "Поручень сдвижной двери 1"
+      },
+      {
+        "no": "6.2",
+        "text": "Поручень задней двери 1"
+      },
+      {
+        "no": "7.1",
+        "text": "Вентилятор потолочный приточно-вытяжной 1"
+      },
+      {
+        "no": "7.2",
+        "text": "Отопитель автономный воздушный 2кВт 1"
+      },
+      {
+        "no": "7.3",
+        "text": "Накрышный кондиционер или испаритель кондиционера при наличии штатного кондиционера наличие На усмотрение Заказчика"
+      },
+      {
+        "no": "8.1",
+        "text": "Плафон освещения салона потолочный, светодиодный 2 Расположены по всей длине медицинского салона"
+      },
+      {
+        "no": "8.2",
+        "text": "Светильник освещения прилегающей территории сдвижной двери (активируется при открытии сдвижной двери) 1"
+      },
+      {
+        "no": "8.3",
+        "text": "Розетка электрическая 220В для питания медицинского оборудования расположена в области центра левого борта 1"
+      },
+      {
+        "no": "8.4",
+        "text": "Розетка электрическая 12В для питания медицинского оборудования расположена в области центра левого борта 1"
+      },
+      {
+        "no": "8.5",
+        "text": "Фонарь 12В переносной аккумуляторный 1"
+      },
+      {
+        "no": "9.1",
+        "text": "Кресло правое расположено сбоку от носилок в передней части на 2/3 длины носилок (снабжается ремнем безопасности) 1"
+      },
+      {
+        "no": "10.1",
+        "text": "Отделка торцов мебели салона кантом травмобезопасным наличие (цвет согласно цветосхеме, по согласованию с Заказчиком)"
+      },
+      {
+        "no": "10.2",
+        "text": "Полка левого борта для крепления медицинского оборудования с рольставней 1"
+      },
+      {
+        "no": "10.3",
+        "text": "Полка-стеллаж правого борта с рольставней 1"
+      },
+      {
+        "no": "11.1",
+        "text": "Балка свето-акустическая с системой внешней трансляции речи и пультом управления в кабине, светодиодная, два задних светодиодных маяка Наличие"
+      },
+      {
+        "no": "11.2",
+        "text": "Оклейка автомобиля согласно ГОСТ Р50574-2002. Схема А1 наличие"
+      },
+      {
+        "no": "12.1",
+        "text": "Контейнер мусоросборный напольный, расположен у сдвижной двери в области перегородки 1"
+      },
+      {
+        "no": "12.2",
+        "text": "Огнетушитель 2л в кабине водителя 1"
+      },
+      {
+        "no": "12.3",
+        "text": "Огнетушитель 2л в салоне 1"
+      },
+      {
+        "no": "12.4",
+        "text": "Комплект эксплуатационной документации наличие"
+      },
+      {
+        "no": "12.5",
+        "text": "Присвоение VIN номера завода-изготовителя наличие"
+      },
+      {
+        "no": "13.1",
+        "text": "Носилки транспортные многофункциональные 1 Италия, Спенсер"
+      },
+      {
+        "no": "13.2",
+        "text": "Устройство приемное носилок без перемещения 1"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb4ceb233_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a78f44323_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fc2814357_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/386cc719c_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-a-transporter-model",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Класса А Transporter модель",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/36b35aff8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/415a95389_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a8b7b8c43_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb554e289_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-b-na-baze-renault-master",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Класса B На базе Renault Master",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/262291811_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/97987a8df_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d228bfe1b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3238d22bf_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-s-crafter-model",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Класса С Crafter модель",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "5905/2426/2705"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "3265/1780/1940"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2732364f3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c1802a8ce_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/40c5e89de_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-s-neonatalnaya",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Класса С Неонатальная",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ba30836dd_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/446e064f0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d844a53ea_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d3d77cbf9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3d693b3cf_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-s-reanimatsiya",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи класса «С» (реанимация)",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "№",
+        "text": "Наименование Наличие"
+      },
+      {
+        "no": "",
+        "text": "1. Кузов, медицинский салон"
+      },
+      {
+        "no": "1.1",
+        "text": "Теплоизоляция медицинского салона наличие"
+      },
+      {
+        "no": "1.2",
+        "text": "Армирование кузова для закрепления приборов и оборудования наличие"
+      },
+      {
+        "no": "1.3",
+        "text": "Отделка боковых панелей и потолка медицинского салона композитными материалами на основе алюминия наличие"
+      },
+      {
+        "no": "",
+        "text": "2. Ступени, подножки"
+      },
+      {
+        "no": "2.1",
+        "text": "Подножка сдвижной двери 1"
+      },
+      {
+        "no": "2,2",
+        "text": "Подножка задней двери 1"
+      },
+      {
+        "no": "",
+        "text": "3. Пол медицинского салона"
+      },
+      {
+        "no": "3.1",
+        "text": "Водонепроницаемое, антистатичное и нескользящее напольное покрытие наличие"
+      },
+      {
+        "no": "3.2",
+        "text": "Бордюр по нижней части боковых панелей из нерж. стали наличие"
+      },
+      {
+        "no": "3.3",
+        "text": "Гидроизоляция швов наличие"
+      },
+      {
+        "no": "",
+        "text": "4. Перегородка"
+      },
+      {
+        "no": "4.1",
+        "text": "Перегородка между кабиной и медицинским салоном с электра сдвижной матированной дверью наличие"
+      },
+      {
+        "no": "",
+        "text": "5. Остекление медицинского салона"
+      },
+      {
+        "no": "5.1",
+        "text": "Окна в задних дверях медицинского салона наличие"
+      },
+      {
+        "no": "5.2",
+        "text": "Раздвижное окно в боковой двери медицинского салона наличие"
+      },
+      {
+        "no": "5.3",
+        "text": "Матирование на 2/3 высоты окон внешних дверей медицинского салона наличие"
+      },
+      {
+        "no": "",
+        "text": "6. Оклейка, спец. Сигналы"
+      },
+      {
+        "no": "6.1",
+        "text": "Балка свето-акустическая (светодиодная) с пультом управления и системой внешней трансляции речи, два светодиодных маяка наличие"
+      },
+      {
+        "no": "6.2",
+        "text": "Оклейка автомобиля согласно ГОСТу Р50574-2002 (Схема А2) Светоотражающая 1"
+      },
+      {
+        "no": "",
+        "text": "7. Поручни, леера"
+      },
+      {
+        "no": "7.1",
+        "text": "Поручень раздвижной двери 1"
+      },
+      {
+        "no": "7.2",
+        "text": "Поручень задних дверей 1"
+      },
+      {
+        "no": "7.3",
+        "text": "Потолочный леер-поручень вдоль приемного устройства с двумя кронштейнами крепления инфузионной системы 1"
+      },
+      {
+        "no": "",
+        "text": "8. Отопление и вентиляция"
+      },
+      {
+        "no": "8.1",
+        "text": "Потолочный светопрозрачный люк в медицинском салоне с возможностью использования в качестве аварийного выхода 1"
+      },
+      {
+        "no": "8.2",
+        "text": "Потолочный приточно-вытяжной вентилятор 1"
+      },
+      {
+        "no": "8.3",
+        "text": "Стояночный электрообогреватель медицинского салона 220V c регулятором температуры 1"
+      },
+      {
+        "no": "8.4",
+        "text": "Автономный воздушный отопитель медицинского салона 1"
+      },
+      {
+        "no": "8.5",
+        "text": "Кондиционер медицинского салона 1"
+      },
+      {
+        "no": "",
+        "text": "9. Водоснабжение"
+      },
+      {
+        "no": "9.1",
+        "text": "Умывальник, емкостями для чистой и отработанной воды, с крышкой обеспечивающей возможность использования в качестве рабочего столика 1*"
+      },
+      {
+        "no": "9.2",
+        "text": "Подогрев емкости для чистой воды 1"
+      },
+      {
+        "no": "",
+        "text": "10. Электрооборудование"
+      },
+      {
+        "no": "10.1",
+        "text": "Плафоны освещения по всей длине медицинского салона, светодиодные 3"
+      },
+      {
+        "no": "10.2",
+        "text": "Светильник освещения прилегающей территории раздвижной двери 1"
+      },
+      {
+        "no": "10.3",
+        "text": "Светильник освещения прилегающей территории задней двери 1"
+      },
+      {
+        "no": "10.4",
+        "text": "Точечный светильник над поверхностью носилок 4"
+      },
+      {
+        "no": "10.5",
+        "text": "Дополнительная аккумуляторная батарея 1"
+      },
+      {
+        "no": "10.6",
+        "text": "Электрическая розетка 12V для питания медицинского оборудования 4"
+      },
+      {
+        "no": "10.7",
+        "text": "Электрическая розетка 220V для питания медицинского оборудования 2"
+      },
+      {
+        "no": "10.8",
+        "text": "Электрическая розетка 220V для питания стояночного электрообогревателя медицинского салона 2"
+      },
+      {
+        "no": "10.9",
+        "text": "Преобразователь напряжения 220/12V (12/220V) с функцией подзарядки аккумуляторных батарей на стоянке от внешней сети 1"
+      },
+      {
+        "no": "10.10",
+        "text": "Вилка ввода электропитания внешней сети 220V в передней части автомобиля со стороны водителя 1"
+      },
+      {
+        "no": "10.11",
+        "text": "Кабель ввода электропитания внешней сети 220V (15 метров) 1"
+      },
+      {
+        "no": "10.12",
+        "text": "Панель управления электропитанием АСМП 1"
+      },
+      {
+        "no": "",
+        "text": "11. Система газоснабжения"
+      },
+      {
+        "no": "11.1",
+        "text": "Газовые трубопроводы под обшивкой медицинского салона наличие"
+      },
+      {
+        "no": "11.2",
+        "text": "Кислородный баллон на 10 л. с устройством крепления в закрытом шкафу, с рольставнями, расположен по левому борту медицинского салона 2"
+      },
+      {
+        "no": "11.3",
+        "text": "Баллон с закисью азота на 10л., с устройством крепления в закрытом шкафу, с рольставнями, расположен по правому борту медицинского салона 1"
+      },
+      {
+        "no": "11.4",
+        "text": "Редуктора к баллонам 3"
+      },
+      {
+        "no": "11.5",
+        "text": "Кислородные розетки с быстроразъемным соединением 2"
+      },
+      {
+        "no": "11.6",
+        "text": "Розетка для закиси азота с быстроразъемным соединением 1"
+      },
+      {
+        "no": "",
+        "text": "12. Сиденья, посадочные места медицинского салона"
+      },
+      {
+        "no": "12.1",
+        "text": "Поворотное кресло с ремнем безопасности в головном конце носилок, с подголовником и подлокотниками 1"
+      },
+      {
+        "no": "12.2",
+        "text": "Банкетка по правому борту c поясничной подушкой 1"
+      },
+      {
+        "no": "12.3",
+        "text": "Откидное кресло с ремнем безопасности по правому борту 1"
+      },
+      {
+        "no": "",
+        "text": "13. Медицинские шкафы, мебель"
+      },
+      {
+        "no": "13.1",
+        "text": "Подпотолочная полка левого борта со сдвижными стеклами с закрывающимся на ключ ящиком в составе 1"
+      },
+      {
+        "no": "13.2",
+        "text": "Шкаф левого борта под хранение двух кислородных баллонов наличие"
+      },
+      {
+        "no": "13.3",
+        "text": "Крепеж баллона с закисью азота по правому борту в защитном чехле"
+      },
+      {
+        "no": "13.4",
+        "text": "Шкаф медицинский левого борта со сдвижными роль- ставнями 1"
+      },
+      {
+        "no": "13.5",
+        "text": "Устройство приёмное с поперечным перемещением 1"
+      },
+      {
+        "no": "13.6",
+        "text": "Тележка-каталка 1"
+      },
+      {
+        "no": "",
+        "text": "14. Дополнительное оборудование"
+      },
+      {
+        "no": "14.1",
+        "text": "Полотенцедержатель 1"
+      },
+      {
+        "no": "14.2",
+        "text": "Диспенсер 1"
+      },
+      {
+        "no": "14.3",
+        "text": "Корзина для мусора, не менее 5 л 1"
+      },
+      {
+        "no": "14.4",
+        "text": "Фонарь аккумуляторный 12V 1"
+      },
+      {
+        "no": "14.5",
+        "text": "Противотуманные фары наличие"
+      },
+      {
+        "no": "14.6",
+        "text": "Пневмоподвеска на заднюю ось 1"
+      },
+      {
+        "no": "14.7",
+        "text": "Огнетушитель 2 л 2"
+      },
+      {
+        "no": "14.8",
+        "text": "Аварийный набор автомобилиста 1"
+      },
+      {
+        "no": "14.9",
+        "text": "Присвоение VIN-номера завода-изготовителя 1"
+      },
+      {
+        "no": "14.10",
+        "text": "Сервисная, гарантийная книжки 1"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1ce380fde_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fbda65e84_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/61b4a3408_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/97100beb4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/98ad4c5fd_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d1e966764_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7cfff5a9b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/500ad08f4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/27007310a_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-v",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи классa «В»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "Mercedes-Benz Sprinter Classic (колесная база 3550 мм)",
+    "spec": [
+      {
+        "no": "",
+        "text": "1. Базовое шасси."
+      },
+      {
+        "no": "1.1",
+        "text": "Mercedes-Benz Sprinter Classic (колесная база 3550 мм)"
+      },
+      {
+        "no": "",
+        "text": "2. Кузов, медицинский салон."
+      },
+      {
+        "no": "2.1",
+        "text": "Цвет кузова автомобиля – белый."
+      },
+      {
+        "no": "2.2",
+        "text": "Цветографическая оклейка автомобиля цветовозвращающим материалом согласно ГОСТ Р50574-2002 (А1)."
+      },
+      {
+        "no": "2.3",
+        "text": "Термо-шумоизоляция и виброизоляция потолка, дверей и стен медицинского салона."
+      },
+      {
+        "no": "2.4",
+        "text": "Армирование кузова для закрепления приборов и оборудования."
+      },
+      {
+        "no": "2.5",
+        "text": "Отделка бортов и потолка медицинского салона алюминиевыми композитными панелями (устойчивыми к воздействию лекарственных препаратов и моюще-дезинфицирующих средств, имеющими гладкую поверхность, не впитывающими запахи)."
+      },
+      {
+        "no": "2.6",
+        "text": "Вспомогательная пневмоподвеска на заднюю ось автомобиля. Компрессор и панель управления."
+      },
+      {
+        "no": "",
+        "text": "3. Пол медицинского салона."
+      },
+      {
+        "no": "3.1",
+        "text": "Влагостойкое, антистатическое, нескользящее напольное покрытие с гидроизоляцией всех швов, устойчивое воздействию моющих — дезинфицирующих средств."
+      },
+      {
+        "no": "3.2",
+        "text": "Гидроизоляция швов."
+      },
+      {
+        "no": "3.3",
+        "text": "Бордюр по нижней части боковых панелей из алюминия/нержавеющей стали, 80мм."
+      },
+      {
+        "no": "",
+        "text": "4. Перегородка."
+      },
+      {
+        "no": "4.1",
+        "text": "Перегородка между кабиной и салоном с сдвижным матированным окном."
+      },
+      {
+        "no": "",
+        "text": "5. Остекление медицинского салона."
+      },
+      {
+        "no": "5.1",
+        "text": "Остекление задних распашных дверей."
+      },
+      {
+        "no": "5.2",
+        "text": "Остекление правой боковой сдвижной двери со сдвижным окном."
+      },
+      {
+        "no": "5.3",
+        "text": "Матирование 2/3 высоты стекол дверей салона."
+      },
+      {
+        "no": "",
+        "text": "6. Поручни, леера."
+      },
+      {
+        "no": "6.1",
+        "text": "Поручень при входе у боковой сдвижной двери."
+      },
+      {
+        "no": "6.2",
+        "text": "Леер-поручень потолочный вдоль приемного устройства с кронштейнами для инфузионной системы (нержавеющая сталь) – 1 шт."
+      },
+      {
+        "no": "",
+        "text": "7. Подножки."
+      },
+      {
+        "no": "7.1",
+        "text": "Задняя подножка."
+      },
+      {
+        "no": "7.2",
+        "text": "Подножка у сдвижной двери"
+      },
+      {
+        "no": "",
+        "text": "8. Отопление и вентиляция."
+      },
+      {
+        "no": "8.1",
+        "text": "Вентиляционно-аварийный люк (стекло) в передней части салона (внутренние габаритные размеры: 515 х 805 мм)."
+      },
+      {
+        "no": "8.2",
+        "text": "Фильтр-вентиляционная установка ФВУ (приточно-вытяжное устройство)."
+      },
+      {
+        "no": "8.3",
+        "text": "Отопитель салона автономный воздушный, 2 кВт (Webasto, Германия)."
+      },
+      {
+        "no": "8.4",
+        "text": "Отопитель салона зависимый водяной."
+      },
+      {
+        "no": "8.5",
+        "text": "Кондиционер (в комплектации базового ТС) кабины водителя + установка дополнительного испарителя на медицинский салон 6Квт."
+      },
+      {
+        "no": "",
+        "text": "9. Освещение и электрооборудование."
+      },
+      {
+        "no": "9.1",
+        "text": "Общее освещение салона: потолочные светильники, 4 шт."
+      },
+      {
+        "no": "9.2",
+        "text": "Светильник направленного света над носилками с поворотным механизмом (споты, 4 шт.)"
+      },
+      {
+        "no": "9.3",
+        "text": "Светильник над боковой дверью по правому борту. Направление светового пучка «вбок»."
+      },
+      {
+        "no": "9.4",
+        "text": "Светильник над задними распашными дверьми. Направление светового пучка «назад»."
+      },
+      {
+        "no": "9.5",
+        "text": "Фонарь 12V переносной аккумуляторный (ручной фонарь-прожектор)."
+      },
+      {
+        "no": "9.6",
+        "text": "Аккумуляторная батарея дополнительная 100 Ач с разделительным реле (в составе базового ТС)."
+      },
+      {
+        "no": "9.7",
+        "text": "Розетка электрическая 12V по левому борту для питания медицинского оборудования — 3 шт."
+      },
+      {
+        "no": "9.8",
+        "text": "Розетка электрическая 220V по левому борту для питания медицинского оборудования — 4 шт."
+      },
+      {
+        "no": "9.9",
+        "text": "Преобразователь напряжения 12/220V."
+      },
+      {
+        "no": "9.10",
+        "text": "Розетка ввода электропитания внешней сети 220В, 50 Гц в передней части левого борта, с защитой от короткого замыкания и защитой персонала от поражения электрическим током (УЗО)."
+      },
+      {
+        "no": "9.11",
+        "text": "Кабель ввода электропитания внешней сети 220V, 15 метров."
+      },
+      {
+        "no": "9.12",
+        "text": "Автоматическая система заряда аккумуляторных батарей а/м от внешней сети электропитания 220В, 50 Гц"
+      },
+      {
+        "no": "9.13",
+        "text": "Панель управления электрооборудованием медицинского салона."
+      },
+      {
+        "no": "9.14",
+        "text": "Фары противотуманные."
+      },
+      {
+        "no": "",
+        "text": "10. Система газоснабжения."
+      },
+      {
+        "no": "10.1",
+        "text": "Трубопровод медицинских газов под обшивкой салона."
+      },
+      {
+        "no": "10.2",
+        "text": "Кронштейн крепления баллонов газовых 10 л. — 2 шт."
+      },
+      {
+        "no": "10.3",
+        "text": "Розетка газов медицинских с быстроразъемным соединением"
+      },
+      {
+        "no": "10.4",
+        "text": "Баллон кислородный 10л (2 шт.) с редуктором кислородным (1 шт.)"
+      },
+      {
+        "no": "",
+        "text": "11. Сиденья, посадочные места."
+      },
+      {
+        "no": "11.1",
+        "text": "Кабина водителя: кресло водителя, кресло сопровождающего сдвоенное."
+      },
+      {
+        "no": "11.2",
+        "text": "Кресло по правому борту медицинского салона откидное, с 3-х точечным ремнем безопасности, (с возможностью фиксации по ходу движения и лицом к носилкам)."
+      },
+      {
+        "no": "11.3",
+        "text": "Кресло поворотное в головной части носилок с 2-х точечным ремнем безопасности и откидными подлокотниками."
+      },
+      {
+        "no": "11.4",
+        "text": "Скамья-рундук по правому борту салона (с фиксатором для установки дополнительных носилок НППС)."
+      },
+      {
+        "no": "",
+        "text": "12. Медицинская мебель, шкафы."
+      },
+      {
+        "no": "12.1",
+        "text": "Шкафы для медицинского оборудования с роль — ставнями в передней и задней части салона по левому борту, полки с ремнями фиксирующими. Размеры по эскизам заказчика."
+      },
+      {
+        "no": "12.2",
+        "text": "Ящик с замком в составе шкафа (5 л.)."
+      },
+      {
+        "no": "12.4",
+        "text": "Полка-антресоль по левому борту со сдвижными дверцами из оргстекла."
+      },
+      {
+        "no": "12.5",
+        "text": "Шкаф с дверкой для кислородных баллонов по правому борту салона."
+      },
+      {
+        "no": "12.6",
+        "text": "Умывальник с подогревом воды, с крышкой под столик."
+      },
+      {
+        "no": "",
+        "text": "13. Акустическое и свето-сигнальное оборудование."
+      },
+      {
+        "no": "13.1",
+        "text": "Балка свето-акустическая светодиодная с системой трансляции речи и пультом управления в кабине."
+      },
+      {
+        "no": "13.2",
+        "text": "Маяк проблесковый задний светодиодный — 2 шт."
+      },
+      {
+        "no": "",
+        "text": "14. Оборудование."
+      },
+      {
+        "no": "14.1",
+        "text": "Огнетушитель 2л в кабине водителя."
+      },
+      {
+        "no": "14.2",
+        "text": "Огнетушитель 2л в салоне."
+      },
+      {
+        "no": "14.3",
+        "text": "Информационные таблички из самоклеящейся пленки."
+      },
+      {
+        "no": "14.4",
+        "text": "Подготовка под радиостанцию"
+      },
+      {
+        "no": "14.5",
+        "text": "Блокировка запуска двигателя при питании от бортового ввода."
+      },
+      {
+        "no": "14.6",
+        "text": "Сигнализация водителю об открытых дверях салона."
+      },
+      {
+        "no": "",
+        "text": "15. Носилки, приемное устройство(медицинское оборудование)"
+      },
+      {
+        "no": "15.1",
+        "text": "Тележка-каталка со съемными носилками ТНС-01ММ (Микромонтаж)"
+      },
+      {
+        "no": "15.2",
+        "text": "Устройство приемное носилок с поперечным перемещением УП-ММ (Микромонтаж)"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/18fbf472f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b8a42d830_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-klassa-v-transporter-model",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Класса В Transporter модель",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/33159c463_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f3686c1e1_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-med-kar-klass-s",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи «Мед Кар» класс «С»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/97202f2b0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5b92e7b3b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a6725bd94_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1bf7d98ae_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-mercedes-sprinter",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Mercedes Sprinter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7fc2044e7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a332f6cb4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/034db7549_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/aca39a1f3_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-na-baze-volkswagen-amarok",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи на базе Volkswagen Amarok",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2cd1546f0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/05c884c36_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5fb7975d8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/55be1c51c_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobil-skoroy-meditsinskoy-pomoschi-peugeot-boxer",
+    "category": "asmp",
+    "title": "Автомобиль Скорой Медицинской Помощи Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2668e48d7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/def6956c9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b115d5e85_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3b26d5fad_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-citroen",
+    "category": "mgn",
+    "title": "Автомобили для перевозки лиц с ограниченными возможностями Citroen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7e5e30571_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-gaz",
+    "category": "mgn",
+    "title": "Автомобили для перевозки лиц с ограниченными возможностями ГАЗ",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f0040b729_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-mercedes",
+    "category": "mgn",
+    "title": "Автомобили для перевозки лиц с ограниченными возможностями Mercedes",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7c23f2e7a_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c47c6acd7_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e86983747_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e14b80ef9_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-peugeot",
+    "category": "mgn",
+    "title": "Автомобили для перевозки лиц с ограниченными возможностями Peugeot",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9b27992a8_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0172fb945_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-renault",
+    "category": "mgn",
+    "title": "Автомобили для перевозки лиц с ограниченными возможностями Renault",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e0944b270_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-volkswagen",
+    "category": "mgn",
+    "title": "Автомобили для перевозки лиц с ограниченными возможностями Volkswagen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6e946f4dc_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/77119a4ae_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3edb485e9_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d9c56b609_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyh-uslug-citroen",
+    "category": "ritual",
+    "title": "Автомобили для ритуальных услуг Citroen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": []
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyh-uslug-gaz",
+    "category": "ritual",
+    "title": "Автомобили для ритуальных услуг ГАЗ",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": []
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyh-uslug-mercedes",
+    "category": "ritual",
+    "title": "Автомобили для ритуальных услуг Mercedes",
+    "lead": "Сегодня, как и много лет назад, катафалк просто необходим в любой траурной процессии. И со временем такие автомобили становятся только лучше. Тем, кто собрался приобрести катафалк Мерседес, следует отметить, что они сделали правильный выбор, так как подобный автомобиль имеет множество преимуществ перед другими моделями.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3e9900bad_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/25a713f5b_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e37a4ba65_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyh-uslug-peugeot",
+    "category": "ritual",
+    "title": "Автомобили для ритуальных услуг Peugeot",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/46da44183_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyh-uslug-renault",
+    "category": "ritual",
+    "title": "Автомобили для ритуальных услуг Renault",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/25ad7114d_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyh-uslug-volkswagen",
+    "category": "ritual",
+    "title": "Автомобили для ритуальных услуг Volkswagen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/54161f134_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-dlya-ritualnyy-uslug-volkswagen",
+    "category": "ritual",
+    "title": "Автомобиль для ритуальных услуг Volkswagen",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "7340/2426/2755"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4700/1780/1940"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/54161f134_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/82dd0c51a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b8c796193_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/545e215a7_800x510.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-skoroy-meditsinskoy-pomoschi-citroen",
+    "category": "asmp",
+    "title": "Автомобили Скорой Медицинской Помощи Citroen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ba30836dd_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6778b4fa7_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-skoroy-meditsinskoy-pomoschi-gaz",
+    "category": "asmp",
+    "title": "Автомобили Скорой Медицинской Помощи ГАЗ",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7815fccda_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/03c742f7d_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-skoroy-meditsinskoy-pomoschi-mercedes",
+    "category": "asmp",
+    "title": "Автомобили Скорой Медицинской Помощи Mercedes",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7fc2044e7_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/afb4ed66f_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/18fbf472f_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-skoroy-meditsinskoy-pomoschi-peugeot",
+    "category": "asmp",
+    "title": "Автомобили Скорой Медицинской Помощи Peugeot",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2668e48d7_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-skoroy-meditsinskoy-pomoschi-renault",
+    "category": "asmp",
+    "title": "Автомобили Скорой Медицинской Помощи Renault",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/262291811_800x500.png"
+    ]
+  },
+  {
+    "slug": "avtomobili-skoroy-meditsinskoy-pomoschi-volkswagen",
+    "category": "asmp",
+    "title": "Автомобили Скорой Медицинской Помощи Volkswagen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c1802a8ce_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/33159c463_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/36b35aff8_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb4ceb233_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fac2c33d4_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/97202f2b0_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2ccc7bdb1_800x500.png"
+    ]
+  },
+  {
+    "slug": "bort-stalnoy-isuzu",
+    "category": "van",
+    "title": "Борт стальной ISUZU",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1a8e17633_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bf88c547f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/76118d91f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e03df921c_800x510.png"
+    ]
+  },
+  {
+    "slug": "bort-tent-isuzu",
+    "category": "van",
+    "title": "Борт-тент ISUZU",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d489af2e4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fb87f5104_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1a1e3bbf4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d21a842d8_800x510.png"
+    ]
+  },
+  {
+    "slug": "bortovaya-platforma-peugeot-boxer",
+    "category": "van",
+    "title": "Бортовая платформа Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Тип",
+        "text": "дизельный"
+      },
+      {
+        "no": "Особенности конструкции",
+        "text": "Система Common Rail Турбонаддув Интеркулер Привод ГРМ цепью"
+      },
+      {
+        "no": "Количество цилиндров",
+        "text": "4"
+      },
+      {
+        "no": "Количество клапанов",
+        "text": "16"
+      },
+      {
+        "no": "Модель",
+        "text": "P22DTE (4HU)"
+      },
+      {
+        "no": "Рабочий объем (см3)",
+        "text": "2198"
+      },
+      {
+        "no": "Диаметр цилиндра/ход поршня (мм)",
+        "text": "86.0/94.6"
+      },
+      {
+        "no": "Мощность (л.с/ кВт/ об/мин)",
+        "text": "120/ 883500"
+      },
+      {
+        "no": "Крутящий момент(Н.м. / об/мин)",
+        "text": "3202000"
+      },
+      {
+        "no": "Норма токсичности",
+        "text": "Euro4"
+      },
+      {
+        "no": "Размерность шин",
+        "text": "215 / 75 R16 C116 / 114R225 / 75 R16 C118 / 116R"
+      },
+      {
+        "no": "Размерность колесных дисков",
+        "text": "6Jx16 ET68PCD 5-130ЦО — о78.1"
+      },
+      {
+        "no": "Передние",
+        "text": "Дисковые вентилируемые"
+      },
+      {
+        "no": "Задние",
+        "text": "Дисковые"
+      },
+      {
+        "no": "Передняя",
+        "text": "Полностью независимая, Мак Ферсон"
+      },
+      {
+        "no": "Задняя",
+        "text": "Рессорная С поперечной балкой"
+      },
+      {
+        "no": "Тип привода",
+        "text": "Передний"
+      },
+      {
+        "no": "Тип КПП",
+        "text": "Механическая"
+      },
+      {
+        "no": "Модель КПП",
+        "text": "MLGU6"
+      },
+      {
+        "no": "Количество ступеней",
+        "text": "6"
+      },
+      {
+        "no": "Максимальная скорость на высшей передаче (км/ч)",
+        "text": "155"
+      },
+      {
+        "no": "ECE (по городу)",
+        "text": "10.7"
+      },
+      {
+        "no": "MIXTE (смешанный тип движения)",
+        "text": "9.1"
+      },
+      {
+        "no": "EUDC (по трассе)",
+        "text": "8.2"
+      },
+      {
+        "no": "Сорт",
+        "text": "Дизельное топливо ГОСТ 305-82"
+      },
+      {
+        "no": "Емкость стандартного топливного бака (Л)",
+        "text": "90"
+      },
+      {
+        "no": "Длина габаритная",
+        "text": "5943"
+      },
+      {
+        "no": "Длина от задней стенки кабины до центра задней оси",
+        "text": "2 645"
+      },
+      {
+        "no": "Длина заднего свеса шасси",
+        "text": "960"
+      },
+      {
+        "no": "Длина заднего свеса с кузовом",
+        "text": "1300"
+      },
+      {
+        "no": "Максимальная длина заднего свеса с кузовом**",
+        "text": "2 450"
+      },
+      {
+        "no": "Ширина (без зеркал задн.вида)",
+        "text": "2050"
+      },
+      {
+        "no": "Ширина с кузовом",
+        "text": "2207"
+      },
+      {
+        "no": "Максимальная ширина с кузовом**",
+        "text": "2350"
+      },
+      {
+        "no": "Высота габаритная",
+        "text": "2153"
+      },
+      {
+        "no": "Максимальная высота с кузовом",
+        "text": "3500"
+      },
+      {
+        "no": "Высота от плоскости шасси до уровня дороги",
+        "text": "640-652"
+      },
+      {
+        "no": "База",
+        "text": "4035"
+      },
+      {
+        "no": "Между стен (м)",
+        "text": "14.2"
+      },
+      {
+        "no": "Снаряженная (без кузова и/или оборудования)",
+        "text": "1760"
+      },
+      {
+        "no": "Полная (максимальная разрешенная (MPMA))",
+        "text": "4000"
+      },
+      {
+        "no": "Максимальная масса кузова и/или оборудования",
+        "text": "2240"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/280f7aca0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/59989bdad_800x510.png"
+    ]
+  },
+  {
+    "slug": "bortovoy-shassi-kabina-peugeot-boxer",
+    "category": "van",
+    "title": "Бортовой (шасси+кабина) Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Тип",
+        "text": "дизельный"
+      },
+      {
+        "no": "Особенности конструкции",
+        "text": "Система Common Rail Турбонаддув Интеркулер Привод ГРМ цепью"
+      },
+      {
+        "no": "Количество цилиндров",
+        "text": "4"
+      },
+      {
+        "no": "Количество клапанов",
+        "text": "16"
+      },
+      {
+        "no": "Модель",
+        "text": "P22DTE (4HU)"
+      },
+      {
+        "no": "Рабочий объем (см3)",
+        "text": "2198"
+      },
+      {
+        "no": "Диаметр цилиндра/ход поршня (мм)",
+        "text": "86.0/94.6"
+      },
+      {
+        "no": "Мощность (л.с/ кВт/ об/мин)",
+        "text": "120/ 883500"
+      },
+      {
+        "no": "Крутящий момент(Н.м. / об/мин)",
+        "text": "3202000"
+      },
+      {
+        "no": "Норма токсичности",
+        "text": "Euro4"
+      },
+      {
+        "no": "Размерность шин",
+        "text": "215 / 75 R16 C116 / 114R225 / 75 R16 C 118 / 116R"
+      },
+      {
+        "no": "Размерность колесных дисков",
+        "text": "6Jx16 ET68PCD 5-130ЦО — о78.1"
+      },
+      {
+        "no": "Передние",
+        "text": "Дисковые вентилируемые"
+      },
+      {
+        "no": "Задние",
+        "text": "Дисковые"
+      },
+      {
+        "no": "Передняя",
+        "text": "Полностью независимая, Мак Ферсон"
+      },
+      {
+        "no": "Задняя",
+        "text": "Рессорная С поперечной балкой"
+      },
+      {
+        "no": "Тип привода",
+        "text": "Передний"
+      },
+      {
+        "no": "Тип КПП",
+        "text": "Механическая"
+      },
+      {
+        "no": "Модель КПП",
+        "text": "MLGU6"
+      },
+      {
+        "no": "Количество ступеней",
+        "text": "6"
+      },
+      {
+        "no": "Максимальная скорость на высшей передаче (км/ч)",
+        "text": "155"
+      },
+      {
+        "no": "ECE (по городу)",
+        "text": "10.7"
+      },
+      {
+        "no": "MIXTE (смешанный тип движения)",
+        "text": "9.1"
+      },
+      {
+        "no": "EUDC (по трассе)",
+        "text": "8.2"
+      },
+      {
+        "no": "Сорт",
+        "text": "Дизельное топливо ГОСТ 305-82"
+      },
+      {
+        "no": "Емкость стандартного топливного бака (Л)",
+        "text": "90"
+      },
+      {
+        "no": "Длина габаритная",
+        "text": "5943"
+      },
+      {
+        "no": "Длина от задней стенки кабины до центра задней оси",
+        "text": "2 645"
+      },
+      {
+        "no": "Длина заднего свеса шасси",
+        "text": "960"
+      },
+      {
+        "no": "Длина заднего свеса с кузовом",
+        "text": "1300"
+      },
+      {
+        "no": "Максимальная длина заднего свеса с кузовом**",
+        "text": "2 450"
+      },
+      {
+        "no": "Ширина (без зеркал задн.вида)",
+        "text": "2050"
+      },
+      {
+        "no": "Ширина с кузовом",
+        "text": "2207"
+      },
+      {
+        "no": "Максимальная ширина с кузовом**",
+        "text": "2350"
+      },
+      {
+        "no": "Высота габаритная",
+        "text": "2153"
+      },
+      {
+        "no": "Максимальная высота с кузовом",
+        "text": "3500"
+      },
+      {
+        "no": "Высота от плоскости шасси до уровня дороги",
+        "text": "640-652"
+      },
+      {
+        "no": "База",
+        "text": "4035"
+      },
+      {
+        "no": "Между стен (м)",
+        "text": "14.2"
+      },
+      {
+        "no": "Снаряженная (без кузова и/или оборудования)",
+        "text": "1760"
+      },
+      {
+        "no": "Полная (максимальная разрешенная (MPMA))",
+        "text": "4000"
+      },
+      {
+        "no": "Максимальная масса кузова и/или оборудования",
+        "text": "2240"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8b7657f75_800x510.png"
+    ]
+  },
+  {
+    "slug": "bortovye-platformy-i-karkas-tenty-volkswagen-crafter",
+    "category": "van",
+    "title": "Бортовые платформы и каркас-тенты Volkswagen Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c02ba4cc3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/51245e971_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8be7b4ca7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/337fd2c03_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8ed6b4147_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e3a25243c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/755d82608_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e49092e49_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1d116f70d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e878738e0_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/crafter351.png"
+    ]
+  },
+  {
+    "slug": "bortovye-platformy-tentovannye-peugeot-boxer",
+    "category": "van",
+    "title": "Бортовые платформы тентованные Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Тип",
+        "text": "дизельный"
+      },
+      {
+        "no": "Особенности конструкции",
+        "text": "Система Common Rail Турбонаддув Интеркулер Привод ГРМ цепью"
+      },
+      {
+        "no": "Количество цилиндров",
+        "text": "4"
+      },
+      {
+        "no": "Количество клапанов",
+        "text": "16"
+      },
+      {
+        "no": "Модель",
+        "text": "P22DTE (4HU)"
+      },
+      {
+        "no": "Рабочий объем (см3)",
+        "text": "2198"
+      },
+      {
+        "no": "Диаметр цилиндра/ход поршня (мм)",
+        "text": "86.0/94.6"
+      },
+      {
+        "no": "Мощность (л.с/ кВт/ об/мин)",
+        "text": "120/ 883500"
+      },
+      {
+        "no": "Крутящий момент(Н.м. / об/мин)",
+        "text": "3202000"
+      },
+      {
+        "no": "Норма токсичности",
+        "text": "Euro4"
+      },
+      {
+        "no": "Размерность шин",
+        "text": "215 / 75 R16 C116 / 114R225 / 75 R16 C118 / 116R"
+      },
+      {
+        "no": "Размерность колесных дисков",
+        "text": "6Jx16 ET68PCD 5-130ЦО — о78.1"
+      },
+      {
+        "no": "Передние",
+        "text": "Дисковые вентилируемые"
+      },
+      {
+        "no": "Задние",
+        "text": "Дисковые"
+      },
+      {
+        "no": "Передняя",
+        "text": "Полностью независимая, Мак Ферсон"
+      },
+      {
+        "no": "Задняя",
+        "text": "Рессорная С поперечной балкой"
+      },
+      {
+        "no": "Тип привода",
+        "text": "Передний"
+      },
+      {
+        "no": "Тип КПП",
+        "text": "Механическая"
+      },
+      {
+        "no": "Модель КПП",
+        "text": "MLGU6"
+      },
+      {
+        "no": "Количество ступеней",
+        "text": "6"
+      },
+      {
+        "no": "Максимальная скорость на высшей передаче (км/ч)",
+        "text": "155"
+      },
+      {
+        "no": "ECE (по городу)",
+        "text": "10.7"
+      },
+      {
+        "no": "MIXTE (смешанный тип движения)",
+        "text": "9.1"
+      },
+      {
+        "no": "EUDC (по трассе)",
+        "text": "8.2"
+      },
+      {
+        "no": "Сорт",
+        "text": "Дизельное топливо ГОСТ 305-82"
+      },
+      {
+        "no": "Емкость стандартного топливного бака (Л)",
+        "text": "90"
+      },
+      {
+        "no": "Длина габаритная",
+        "text": "5943"
+      },
+      {
+        "no": "Длина от задней стенки кабины до центра задней оси",
+        "text": "2 645"
+      },
+      {
+        "no": "Длина заднего свеса шасси",
+        "text": "960"
+      },
+      {
+        "no": "Длина заднего свеса с кузовом",
+        "text": "1300"
+      },
+      {
+        "no": "Максимальная длина заднего свеса с кузовом**",
+        "text": "2 450"
+      },
+      {
+        "no": "Ширина (без зеркал задн.вида)",
+        "text": "2050"
+      },
+      {
+        "no": "Ширина с кузовом",
+        "text": "2207"
+      },
+      {
+        "no": "Максимальная ширина с кузовом**",
+        "text": "2350"
+      },
+      {
+        "no": "Высота габаритная",
+        "text": "2153"
+      },
+      {
+        "no": "Максимальная высота с кузовом",
+        "text": "3500"
+      },
+      {
+        "no": "Высота от плоскости шасси до уровня дороги",
+        "text": "640-652"
+      },
+      {
+        "no": "База",
+        "text": "4035"
+      },
+      {
+        "no": "Между стен (м)",
+        "text": "14.2"
+      },
+      {
+        "no": "Снаряженная (без кузова и/или оборудования)",
+        "text": "1760"
+      },
+      {
+        "no": "Полная (максимальная разрешенная (MPMA))",
+        "text": "4000"
+      },
+      {
+        "no": "Максимальная масса кузова и/или оборудования",
+        "text": "2240"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3c7b82ab5_800x510.png"
+    ]
+  },
+  {
+    "slug": "dopolnitelnye-vozmozhnosti-pereoborudovaniya",
+    "category": "van",
+    "title": "Дополнительные возможности переоборудования",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Холодильное оборудование Dongin Thermo (производство Корея)",
+        "text": "Цену уточняйте у менеджера!"
+      },
+      {
+        "no": "Холодильное оборудование Zanotti (производство Италия)",
+        "text": "Цену уточняйте у менеджера!"
+      },
+      {
+        "no": "Холодильное оборудование Carrier (производство Франция)",
+        "text": "Цену уточняйте у менеджера!"
+      },
+      {
+        "no": "Фургон цельнометаллический изотерм",
+        "text": "Цену уточняйте у менеджера!"
+      },
+      {
+        "no": "Холодильное оборудование Thermo King (производство Испания)",
+        "text": "Цену уточняйте у менеджера!"
+      },
+      {
+        "no": "Установка гидроборта Bar Cargolift 1000S2",
+        "text": "Цену уточняйте у менеджера!"
+      },
+      {
+        "no": "Установка гидробортов PALFINGER",
+        "text": "Цену уточняйте у менеджера!"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c1d267fb9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bd81a8f78_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d7ecad7af_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7bae3af2a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9189c3fc2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5abc129ac_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/112-300x178.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/121-244x300.jpg"
+    ]
+  },
+  {
+    "slug": "dorozhnaya-laboratoriya-volkswagen-crafter",
+    "category": "spec",
+    "title": "Дорожная лаборатория Volkswagen Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/79eaa52a9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4473093e1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3543e6313_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0b9f67912_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b7286186b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/50ed7dea2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/345a7e3d1_800x510.png"
+    ]
+  },
+  {
+    "slug": "evakuator-na-baze-crafter",
+    "category": "spec",
+    "title": "Эвакуатор на базе Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b4b7012f8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a64b55068_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d2300675f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d443dd9d3_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sd_e.jpg"
+    ]
+  },
+  {
+    "slug": "evakuator-volkswagen-crafter-s-pritsepom",
+    "category": "spec",
+    "title": "Эвакуатор Volkswagen Crafter с прицепом",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e3a730350_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ebf58fdc0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0fb743afe_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f2c625a98_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgon-hlebnyy-hyundai",
+    "category": "van",
+    "title": "Фургон хлебный Hyundai",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/360da4ca5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/52cf0acc1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e001cffa0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8f3da0bd4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/696e48b46_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgon-izotermicheskiy-i-obschego-naznacheniya-citroen",
+    "category": "van",
+    "title": "Фургон изотермический и общего назначения Citroen",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a6ff353b1_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgon-izotermicheskiy-isuzu",
+    "category": "van",
+    "title": "Фургон изотермический ISUZU",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/efaaccd12_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/db7787782_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4617ca3e6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ca6d03876_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgon-izotermicheskiy-mercedes",
+    "category": "van",
+    "title": "Фургон изотермический Mercedes",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ac87db854_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3fad85fe1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/91dcfce92_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgon-izotermicheskiy-volkswagen-crafter",
+    "category": "van",
+    "title": "Фургон изотермический Volkswagen Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/db25e4a59_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/39d365f3b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/64aecd7d7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/97d540592_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5be3232e9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4eb613482_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/677d88457_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2d777efef_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/390c2bad0_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/crafter30.png"
+    ]
+  },
+  {
+    "slug": "furgon-promtovarnyy-isuzu",
+    "category": "van",
+    "title": "Фургон промтоварный ISUZU",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9554358e7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8794b526d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/68e1b536c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8f13dff47_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgon-tehnichka",
+    "category": "spec",
+    "title": "Фургон техничка",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/83f9098ea_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/45230f188_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c5f870bac_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a40867bdb_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9ce09ed97_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4708fd6c7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/05daa7465_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d27c6dc2c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e002190f6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/43cb2d6cf_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d68ce8d78_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9823c3527_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/103a1f788_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/eb9835775_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f376ddee7_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-bortovye-platformy-transporter",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Бортовые платформы Transporter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/aab48c525_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-citroen",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Citroen",
+    "lead": "Наша компания предлагает недорого купить фургон Citroen в Нижнем Новгороде. Мы давно занимаемся продажей спецтранспорта этого французского производителя. В каталоге нашего предприятия представлены многофункциональные модели «Ситроен», которые могут быть задействованы для рабочего процесса, перевозки пассажиров, отдыха. К подобным транспортным средствам предъявляются особые эксплуатационные требования.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a6ff353b1_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-gaz",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения ГАЗ",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": []
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-hyundai",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Hyundai",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/360da4ca5_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-isuzu",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения ISUZU",
+    "lead": "Наша компания предлагает недорого купить фургон ISUZU в Нижнем Новгороде. Это высококачественный и современный спецтранспорт от известного японского автопроизводителя, который специализируется на выпуске средних и больших грузовиков, автобусов, внедорожников. Грузовые автофургоны, которые установлены на шасси от «ИСУЗУ», являются надежными машинами, способными транспортировать грузы с разными условиями хранения.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1a8e17633_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d489af2e4_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/efaaccd12_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9554358e7_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-mercedes",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Mercedes",
+    "lead": "Наша компания предлагает недорого купить фургон «Мерседес» в Нижнем Новгороде. Это надежные, привлекательные внешне, долговечные автомобили, которые поставляются клиентам с длительной гарантией. Наше предприятие специализируется на продаже автофургонов Mercedes, предлагает широкий выбор моделей по приемлемой стоимости.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ac87db854_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-peugeot",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Peugeot",
+    "lead": "Наша компания предлагает недорого купить фургон Peugeot в Нижнем Новгороде. Автомобили этой марки давно зарекомендовали себя в качестве надежных, красивых внешне, практичных и долговечных транспортных средств. Автофургоны «Пежо» являются отличным решением для всех людей, которые работают в сфере грузо- и пассажироперевозок. Это машины для профессионалов, которые ценят спецтранспорте простоту обслуживания, хорошую управляемостью и эффективную тормозную систему.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/010641e22_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-peugeot2",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Peugeot",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8b7657f75_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/280f7aca0_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b0e7e450f_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e94657b6b_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3c7b82ab5_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5abc129ac_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-promtovarnyy-crafter",
+    "category": "van",
+    "title": "Промтоварный Volkswagen Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/eac5f5465_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/50b47ae69_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e692c612c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb834ab82_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/da42ab3c0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/75e33c521_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/crafter351.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-renault",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Renault",
+    "lead": "В нашей компании можно по демократичной цене купить фургон Renault в Нижнем Новгороде. Мы предлагаем широкий выбор моделей от этого французского автопроизводителя. Спецтранспорт «Рено» – это качественные и надежные в эксплуатации машины, идеально подходящие для осуществления пассажироперевозок и транспортировки различных грузов.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/45f22d069_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-renault-master",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Renault Master",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/45f22d069_800x510.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-volkswagen",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Volkswagen",
+    "lead": "В нашей компании вы можете по разумной цене купить фургон Volkswagen в Нижнем Новгороде. Спецтранспорт от этого немецкого автопроизводителя пользуется высоким спросом в России и других странах мирах. Наша компания специализируется на продаже такого транспорта. У нас можно приобрести как новые машины, так и переоборудованные под цели заказчика модели. Все работы проводятся в соответствии с разрешительной документацией и стандартами ISO 9001.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3b47c05b8_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b8a5af3cc_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-volkswagen-crafter",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Volkswagen Crafter",
+    "lead": "Автомобиль Volkswagen Crafter во многом уникален. Он способен достаточно легко адаптироваться под потребности своего владельца, обеспечив тому максимальный комфорт. Колёсная база машины представлена в трёх вариациях, максимальная из которых составляет 4,3 м. Грузовое отделение фургона может быть увеличено до длины в 4,7 м, что вполне достаточно, чтобы разместить там до 5 паллет европейского стандарта.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c02ba4cc3_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/eac5f5465_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/db25e4a59_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5a1bdc4af_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ae84fefc8_800x500.png"
+    ]
+  },
+  {
+    "slug": "furgony-izotermicheskie-i-obschego-naznacheniya-volkswagen-transporter",
+    "category": "van",
+    "title": "Фургоны изотермические и общего назначения Volkswagen Transporter",
+    "lead": "Производство легендарного автомобиля Volkswagen T4 началось более 14 лет назад. За это время автомобиль успел покорить дороги практически каждой страны мира. Но всё когда-нибудь кончается, и сегодня этот старичок уходит на покой, освобождая место для своего наследника – Volkswagen Transporter V (фургон), который сможет достичь и перебить все достижения своего предка. Новые T5 станут выпускать в форм-факторе фургонов, платформ и шасси, также предполагается несколько пассажирских версий. По сравнению с предком, в этой машине была заметно расширена гамма двигателей, улучшены параметры эргономичности и предложены покупателям новые типы трансмиссии.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/aab48c525_800x500.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/tr1640-300x225.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/tr1802-300x225.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/tr1804-300x225.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/tr1652-300x225.jpg"
+    ]
+  },
+  {
+    "slug": "gaz-2705-4h4",
+    "category": "asmp",
+    "title": "ГАЗ 2705 4х4",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8634135e8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2a083138a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7815fccda_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6c43e09fc_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6477019b8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b679460c5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d09b15b93_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e7be18ced_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f9c345728_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a9c524da9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/41229a47e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/487df0e54_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/081f39021_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/04b7d2fb4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/25476c9ce_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b4fdc66c2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2b6b35785_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/513d9eb7d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8daf66144_800x510.png"
+    ]
+  },
+  {
+    "slug": "gaz-27527-klass-a",
+    "category": "asmp",
+    "title": "ГАЗ 27527, класс «А»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7c6f40f9d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/12e089463_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c30020b9e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/009cdb835_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0f0f1ed27_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/94f03579b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/59d091135_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/82dbccb6e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9536ac6fa_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7f316227d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ecbd70ce3_800x510.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskie-avtobusy-citroen",
+    "category": "gp",
+    "title": "Грузопассажирские автобусы Citroen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/739fb2b21_800x500.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskie-avtobusy-gaz",
+    "category": "gp",
+    "title": "Грузопассажирские автобусы ГАЗ",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": []
+  },
+  {
+    "slug": "gruzopassazhirskie-avtobusy-mercedes",
+    "category": "gp",
+    "title": "Грузопассажирские автобусы Mercedes",
+    "lead": "Грузопассажирские Спринетры продаются еще с 1995 года. Масса автомобиля может составлять 2,6-4,6 тонн, что позволяет использовать машину многопрофильно. Это может быть и пассажирский автобус Мерседес , и грузовой транспорт – на нем можно перевозить даже строительные материалы, он подойдет для работы и отдыха. Отличительные черты автомобиля – многофункциональность и экономичность.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ceb27f906_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d2da38832_800x500.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskie-avtobusy-peugeot",
+    "category": "gp",
+    "title": "Грузопассажирские автобусы Peugeot",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7c243949a_800x500.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskie-avtobusy-renault",
+    "category": "gp",
+    "title": "Грузопассажирские автобусы Renault",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/364035ae9_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8542cec8b_800x500.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskie-avtobusy-volkswagen",
+    "category": "gp",
+    "title": "Грузопассажирские автобусы Volkswagen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1f9871b5d_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1df89a430_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c0a372e37_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f7b35b271_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/37770ba85_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/95396383f_800x500.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-avtobus-citroen-jumper",
+    "category": "gp",
+    "title": "Грузопассажирский автобус Citroen Jumper",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/739fb2b21_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/shema1.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-avtobus-mercedes-sprinter",
+    "category": "gp",
+    "title": "Грузопассажирский автобус Mercedes Sprinter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ceb27f906_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/82bd47081_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/95fe9ffe9_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-1.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-2-1.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-3-1.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-4-1.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-avtobus-peugeot-boxer",
+    "category": "gp",
+    "title": "Грузопассажирский автобус Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7c243949a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b136f36eb_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/841c9c698_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9d2c83492_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b2c731330_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7844df3d1_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sh1.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-avtobus-renault-master",
+    "category": "gp",
+    "title": "Грузопассажирский автобус Renault MASTER",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8542cec8b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0972b6817_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb0cd200f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7f19d2ce2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/594672858_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/fc2b0fb99_800x510.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-avtobus-renault-master-2",
+    "category": "gp",
+    "title": "Грузопассажирский автобус Renault Master",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/364035ae9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f245c28e1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/221534e15_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c1ac180b1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a08ef0104_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/3-3.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/42.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/dl_baza-3.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mercedes-benz",
+    "category": "gp",
+    "title": "Грузопассажирский Mercedes-Benz",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d2da38832_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7605cc934_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c7b4fee64_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f7a7f489c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9ed092d60_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0584a0a85_800x510.png"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mikroavtobus-kombi-30",
+    "category": "gp",
+    "title": "Грузопассажирский микроавтобус «Комби 30»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "5905/2426/2415"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "3265/1780/1650"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Германия/ Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1f9871b5d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7dc3c1461_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3bffc81bb_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/gruzo-611.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mikroavtobus-kombi-35-korotkiy",
+    "category": "gp",
+    "title": "Грузопассажирский микроавтобус «Комби 35 короткий»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "5240/2426/2705"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "2600/1780/1650"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)/(100кВт/136л.с)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Германия/ Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1df89a430_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/accdef438_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bba7d107b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6d8519e35_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4ed407493_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/gor-162.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mikroavtobus-kombi-35-s-ostekleniem",
+    "category": "gp",
+    "title": "Грузопассажирский микроавтобус «Комби 35 с остеклением»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "7340/2426/2755"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4700/1780/1940"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)/(100кВт/136л.с) /(120кВт/163л.с)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Германия/ Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/37770ba85_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/01dc916f7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9c2032aad_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c682ebe29_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9b84d9abf_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ccfedd597_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/gor-242.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mikroavtobus-kombi-35-sredniy",
+    "category": "gp",
+    "title": "Грузопассажирский микроавтобус «Комби 35 средний»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "5905/2426/2705"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "3265/1780/1940"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109л.с)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Германия/ Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c0a372e37_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0c69003c0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bd7c43252_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e6a62e56b_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/gor-191.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mikroavtobus-kombi-50-dlinnyy",
+    "category": "gp",
+    "title": "Грузопассажирский микроавтобус «Комби 50 длинный »",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "6945/2426/2800"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4300/1780/1940"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)/(100кВт/136л.с)(120кВт/163л.с)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Германия/ Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f7b35b271_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/baad3486f_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/gor-214.jpg"
+    ]
+  },
+  {
+    "slug": "gruzopassazhirskiy-mikroavtobus-kombi-50-sverhdlinnyy",
+    "category": "gp",
+    "title": "Грузопассажирский микроавтобус «Комби 50 сверхдлинный»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "7340/2426/2755"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4700/1780/1940"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,0 (80 кВт/109 л.с.)/(100кВт/136л.с) /(120кВт/163л.с)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "задний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый/черный/синий/бордовый"
+      },
+      {
+        "no": "Страна производства",
+        "text": "Германия/ Россия"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/45ee1466a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/dede68941_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/95396383f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c1e02c19e_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/gor-268.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-2.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-3.jpg",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sv_dl_baza-4.jpg"
+    ]
+  },
+  {
+    "slug": "izotermicheskiy-furgon-peugeot-boxer",
+    "category": "van",
+    "title": "Изотермический фургон Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Тип",
+        "text": "дизельный"
+      },
+      {
+        "no": "Особенности конструкции",
+        "text": "Система Common Rail Турбонаддув Интеркулер Привод ГРМ цепью"
+      },
+      {
+        "no": "Количество цилиндров",
+        "text": "4"
+      },
+      {
+        "no": "Количество клапанов",
+        "text": "16"
+      },
+      {
+        "no": "Модель",
+        "text": "P22DTE (4HU)"
+      },
+      {
+        "no": "Рабочий объем (см3)",
+        "text": "2198"
+      },
+      {
+        "no": "Диаметр цилиндра/ход поршня (мм)",
+        "text": "86.0/94.6"
+      },
+      {
+        "no": "Мощность (л.с/ кВт/ об/мин)",
+        "text": "120/ 883500"
+      },
+      {
+        "no": "Крутящий момент(Н.м. / об/мин)",
+        "text": "3202000"
+      },
+      {
+        "no": "Норма токсичности",
+        "text": "Euro4"
+      },
+      {
+        "no": "Размерность шин",
+        "text": "215 / 75 R16 C116 / 114R225 / 75 R16 C118 / 116R"
+      },
+      {
+        "no": "Размерность колесных дисков",
+        "text": "6Jx16 ET68PCD 5-130ЦО — о78.1"
+      },
+      {
+        "no": "Передние",
+        "text": "Дисковые вентилируемые"
+      },
+      {
+        "no": "Задние",
+        "text": "Дисковые"
+      },
+      {
+        "no": "Передняя",
+        "text": "Полностью независимая, Мак Ферсон"
+      },
+      {
+        "no": "Задняя",
+        "text": "Рессорная С поперечной балкой"
+      },
+      {
+        "no": "Тип привода",
+        "text": "Передний"
+      },
+      {
+        "no": "Тип КПП",
+        "text": "Механическая"
+      },
+      {
+        "no": "Модель КПП",
+        "text": "MLGU6"
+      },
+      {
+        "no": "Количество ступеней",
+        "text": "6"
+      },
+      {
+        "no": "Максимальная скорость на высшей передаче (км/ч)",
+        "text": "155"
+      },
+      {
+        "no": "ECE (по городу)",
+        "text": "10.7"
+      },
+      {
+        "no": "MIXTE (смешанный тип движения)",
+        "text": "9.1"
+      },
+      {
+        "no": "EUDC (по трассе)",
+        "text": "8.2"
+      },
+      {
+        "no": "Сорт",
+        "text": "Дизельное топливо ГОСТ 305-82"
+      },
+      {
+        "no": "Емкость стандартного топливного бака (Л)",
+        "text": "90"
+      },
+      {
+        "no": "Длина габаритная",
+        "text": "5943"
+      },
+      {
+        "no": "Длина от задней стенки кабины до центра задней оси",
+        "text": "2 645"
+      },
+      {
+        "no": "Длина заднего свеса шасси",
+        "text": "960"
+      },
+      {
+        "no": "Длина заднего свеса с кузовом",
+        "text": "1300"
+      },
+      {
+        "no": "Максимальная длина заднего свеса с кузовом**",
+        "text": "2 450"
+      },
+      {
+        "no": "Ширина (без зеркал задн.вида)",
+        "text": "2050"
+      },
+      {
+        "no": "Ширина с кузовом",
+        "text": "2207"
+      },
+      {
+        "no": "Максимальная ширина с кузовом**",
+        "text": "2350"
+      },
+      {
+        "no": "Высота габаритная",
+        "text": "2153"
+      },
+      {
+        "no": "Максимальная высота с кузовом",
+        "text": "3500"
+      },
+      {
+        "no": "Высота от плоскости шасси до уровня дороги",
+        "text": "640-652"
+      },
+      {
+        "no": "База",
+        "text": "4035"
+      },
+      {
+        "no": "Между стен (м)",
+        "text": "14.2"
+      },
+      {
+        "no": "Снаряженная (без кузова и/или оборудования)",
+        "text": "1760"
+      },
+      {
+        "no": "Полная (максимальная разрешенная (MPMA))",
+        "text": "4000"
+      },
+      {
+        "no": "Максимальная масса кузова и/или оборудования",
+        "text": "2240"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b0e7e450f_800x510.png"
+    ]
+  },
+  {
+    "slug": "kamaz-43118-3090-46",
+    "category": "van",
+    "title": "КАМАЗ 43118-3090-46",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Модель",
+        "text": "КАМАЗ 43118-3090-46"
+      },
+      {
+        "no": "Производитель",
+        "text": "КАМАЗ"
+      },
+      {
+        "no": "Цена с НДС",
+        "text": "3.045.863,20"
+      },
+      {
+        "no": "Колесная формула",
+        "text": "6х6"
+      },
+      {
+        "no": "Тип ошиновки",
+        "text": "односкатная"
+      },
+      {
+        "no": "Грузоподъемность тн.",
+        "text": "13.65"
+      },
+      {
+        "no": "Номинальная мощность (брутто)",
+        "text": "300"
+      },
+      {
+        "no": "Максимальная полезная мощность",
+        "text": "300"
+      },
+      {
+        "no": "Модель КП",
+        "text": "ZF9"
+      },
+      {
+        "no": "П/о главной передачи",
+        "text": "5.94"
+      },
+      {
+        "no": "Длина монтажной рамы",
+        "text": "7.040,00"
+      },
+      {
+        "no": "Спальное место",
+        "text": "есть"
+      },
+      {
+        "no": "Шины",
+        "text": "425/85R21 390/95R20"
+      },
+      {
+        "no": "Бак, л",
+        "text": "210+350"
+      },
+      {
+        "no": "Тягово-сцепное устройство",
+        "text": "крюк-петля (фаркоп)"
+      },
+      {
+        "no": "Особенности комплектации автомобиля",
+        "text": "МКБ, МОБ, двигатель КАМАЗ 740.662-300(Е-4), топливная аппаратура BOSCH, Common Rail, ДЗК"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ae8f312fa_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/1824_43118-3090-461.jpg"
+    ]
+  },
+  {
+    "slug": "kamaz-65207",
+    "category": "van",
+    "title": "KAMAZ-65207",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "V платф, куб.м / монт.дл.рамы, мм",
+        "text": "48,3"
+      },
+      {
+        "no": "Бортовая платформа",
+        "text": "бортовая, с алюминиевыми откидными бортами, распашными задними воротами, с передней стенкой, с каркасом и тентом"
+      },
+      {
+        "no": "Внутренние размеры фургона, мм",
+        "text": "7800х2480х2500"
+      },
+      {
+        "no": "Дополнительное оборудование",
+        "text": "автономный отопитель кабины, предпусковой жидкостный подогреватель двигателя, кондиционер, датчик критического износа накладок, датчик нагрузки на ведущие мосты, электронный тахограф, аудиоподготовка (2 динамика, радиоантенна)."
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e31d78b7d_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/6520711.png"
+    ]
+  },
+  {
+    "slug": "kofe-s-soboy",
+    "category": "spec",
+    "title": "Кофе с собой",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ee8ce797c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4e5489a14_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e5006a765_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9b34eb368_800x510.png"
+    ]
+  },
+  {
+    "slug": "krano-manipulyatornaya-ustanovka-na-baze-volkswagen-crafter-35",
+    "category": "van",
+    "title": "Крано-манипуляторная установка на базе Volkswagen Crafter 35",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ae84fefc8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7faa1acc0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d5976a14e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d265b7c3a_800x510.png"
+    ]
+  },
+  {
+    "slug": "mercedes-benz-vito-dlya-perevozki-lyudey-s-ogranichennymi-fizicheskimi-vozmozhnostyami",
+    "category": "mgn",
+    "title": "«Mercedes-Benz Vito» для перевозки людей с ограниченными физическими возможностями",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/62c3a0e06_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/93b519a4a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/365c9e1e8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3ae16ff67_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/36e7c775e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7720c4ec3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e8aaf9d97_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/23282da13_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/74c77a3c6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a4dd1c1dd_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/870513db8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3b01be3e0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e14b80ef9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/66ebe764a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/16108b930_800x510.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-citroen-jumper",
+    "category": "mgn",
+    "title": "Микроавтобус для перевозки лиц с ограниченными возможностями Citroen Jumper",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "6363/2690/2524"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4070/1870/1932"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,2 (120 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "передний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f4de7106d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7e5e30571_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/71bfee264_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/4.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-mercedes-benz-vito",
+    "category": "mgn",
+    "title": "Микроавтобус для перевозки лиц с ограниченными возможностями Mercedes Benz Vito",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e86983747_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ec8f35288_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d1ca5ce2b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/71dfa1285_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3f3771763_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/adc68ae18_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/edd7962c9_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/18cb8f5dc_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1018bf5df_800x510.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-mercedes-sprinter",
+    "category": "mgn",
+    "title": "Микроавтобус для перевозки лиц с ограниченными возможностями Mercedes Sprinter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7c23f2e7a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9d4c80a59_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/025f710d9_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/shema2.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-na-baze-mercedes-benz-sprinter-classic-411",
+    "category": "mgn",
+    "title": "Mercedes-Benz V-Класс для перевозки людей с ограниченными возможностями с выдвижным креслом",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/445f7d562_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a46573f8c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c47c6acd7_800x510.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-peugeot-boxer",
+    "category": "mgn",
+    "title": "Микроавтобус для перевозки лиц с ограниченными возможностями Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "6363/2690/2524"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4070/1870/1932"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,2 (130 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "передний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9b27992a8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/606d864f8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3522c0f9a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d05f551d5_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/shema-1.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-peugeot-partner",
+    "category": "mgn",
+    "title": "Микроавтобус для перевозки лиц с ограниченными возможностями Peugeot Partner",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0172fb945_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cbf6da3aa_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/09c7c167a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/13daa62e1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/88c4eb092_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/90ddd8c20_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8987eebd0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/80d59641a_800x510.png"
+    ]
+  },
+  {
+    "slug": "mikroavtobus-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami-renault",
+    "category": "mgn",
+    "title": "Микроавтобус для перевозки лиц с ограниченными возможностями Renault",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e0944b270_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/3f1448889_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ffd30a486_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/87d508c22_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sots-2-mesta1.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sots-1-mesto-kat-b.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/sots-1-mesto.png"
+    ]
+  },
+  {
+    "slug": "morozhenovoz-volkswagen-crafter",
+    "category": "van",
+    "title": "Мороженовоз Volkswagen Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Производитель",
+        "text": "«CARLSEN BALTIC», Литва"
+      },
+      {
+        "no": "Модель",
+        "text": "3,5 T 8"
+      },
+      {
+        "no": "Рабочая температура, ° C",
+        "text": "-33"
+      },
+      {
+        "no": "Среднее время аккумулирования холода (намораживания) при температуре окружающей среды + 20 ° C, часов",
+        "text": "6…8"
+      },
+      {
+        "no": "Время поддержания рабочей температуры при активном использовании фургона по доставке замороженной продукции, часов",
+        "text": "10…12"
+      },
+      {
+        "no": "Вес перевозимых продуктов, кг",
+        "text": "более 1000 (в зависимости от шасси)"
+      },
+      {
+        "no": "Масса фургона в сборе, кг",
+        "text": "не более 650"
+      },
+      {
+        "no": "Коэффициент теплопроводности, W/m2*K",
+        "text": "не более 0,25"
+      },
+      {
+        "no": "Корпус фургона",
+        "text": "Бескаркасный, состоящий из набора панелей — теплоизоляторов. Поверхность панелей покрыта ламинатом — эпоксидным и полиэлистерным стеклопластиком."
+      },
+      {
+        "no": "Внешние размеры фургона, мм",
+        "text": "3 088 х 2 020 х 1 682"
+      },
+      {
+        "no": "Толщина теплоизоляционных панелей, мм",
+        "text": "125"
+      },
+      {
+        "no": "Общий объём полезного пространства, м3",
+        "text": "6,2"
+      },
+      {
+        "no": "Материал покрытия пола",
+        "text": "обеспечивающие вентиляцию пластиковые решетки"
+      },
+      {
+        "no": "Материал разделительных отсеков",
+        "text": "алюминиевый профилированный лист"
+      },
+      {
+        "no": "Количество боковых дверей, шт",
+        "text": "4+4 (с размещением холодильного оборудования в переднем отсеке)"
+      },
+      {
+        "no": "Размеры боковой двери (ширина х высота), мм",
+        "text": "600 х 1000"
+      },
+      {
+        "no": "Дверные петли, шт",
+        "text": "по 2 на каждую дверь (нержавеющая сталь)"
+      },
+      {
+        "no": "Дверные ручки, шт",
+        "text": "по 1 на каждую дверь (нержавеющая сталь, окрашенные или полированные)"
+      },
+      {
+        "no": "Запирание дверей",
+        "text": "Механический центральный замок и общий ключ для каждой двери (4 шт.)"
+      },
+      {
+        "no": "Фиксаторы для открытых дверей, шт",
+        "text": "12 (пластик)"
+      },
+      {
+        "no": "Водоотвод по боковым дверям, шт",
+        "text": "2 (алюминий)"
+      },
+      {
+        "no": "Двери задние распашные",
+        "text": "отсутствуют"
+      },
+      {
+        "no": "Количество уплотнителей на каждой двери, шт",
+        "text": "2 (резина с тефлоновым покрытием)"
+      },
+      {
+        "no": "Внутреннее освещение",
+        "text": "по 3 светильника на отсек; лампы LED 1 W"
+      },
+      {
+        "no": "Задний красный фонарь стоп-сигнала, шт",
+        "text": "1"
+      },
+      {
+        "no": "Лампа-индикатор процесса намораживания, шт.",
+        "text": "1"
+      },
+      {
+        "no": "Эвтектические плиты",
+        "text": "4 шт., изготовлены из оцинкованной стали"
+      },
+      {
+        "no": "Охлаждающий компрессор",
+        "text": "«Copeland Scroll», встроен в передний отсек."
+      },
+      {
+        "no": "Хладагент",
+        "text": "фреон R404А"
+      },
+      {
+        "no": "Термостат «Ranco», шт",
+        "text": "1"
+      },
+      {
+        "no": "Терморегулирующий клапан «Danfoss», шт",
+        "text": "2"
+      },
+      {
+        "no": "Термометры, шт",
+        "text": "1 внешний и 1 внутренний"
+      },
+      {
+        "no": "Cолеустойчивый конденсатор, шт",
+        "text": "1"
+      },
+      {
+        "no": "Электрический блок управления",
+        "text": "380 В/50 Гц; 3ф + 1з +1н"
+      },
+      {
+        "no": "Сливные отверстия, шт",
+        "text": "2"
+      },
+      {
+        "no": "Задний резиновый бампер, шт",
+        "text": "1 (резина)"
+      },
+      {
+        "no": "Крепление фургона на шасси",
+        "text": "Фургон крепится на шасси автомобиля без надрамника. Крепёжные детали прилагаются."
+      },
+      {
+        "no": "Окраска фургона",
+        "text": "автомобильная краска «Glazurit»; цвет — белый, (по желанию заказчика возможен другой цвет)"
+      },
+      {
+        "no": "Подножки боковые с креплениями; комплект, 2 шт. (алюминий). Средняя часть легко снимающаяся для легкого доступа при замене колеса.",
+        "text": "+"
+      },
+      {
+        "no": "По 2 оранжевых фонаря внешнего освещения с каждой боковой стороны; лампа LED 0,5 W",
+        "text": "+"
+      },
+      {
+        "no": "7 полок из профилированного алюминиевого листа. Количество полок и расположение по желанию заказчика.",
+        "text": "+"
+      },
+      {
+        "no": "Электрокабель с розеткой и вилкой 3ф + 1н + 1з; (длина 10 м), 1 шт.",
+        "text": "+"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5a1bdc4af_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/76786b195_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/29a1cd5f2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/92b97fed6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6c27e9c23_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/36254955a_800x510.png"
+    ]
+  },
+  {
+    "slug": "peredvizhnoy-punkt-meditsinskogo-osvidetelstvovaniya-volkswagen-crafter",
+    "category": "spec",
+    "title": "Передвижной пункт медицинского освидетельствования Volkswagen Crafter",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "7340х2460х2705 мм,"
+      },
+      {
+        "no": "Разрешенная максимальная масса",
+        "text": "3500 кг."
+      },
+      {
+        "no": "Рабочий объем двигателя",
+        "text": "1967 куб.см"
+      },
+      {
+        "no": "Мощность двигателя",
+        "text": "120кВт/163 л.с."
+      },
+      {
+        "no": "Климат-контроль",
+        "text": "есть"
+      },
+      {
+        "no": "подушки безопасности",
+        "text": "передних пассажиров и водителя"
+      },
+      {
+        "no": "Защита картера",
+        "text": "металлическая"
+      },
+      {
+        "no": "Стеклоподъемники передних дверей",
+        "text": "электрические"
+      },
+      {
+        "no": "Топливный бак",
+        "text": "75 л"
+      },
+      {
+        "no": "Наличие:",
+        "text": "Рулевая колонка с регулировкой вылета и высоты, догреватель водяной 5 кВт с автономным включением по таймеру, второй аккумулятор 100Ач, 480А с размыкающим реле, противотуманные фары передние, кузов ППМО должен состоять из двух отсеков: кабина водителя; салон-лаборатория. Связь между кабиной водителя и салоном должна осуществляться посредством бортового переговорного устройства."
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/de938befa_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a64dca704_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/dcc8bcba5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8bf9f9314_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a2c17744d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f2acae367_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/54f5707bf_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/851473235_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/35a6f32dd_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5937f6cda_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7f94d24a6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/38b71ea9d_800x510.png"
+    ]
+  },
+  {
+    "slug": "peugeot-boxer-peredvizhnoy-kompleks-mvd",
+    "category": "spec",
+    "title": "Peugeot Boxer передвижной комплекс МВД",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "6363/2690/2524"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4070/1870/1932"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,2 (130 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "передний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ff278739b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c68955fd8_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b6e0e0a55_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/912b56bf6_800x510.png"
+    ]
+  },
+  {
+    "slug": "promtovarnyy-furgon-peugeot-boxer",
+    "category": "van",
+    "title": "Промтоварный фургон Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Тип",
+        "text": "дизельный"
+      },
+      {
+        "no": "Особенности конструкции",
+        "text": "Система Common Rail Турбонаддув Интеркулер Привод ГРМ цепью"
+      },
+      {
+        "no": "Количество цилиндров",
+        "text": "4"
+      },
+      {
+        "no": "Количество клапанов",
+        "text": "16"
+      },
+      {
+        "no": "Модель",
+        "text": "P22DTE (4HU)"
+      },
+      {
+        "no": "Рабочий объем (см3)",
+        "text": "2198"
+      },
+      {
+        "no": "Диаметр цилиндра/ход поршня (мм)",
+        "text": "86.0/94.6"
+      },
+      {
+        "no": "Мощность (л.с/ кВт/ об/мин)",
+        "text": "120/ 883500"
+      },
+      {
+        "no": "Крутящий момент(Н.м. / об/мин)",
+        "text": "3202000"
+      },
+      {
+        "no": "Норма токсичности",
+        "text": "Euro4"
+      },
+      {
+        "no": "Размерность шин",
+        "text": "215 / 75 R16 C116 / 114R225 / 75 R16 C118 / 116R"
+      },
+      {
+        "no": "Размерность колесных дисков",
+        "text": "6Jx16 ET68PCD 5-130ЦО — о78.1"
+      },
+      {
+        "no": "Передние",
+        "text": "Дисковые вентилируемые"
+      },
+      {
+        "no": "Задние",
+        "text": "Дисковые"
+      },
+      {
+        "no": "Передняя",
+        "text": "Полностью независимая, Мак Ферсон"
+      },
+      {
+        "no": "Задняя",
+        "text": "Рессорная С поперечной балкой"
+      },
+      {
+        "no": "Тип привода",
+        "text": "Передний"
+      },
+      {
+        "no": "Тип КПП",
+        "text": "Механическая"
+      },
+      {
+        "no": "Модель КПП",
+        "text": "MLGU6"
+      },
+      {
+        "no": "Количество ступеней",
+        "text": "6"
+      },
+      {
+        "no": "Максимальная скорость на высшей передаче (км/ч)",
+        "text": "155"
+      },
+      {
+        "no": "ECE (по городу)",
+        "text": "10.7"
+      },
+      {
+        "no": "MIXTE (смешанный тип движения)",
+        "text": "9.1"
+      },
+      {
+        "no": "EUDC (по трассе)",
+        "text": "8.2"
+      },
+      {
+        "no": "Сорт",
+        "text": "Дизельное топливо ГОСТ 305-82"
+      },
+      {
+        "no": "Емкость стандартного топливного бака (Л)",
+        "text": "90"
+      },
+      {
+        "no": "Длина габаритная",
+        "text": "5943"
+      },
+      {
+        "no": "Длина от задней стенки кабины до центра задней оси",
+        "text": "2 645"
+      },
+      {
+        "no": "Длина заднего свеса шасси",
+        "text": "960"
+      },
+      {
+        "no": "Длина заднего свеса с кузовом",
+        "text": "1300"
+      },
+      {
+        "no": "Максимальная длина заднего свеса с кузовом**",
+        "text": "2 450"
+      },
+      {
+        "no": "Ширина (без зеркал задн.вида)",
+        "text": "2050"
+      },
+      {
+        "no": "Ширина с кузовом",
+        "text": "2207"
+      },
+      {
+        "no": "Максимальная ширина с кузовом**",
+        "text": "2350"
+      },
+      {
+        "no": "Высота габаритная",
+        "text": "2153"
+      },
+      {
+        "no": "Максимальная высота с кузовом",
+        "text": "3500"
+      },
+      {
+        "no": "Высота от плоскости шасси до уровня дороги",
+        "text": "640-652"
+      },
+      {
+        "no": "База",
+        "text": "4035"
+      },
+      {
+        "no": "Между стен (м)",
+        "text": "14.2"
+      },
+      {
+        "no": "Снаряженная (без кузова и/или оборудования)",
+        "text": "1760"
+      },
+      {
+        "no": "Полная (максимальная разрешенная (MPMA))",
+        "text": "4000"
+      },
+      {
+        "no": "Максимальная масса кузова и/или оборудования",
+        "text": "2240"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e94657b6b_800x510.png"
+    ]
+  },
+  {
+    "slug": "shassi-kamaz-4308-3022-c4",
+    "category": "van",
+    "title": "ШАССИ KAMAZ-4308-3022-C4",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Допустимая масса надстройки с грузом, кг",
+        "text": "7150"
+      },
+      {
+        "no": "Полная масса а/м, кг",
+        "text": "11900"
+      },
+      {
+        "no": "нагрузка на задний мост, кг",
+        "text": "7550"
+      },
+      {
+        "no": "нагрузка на переднюю ось, кг",
+        "text": "4350"
+      },
+      {
+        "no": "Снаряженная масса шасси, кг",
+        "text": "4750"
+      },
+      {
+        "no": "нагрузка на задний мост, кг",
+        "text": "1700"
+      },
+      {
+        "no": "нагрузка на переднюю ось, кг .",
+        "text": "3050"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/feee984d4_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/bez_nazvaniya2.jpg"
+    ]
+  },
+  {
+    "slug": "shassi-kamaz-65115-3971-23-a4",
+    "category": "van",
+    "title": "ШАССИ КАМАЗ-65115-3971-23(А4)",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Дополнительное оборудование",
+        "text": "коробка отбора мощности (КОМ), тягово-сцепное устройство (в зависимости от комплектации)"
+      },
+      {
+        "no": "Передаточное отношение",
+        "text": "5,43 или 5,94 или 6,53 (в зависимости от комплектации)"
+      },
+      {
+        "no": "Максимальная полезная мощность, кВт (л.с.)",
+        "text": "219 (298)"
+      },
+      {
+        "no": "Модель двигателя",
+        "text": "Cummins ISB6.7e4 300"
+      },
+      {
+        "no": "Исполнение",
+        "text": "без спального или со спальным местом"
+      },
+      {
+        "no": "Тип кабины",
+        "text": "расположенная над двигателем, с высокой или низкой крышей (в зависимости от комплектации)"
+      },
+      {
+        "no": "Размер обода",
+        "text": "7,5-20 или 7,5-22,5 или 8,25-22,5 (в зависимости от комплектации)"
+      },
+      {
+        "no": "Размер шин",
+        "text": "10.00 R20 или 11.00 R20 или 11.00 R22,5 (в зависимости от комплектации)"
+      },
+      {
+        "no": "Тип колес",
+        "text": "дисковые"
+      },
+      {
+        "no": "Тип шин",
+        "text": "пневматические, камерные или бескамерные (в зависимости от комплектации)"
+      },
+      {
+        "no": "Модель КП",
+        "text": "ZF 9S1310 или КАМАЗ-154 (в зависимости от комплектации)"
+      },
+      {
+        "no": "Передаточные числа на передачах",
+        "text": "мод. ZF 9S1310: 1-9,48; 2-6,58; 3-4,68; 4-3,48; 5-2,62; 6-1,89; 7-1,35; 8-1,00; 9-0,75; ЗХ-8,97 мод. KАМАZ-144: 1-7,82; 2-4,03; 3-2,50; 4-1,53; 5-1,00; ЗХ-7,38"
+      },
+      {
+        "no": "Тип",
+        "text": "механическая, 9-тиступенчатая"
+      },
+      {
+        "no": "Управление",
+        "text": "механическое, дистанционное"
+      },
+      {
+        "no": "Число передач КП",
+        "text": "9"
+      },
+      {
+        "no": "Вместимость бака с нейтрализующей жидкостью, л",
+        "text": "35"
+      },
+      {
+        "no": "Тип",
+        "text": "глушитель, совмещенный с нейтрализатором"
+      },
+      {
+        "no": "Вместимость топливного бака, л",
+        "text": "210 или 350 или 500 (в зависимости от комплектации)"
+      },
+      {
+        "no": "Привод",
+        "text": "гидравлический с пневмоусилителем"
+      },
+      {
+        "no": "Тип",
+        "text": "диафрагменное, однодисковое"
+      },
+      {
+        "no": "Привод",
+        "text": "пневматический"
+      },
+      {
+        "no": "Размеры диаметр барабана, мм",
+        "text": "400"
+      },
+      {
+        "no": "Ширина тормозных накладок, мм",
+        "text": "140"
+      },
+      {
+        "no": "Внешний габаритный радиус поворота, м",
+        "text": "9,7"
+      },
+      {
+        "no": "Максимальная скорость, не менее, км/ч",
+        "text": "100"
+      },
+      {
+        "no": "Угол преодолеваемого подъема, не менее, % (град)",
+        "text": "25 (14°)"
+      },
+      {
+        "no": "Аккумуляторы, В/А·ч",
+        "text": "2х12/190"
+      },
+      {
+        "no": "Генератор, В/Вт",
+        "text": "28/2000"
+      },
+      {
+        "no": "Напряжение, B",
+        "text": "24"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8b519e89d_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/37c303b60e935e6d8e4df17b1a686b6a1.jpg"
+    ]
+  },
+  {
+    "slug": "shassi-kamaz-6580-0003001-j5",
+    "category": "van",
+    "title": "ШАССИ KAMAZ-6580-0003001-J5",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Грузоподъемность автомобиля, кг",
+        "text": "29600"
+      },
+      {
+        "no": "Полная масса а/м, кг",
+        "text": "41000"
+      },
+      {
+        "no": "нагрузка на заднюю тележку, кг",
+        "text": "32000"
+      },
+      {
+        "no": "нагрузка на переднюю ось, кг",
+        "text": "9000"
+      },
+      {
+        "no": "Снаряженная масса шасси, кг",
+        "text": "11400"
+      },
+      {
+        "no": "нагрузка на заднюю тележку, кг",
+        "text": "6100"
+      },
+      {
+        "no": "нагрузка на переднюю ось, кг .",
+        "text": "5300"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e202ac29e_800x510.png",
+      "https://com-transport.ru/wp-content/uploads/2019/07/e62a811bf18bb3191a1731692e3160511.jpg"
+    ]
+  },
+  {
+    "slug": "skoraya-meditsinskaya-pomosch-klassa-s-reanimatsiya",
+    "category": "spec",
+    "title": "Скорая медицинская помощь класса «С» (реанимация)",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "№",
+        "text": "Наименование Наличие"
+      },
+      {
+        "no": "",
+        "text": "1. Кузов, медицинский салон"
+      },
+      {
+        "no": "1.1",
+        "text": "Теплоизоляция медицинского салона наличие"
+      },
+      {
+        "no": "1.2",
+        "text": "Армирование кузова для закрепления приборов и оборудования наличие"
+      },
+      {
+        "no": "1.3",
+        "text": "Отделка боковых панелей и потолка медицинского салона композитными материалами на основе алюминия наличие"
+      },
+      {
+        "no": "",
+        "text": "2. Ступени, подножки"
+      },
+      {
+        "no": "2.1",
+        "text": "Подножка сдвижной двери 1"
+      },
+      {
+        "no": "2,2",
+        "text": "Подножка задней двери 1"
+      },
+      {
+        "no": "",
+        "text": "3. Пол медицинского салона"
+      },
+      {
+        "no": "3.1",
+        "text": "Водонепроницаемое, антистатичное и нескользящее напольное покрытие наличие"
+      },
+      {
+        "no": "3.2",
+        "text": "Бордюр по нижней части боковых панелей из нерж. стали наличие"
+      },
+      {
+        "no": "3.3",
+        "text": "Гидроизоляция швов наличие"
+      },
+      {
+        "no": "",
+        "text": "4. Перегородка"
+      },
+      {
+        "no": "4.1",
+        "text": "Перегородка между кабиной и медицинским салоном с электра сдвижной матированной дверью наличие"
+      },
+      {
+        "no": "",
+        "text": "5. Остекление медицинского салона"
+      },
+      {
+        "no": "5.1",
+        "text": "Окна в задних дверях медицинского салона наличие"
+      },
+      {
+        "no": "5.2",
+        "text": "Раздвижное окно в боковой двери медицинского салона наличие"
+      },
+      {
+        "no": "5.3",
+        "text": "Матирование на 2/3 высоты окон внешних дверей медицинского салона наличие"
+      },
+      {
+        "no": "",
+        "text": "6. Оклейка, спец. Сигналы"
+      },
+      {
+        "no": "6.1",
+        "text": "Балка свето-акустическая (светодиодная) с пультом управления и системой внешней трансляции речи, два светодиодных маяка наличие"
+      },
+      {
+        "no": "6.2",
+        "text": "Оклейка автомобиля согласно ГОСТу Р50574-2002 (Схема А2) Светоотражающая 1"
+      },
+      {
+        "no": "",
+        "text": "7. Поручни, леера"
+      },
+      {
+        "no": "7.1",
+        "text": "Поручень раздвижной двери 1"
+      },
+      {
+        "no": "7.2",
+        "text": "Поручень задних дверей 1"
+      },
+      {
+        "no": "7.3",
+        "text": "Потолочный леер-поручень вдоль приемного устройства с двумя кронштейнами крепления инфузионной системы 1"
+      },
+      {
+        "no": "",
+        "text": "8. Отопление и вентиляция"
+      },
+      {
+        "no": "8.1",
+        "text": "Потолочный светопрозрачный люк в медицинском салоне с возможностью использования в качестве аварийного выхода 1"
+      },
+      {
+        "no": "8.2",
+        "text": "Потолочный приточно-вытяжной вентилятор 1"
+      },
+      {
+        "no": "8.3",
+        "text": "Стояночный электрообогреватель медицинского салона 220V c регулятором температуры 1"
+      },
+      {
+        "no": "8.4",
+        "text": "Автономный воздушный отопитель медицинского салона 1"
+      },
+      {
+        "no": "8.5",
+        "text": "Кондиционер медицинского салона 1"
+      },
+      {
+        "no": "",
+        "text": "9. Водоснабжение"
+      },
+      {
+        "no": "9.1",
+        "text": "Умывальник, емкостями для чистой и отработанной воды, с крышкой обеспечивающей возможность использования в качестве рабочего столика 1*"
+      },
+      {
+        "no": "9.2",
+        "text": "Подогрев емкости для чистой воды 1"
+      },
+      {
+        "no": "",
+        "text": "10. Электрооборудование"
+      },
+      {
+        "no": "10.1",
+        "text": "Плафоны освещения по всей длине медицинского салона, светодиодные 3"
+      },
+      {
+        "no": "10.2",
+        "text": "Светильник освещения прилегающей территории раздвижной двери 1"
+      },
+      {
+        "no": "10.3",
+        "text": "Светильник освещения прилегающей территории задней двери 1"
+      },
+      {
+        "no": "10.4",
+        "text": "Точечный светильник над поверхностью носилок 4"
+      },
+      {
+        "no": "10.5",
+        "text": "Дополнительная аккумуляторная батарея 1"
+      },
+      {
+        "no": "10.6",
+        "text": "Электрическая розетка 12V для питания медицинского оборудования 4"
+      },
+      {
+        "no": "10.7",
+        "text": "Электрическая розетка 220V для питания медицинского оборудования 2"
+      },
+      {
+        "no": "10.8",
+        "text": "Электрическая розетка 220V для питания стояночного электрообогревателя медицинского салона 2"
+      },
+      {
+        "no": "10.9",
+        "text": "Преобразователь напряжения 220/12V (12/220V) с функцией подзарядки аккумуляторных батарей на стоянке от внешней сети 1"
+      },
+      {
+        "no": "10.10",
+        "text": "Вилка ввода электропитания внешней сети 220V в передней части автомобиля со стороны водителя 1"
+      },
+      {
+        "no": "10.11",
+        "text": "Кабель ввода электропитания внешней сети 220V (15 метров) 1"
+      },
+      {
+        "no": "10.12",
+        "text": "Панель управления электропитанием АСМП 1"
+      },
+      {
+        "no": "",
+        "text": "11. Система газоснабжения"
+      },
+      {
+        "no": "11.1",
+        "text": "Газовые трубопроводы под обшивкой медицинского салона наличие"
+      },
+      {
+        "no": "11.2",
+        "text": "Кислородный баллон на 10 л. с устройством крепления в закрытом шкафу, с рольставнями, расположен по левому борту медицинского салона 2"
+      },
+      {
+        "no": "11.3",
+        "text": "Баллон с закисью азота на 10л., с устройством крепления в закрытом шкафу, с рольставнями, расположен по правому борту медицинского салона 1"
+      },
+      {
+        "no": "11.4",
+        "text": "Редуктора к баллонам 3"
+      },
+      {
+        "no": "11.5",
+        "text": "Кислородные розетки с быстроразъемным соединением 2"
+      },
+      {
+        "no": "11.6",
+        "text": "Розетка для закиси азота с быстроразъемным соединением 1"
+      },
+      {
+        "no": "",
+        "text": "12. Сиденья, посадочные места медицинского салона"
+      },
+      {
+        "no": "12.1",
+        "text": "Поворотное кресло с ремнем безопасности в головном конце носилок, с подголовником и подлокотниками 1"
+      },
+      {
+        "no": "12.2",
+        "text": "Банкетка по правому борту c поясничной подушкой 1"
+      },
+      {
+        "no": "12.3",
+        "text": "Откидное кресло с ремнем безопасности по правому борту 1"
+      },
+      {
+        "no": "",
+        "text": "13. Медицинские шкафы, мебель"
+      },
+      {
+        "no": "13.1",
+        "text": "Подпотолочная полка левого борта со сдвижными стеклами с закрывающимся на ключ ящиком в составе 1"
+      },
+      {
+        "no": "13.2",
+        "text": "Шкаф левого борта под хранение двух кислородных баллонов наличие"
+      },
+      {
+        "no": "13.3",
+        "text": "Крепеж баллона с закисью азота по правому борту в защитном чехле"
+      },
+      {
+        "no": "13.4",
+        "text": "Шкаф медицинский левого борта со сдвижными роль- ставнями 1"
+      },
+      {
+        "no": "13.5",
+        "text": "Устройство приёмное с поперечным перемещением 1"
+      },
+      {
+        "no": "13.6",
+        "text": "Тележка-каталка 1"
+      },
+      {
+        "no": "",
+        "text": "14. Дополнительное оборудование"
+      },
+      {
+        "no": "14.1",
+        "text": "Полотенцедержатель 1"
+      },
+      {
+        "no": "14.2",
+        "text": "Диспенсер 1"
+      },
+      {
+        "no": "14.3",
+        "text": "Корзина для мусора, не менее 5 л 1"
+      },
+      {
+        "no": "14.4",
+        "text": "Фонарь аккумуляторный 12V 1"
+      },
+      {
+        "no": "14.5",
+        "text": "Противотуманные фары наличие"
+      },
+      {
+        "no": "14.6",
+        "text": "Пневмоподвеска на заднюю ось 1"
+      },
+      {
+        "no": "14.7",
+        "text": "Огнетушитель 2 л 2"
+      },
+      {
+        "no": "14.8",
+        "text": "Аварийный набор автомобилиста 1"
+      },
+      {
+        "no": "14.9",
+        "text": "Присвоение VIN-номера завода-изготовителя 1"
+      },
+      {
+        "no": "14.10",
+        "text": "Сервисная, гарантийная книжки 1"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/87abb86dc_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8c37b4ff3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bc77d616f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2e0aaaee6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/69cffb3ec_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/272ea6141_800x510.png"
+    ]
+  },
+  {
+    "slug": "skoraya-meditsinskaya-pomosch-klassa-v",
+    "category": "spec",
+    "title": "Скорая медицинская помощь классa «В»",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "Mercedes-Benz Sprinter Classic (колесная база 3550 мм)",
+    "spec": [
+      {
+        "no": "",
+        "text": "1. Базовое шасси."
+      },
+      {
+        "no": "1.1",
+        "text": "Mercedes-Benz Sprinter Classic (колесная база 3550 мм)"
+      },
+      {
+        "no": "",
+        "text": "2. Кузов, медицинский салон."
+      },
+      {
+        "no": "2.1",
+        "text": "Цвет кузова автомобиля – белый."
+      },
+      {
+        "no": "2.2",
+        "text": "Цветографическая оклейка автомобиля цветовозвращающим материалом согласно ГОСТ Р50574-2002 (А1)."
+      },
+      {
+        "no": "2.3",
+        "text": "Термо-шумоизоляция и виброизоляция потолка, дверей и стен медицинского салона."
+      },
+      {
+        "no": "2.4",
+        "text": "Армирование кузова для закрепления приборов и оборудования."
+      },
+      {
+        "no": "2.5",
+        "text": "Отделка бортов и потолка медицинского салона алюминиевыми композитными панелями (устойчивыми к воздействию лекарственных препаратов и моюще-дезинфицирующих средств, имеющими гладкую поверхность, не впитывающими запахи)."
+      },
+      {
+        "no": "2.6",
+        "text": "Вспомогательная пневмоподвеска на заднюю ось автомобиля. Компрессор и панель управления."
+      },
+      {
+        "no": "",
+        "text": "3. Пол медицинского салона."
+      },
+      {
+        "no": "3.1",
+        "text": "Влагостойкое, антистатическое, нескользящее напольное покрытие с гидроизоляцией всех швов, устойчивое воздействию моющих — дезинфицирующих средств."
+      },
+      {
+        "no": "3.2",
+        "text": "Гидроизоляция швов."
+      },
+      {
+        "no": "3.3",
+        "text": "Бордюр по нижней части боковых панелей из алюминия/нержавеющей стали, 80мм."
+      },
+      {
+        "no": "",
+        "text": "4. Перегородка."
+      },
+      {
+        "no": "4.1",
+        "text": "Перегородка между кабиной и салоном с сдвижным матированным окном."
+      },
+      {
+        "no": "",
+        "text": "5. Остекление медицинского салона."
+      },
+      {
+        "no": "5.1",
+        "text": "Остекление задних распашных дверей."
+      },
+      {
+        "no": "5.2",
+        "text": "Остекление правой боковой сдвижной двери со сдвижным окном."
+      },
+      {
+        "no": "5.3",
+        "text": "Матирование 2/3 высоты стекол дверей салона."
+      },
+      {
+        "no": "",
+        "text": "6. Поручни, леера."
+      },
+      {
+        "no": "6.1",
+        "text": "Поручень при входе у боковой сдвижной двери."
+      },
+      {
+        "no": "6.2",
+        "text": "Леер-поручень потолочный вдоль приемного устройства с кронштейнами для инфузионной системы (нержавеющая сталь) – 1 шт."
+      },
+      {
+        "no": "",
+        "text": "7. Подножки."
+      },
+      {
+        "no": "7.1",
+        "text": "Задняя подножка."
+      },
+      {
+        "no": "7.2",
+        "text": "Подножка у сдвижной двери"
+      },
+      {
+        "no": "",
+        "text": "8. Отопление и вентиляция."
+      },
+      {
+        "no": "8.1",
+        "text": "Вентиляционно-аварийный люк (стекло) в передней части салона (внутренние габаритные размеры: 515 х 805 мм)."
+      },
+      {
+        "no": "8.2",
+        "text": "Фильтр-вентиляционная установка ФВУ (приточно-вытяжное устройство)."
+      },
+      {
+        "no": "8.3",
+        "text": "Отопитель салона автономный воздушный, 2 кВт (Webasto, Германия)."
+      },
+      {
+        "no": "8.4",
+        "text": "Отопитель салона зависимый водяной."
+      },
+      {
+        "no": "8.5",
+        "text": "Кондиционер (в комплектации базового ТС) кабины водителя + установка дополнительного испарителя на медицинский салон 6Квт."
+      },
+      {
+        "no": "",
+        "text": "9. Освещение и электрооборудование."
+      },
+      {
+        "no": "9.1",
+        "text": "Общее освещение салона: потолочные светильники, 4 шт."
+      },
+      {
+        "no": "9.2",
+        "text": "Светильник направленного света над носилками с поворотным механизмом (споты, 4 шт.)"
+      },
+      {
+        "no": "9.3",
+        "text": "Светильник над боковой дверью по правому борту. Направление светового пучка «вбок»."
+      },
+      {
+        "no": "9.4",
+        "text": "Светильник над задними распашными дверьми. Направление светового пучка «назад»."
+      },
+      {
+        "no": "9.5",
+        "text": "Фонарь 12V переносной аккумуляторный (ручной фонарь-прожектор)."
+      },
+      {
+        "no": "9.6",
+        "text": "Аккумуляторная батарея дополнительная 100 Ач с разделительным реле (в составе базового ТС)."
+      },
+      {
+        "no": "9.7",
+        "text": "Розетка электрическая 12V по левому борту для питания медицинского оборудования — 3 шт."
+      },
+      {
+        "no": "9.8",
+        "text": "Розетка электрическая 220V по левому борту для питания медицинского оборудования — 4 шт."
+      },
+      {
+        "no": "9.9",
+        "text": "Преобразователь напряжения 12/220V."
+      },
+      {
+        "no": "9.10",
+        "text": "Розетка ввода электропитания внешней сети 220В, 50 Гц в передней части левого борта, с защитой от короткого замыкания и защитой персонала от поражения электрическим током (УЗО)."
+      },
+      {
+        "no": "9.11",
+        "text": "Кабель ввода электропитания внешней сети 220V, 15 метров."
+      },
+      {
+        "no": "9.12",
+        "text": "Автоматическая система заряда аккумуляторных батарей а/м от внешней сети электропитания 220В, 50 Гц"
+      },
+      {
+        "no": "9.13",
+        "text": "Панель управления электрооборудованием медицинского салона."
+      },
+      {
+        "no": "9.14",
+        "text": "Фары противотуманные."
+      },
+      {
+        "no": "",
+        "text": "10. Система газоснабжения."
+      },
+      {
+        "no": "10.1",
+        "text": "Трубопровод медицинских газов под обшивкой салона."
+      },
+      {
+        "no": "10.2",
+        "text": "Кронштейн крепления баллонов газовых 10 л. — 2 шт."
+      },
+      {
+        "no": "10.3",
+        "text": "Розетка газов медицинских с быстроразъемным соединением"
+      },
+      {
+        "no": "10.4",
+        "text": "Баллон кислородный 10л (2 шт.) с редуктором кислородным (1 шт.)"
+      },
+      {
+        "no": "",
+        "text": "11. Сиденья, посадочные места."
+      },
+      {
+        "no": "11.1",
+        "text": "Кабина водителя: кресло водителя, кресло сопровождающего сдвоенное."
+      },
+      {
+        "no": "11.2",
+        "text": "Кресло по правому борту медицинского салона откидное, с 3-х точечным ремнем безопасности, (с возможностью фиксации по ходу движения и лицом к носилкам)."
+      },
+      {
+        "no": "11.3",
+        "text": "Кресло поворотное в головной части носилок с 2-х точечным ремнем безопасности и откидными подлокотниками."
+      },
+      {
+        "no": "11.4",
+        "text": "Скамья-рундук по правому борту салона (с фиксатором для установки дополнительных носилок НППС)."
+      },
+      {
+        "no": "",
+        "text": "12. Медицинская мебель, шкафы."
+      },
+      {
+        "no": "12.1",
+        "text": "Шкафы для медицинского оборудования с роль — ставнями в передней и задней части салона по левому борту, полки с ремнями фиксирующими. Размеры по эскизам заказчика."
+      },
+      {
+        "no": "12.2",
+        "text": "Ящик с замком в составе шкафа (5 л.)."
+      },
+      {
+        "no": "12.4",
+        "text": "Полка-антресоль по левому борту со сдвижными дверцами из оргстекла."
+      },
+      {
+        "no": "12.5",
+        "text": "Шкаф с дверкой для кислородных баллонов по правому борту салона."
+      },
+      {
+        "no": "12.6",
+        "text": "Умывальник с подогревом воды, с крышкой под столик."
+      },
+      {
+        "no": "",
+        "text": "13. Акустическое и свето-сигнальное оборудование."
+      },
+      {
+        "no": "13.1",
+        "text": "Балка свето-акустическая светодиодная с системой трансляции речи и пультом управления в кабине."
+      },
+      {
+        "no": "13.2",
+        "text": "Маяк проблесковый задний светодиодный — 2 шт."
+      },
+      {
+        "no": "",
+        "text": "14. Оборудование."
+      },
+      {
+        "no": "14.1",
+        "text": "Огнетушитель 2л в кабине водителя."
+      },
+      {
+        "no": "14.2",
+        "text": "Огнетушитель 2л в салоне."
+      },
+      {
+        "no": "14.3",
+        "text": "Информационные таблички из самоклеящейся пленки."
+      },
+      {
+        "no": "14.4",
+        "text": "Подготовка под радиостанцию"
+      },
+      {
+        "no": "14.5",
+        "text": "Блокировка запуска двигателя при питании от бортового ввода."
+      },
+      {
+        "no": "14.6",
+        "text": "Сигнализация водителю об открытых дверях салона."
+      },
+      {
+        "no": "",
+        "text": "15. Носилки, приемное устройство(медицинское оборудование)"
+      },
+      {
+        "no": "15.1",
+        "text": "Тележка-каталка со съемными носилками ТНС-01ММ (Микромонтаж)"
+      },
+      {
+        "no": "15.2",
+        "text": "Устройство приемное носилок с поперечным перемещением УП-ММ (Микромонтаж)"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/12f090f8c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/74d667031_800x510.png"
+    ]
+  },
+  {
+    "slug": "sobol-4h4-avtokemper",
+    "category": "spec",
+    "title": "Соболь 4х4 автокемпер",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/5ed425f5b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/063ce05e2_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2693530ae_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ac8483dbd_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ce841b96a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8e570e108_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/10fc99629_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0f4c14a9a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8568cb52b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/df4136404_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c0592fa4e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a78909e62_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8ec9e69d5_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/09bfd9ce4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7da1029aa_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/9c80eba0e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/eb6dfbde6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/95f04bd28_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/93943c438_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a32f837e7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ef542ada3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7a6352bae_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/963002a60_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/187d0ba0d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ad76b322f_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/56df4e0c6_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/89b06fb29_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/26b1ab3d7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ad8505c6c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/722ef00b3_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/59053b617_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ac693e0e1_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4acf62751_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/2cc881b50_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a1405470b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/dc3c1fb14_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/744d48bc0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/769bfb13d_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/30fb10c3a_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/1e888b147_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/03a60c59c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/906569a51_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c98f1cea7_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/05bb39387_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/daafa6901_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/cb036ea38_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/bcef362e0_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/d2f5190ee_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/6122450cb_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0096942f4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/10108a29e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ff365be4e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/0bfd717c5_800x510.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobil-peugeot",
+    "category": "spec",
+    "title": "Спец.автомобиль Peugeot",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/28fe9a069_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ae566b04e_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f447f96e4_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/438cc6824_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/55035257c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/8478c0e29_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/17b51fe0c_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7e194a7e3_800x510.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-citroen",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории Citroen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": []
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-gaz",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории ГАЗ",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ac8483dbd_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/a939ea7e3_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c5f870bac_800x500.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-mercedes",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории Mercedes",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/87abb86dc_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/12f090f8c_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7d33146ef_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/c2fad2de1_800x500.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-peugeot",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории Peugeot",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/acccb8f85_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/ff278739b_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/28fe9a069_800x500.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-peugeot-boxer",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории Peugeot Boxer",
+    "lead": "Стоимость автобуса в данной комплектации уточняйте по телефону.",
+    "chassis": "",
+    "spec": [
+      {
+        "no": "Габаритные размеры, мм",
+        "text": "6363/2690/2524"
+      },
+      {
+        "no": "Размеры пассажирского салона, мм",
+        "text": "4070/1870/1932"
+      },
+      {
+        "no": "Двигатель (Евро5)",
+        "text": "TDI 2,2 (130 л.с.)"
+      },
+      {
+        "no": "КПП",
+        "text": "механическая, 6-ступенчатая"
+      },
+      {
+        "no": "Привод",
+        "text": "передний"
+      },
+      {
+        "no": "Тормоза передние/задние",
+        "text": "дисковые вентилируемые"
+      },
+      {
+        "no": "Цвет",
+        "text": "Белый"
+      }
+    ],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/acccb8f85_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7e13d5756_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/841a32e8b_800x510.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/db636492e_800x510.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-renault",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории Renault",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/4e5489a14_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/31a2b8480_800x500.png"
+    ]
+  },
+  {
+    "slug": "spets-avtomobili-i-laboratorii-volkswagen",
+    "category": "spec",
+    "title": "Спец.автомобили и лаборатории Volkswagen",
+    "lead": "",
+    "chassis": "",
+    "spec": [],
+    "images": [
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/f2eea998c_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/79eaa52a9_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/de938befa_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/7a08793cf_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/b4b7012f8_800x500.png",
+      "https://com-transport.ru/wp-content/plugins/kama-thumbnail_ed/thumb/e3a730350_800x500.png"
+    ]
+  }
+]
