@@ -13,13 +13,6 @@ const COUNTERS = [
   { n: 85, suffix: '', k: 'регионов поставок' },
 ];
 
-const DOCS = [
-  { t: 'Карточка предприятия и реквизиты', note: 'ИНН, ОГРН, КПП, банковские реквизиты' },
-  { t: 'Одобрение типа транспортного средства', note: 'по ТР ТС 018/2011' },
-  { t: 'Сертификаты соответствия', note: 'комплект по действующим исполнениям' },
-  { t: 'Гарантийная политика', note: 'сроки, порядок обращения, сервис' },
-];
-
 const MARKS = ['ОТТС · ТР ТС 018/2011', 'ГОСТ 33665-2024', '44-ФЗ · 223-ФЗ'];
 
 export default function HomePage() {
@@ -145,39 +138,6 @@ export default function HomePage() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      <section className={styles.tenders}>
-        <div className={`shell ${styles.tendersGrid}`}>
-          <div>
-            <p className="label label-deep">Тендерам и госзаказчикам</p>
-            <h2 className={styles.h2}>
-              Пакет документов
-              <br />
-              для обоснования закупки
-            </h2>
-            <p className={styles.tendersLead}>
-              Реквизиты, сертификаты и гарантийная политика — одним комплектом, без звонка
-              менеджеру. Тендерный отдел собирает обоснование сам и в своём темпе.
-            </p>
-            <Link href="/tendery" className={styles.dark}>
-              Перейти в раздел
-            </Link>
-          </div>
-
-          <ul className={styles.docs}>
-            {DOCS.map((d) => (
-              <li key={d.t} className={styles.doc}>
-                <span className={`mono ${styles.docFmt}`}>PDF</span>
-                <span className={styles.docBody}>
-                  <span className={styles.docTitle}>{d.t}</span>
-                  <span className={styles.docNote}>{d.note}</span>
-                </span>
-              </li>
-            ))}
-            <li className={`mono ${styles.docsMore}`}>+ ещё документы в разделе</li>
-          </ul>
         </div>
       </section>
 

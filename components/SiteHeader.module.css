@@ -105,25 +105,6 @@
   margin-inline-start: auto;
 }
 
-.lang {
-  display: flex;
-  gap: 7px;
-  font: 500 10px/1.4 var(--font-mono);
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-}
-
-.langOn {
-  color: var(--fg);
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 3px;
-}
-
-.langOff {
-  color: var(--fg-dim);
-  padding-bottom: 3px;
-}
-
 .phone {
   font: 500 13px/1 var(--font-mono);
   letter-spacing: 0.02em;

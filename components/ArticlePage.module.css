@@ -61,3 +61,52 @@
   line-height: 1.65;
   color: var(--text-on-light-dim);
 }
+
+/* Список документов и переходов со страницы донора. */
+.links {
+  list-style: none;
+  margin: clamp(24px, 3vw, 36px) 0 0;
+  padding: 0;
+  max-width: 78ch;
+  border: 1px solid var(--paper-500);
+  background: var(--paper-200);
+}
+
+.links li + li {
+  border-top: 1px solid var(--paper-400);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  transition: background 0.2s;
+}
+
+.link:hover {
+  background: var(--paper-300);
+}
+
+.linkFmt {
+  flex: none;
+  width: 40px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-on-light-dim2);
+}
+
+.linkLabel {
+  flex: 1;
+  min-width: 0;
+  font: 500 13.5px/1.4 var(--font-body);
+  color: var(--text-on-light);
+}
+
+.linkAction {
+  flex: none;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}

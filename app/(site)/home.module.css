@@ -323,19 +323,7 @@
   color: var(--text-on-dark-dim2);
 }
 
-/* ————— Тендерный блок ————— */
-
-.tenders {
-  background: var(--paper-300);
-  padding: clamp(44px, 5.6vw, 104px) 0;
-}
-
-.tendersGrid {
-  display: grid;
-  gap: clamp(28px, 4vw, 72px);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  align-items: start;
-}
+/* ————— Форма ————— */
 
 .h2 {
   margin: 16px 0 0;
@@ -343,89 +331,6 @@
   letter-spacing: -0.026em;
   color: var(--text-on-light);
 }
-
-.tendersLead {
-  margin: 18px 0 0;
-  max-width: 42ch;
-  font-size: clamp(14px, 1.3vw, 17px);
-  line-height: 1.6;
-  color: var(--text-on-light-dim);
-}
-
-.dark {
-  display: inline-block;
-  margin-top: 26px;
-  padding: 16px 26px;
-  background: var(--text-on-light);
-  border: 1px solid var(--text-on-light);
-  color: #fff;
-  font: 600 13px/1 var(--font-body);
-  transition: background 0.25s, border-color 0.25s;
-}
-
-.dark:hover {
-  background: var(--accent-deep);
-  border-color: var(--accent-deep);
-}
-
-.docs {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 1px solid var(--paper-500);
-  background: var(--paper-200);
-}
-
-.doc {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--paper-400);
-  transition: background 0.2s;
-}
-
-.doc:hover {
-  background: var(--paper-300);
-}
-
-.docFmt {
-  flex: none;
-  width: 34px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--text-on-light-dim2);
-}
-
-.docBody {
-  flex: 1;
-  min-width: 0;
-}
-
-.docTitle {
-  display: block;
-  font: 500 13px/1.4 var(--font-body);
-  color: var(--text-on-light);
-}
-
-.docNote {
-  display: block;
-  margin-top: 3px;
-  font-size: 11.5px;
-  line-height: 1.4;
-  color: var(--text-on-light-dim2);
-}
-
-.docsMore {
-  padding: 16px 20px;
-  font-size: 10.5px;
-  line-height: 1.5;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-on-light-dim2);
-}
-
-/* ————— Форма ————— */
 
 .formSection {
   display: grid;

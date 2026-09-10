@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { StaticPage } from '@/lib/content';
 import { Breadcrumbs } from './Breadcrumbs';
 import { LeadForm } from './LeadForm';
@@ -16,6 +17,8 @@ const SECTION_HREF: Record<string, string> = {
 export function ArticlePage({ page }: { page: StaticPage }) {
   const sectionHref = SECTION_HREF[page.section];
   const photos = page.images.slice(0, 6);
+  // На страницах-списках вводкой стал текст первой ссылки — не дублируем её.
+  const lead = page.links.some((l) => l.label === page.lead) ? '' : page.lead;
 
   return (
     <div className="shell">
@@ -31,8 +34,36 @@ export function ArticlePage({ page }: { page: StaticPage }) {
       <article className={styles.article}>
         <header className={styles.head}>
           <h1 className={styles.h1}>{page.title}</h1>
-          {page.lead && <p className={styles.lead}>{page.lead}</p>}
+          {lead && <p className={styles.lead}>{lead}</p>}
         </header>
+
+        {/*
+          Часть страниц донора — это только список документов и переходов
+          («Гарантии», «Электрические схемы»). Без него они выглядят пустыми.
+        */}
+        {page.links.length > 0 && (
+          <ul className={styles.links}>
+            {page.links.map((l) => (
+              <li key={l.href}>
+                {l.file ? (
+                  <a href={l.href} className={styles.link} target="_blank" rel="noopener">
+                    <span className={`mono ${styles.linkFmt}`}>
+                      {(l.href.split('.').pop() ?? 'файл').slice(0, 4).toUpperCase()}
+                    </span>
+                    <span className={styles.linkLabel}>{l.label}</span>
+                    <span className={`mono ${styles.linkAction}`}>Скачать</span>
+                  </a>
+                ) : (
+                  <Link href={l.href} className={styles.link}>
+                    <span className={`mono ${styles.linkFmt}`}>СТР</span>
+                    <span className={styles.linkLabel}>{l.label}</span>
+                    <span className={`mono ${styles.linkAction}`}>Открыть</span>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
 
         {photos.length > 0 && (
           <div className={styles.gallery}>

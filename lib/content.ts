@@ -21,12 +21,16 @@ export type Product = {
   images: string[];
 };
 
+/** Ссылка со страницы донора: документ для скачивания или переход по сайту. */
+export type PageLink = { label: string; href: string; file: boolean };
+
 export type StaticPage = {
   slug: string;
   section: string;
   title: string;
   lead: string;
   images: string[];
+  links: PageLink[];
 };
 
 export type CategoryLanding = {

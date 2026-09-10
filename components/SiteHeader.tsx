@@ -8,7 +8,7 @@ import styles from './SiteHeader.module.css';
 
 const TABS: { key: keyof typeof MENU; label: string }[] = [
   { key: 'tech', label: 'Спецтехника' },
-  { key: 'service', label: 'Сервис' },
+  { key: 'service', label: 'АСМП-сервис' },
   { key: 'about', label: 'О заводе' },
 ];
 
@@ -85,10 +85,6 @@ export function SiteHeader() {
         </nav>
 
         <div className={styles.contact}>
-          <span className={`mono ${styles.lang}`}>
-            <span className={styles.langOn}>RU</span>
-            <span className={styles.langOff}>EN</span>
-          </span>
           <a href="tel:88005504455" className={`mono ${styles.phone}`}>
             8 800 550-44-55
           </a>

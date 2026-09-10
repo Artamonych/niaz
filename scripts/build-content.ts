@@ -39,15 +39,52 @@ type Product = {
   images: string[];
 };
 
+/** Ссылка со страницы донора: либо файл, либо переход внутри сайта. */
+type PageLink = { label: string; href: string; file: boolean };
+
 type StaticPage = {
   slug: string;
   section: string;
   title: string;
   lead: string;
   images: string[];
+  links: PageLink[];
 };
 
 type Redirect = { source: string; destination: string; permanent: true };
+
+const FILE_EXT = /\.(docx?|pdf|xlsx?|pptx?|zip|rar)(\?|$)/i;
+
+/**
+ * Часть страниц донора — это только список ссылок: «Гарантии» ведёт на три
+ * документа, «Электрические схемы» на пять файлов DOCX. HTML-выгрузка их
+ * не сохраняла, и такие страницы приезжали пустыми. Достаём из выгрузки
+ * WP REST, где лежит исходная разметка.
+ */
+function extractLinks(html: string): PageLink[] {
+  const out: PageLink[] = [];
+  const seen = new Set<string>();
+  const re = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+
+  for (const m of html.matchAll(re)) {
+    const href = m[1].trim();
+    const label = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    if (!label || !href || href.startsWith('#')) continue;
+    // Голый адрес вместо подписи — у донора так продублированы сайты дилеров.
+    if (/^https?:\/\//i.test(label)) continue;
+    if (/^(mailto|tel):/i.test(href)) continue;
+
+    const internal = href.startsWith('/') || href.includes('com-transport.ru');
+    const file = FILE_EXT.test(href);
+    // Внутренние ссылки приводим к своему адресу, файлы пока живут у донора.
+    const clean = internal && !file ? '/' + href.replace(/^https?:\/\/[^/]+\//i, '').replace(/^\//, '') : href;
+    if (seen.has(clean)) continue;
+    seen.add(clean);
+    out.push({ label, href: clean, file });
+  }
+
+  return out;
+}
 
 const sectionOf = (p: DonorPage) => p.breadcrumbs[2]?.name ?? p.breadcrumbs[1]?.name ?? '';
 const isProduct = (p: DonorPage) => p.breadcrumbs[1]?.name === 'Продукция';
@@ -108,6 +145,16 @@ function sectionToCategory(section: string): CategoryKey | null {
 
 async function main() {
   const pages: DonorPage[] = JSON.parse(await readFile(join(DONOR, 'pages-content.json'), 'utf8'));
+
+  // Исходная разметка WP: только в ней остались списки ссылок и файлов.
+  type WpPage = { slug: string; content?: { rendered?: string } };
+  const wp: WpPage[] = JSON.parse(await readFile(join(DONOR, 'pages.json'), 'utf8'));
+  const linksBySlug = new Map<string, PageLink[]>();
+  for (const w of wp) {
+    if (!w.slug || w.slug === 'sitemap') continue; // карту сайта заменяет sitemap.xml
+    const links = extractLinks(w.content?.rendered ?? '');
+    if (links.length) linksBySlug.set(w.slug, links);
+  }
   await mkdir(OUT, { recursive: true });
 
   const products: Product[] = [];
@@ -167,6 +214,7 @@ async function main() {
       title: page.h1 || page.title,
       lead: page.intro,
       images: page.images,
+      links: linksBySlug.get(page.slug) ?? [],
     });
 
     if (isProduct(page) && !category) unmapped.push(page.slug);

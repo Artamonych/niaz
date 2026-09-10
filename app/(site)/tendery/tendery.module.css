@@ -59,6 +59,14 @@
   color: var(--text-on-light);
 }
 
+.docsLead {
+  margin: 0 0 18px;
+  max-width: 62ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-on-light-dim);
+}
+
 .rule {
   margin-bottom: 2px;
 }

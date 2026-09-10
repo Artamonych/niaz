@@ -138,7 +138,7 @@ export const MENU: Record<string, MenuColumn[]> = {
   ],
   service: [
     {
-      title: 'СЕРВИС',
+      title: 'АСМП-СЕРВИС',
       items: [
         { label: 'Гарантии', href: '/garantii' },
         { label: 'Положение о гарантийных обязательствах', href: '/polozhenie-o-garantiynyh-obyazatelstvah' },

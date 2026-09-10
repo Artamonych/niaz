@@ -109,7 +109,11 @@ export default function TendersPage() {
 
       <div className={`shell ${styles.body}`}>
         <section className={styles.docsSection}>
-          <h2 className={styles.h2}>Пакет документов</h2>
+          <h2 className={styles.h2}>Пакет документов для обоснования закупки</h2>
+          <p className={styles.docsLead}>
+            Реквизиты, сертификаты и гарантийная политика — одним комплектом, без звонка
+            менеджеру. Тендерный отдел собирает обоснование сам и в своём темпе.
+          </p>
           <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
           <ul className={styles.docs}>
