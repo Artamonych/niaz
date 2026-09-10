@@ -55,7 +55,8 @@
 
 .h1 {
   margin: 0;
-  font: 700 clamp(30px, 4.9vw, 76px)/1.05 var(--font-display);
+  /* Верх подобран по самой длинной строке: 7.91em в колонке героя. */
+  font: 700 clamp(30px, 4.4vw, 62px)/1.06 var(--font-display);
   color: var(--text-on-dark);
   letter-spacing: -0.025em;
 }
@@ -111,6 +112,19 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-on-dark-dim2);
+}
+
+/*
+ * На узком экране кнопки героя тянутся во всю ширину: иначе они встают
+ * лесенкой по длине надписи и колонка выглядит рваной. Так же было
+ * в прототипе (ctaFlex).
+ */
+@media (max-width: 620px) {
+  .primary,
+  .secondary {
+    flex: 1 1 100%;
+    text-align: center;
+  }
 }
 
 /* Рамка чертёжного листа с угловыми маркерами. */

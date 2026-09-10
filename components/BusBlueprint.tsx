@@ -117,6 +117,10 @@ function Sheet(props: SheetProps) {
     cam = 1,
   } = props;
 
+  // Штамп узкий: длинная подпись вылезает за край листа и обрезается
+  // границей SVG. Кегль подбираем под доступную ширину.
+  const titleFs = Math.min(20, Math.floor(298 / (0.75 * Math.max(sheetTitle.length, 1))));
+
   const ST = BUS_STROKES;
   const strokeP = (i: number, n: number) => {
     const win = 0.17;
@@ -579,8 +583,8 @@ function Sheet(props: SheetProps) {
             y={TB.y + 35}
             fill={INK}
             fontFamily={MONO}
-            fontSize="20"
-            letterSpacing="3"
+            fontSize={titleFs}
+            letterSpacing={(titleFs * 0.15).toFixed(1)}
           >
             {type(sheetTitle, seg(title, 0.25, 0.7))}
           </text>

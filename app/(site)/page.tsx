@@ -41,10 +41,17 @@ export default function HomePage() {
               <span className="label">Завод-изготовитель спецтранспорта</span>
             </p>
 
+            {/*
+              Разбивка ступенькой — не украшение: «Специальный транспорт» это
+              11.88em, в колонку героя такая строка влезает только мелким
+              кеглем. Три строки держат крупный заголовок и ровный флаг слева.
+            */}
             <h1 className={styles.h1}>
-              Специальный транспорт
+              Специальный
               <br />
-              под задачу заказчика
+              транспорт
+              <br />
+              под ваши задачи
             </h1>
 
             <p className={styles.heroLead}>
@@ -76,7 +83,7 @@ export default function HomePage() {
             <span className={`${styles.bracket} ${styles.bracketBl}`} aria-hidden="true" />
             <span className={`${styles.bracket} ${styles.bracketBr}`} aria-hidden="true" />
             <div className={styles.sheetInner}>
-              <BusBlueprint sheetTitle="СПЕЦТРАНСПОРТ · ОБЩИЙ ВИД" />
+              <BusBlueprint sheetTitle="СПЕЦТРАНСПОРТ" />
             </div>
           </div>
         </div>
