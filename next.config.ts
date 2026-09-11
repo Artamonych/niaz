@@ -24,15 +24,9 @@ const nextConfig: NextConfig = {
     proxyClientMaxBodySize: '16mb',
   },
 
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'com-transport.ru',
-        pathname: '/wp-content/**',
-      },
-    ],
-  },
+  // Внешних картинок нет: фото донора перенесены в public/ (scripts/localize-media.ts).
+  // remotePatterns намеренно пуст — забытый адрес донора уронит сборку, а не
+  // всплывёт битой картинкой после деплоя.
 
   async redirects() {
     const aliases = CATEGORIES.map((c) => ({
