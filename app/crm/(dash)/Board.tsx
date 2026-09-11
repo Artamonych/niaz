@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState, useTransition } from 'react';
 import { moveLead, assignLead } from '../actions';
 import styles from './board.module.css';
 
@@ -22,6 +23,35 @@ type Lead = {
   createdAt: string;
 };
 
+const REFRESH_MS = 30_000;
+
+/**
+ * Новые заявки появляются на доске сами: раз в 30 секунд и сразу при
+ * возвращении на вкладку. router.refresh() перечитывает данные с сервера,
+ * не трогая состояние на экране — поиск и открытые списки остаются.
+ * Пока менеджер тащит карточку или идёт сохранение, обновление ждёт.
+ */
+function useAutoRefresh(busy: boolean) {
+  const router = useRouter();
+  const busyRef = useRef(busy);
+
+  useEffect(() => {
+    busyRef.current = busy;
+  }, [busy]);
+
+  useEffect(() => {
+    const refresh = () => {
+      if (document.visibilityState === 'visible' && !busyRef.current) router.refresh();
+    };
+    const timer = setInterval(refresh, REFRESH_MS);
+    document.addEventListener('visibilitychange', refresh);
+    return () => {
+      clearInterval(timer);
+      document.removeEventListener('visibilitychange', refresh);
+    };
+  }, [router]);
+}
+
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
 
@@ -39,6 +69,7 @@ export function Board({
   const [query, setQuery] = useState('');
   const [pending, startTransition] = useTransition();
   const [dragged, setDragged] = useState<number | null>(null);
+  useAutoRefresh(pending || dragged !== null);
 
   const needle = query.trim().toLowerCase();
   const visible = needle
