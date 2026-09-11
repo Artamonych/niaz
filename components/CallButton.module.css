@@ -1,5 +1,5 @@
 /*
- * Круг акцентного цвета с двумя расходящимися кольцами. Кольца — отдельные
+ * Кнопка акцентного цвета с двумя расходящимися кольцами. Кольца — отдельные
  * элементы, а не box-shadow: так анимируются только transform и opacity,
  * без перерисовки страницы. При «уменьшить движение» их гасит глобальное
  * правило в globals.css — остаётся спокойная кнопка.
@@ -17,7 +17,10 @@
   background: var(--accent);
   color: var(--ink-900);
   box-shadow: 0 6px 20px rgb(0 0 0 / 0.35);
-  transition: background-color 0.25s, transform 0.25s var(--ease);
+  transition:
+    background-color 0.25s,
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease);
 }
 
 .button:hover,
@@ -26,17 +29,46 @@
   transform: scale(1.06);
 }
 
+/* Десктопный вид: вытянутая кнопка с подписью. */
+.pill {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: auto;
+  padding: 0 24px 0 20px;
+  border-radius: 28px;
+  font: 600 14.5px/1 var(--font-body);
+  letter-spacing: 0.01em;
+}
+
+.pill:hover,
+.pill:focus-visible {
+  transform: translateY(-2px);
+}
+
+.label {
+  position: relative; /* над кольцами */
+}
+
+/* Форма уже на экране — кнопка уезжает вниз и гаснет. */
+.away {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
 .icon {
   position: relative; /* над кольцами */
-  width: 24px;
-  height: 24px;
+  flex: none;
+  width: 22px;
+  height: 22px;
   animation: ring 4s var(--ease) infinite;
 }
 
 .pulse {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
+  border-radius: inherit;
   border: 2px solid var(--accent);
   opacity: 0;
   animation: pulse 2.4s var(--ease) infinite;
@@ -46,6 +78,11 @@
   animation-delay: 1.2s;
 }
 
+/* У вытянутой кнопки кольцо расходится меньше по ширине, чем по высоте. */
+.pill .pulse {
+  animation-name: pulsePill;
+}
+
 @keyframes pulse {
   from {
     transform: scale(1);
@@ -53,6 +90,17 @@
   }
   to {
     transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes pulsePill {
+  from {
+    transform: scale(1, 1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.18, 1.7);
     opacity: 0;
   }
 }
@@ -71,6 +119,21 @@
   92%,
   98% {
     transform: rotate(14deg);
+  }
+}
+
+/* Мышь — компьютер: заказ звонка. Палец — телефон или планшет: набор номера. */
+.pointerOnly {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .touchOnly {
+    display: none;
+  }
+
+  .pointerOnly {
+    display: flex;
   }
 }
 
