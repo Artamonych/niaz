@@ -42,8 +42,17 @@ RUN npm run build
 
 # Одноразовый контейнер обслуживания базы: приводит схему в порядок и
 # досоздаёт то, без чего CRM не запустить (стадии, услуги, администратор).
-FROM builder AS migrator
+#
+# Собирается прямо из deps, а не поверх builder: миграциям и bootstrap.ts
+# нужны только зависимости, схема и сгенерированный клиент. Раньше в образ
+# заодно ехали исходники, собранный .next и все фото каталога — 1,77 ГБ на
+# диске VPS, где свободно всего несколько гигабайт.
+FROM node:24-alpine AS migrator
 WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json tsconfig.json prisma.config.ts ./
+COPY prisma ./prisma
+RUN npx prisma generate
 CMD ["sh", "-c", "npx prisma migrate deploy && npx tsx prisma/bootstrap.ts && chown -R 1001:1001 /app/data-db"]
 
 FROM node:24-alpine AS runner
