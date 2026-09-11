@@ -96,7 +96,7 @@ export default function EngineeringPage() {
 
       <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
-      <section className={styles.section}>
+      <section className={styles.section} id="moshchnosti">
         <h2 className={styles.h2}>Производственные мощности</h2>
 
         <ul className={styles.equipment}>

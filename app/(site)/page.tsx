@@ -18,10 +18,21 @@ const COUNTERS = [
 const MARKS = ['ОТТС · ТР ТС 018/2011', 'ГОСТ 33665-2024', '44-ФЗ · 223-ФЗ'];
 
 /**
- * Разделы, у которых на сайте есть только перечень материалов. Текстов-описаний
- * у завода по ним нет, поэтому показываем сам перечень — ничего не сочиняем.
+ * Разделы завода — все три блока одной схемы: перечень того, что в разделе уже
+ * есть. Текстов-описаний у завода по ним нет, поэтому ничего не сочиняем.
+ * Фото есть только у инженерии, так что снимков нет ни у одного — иначе блоки
+ * разной высоты и веса.
  */
-const TEASER_LISTS = [
+const ENGINEERING = '/inzheneriya/#moshchnosti';
+
+const TEASERS = [
+  {
+    label: 'Предприятие',
+    title: 'О заводе',
+    href: '/o-kompanii/',
+    more: 'О компании',
+    items: MENU.about[0].items,
+  },
   {
     label: 'Сервис',
     title: 'АСМП-сервис',
@@ -30,11 +41,16 @@ const TEASER_LISTS = [
     items: MENU.service[0].items,
   },
   {
-    label: 'Предприятие',
-    title: 'О заводе',
-    href: '/o-kompanii/',
-    more: 'О компании',
-    items: MENU.about[0].items,
+    label: 'Собственное производство',
+    title: 'Инженерия',
+    href: '/inzheneriya/',
+    more: 'Производственные мощности',
+    // Участки со страницы «Инженерия» — оборудование подтверждено съёмкой цехов.
+    items: [
+      { label: 'Лазерный раскрой', href: ENGINEERING },
+      { label: 'Листообработка', href: ENGINEERING },
+      { label: 'Раскрой панелей на станках с ЧПУ', href: ENGINEERING },
+    ],
   },
 ];
 
@@ -174,36 +190,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Разделы завода: только существующие тексты и перечни — без выдуманных описаний. */}
       <section className={styles.teasers}>
         <div className={`shell ${styles.teaserGrid}`}>
-          <article className={styles.teaser}>
-            <Link href="/inzheneriya/" className={styles.teaserPhoto} tabIndex={-1} aria-hidden="true">
-              <Image
-                src="/proizvodstvo/uchastok-raskroya-obschiy-vid.jpg"
-                alt=""
-                width={1600}
-                height={1067}
-                sizes="(max-width: 700px) 100vw, 33vw"
-                className={styles.teaserImg}
-              />
-            </Link>
-            <div className={styles.teaserBody}>
-              <p className="label label-deep">Собственное производство</p>
-              <h2 className={styles.teaserTitle}>
-                <Link href="/inzheneriya/">Инженерия</Link>
-              </h2>
-              <p className={styles.teaserText}>
-                Кузовные модули, обшивка салона и элементы оснащения изготавливаются на
-                заводе в Кстово: раскрой листа и панелей, лазерная резка, гибка.
-              </p>
-              <Link href="/inzheneriya/" className={`u-underline ${styles.teaserMore}`}>
-                Производственные мощности →
-              </Link>
-            </div>
-          </article>
-
-          {TEASER_LISTS.map((t) => (
+          {TEASERS.map((t) => (
             <article key={t.title} className={styles.teaser}>
               <div className={styles.teaserBody}>
                 <p className="label label-deep">{t.label}</p>
@@ -212,7 +201,7 @@ export default async function HomePage() {
                 </h2>
                 <ul className={styles.teaserList}>
                   {t.items.map((item) => (
-                    <li key={item.href}>
+                    <li key={item.label}>
                       <Link href={item.href}>{item.label}</Link>
                     </li>
                   ))}
