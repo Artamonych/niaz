@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server';
+import { after, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { leadSchema } from '@/lib/lead-schema';
+import { notifyLead } from '@/lib/telegram';
 
 /** Простое окно на IP: форма публичная, без ограничения её зальют спамом. */
 const RATE_LIMIT = { windowMs: 60_000, max: 5 };
@@ -71,8 +72,23 @@ export async function POST(request: Request) {
         },
       },
     },
-    select: { num: true },
+    select: {
+      id: true,
+      num: true,
+      fio: true,
+      phone: true,
+      email: true,
+      org: true,
+      inn: true,
+      comment: true,
+      subject: true,
+      sourceUrl: true,
+    },
   });
+
+  // В Telegram — уже после ответа: посетитель не ждёт бота, а сбой Telegram
+  // заявку не теряет, она уже в CRM.
+  after(() => notifyLead(lead));
 
   return NextResponse.json({ ok: true, num: lead.num });
 }

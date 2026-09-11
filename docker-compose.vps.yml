@@ -41,6 +41,11 @@ services:
       UPLOADS_DIR: /app/uploads
       # Домен CRM, если отдельный. Пусто — сайт и CRM на одном домене (proxy.ts).
       CRM_HOST: ${CRM_HOST:-}
+      # Бот заявок в Telegram. Пусто — выключен (lib/telegram.ts).
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN:-}
+      TG_API_BASE: ${TG_API_BASE:-}
+      TG_PROXY_SECRET: ${TG_PROXY_SECRET:-}
+      TG_JOIN_CODE: ${TG_JOIN_CODE:-}
     volumes:
       - db:/app/data-db
       - uploads:/app/uploads

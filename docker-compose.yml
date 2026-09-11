@@ -39,6 +39,10 @@ services:
       SITE_INDEXABLE: ${SITE_INDEXABLE:-false}
       UPLOADS_DIR: /app/uploads
       CRM_HOST: ${CRM_HOST:-}
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN:-}
+      TG_API_BASE: ${TG_API_BASE:-}
+      TG_PROXY_SECRET: ${TG_PROXY_SECRET:-}
+      TG_JOIN_CODE: ${TG_JOIN_CODE:-}
     volumes:
       - db:/app/data-db
       - uploads:/app/uploads

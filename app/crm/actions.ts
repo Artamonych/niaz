@@ -15,6 +15,7 @@ import { canEdit, canManageStaff } from '@/lib/roles';
 import { slugify } from '@/lib/news-shared';
 import { removeNewsFiles } from '@/lib/uploads';
 import { parseVideo } from '@/lib/video';
+import { disconnectChat } from '@/lib/telegram';
 
 export type ActionState = { error?: string; ok?: string };
 
@@ -31,6 +32,13 @@ async function requireStaffManager() {
   if (!user) redirect('/crm/login');
   if (!canManageStaff(user.role)) throw new Error('Недостаточно прав');
   return user;
+}
+
+/** Отключить чат Telegram от заявок. Подключает его сам чат — кодом доступа. */
+export async function disconnectTelegramChat(chatId: string) {
+  await requireStaffManager();
+  await disconnectChat(chatId);
+  revalidatePath('/crm/settings');
 }
 
 const loginSchema = z.object({

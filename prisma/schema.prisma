@@ -144,6 +144,24 @@ model NewsPhoto {
   @@index([postId])
 }
 
+/// Чат Telegram, куда бот шлёт заявки. Подключается кодом доступа
+/// (TG_JOIN_CODE) — заявки несут ФИО и телефоны, случайный человек, нашедший
+/// бота, их получать не должен. Отключается в настройках CRM или удалением
+/// бота из чата.
+model TelegramChat {
+  /// id чата строкой: у групп он отрицательный и больше 32 бит.
+  id        String   @id
+  type      String // private | group | supergroup
+  title     String
+  createdAt DateTime @default(now())
+}
+
+/// Служебное состояние бота: смещение опроса, имя бота, неделя последнего отчёта.
+model BotState {
+  key   String @id
+  value String
+}
+
 /// Лента событий: системные записи о смене стадии и комментарии менеджеров.
 model Event {
   id   String @id @default(cuid())
