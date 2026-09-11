@@ -1,0 +1,81 @@
+/*
+ * Круг акцентного цвета с двумя расходящимися кольцами. Кольца — отдельные
+ * элементы, а не box-shadow: так анимируются только transform и opacity,
+ * без перерисовки страницы. При «уменьшить движение» их гасит глобальное
+ * правило в globals.css — остаётся спокойная кнопка.
+ */
+.button {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 150; /* выше контента, ниже полосы прогресса чтения */
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--ink-900);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.35);
+  transition: background-color 0.25s, transform 0.25s var(--ease);
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #5cbad6;
+  transform: scale(1.06);
+}
+
+.icon {
+  position: relative; /* над кольцами */
+  width: 24px;
+  height: 24px;
+  animation: ring 4s var(--ease) infinite;
+}
+
+.pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  animation: pulse 2.4s var(--ease) infinite;
+}
+
+.pulseLate {
+  animation-delay: 1.2s;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* Короткое «покачивание трубки» раз в цикл — привлекает взгляд, не раздражает. */
+@keyframes ring {
+  0%,
+  86%,
+  100% {
+    transform: rotate(0);
+  }
+  89%,
+  95% {
+    transform: rotate(-14deg);
+  }
+  92%,
+  98% {
+    transform: rotate(14deg);
+  }
+}
+
+@media print {
+  .button {
+    display: none;
+  }
+}
