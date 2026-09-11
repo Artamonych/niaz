@@ -15,7 +15,7 @@ nginx на 80/443. Отсюда почти все правила ниже: ре�
 | Наружу | системный nginx, конфиг `/etc/nginx/sites-available/niaz` |
 | Домен стенда | `niaz-test.ru`, `SITE_INDEXABLE=false` |
 | Фото новостей | том `uploads` → `/app/uploads`, отдаются по `/media/news/<файл>` |
-| Домен CRM | `CRM_HOST` в `~/apps/niaz/.env`; пусто — сайт и CRM на одном домене |
+| Домен CRM | `niazcrm.ru` (`CRM_HOST` в `~/apps/niaz/.env`), nginx `sites-available/niazcrm`, сертификат LE до 10.12.2026 с автопродлением |
 
 ## Порядок
 
