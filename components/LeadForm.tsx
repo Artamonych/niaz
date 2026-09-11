@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { PhoneInput } from './PhoneInput';
 import styles from './LeadForm.module.css';
 
 type Props = {
@@ -78,7 +79,7 @@ export function LeadForm({ subject }: Props) {
     <form className={styles.form} onSubmit={onSubmit} noValidate>
       <div className={styles.row}>
         <Field name="fio" label="Как к вам обращаться" required error={err('fio')} />
-        <Field name="phone" label="Телефон" type="tel" required error={err('phone')} placeholder="+7 ___ ___-__-__" />
+        <Field name="phone" label="Телефон" type="tel" required error={err('phone')} placeholder="+7 (___) ___-__-__" />
       </div>
       <div className={styles.row}>
         <Field name="email" label="Электронная почта" type="email" error={err('email')} />
@@ -147,14 +148,24 @@ function Field({
         {label}
         {required && <span className={styles.req}>*</span>}
       </span>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        aria-invalid={Boolean(error)}
-        className={styles.input}
-      />
+      {type === 'tel' ? (
+        <PhoneInput
+          name={name}
+          required={required}
+          placeholder={placeholder}
+          aria-invalid={Boolean(error)}
+          className={styles.input}
+        />
+      ) : (
+        <input
+          name={name}
+          type={type}
+          required={required}
+          placeholder={placeholder}
+          aria-invalid={Boolean(error)}
+          className={styles.input}
+        />
+      )}
       {hint && !error && <span className={styles.hint}>{hint}</span>}
       {error && <span className={styles.error}>{error}</span>}
     </label>
