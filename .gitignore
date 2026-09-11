@@ -49,3 +49,6 @@ next-env.d.ts
 
 # клиент Prisma генерируется командой prisma generate
 /lib/generated
+
+# фото новостей из CRM в разработке; в контейнере это отдельный том
+/uploads

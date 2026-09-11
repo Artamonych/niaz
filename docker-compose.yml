@@ -37,8 +37,11 @@ services:
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
       # Пусто или что угодно кроме true — стенд закрыт от поисковиков.
       SITE_INDEXABLE: ${SITE_INDEXABLE:-false}
+      UPLOADS_DIR: /app/uploads
+      CRM_HOST: ${CRM_HOST:-}
     volumes:
       - db:/app/data-db
+      - uploads:/app/uploads
     expose:
       - '3000'
 
@@ -59,5 +62,6 @@ services:
 
 volumes:
   db:
+  uploads:
   caddy_data:
   caddy_config:

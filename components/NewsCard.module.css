@@ -1,0 +1,63 @@
+.card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-line);
+  /* Верхняя грань дочерчивается при наведении — жест из прототипа. */
+  background-image: linear-gradient(var(--card-accent), var(--card-accent));
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 0% 1px;
+  transition: background-size 0.45s var(--ease);
+}
+
+.card:hover,
+.card:focus-visible {
+  background-size: 100% 1px;
+}
+
+.dark {
+  --card-line: var(--ink-400);
+  --card-accent: var(--accent);
+  --card-title: var(--text-on-dark);
+  --card-text: var(--text-on-dark-dim);
+}
+
+.light {
+  --card-line: var(--paper-500);
+  --card-accent: var(--accent-deep);
+  --card-title: var(--text-on-light);
+  --card-text: var(--text-on-light-dim);
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--paper-300);
+}
+
+.date {
+  font-size: 10.5px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: var(--card-accent);
+}
+
+.title {
+  font: 600 15px/1.4 var(--font-display);
+  letter-spacing: -0.005em;
+  color: var(--card-title);
+}
+
+.excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--card-text);
+}

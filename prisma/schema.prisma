@@ -105,6 +105,45 @@ model Service {
   price Int    @default(0)
 }
 
+/// Новость завода из CRM. Живёт по адресу /novosti/<slug>/ — новости донора
+/// лежат в статичной выгрузке, их адреса (§6.1 ТЗ) эта таблица не трогает.
+model NewsPost {
+  id      String  @id @default(cuid())
+  slug    String  @unique
+  title   String
+  excerpt String
+  /// Простой текст: абзацы разделяются пустой строкой, разметки нет.
+  body     String
+  videoUrl String?
+  status   String  @default("DRAFT") // DRAFT | PUBLISHED
+  /// Редактируется: по ней строится лента, можно поставить задним числом.
+  publishedAt DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  photos NewsPhoto[]
+
+  @@index([status, publishedAt])
+}
+
+/// Фото новости. Файл лежит в томе загрузок, в базе — только его имя.
+model NewsPhoto {
+  id     String   @id @default(cuid())
+  postId String
+  post   NewsPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  /// uuid.jpg — имя выдаёт сервер, пользовательский ввод в путь не попадает.
+  file    String  @unique
+  width   Int
+  height  Int
+  isCover Boolean @default(false)
+  order   Int     @default(0)
+
+  createdAt DateTime @default(now())
+
+  @@index([postId])
+}
+
 /// Лента событий: системные записи о смене стадии и комментарии менеджеров.
 model Event {
   id   String @id @default(cuid())

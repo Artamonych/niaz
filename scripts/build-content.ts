@@ -49,6 +49,8 @@ type StaticPage = {
   lead: string;
   images: string[];
   links: PageLink[];
+  /** Дата публикации (YYYY-MM-DD) — есть только у записей WP, то есть у новостей. */
+  date: string | null;
 };
 
 type Redirect = { source: string; destination: string; permanent: true };
@@ -155,6 +157,14 @@ async function main() {
     const links = extractLinks(w.content?.rendered ?? '');
     if (links.length) linksBySlug.set(w.slug, links);
   }
+  // Даты публикации лежат только в выгрузке записей WP. HTML-выгрузка их
+  // не сохранила, поэтому новости донора приезжали без дат.
+  type WpPost = { slug: string; date?: string };
+  const posts: WpPost[] = JSON.parse(await readFile(join(DONOR, 'posts.json'), 'utf8'));
+  const datesBySlug = new Map(
+    posts.filter((p) => p.slug && p.date).map((p) => [p.slug, String(p.date).slice(0, 10)]),
+  );
+
   await mkdir(OUT, { recursive: true });
 
   const products: Product[] = [];
@@ -215,6 +225,7 @@ async function main() {
       lead: page.intro,
       images: page.images,
       links: linksBySlug.get(page.slug) ?? [],
+      date: datesBySlug.get(page.slug) ?? null,
     });
 
     if (isProduct(page) && !category) unmapped.push(page.slug);

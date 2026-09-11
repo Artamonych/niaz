@@ -31,6 +31,8 @@ export type StaticPage = {
   lead: string;
   images: string[];
   links: PageLink[];
+  /** Дата публикации YYYY-MM-DD. Есть у записей WP — новостей; у страниц null. */
+  date: string | null;
 };
 
 export type CategoryLanding = {
@@ -84,4 +86,4 @@ export type { CategoryKey };
  * Слаги, у которых есть собственный роут: динамический [slug] их не обслуживает,
  * иначе Next получит два источника для одного адреса.
  */
-export const RESERVED_SLUGS = new Set(['produktsiya', 'tendery', 'inzheneriya']);
+export const RESERVED_SLUGS = new Set(['produktsiya', 'tendery', 'inzheneriya', 'novosti']);

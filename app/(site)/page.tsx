@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { CATEGORIES } from '@/lib/catalog';
+import { CATEGORIES, MENU } from '@/lib/catalog';
 import { PRODUCTS, productsOf } from '@/lib/content';
 import { BusBlueprint } from '@/components/BusBlueprint';
 import { LeadForm } from '@/components/LeadForm';
+import { NewsCard } from '@/components/NewsCard';
+import { getNewsFeed } from '@/lib/news';
 import styles from './home.module.css';
 
 const COUNTERS = [
@@ -15,7 +17,31 @@ const COUNTERS = [
 
 const MARKS = ['ОТТС · ТР ТС 018/2011', 'ГОСТ 33665-2024', '44-ФЗ · 223-ФЗ'];
 
-export default function HomePage() {
+/**
+ * Разделы, у которых на сайте есть только перечень материалов. Текстов-описаний
+ * у завода по ним нет, поэтому показываем сам перечень — ничего не сочиняем.
+ */
+const TEASER_LISTS = [
+  {
+    label: 'Сервис',
+    title: 'АСМП-сервис',
+    href: '/garantii/',
+    more: 'Гарантии и документы',
+    items: MENU.service[0].items,
+  },
+  {
+    label: 'Предприятие',
+    title: 'О заводе',
+    href: '/o-kompanii/',
+    more: 'О компании',
+    items: MENU.about[0].items,
+  },
+];
+
+export default async function HomePage() {
+  // Лента читается на каждый запрос — почему, см. getNewsFeed.
+  const news = await getNewsFeed(3);
+
   return (
     <>
       <section className={`grid-bg ${styles.hero}`}>
@@ -147,6 +173,77 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Разделы завода: только существующие тексты и перечни — без выдуманных описаний. */}
+      <section className={styles.teasers}>
+        <div className={`shell ${styles.teaserGrid}`}>
+          <article className={styles.teaser}>
+            <Link href="/inzheneriya/" className={styles.teaserPhoto} tabIndex={-1} aria-hidden="true">
+              <Image
+                src="/proizvodstvo/uchastok-raskroya-obschiy-vid.jpg"
+                alt=""
+                width={1600}
+                height={1067}
+                sizes="(max-width: 700px) 100vw, 33vw"
+                className={styles.teaserImg}
+              />
+            </Link>
+            <div className={styles.teaserBody}>
+              <p className="label label-deep">Собственное производство</p>
+              <h2 className={styles.teaserTitle}>
+                <Link href="/inzheneriya/">Инженерия</Link>
+              </h2>
+              <p className={styles.teaserText}>
+                Кузовные модули, обшивка салона и элементы оснащения изготавливаются на
+                заводе в Кстово: раскрой листа и панелей, лазерная резка, гибка.
+              </p>
+              <Link href="/inzheneriya/" className={`u-underline ${styles.teaserMore}`}>
+                Производственные мощности →
+              </Link>
+            </div>
+          </article>
+
+          {TEASER_LISTS.map((t) => (
+            <article key={t.title} className={styles.teaser}>
+              <div className={styles.teaserBody}>
+                <p className="label label-deep">{t.label}</p>
+                <h2 className={styles.teaserTitle}>
+                  <Link href={t.href}>{t.title}</Link>
+                </h2>
+                <ul className={styles.teaserList}>
+                  {t.items.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link href={t.href} className={`u-underline ${styles.teaserMore}`}>
+                  {t.more} →
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {news.length > 0 && (
+        <section className={`grid-bg ${styles.newsSection}`}>
+          <div className="shell">
+            <div className={styles.sectionHead}>
+              <h2 className={styles.h2Dark}>Новости завода</h2>
+              <Link href="/novosti/" className={`u-underline ${styles.allLink}`}>
+                Все новости →
+              </Link>
+            </div>
+            <div className={`rule rule-dark ${styles.headRule}`} data-line="1" aria-hidden="true" />
+            <div className={styles.newsGrid}>
+              {news.map((item) => (
+                <NewsCard key={item.key} item={item} tone="dark" />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className={`shell ${styles.formSection}`} id="zapros">
         <div>

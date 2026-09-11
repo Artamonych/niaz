@@ -37,11 +37,17 @@ services:
       AUTH_SECRET: ${AUTH_SECRET}
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
       SITE_INDEXABLE: ${SITE_INDEXABLE:-false}
+      # Фото новостей из CRM. public/ не годится: он запекается в образ.
+      UPLOADS_DIR: /app/uploads
+      # Домен CRM, если отдельный. Пусто — сайт и CRM на одном домене (proxy.ts).
+      CRM_HOST: ${CRM_HOST:-}
     volumes:
       - db:/app/data-db
+      - uploads:/app/uploads
     # Только на петлю: снаружи контейнер недоступен, всё идёт через nginx.
     ports:
       - '127.0.0.1:3010:3000'
 
 volumes:
   db:
+  uploads:

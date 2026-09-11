@@ -25,7 +25,7 @@ type Props = { params: Promise<{ slug: string }> };
  */
 export function generateStaticParams() {
   return [
-    ...SECTIONS.map((s) => ({ slug: s.slug })),
+    ...SECTIONS.filter((s) => !RESERVED_SLUGS.has(s.slug)).map((s) => ({ slug: s.slug })),
     ...LANDINGS.map((l) => ({ slug: l.slug })),
     ...PRODUCTS.map((p) => ({ slug: p.slug })),
     ...STATIC_PAGES.filter((p) => !RESERVED_SLUGS.has(p.slug)).map((p) => ({ slug: p.slug })),

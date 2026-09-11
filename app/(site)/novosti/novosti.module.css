@@ -1,0 +1,35 @@
+.head {
+  padding: clamp(20px, 2.6vw, 40px) 0 clamp(28px, 3.4vw, 44px);
+  border-bottom: 1px solid var(--paper-500);
+}
+
+.h1 {
+  margin: 0;
+  font: 700 clamp(26px, 3.6vw, 50px)/1.08 var(--font-display);
+  letter-spacing: -0.028em;
+  color: var(--text-on-light);
+}
+
+.lead {
+  margin: 16px 0 0;
+  max-width: 58ch;
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.65;
+  color: var(--text-on-light-dim);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(28px, 3vw, 40px) clamp(16px, 2vw, 28px);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin-top: clamp(28px, 3.4vw, 44px);
+}
+
+.empty {
+  margin-top: 40px;
+  padding: 40px;
+  background: var(--paper-200);
+  border: 1px solid var(--paper-500);
+  text-align: center;
+  color: var(--text-on-light-dim);
+}

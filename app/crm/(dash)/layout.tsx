@@ -18,6 +18,7 @@ const NAV = [
   { href: '/crm', label: 'Заявки' },
   { href: '/crm/clients', label: 'Контрагенты' },
   { href: '/crm/services', label: 'Услуги' },
+  { href: '/crm/news', label: 'Новости' },
   { href: '/crm/employees', label: 'Сотрудники', staffOnly: true },
   { href: '/crm/settings', label: 'Настройки' },
 ];
@@ -52,9 +53,10 @@ export default async function DashLayout({ children }: { children: React.ReactNo
               Выйти
             </button>
           </form>
-          <Link href="/" className={styles.toSite}>
+          {/* Абсолютный адрес: у CRM может быть свой домен, и «/» вёл бы в её же корень. */}
+          <a href={process.env.NEXT_PUBLIC_SITE_URL ?? '/'} className={styles.toSite}>
             ← На сайт
-          </Link>
+          </a>
         </div>
       </aside>
 

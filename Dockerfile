@@ -57,8 +57,10 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Каталог под файл SQLite: он монтируется томом, иначе база умрёт с контейнером.
-RUN mkdir -p /app/data-db && chown nextjs:nodejs /app/data-db
+# Каталоги под базу и загрузки монтируются томами, иначе умрут с контейнером.
+# Создаются заранее от имени nextjs: пустой том при первом подключении
+# наследует эти права, и приложение может в него писать.
+RUN mkdir -p /app/data-db /app/uploads && chown nextjs:nodejs /app/data-db /app/uploads
 
 USER nextjs
 EXPOSE 3000

@@ -12,6 +12,9 @@ import {
   verifyPassword,
 } from '@/lib/auth';
 import { canEdit, canManageStaff } from '@/lib/roles';
+import { slugify } from '@/lib/news-shared';
+import { removeNewsFiles } from '@/lib/uploads';
+import { parseVideo } from '@/lib/video';
 
 export type ActionState = { error?: string; ok?: string };
 
@@ -309,4 +312,145 @@ export async function changePassword(
   });
 
   return { ok: 'Пароль изменён' };
+}
+
+/*
+ * Новости. Публичные страницы ленты рендерятся на каждый запрос, поэтому после
+ * правок сбрасывается только кэш экранов CRM — сайт увидит изменения сам.
+ */
+
+const newsSchema = z.object({
+  title: z.string().trim().min(3, 'Заголовок — от 3 символов').max(200),
+  excerpt: z
+    .string()
+    .trim()
+    .min(10, 'Анонс — от 10 символов')
+    .max(400, 'Анонс — до 400 символов: он идёт в карточку ленты'),
+  body: z.string().trim().min(10, 'Текст новости пустой').max(20000),
+  videoUrl: z.string().trim().max(500).optional(),
+  slug: z
+    .string()
+    .trim()
+    .max(80)
+    .regex(/^[a-z0-9-]*$/, 'Адрес — только латиница, цифры и дефис')
+    .optional(),
+  publishedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Проверьте дату публикации'),
+  status: z.enum(['DRAFT', 'PUBLISHED'], { message: 'Выберите статус' }),
+});
+
+/** Свободный адрес: занятый дополняется номером, как делал WordPress донора. */
+async function freeNewsSlug(base: string, exceptId: string | null) {
+  for (let n = 1; ; n += 1) {
+    const slug = n === 1 ? base : `${base}-${n}`;
+    const taken = await prisma.newsPost.findUnique({ where: { slug }, select: { id: true } });
+    if (!taken || taken.id === exceptId) return slug;
+  }
+}
+
+/**
+ * Создание и правка новости. Новая после сохранения открывается на своей
+ * странице: фото привязываются к записи, поэтому загружаются вторым шагом.
+ */
+export async function saveNews(
+  postId: string | null,
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  await requireEditor();
+
+  const parsed = newsSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { error: parsed.error.issues[0].message };
+
+  const { slug: wanted, videoUrl, publishedAt, ...rest } = parsed.data;
+  if (videoUrl && !parseVideo(videoUrl)) {
+    return { error: 'Ссылка на видео не похожа на адрес страницы — начните с https://' };
+  }
+
+  const data = {
+    ...rest,
+    slug: await freeNewsSlug(wanted || slugify(rest.title), postId),
+    videoUrl: videoUrl || null,
+    publishedAt: new Date(`${publishedAt}T00:00:00Z`),
+  };
+
+  if (postId) {
+    await prisma.newsPost.update({ where: { id: postId }, data });
+    revalidatePath('/crm/news');
+    revalidatePath(`/crm/news/${postId}`);
+    return { ok: rest.status === 'PUBLISHED' ? 'Сохранено и опубликовано' : 'Черновик сохранён' };
+  }
+
+  const created = await prisma.newsPost.create({ data });
+  revalidatePath('/crm/news');
+  redirect(`/crm/news/${created.id}/`);
+}
+
+export async function deleteNews(postId: string) {
+  await requireEditor();
+
+  const photos = await prisma.newsPhoto.findMany({ where: { postId }, select: { file: true } });
+  await prisma.newsPost.delete({ where: { id: postId } });
+  // Строки фото ушли каскадом, файлы на диске — нет: чистим сами.
+  await removeNewsFiles(photos.map((p) => p.file));
+
+  revalidatePath('/crm/news');
+  redirect('/crm/news/');
+}
+
+export async function deleteNewsPhoto(photoId: string) {
+  await requireEditor();
+
+  const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
+  if (!photo) return;
+
+  await prisma.newsPhoto.delete({ where: { id: photoId } });
+  await removeNewsFiles([photo.file]);
+
+  // Без превью лента показала бы новость без картинки — назначаем следующее фото.
+  if (photo.isCover) {
+    const next = await prisma.newsPhoto.findFirst({
+      where: { postId: photo.postId },
+      orderBy: [{ order: 'asc' }, { createdAt: 'asc' }],
+    });
+    if (next) await prisma.newsPhoto.update({ where: { id: next.id }, data: { isCover: true } });
+  }
+
+  revalidatePath(`/crm/news/${photo.postId}`);
+}
+
+export async function setNewsCover(photoId: string) {
+  await requireEditor();
+
+  const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
+  if (!photo) return;
+
+  await prisma.$transaction([
+    prisma.newsPhoto.updateMany({ where: { postId: photo.postId }, data: { isCover: false } }),
+    prisma.newsPhoto.update({ where: { id: photoId }, data: { isCover: true } }),
+  ]);
+
+  revalidatePath(`/crm/news/${photo.postId}`);
+}
+
+export async function moveNewsPhoto(photoId: string, step: -1 | 1) {
+  await requireEditor();
+
+  const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
+  if (!photo) return;
+
+  const photos = await prisma.newsPhoto.findMany({
+    where: { postId: photo.postId },
+    orderBy: [{ order: 'asc' }, { createdAt: 'asc' }],
+  });
+  const from = photos.findIndex((p) => p.id === photoId);
+  const to = from + step;
+  if (to < 0 || to >= photos.length) return;
+
+  [photos[from], photos[to]] = [photos[to], photos[from]];
+  // Перенумеровываем все: после удалений в порядке остаются дыры.
+  await prisma.$transaction(
+    photos.map((p, order) => prisma.newsPhoto.update({ where: { id: p.id }, data: { order } })),
+  );
+
+  revalidatePath(`/crm/news/${photo.postId}`);
 }
