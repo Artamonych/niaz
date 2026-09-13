@@ -12,6 +12,8 @@ export type AuditAction =
   | 'lead.assign'
   | 'lead.comment'
   | 'lead.convert'
+  | 'employee.invite'
+  | 'password.reset'
   | 'lead.trash'
   | 'lead.restore'
   | 'lead.purge'
@@ -36,6 +38,8 @@ export const AUDIT_TITLES: Record<AuditAction, string> = {
   'lead.assign': 'Ответственный по заявке',
   'lead.comment': 'Комментарий к заявке',
   'lead.convert': 'Контрагент из заявки',
+  'employee.invite': 'Сотрудник заведён и приглашён',
+  'password.reset': 'Пароль сброшен на временный',
   'lead.trash': 'Заявка убрана в корзину',
   'lead.restore': 'Заявка возвращена из корзины',
   'lead.purge': 'Заявка стёрта насовсем',

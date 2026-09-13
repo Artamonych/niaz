@@ -134,7 +134,45 @@ button {
   background-image:
     repeating-linear-gradient(0deg, var(--ink-600) 0 1px, transparent 1px 120px),
     repeating-linear-gradient(90deg, var(--ink-600) 0 1px, transparent 1px 120px);
-  animation: niazGrid 60s linear infinite;
+}
+
+/*
+ * Сетка стоит на месте — движется только яркая линия, изредка пробегающая по
+ * секции: так чертёж «прорисовывается», не отвлекая от чтения. Слой лежит под
+ * содержимым и не ловит указатель.
+ */
+.scan {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    90deg,
+    transparent calc(50% - 1px),
+    var(--accent) 50%,
+    transparent calc(50% + 1px)
+  );
+  opacity: 0;
+  animation: niazScanX 17s linear infinite;
+  /* Задержка задаётся на секции: иначе линии во всех секциях идут строем. */
+  animation-delay: var(--scan-delay, 0s);
+}
+
+/* В низких широких полосах линия идёт поперёк — вдоль полосы смотреть не на что. */
+.scan-y::before {
+  background-image: linear-gradient(
+    180deg,
+    transparent calc(50% - 1px),
+    var(--accent) 50%,
+    transparent calc(50% + 1px)
+  );
+  animation-name: niazScanY;
 }
 
 /* Полоса прогресса чтения. */
@@ -239,12 +277,43 @@ button {
   }
 }
 
-@keyframes niazGrid {
-  from {
-    background-position: 0 0, 0 0;
+/*
+ * Пробег занимает пятую часть цикла, остальное время линии не видно: она
+ * должна проходить изредка, а не мелькать перед глазами постоянно.
+ */
+@keyframes niazScanX {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
   }
-  to {
-    background-position: 120px 120px, 120px 120px;
+  3% {
+    opacity: 0.5;
+  }
+  17% {
+    opacity: 0.5;
+  }
+  20%,
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes niazScanY {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.5;
+  }
+  17% {
+    opacity: 0.5;
+  }
+  20%,
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
   }
 }
 

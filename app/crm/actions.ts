@@ -1,6 +1,6 @@
 'use server';
 
-import { randomUUID } from 'node:crypto';
+import { randomBytes, randomUUID } from 'node:crypto';
 
 import { revalidatePath } from 'next/cache';
 import { after } from 'next/server';
@@ -20,7 +20,14 @@ import { slugify } from '@/lib/news-shared';
 import { removeNewsFiles } from '@/lib/uploads';
 import { parseVideo } from '@/lib/video';
 import { disconnectChat, notifyLeadAssigned } from '@/lib/telegram';
-import { notifyLeadAssignedByMail, sendBotInvite } from '@/lib/mail';
+import {
+  mailConfigured,
+  notifyLeadAssignedByMail,
+  sendBotInvite,
+  sendPasswordReset,
+  sendRegistrationInvite,
+} from '@/lib/mail';
+import { crmBase } from '@/lib/crm-url';
 import { retryMail } from '@/lib/mailer';
 import { botInviteLink } from '@/lib/telegram';
 
@@ -501,8 +508,62 @@ const employeeSchema = z.object({
   email: z.string().trim().email('Проверьте адрес почты'),
   phone: z.string().trim().max(32).optional(),
   role: z.enum(['HEAD', 'MANAGER', 'ADMIN', 'VIEWER'], { message: 'Выберите роль' }),
-  password: z.string().min(8, 'Пароль от 8 символов').optional().or(z.literal('')),
 });
+
+/**
+ * Временный пароль: 12 знаков из алфавита без похожих друг на друга символов
+ * (нет 0/O, 1/l/I) — его диктуют по телефону и перепечатывают из письма.
+ *
+ * Алфавит ровно 32 знака, поэтому остаток от деления байта распределён
+ * равномерно и случайность не перекашивается.
+ */
+const TEMP_ABC = 'abcdefghijkmnpqrstuvwxyz23456789';
+const tempPassword = () =>
+  Array.from(randomBytes(12), (byte) => TEMP_ABC[byte % TEMP_ABC.length]).join('');
+
+/** Личный токен привязки Telegram — чтобы ссылка на бота попала в первое письмо. */
+const newTgToken = () => randomUUID().replace(/-/g, '').slice(0, 16);
+
+/**
+ * Выдать сотруднику временный пароль и отправить письмо. Возвращает строку для
+ * администратора: письмо ушло — говорим об этом, почта выключена или письмо не
+ * принято — показываем пароль на экране, иначе доступ окажется никому не известен.
+ */
+async function issueTempPassword(
+  user: { id: string; fio: string; email: string; tgToken: string | null },
+  kind: 'new' | 'reset',
+): Promise<string> {
+  const password = tempPassword();
+  const tgToken = user.tgToken ?? newTgToken();
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { passwordHash: await hashPassword(password), mustChangePassword: true, tgToken },
+  });
+
+  const loginUrl = crmBase() ? `${crmBase()}/crm/login/` : '';
+
+  if (!mailConfigured()) {
+    return `Почта выключена — передайте временный пароль лично: ${password}`;
+  }
+
+  try {
+    if (kind === 'new') {
+      await sendRegistrationInvite(
+        user.email,
+        user.fio,
+        password,
+        loginUrl,
+        await botInviteLink(tgToken),
+      );
+    } else {
+      await sendPasswordReset(user.email, user.fio, password, loginUrl);
+    }
+    return `Письмо с доступом отправлено на ${user.email}`;
+  } catch (err) {
+    return `Письмо не отправлено (${(err as Error).message}). Временный пароль: ${password}`;
+  }
+}
 
 export async function saveEmployee(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const actor = await requireAction('staff:manage');
@@ -510,30 +571,78 @@ export async function saveEmployee(_prev: ActionState, formData: FormData): Prom
   const parsed = employeeSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
 
-  const { password, ...rest } = parsed.data;
+  const rest = parsed.data;
   const id = String(formData.get('id') ?? '');
 
   if (id) {
-    await prisma.user.update({
-      where: { id },
-      data: { ...rest, ...(password ? { passwordHash: await hashPassword(password) } : {}) },
-    });
-  } else {
-    if (!password) return { error: 'Задайте пароль для нового сотрудника' };
-    const exists = await prisma.user.findUnique({ where: { email: rest.email } });
-    if (exists) return { error: 'Сотрудник с такой почтой уже заведён' };
-    await prisma.user.create({ data: { ...rest, passwordHash: await hashPassword(password) } });
+    await prisma.user.update({ where: { id }, data: rest });
+    await audit(actor, 'employee.save', `Сотрудник ${rest.fio}`, `изменён, роль ${rest.role}`);
+    revalidatePath('/crm/employees');
+    return { ok: 'Сохранено' };
   }
 
-  await audit(
-    actor,
-    'employee.save',
-    `Сотрудник ${rest.fio}`,
-    `${id ? 'изменён' : 'заведён'}, роль ${rest.role}${password ? ', задан пароль' : ''}`,
-  );
+  const exists = await prisma.user.findUnique({ where: { email: rest.email } });
+  if (exists) return { error: 'Сотрудник с такой почтой уже заведён' };
+
+  // Пароль придумывает система: набранный администратором пароль знают двое.
+  const created = await prisma.user.create({
+    data: { ...rest, passwordHash: '', mustChangePassword: true },
+    select: { id: true, fio: true, email: true, tgToken: true },
+  });
+  const note = await issueTempPassword(created, 'new');
+
+  await audit(actor, 'employee.invite', `Сотрудник ${rest.fio}`, `роль ${rest.role}`);
 
   revalidatePath('/crm/employees');
-  return { ok: 'Сохранено' };
+  return { ok: `Сотрудник заведён. ${note}` };
+}
+
+/** Сброс доступа: сотрудник забыл пароль или пароль мог утечь. */
+export async function resetEmployeePassword(id: string): Promise<ActionState> {
+  const actor = await requireAction('staff:manage');
+
+  const employee = await prisma.user.findUnique({
+    where: { id },
+    select: { id: true, fio: true, email: true, tgToken: true },
+  });
+  if (!employee) return { error: 'Сотрудник не найден' };
+
+  const note = await issueTempPassword(employee, 'reset');
+  await audit(actor, 'password.reset', `Сотрудник ${employee.fio}`, 'выдан временный пароль');
+
+  revalidatePath('/crm/employees');
+  return { ok: `Пароль сброшен. ${note}` };
+}
+
+const firstPasswordSchema = z
+  .object({
+    next: z.string().min(8, 'Новый пароль от 8 символов'),
+    repeat: z.string(),
+  })
+  .refine((v) => v.next === v.repeat, { message: 'Пароли не совпадают' });
+
+/**
+ * Замена временного пароля на постоянный. Текущий пароль здесь не спрашиваем:
+ * сотрудник только что вошёл с ним, а лишний ввод провоцирует держать письмо
+ * открытым рядом. До замены разделы CRM не открываются — см. layout.
+ */
+export async function setInitialPassword(
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const user = await currentUser();
+  if (!user) redirect('/crm/login');
+
+  const parsed = firstPasswordSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { error: parsed.error.issues[0].message };
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { passwordHash: await hashPassword(parsed.data.next), mustChangePassword: false },
+  });
+  await audit(user, 'password.change', `Сотрудник ${user.fio}`, 'заменил временный пароль');
+
+  redirect('/crm');
 }
 
 /**

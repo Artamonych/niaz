@@ -18,32 +18,13 @@
   padding-inline: var(--gutter);
 }
 
-/*
- * Линии дочерчиваются сверху вниз, когда секция попадает в кадр: это делает
- * SiteMotion по data-line="y". Без JS и при prefers-reduced-motion они просто
- * стоят на месте — разметка от анимации не зависит.
- */
+/* Направляющие стоят на месте: движется только пробегающая линия (.scan). */
 .guides span {
   border-left: 1px solid #191f23;
-  transform-origin: top;
-  transition: transform 1.1s var(--ease);
 }
 
 .guides span:last-child {
   border-right: 1px solid #191f23;
-}
-
-/* Каждая следующая линия трогается чуть позже — чертёж рисуется, а не мигает. */
-.guides span:nth-child(2) {
-  transition-delay: 0.12s;
-}
-
-.guides span:nth-child(3) {
-  transition-delay: 0.24s;
-}
-
-.guides span:nth-child(4) {
-  transition-delay: 0.36s;
 }
 
 .heroInner {

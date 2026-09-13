@@ -55,19 +55,28 @@ const TEASERS = [
 ];
 
 /**
- * Направляющие колонок — «чертёжный» слой поверх фоновой сетки (п. 14 бэклога).
- * Линии дочерчиваются сверху вниз, когда секция попадает в кадр: этим занят
- * SiteMotion по data-line="y". Без JS и при prefers-reduced-motion они просто
- * стоят на месте, поэтому вёрстка от анимации не зависит.
+ * Чертёжный слой тёмных секций (п. 14 бэклога): статичные направляющие колонок
+ * и яркая линия, которая изредка пробегает по секции. Сама сетка неподвижна —
+ * движение на фоне мешало бы читать.
+ *
+ * Задержки разные, чтобы линии не шли по всем секциям строем; `across` пускает
+ * её поперёк — так в низкой широкой полосе счётчиков.
  */
-function Guides() {
+function Guides({ delay, across = false }: { delay: string; across?: boolean }) {
   return (
-    <div className={styles.guides} aria-hidden="true">
-      <span data-line="y" />
-      <span data-line="y" />
-      <span data-line="y" />
-      <span data-line="y" />
-    </div>
+    <>
+      <div className={styles.guides} aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <i
+        className={across ? 'scan scan-y' : 'scan'}
+        style={{ '--scan-delay': delay } as React.CSSProperties}
+        aria-hidden="true"
+      />
+    </>
   );
 }
 
@@ -78,7 +87,7 @@ export default async function HomePage() {
   return (
     <>
       <section className={`grid-bg ${styles.hero}`}>
-        <Guides />
+        <Guides delay="2s" />
 
         <div className={`shell ${styles.heroInner}`}>
           <div className={styles.heroText}>
@@ -143,7 +152,7 @@ export default async function HomePage() {
       </section>
 
       <section className={`grid-bg ${styles.countersBand}`}>
-        <Guides />
+        <Guides delay="9s" across />
         <dl className={`shell ${styles.counters}`}>
           {COUNTERS.map((c) => (
             <div key={c.k} className={styles.counter}>
@@ -158,7 +167,7 @@ export default async function HomePage() {
       </section>
 
       <section className={`grid-bg ${styles.catsSection}`}>
-        <Guides />
+        <Guides delay="5s" />
         <div className="shell">
           <div className={styles.sectionHead}>
             <h2 className={styles.h2Dark}>Спецтехника</h2>
@@ -230,7 +239,7 @@ export default async function HomePage() {
 
       {news.length > 0 && (
         <section className={`grid-bg ${styles.newsSection}`}>
-          <Guides />
+          <Guides delay="13s" />
           <div className="shell">
             <div className={styles.sectionHead}>
               <h2 className={styles.h2Dark}>Новости завода</h2>

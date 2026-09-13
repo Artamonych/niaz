@@ -18,6 +18,9 @@ model User {
   phone        String?
   role         String   @default("MANAGER")
   active       Boolean  @default(true)
+  /// Пароль выдан системой и его нужно сменить при первом входе: временный
+  /// пароль уходит письмом, а письмо — не место для постоянного пароля.
+  mustChangePassword Boolean @default(false)
   createdAt    DateTime @default(now())
   /// Личный токен для привязки Telegram: ссылка t.me/<бот>?start=<токен>.
   /// По нему бот понимает, чьи заявки слать в этот чат.

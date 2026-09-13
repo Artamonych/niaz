@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
+import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
 import { can, roleTitle, type Action } from '@/lib/roles';
 import { logout } from '../actions';
@@ -29,6 +30,13 @@ const NAV: { href: string; label: string; needs?: Action }[] = [
 export default async function DashLayout({ children }: { children: React.ReactNode }) {
   const user = await currentUser();
   if (!user) redirect('/crm/login');
+
+  // Временный пароль из письма меняется до того, как откроются разделы CRM.
+  const me = await prisma.user.findUnique({
+    where: { id: user.id },
+    select: { mustChangePassword: true },
+  });
+  if (me?.mustChangePassword) redirect('/crm/first-password');
 
   // Последним пунктом — настройки. У администратора там стадии, база и общий
   // чат бота; у остальных только свой профиль, пароль и ссылка на бота.

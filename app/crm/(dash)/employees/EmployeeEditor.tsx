@@ -1,7 +1,13 @@
 'use client';
 
 import { useActionState, useState, useTransition } from 'react';
-import { deleteEmployee, saveEmployee, toggleEmployee, type ActionState } from '../../actions';
+import {
+  deleteEmployee,
+  resetEmployeePassword,
+  saveEmployee,
+  toggleEmployee,
+  type ActionState,
+} from '../../actions';
 import { ROLES, ROLE_KEYS, roleTitle } from '@/lib/roles';
 import styles from '../ui.module.css';
 
@@ -35,6 +41,14 @@ export function EmployeeEditor({
       const result = await deleteEmployee(id);
       setRemoveError(result?.error ?? null);
       setConfirming(null);
+    });
+
+  /** Итог сброса пароля: при выключенной почте здесь же показывается временный. */
+  const [resetState, setResetState] = useState<ActionState>({});
+
+  const reset = (id: string) =>
+    startToggle(async () => {
+      setResetState(await resetEmployeePassword(id));
     });
 
   return (
@@ -183,32 +197,40 @@ export function EmployeeEditor({
             </select>
           </label>
 
-          <label className={styles.field}>
-            <span className={styles.label}>
-              {editing ? 'Новый пароль (можно не менять)' : 'Пароль'}
-            </span>
-            <input
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              className={styles.input}
-            />
-            <span className={styles.dim} style={{ fontSize: 11.5 }}>
-              От 8 символов
-            </span>
-          </label>
+          {/*
+            Пароль здесь не задаётся: его придумывает система и присылает
+            сотруднику письмом, а при первом входе просит заменить. Чужой
+            пароль, набранный администратором, знают двое — это не пароль.
+          */}
+          <p className={styles.dim} style={{ fontSize: 12, margin: 0, lineHeight: 1.55 }}>
+            {editing
+              ? 'Пароль сотрудник меняет сам. Если доступ утерян — сбросьте пароль: система пришлёт новый временный письмом.'
+              : 'Пароль задаст система и пришлёт сотруднику письмом вместе со ссылкой на бота. При первом входе CRM попросит заменить его на постоянный.'}
+          </p>
 
           {state.error && <p className={styles.error}>{state.error}</p>}
           {state.ok && <p className={styles.ok}>{state.ok}</p>}
+          {resetState.error && <p className={styles.error}>{resetState.error}</p>}
+          {resetState.ok && <p className={styles.ok}>{resetState.ok}</p>}
 
           <div style={{ display: 'flex', gap: 10 }}>
             <button type="submit" className={styles.submit} disabled={pending}>
               {pending ? 'Сохраняем…' : 'Сохранить'}
             </button>
             {editing && (
-              <button type="button" className={styles.ghost} onClick={() => setEditing(null)}>
-                Отмена
-              </button>
+              <>
+                <button
+                  type="button"
+                  className={styles.ghost}
+                  disabled={toggling}
+                  onClick={() => reset(editing.id)}
+                >
+                  Сбросить пароль
+                </button>
+                <button type="button" className={styles.ghost} onClick={() => setEditing(null)}>
+                  Отмена
+                </button>
+              </>
             )}
           </div>
         </form>
