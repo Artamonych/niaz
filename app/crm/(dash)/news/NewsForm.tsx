@@ -24,11 +24,24 @@ export function NewsForm({ post, editable }: { post: NewsDraft | null; editable:
   const [confirming, setConfirming] = useState(false);
   const [removing, startRemove] = useTransition();
 
+  const savedStatus = post?.status ?? 'DRAFT';
+  const savedDate = post?.publishedAt ?? newsToday();
+
+  /*
+   * После отправки формы серверным действием React сбрасывает поля к
+   * исходным значениям. Пока форма не пересоздавалась, в сброшенных полях
+   * оставалось прежнее значение: опубликовал новость — в статусе всё ещё
+   * «Черновик». Поэтому пересоздаём форму, когда сервер вернул другие
+   * статус или дату: поля получают свежие значения. Ошибка сохранения их
+   * не меняет, и набранный текст не теряется.
+   */
+  const formKey = `${savedStatus}|${savedDate}`;
+
   return (
     <section className={styles.panel}>
       <h2 className={styles.panelTitle}>Текст новости</h2>
 
-      <form action={action} className={styles.form}>
+      <form key={formKey} action={action} className={styles.form}>
         <fieldset
           disabled={!editable}
           style={{ border: 0, padding: 0, margin: 0, display: 'grid', gap: 14 }}
@@ -83,12 +96,12 @@ export function NewsForm({ post, editable }: { post: NewsDraft | null; editable:
                 name="publishedAt"
                 type="date"
                 required
-                defaultValue={post?.publishedAt ?? newsToday()}
+                defaultValue={savedDate}
                 className={styles.input}
               />
             </Field>
             <Field label="Статус">
-              <select name="status" defaultValue={post?.status ?? 'DRAFT'} className={styles.select}>
+              <select name="status" defaultValue={savedStatus} className={styles.select}>
                 <option value="DRAFT">Черновик</option>
                 <option value="PUBLISHED">Опубликована</option>
               </select>
@@ -109,9 +122,6 @@ export function NewsForm({ post, editable }: { post: NewsDraft | null; editable:
               className={styles.input}
             />
           </Field>
-
-          {state.error && <p className={styles.error}>{state.error}</p>}
-          {state.ok && <p className={styles.ok}>{state.ok}</p>}
 
           {editable && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
@@ -150,6 +160,10 @@ export function NewsForm({ post, editable }: { post: NewsDraft | null; editable:
           )}
         </fieldset>
       </form>
+
+      {/* Сообщения — вне формы: её пересоздание их не стирает. */}
+      {state.error && <p className={styles.error}>{state.error}</p>}
+      {state.ok && <p className={styles.ok}>{state.ok}</p>}
     </section>
   );
 }
