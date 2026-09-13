@@ -14,6 +14,7 @@
 import { prisma } from './db';
 import { can } from './roles';
 import { audit } from './audit';
+import { crmBase } from './crm-url';
 
 const env = (key: string) => process.env[key]?.trim() ?? '';
 const token = () => env('TG_BOT_TOKEN');
@@ -110,12 +111,6 @@ function phoneDigits(raw: string) {
   if (d.startsWith('8')) d = `7${d.slice(1)}`;
   if (!d.startsWith('7')) d = `7${d}`;
   return d.slice(0, 11);
-}
-
-/** Где открыть заявку: свой домен CRM, если он задан, иначе адрес сайта. */
-function crmBase() {
-  const host = env('CRM_HOST');
-  return host ? `https://${host}` : env('NEXT_PUBLIC_SITE_URL');
 }
 
 /**

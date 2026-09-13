@@ -2,6 +2,7 @@ import { after, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { leadSchema } from '@/lib/lead-schema';
 import { notifyLead } from '@/lib/telegram';
+import { notifyLeadByMail } from '@/lib/mail';
 
 /** Простое окно на IP: форма публичная, без ограничения её зальют спамом. */
 const RATE_LIMIT = { windowMs: 60_000, max: 5 };
@@ -86,9 +87,10 @@ export async function POST(request: Request) {
     },
   });
 
-  // В Telegram — уже после ответа: посетитель не ждёт бота, а сбой Telegram
-  // заявку не теряет, она уже в CRM.
+  // Уведомления — уже после ответа: посетитель не ждёт ни бота, ни почту,
+  // а их сбой заявку не теряет, она уже в CRM.
   after(() => notifyLead(lead));
+  after(() => notifyLeadByMail(lead));
 
   return NextResponse.json({ ok: true, num: lead.num });
 }

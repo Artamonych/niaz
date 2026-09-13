@@ -20,6 +20,8 @@ import { slugify } from '@/lib/news-shared';
 import { removeNewsFiles } from '@/lib/uploads';
 import { parseVideo } from '@/lib/video';
 import { disconnectChat, notifyLeadAssigned } from '@/lib/telegram';
+import { notifyLeadAssignedByMail, sendBotInvite } from '@/lib/mail';
+import { botInviteLink } from '@/lib/telegram';
 
 export type ActionState = { error?: string; ok?: string };
 
@@ -82,6 +84,30 @@ export async function refreshBotToken() {
   });
   revalidatePath('/crm/settings');
   revalidatePath('/crm/employees');
+}
+
+/**
+ * Прислать себе письмо с личной ссылкой на бота — так это описал заказчик:
+ * сотрудник переходит в бота из письма. Токен выдаётся, если его ещё нет.
+ */
+export async function mailBotInviteToSelf() {
+  const user = await requireUser();
+
+  let record = await prisma.user.findUnique({ where: { id: user.id }, select: { tgToken: true } });
+  if (!record?.tgToken) {
+    record = await prisma.user.update({
+      where: { id: user.id },
+      data: { tgToken: randomUUID().replace(/-/g, '').slice(0, 16) },
+      select: { tgToken: true },
+    });
+  }
+
+  const link = record.tgToken ? await botInviteLink(record.tgToken) : null;
+  if (!link) throw new Error('Бот ещё не вышел на связь — ссылку выдать нечем');
+
+  await sendBotInvite(user.email, user.fio, link);
+  await audit(user, 'telegram.connect', `Сотрудник ${user.fio}`, 'отправлено письмо со ссылкой на бота');
+  revalidatePath('/crm/settings');
 }
 
 const loginSchema = z.object({
@@ -169,6 +195,7 @@ export async function assignLead(leadId: number, ownerId: string | null) {
   // ещё не было. Сообщаем ему теперь — и только ему.
   if (ownerId && ownerId !== user.id) {
     after(() => notifyLeadAssigned({ ...lead, ownerId }, ownerId));
+    after(() => notifyLeadAssignedByMail({ ...lead, ownerId }, ownerId));
   }
 
   await audit(user, 'lead.assign', `Заявка ${lead.num}`, owner ? owner.fio : 'ответственный снят');

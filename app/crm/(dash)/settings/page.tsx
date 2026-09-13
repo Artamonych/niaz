@@ -3,7 +3,8 @@ import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
 import { can, roleTitle } from '@/lib/roles';
 import { botConfigured, botInviteLink, botJoinCode, botUsername } from '@/lib/telegram';
-import { disconnectTelegramChat, refreshBotToken } from '../../actions';
+import { mailConfigured } from '@/lib/mail';
+import { disconnectTelegramChat, mailBotInviteToSelf, refreshBotToken } from '../../actions';
 import { PasswordForm } from './PasswordForm';
 import styles from '../ui.module.css';
 
@@ -91,11 +92,22 @@ export default async function SettingsPage() {
                 )
               )}
 
-              <form action={refreshBotToken}>
-                <button type="submit" className={me?.tgToken ? styles.ghost : styles.submit}>
-                  {me?.tgToken ? 'Новая ссылка' : 'Получить ссылку'}
-                </button>
-              </form>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                <form action={refreshBotToken}>
+                  <button type="submit" className={me?.tgToken ? styles.ghost : styles.submit}>
+                    {me?.tgToken ? 'Новая ссылка' : 'Получить ссылку'}
+                  </button>
+                </form>
+
+                {/* Письмо со ссылкой — только когда почта настроена: иначе кнопка обманывает. */}
+                {mailConfigured() && (
+                  <form action={mailBotInviteToSelf}>
+                    <button type="submit" className={styles.ghost}>
+                      Прислать ссылку письмом
+                    </button>
+                  </form>
+                )}
+              </div>
 
               {myChats.length > 0 && (
                 <ul style={{ listStyle: 'none', margin: '14px 0 0', padding: 0, display: 'grid', gap: 8 }}>

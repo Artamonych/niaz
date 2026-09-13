@@ -46,6 +46,13 @@ services:
       TG_API_BASE: ${TG_API_BASE:-}
       TG_PROXY_SECRET: ${TG_PROXY_SECRET:-}
       TG_JOIN_CODE: ${TG_JOIN_CODE:-}
+      # Письма о заявках. Пусто — выключены (lib/mail.ts).
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-465}
+      MAIL_USER: ${MAIL_USER:-}
+      MAIL_PASS: ${MAIL_PASS:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      MAIL_TO: ${MAIL_TO:-}
     volumes:
       - db:/app/data-db
       - uploads:/app/uploads
