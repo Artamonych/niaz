@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import {
   CATEGORIES,
+  galleryGroups,
   LANDINGS,
   PRODUCTS,
   STATIC_PAGES,
@@ -15,7 +16,11 @@ import {
 import { CategoryPage } from '@/components/CategoryPage';
 import { ProductPage } from '@/components/ProductPage';
 import { ArticlePage } from '@/components/ArticlePage';
+import { GalleryIndex } from '@/components/GalleryIndex';
 import { SectionPage } from '@/components/SectionPage';
+
+/** Страница, которая собирает витрины по маркам, а не показывает свой текст. */
+const GALLERY_SLUG = 'galereya';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -71,7 +76,15 @@ export default async function Page({ params }: Props) {
   if (product) return <ProductPage product={product} />;
 
   const page = getStaticPage(slug);
-  if (page) return <ArticlePage page={page} />;
+  if (page) {
+    // «Галерея» — витрина по маркам: три десятка страниц со снимками иначе
+    // остаются вне навигации, доступные только из поиска (п. 20 бэклога).
+    return slug === GALLERY_SLUG ? (
+      <GalleryIndex page={page} groups={galleryGroups()} />
+    ) : (
+      <ArticlePage page={page} />
+    );
+  }
 
   notFound();
 }

@@ -25,7 +25,12 @@ WORKDIR /app
 RUN set -eu;     cp /etc/apk/repositories /etc/apk/repositories.dl-cdn;     sed -i 's|https://dl-cdn.alpinelinux.org/alpine|https://mirror.yandex.ru/mirrors/alpine|g' /etc/apk/repositories;     timeout 300 apk add --no-cache python3 make g++ || {       echo 'Зеркало Яндекса не ответило, пробуем dl-cdn';       cp /etc/apk/repositories.dl-cdn /etc/apk/repositories;       timeout 600 apk add --no-cache python3 make g++;     }
 
 COPY package.json package-lock.json ./
-RUN npm ci
+
+# Установка иногда падает с ETXTBSY на esbuild: npm записывает двоичный файл
+# и тут же пробует его запустить, а запись в overlay-файловой системе Docker
+# ещё не завершена. К коду отношения не имеет и со второго раза проходит —
+# поэтому одна повторная попытка вместо упавшего деплоя.
+RUN npm ci || { echo 'npm ci упал, повтор через 5 секунд'; sleep 5; npm ci; }
 
 FROM node:24-alpine AS builder
 WORKDIR /app

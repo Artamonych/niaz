@@ -1,0 +1,63 @@
+[
+  {
+    "mark": "Volkswagen",
+    "slugs": [
+      "peredvizhnaya-stomotologiya-volkswagen-crafter-35-new",
+      "asmp-3",
+      "novyy-krafter-reanimatsiya-kazahstan",
+      "volkswagen-crafter-35-new-invalidnyy",
+      "asmp-caddy",
+      "asmp-klass-a",
+      "sotsialnyy-3",
+      "asmp_prof_med_liga-asmp_prof_med_liga",
+      "asmp-volkswagen-crafter-new",
+      "volkswagen",
+      "cpets-avtomobili",
+      "gruzopassazhirskiy-35",
+      "vystavka-sochi",
+      "caddy-maxi-c-vezdnoy-rampoy-dlya-invalidov",
+      "crafter50",
+      "crafter-35",
+      "crafter-35-korotkaya-baza",
+      "asmp-amarok",
+      "gruzopassazhirskiy",
+      "ritualnyy"
+    ]
+  },
+  {
+    "mark": "ГАЗ",
+    "slugs": [
+      "sobol-4h4-avtokemper-2",
+      "gaz-3221-invalidnyy",
+      "furgon-tehnichka-2",
+      "fap-pmk",
+      "asmp-klass-s-gaz-2705-4h4",
+      "avariynaya-gaz-next-2",
+      "spets-transport-dlya-bezdorozhya",
+      "asmp-4",
+      "spets-transport"
+    ]
+  },
+  {
+    "mark": "Mercedes",
+    "slugs": [
+      "ritualnyy-2",
+      "gruzopassazhirskiy-avtomobil",
+      "mercedes"
+    ]
+  },
+  {
+    "mark": "Peugeot",
+    "slugs": [
+      "sotsialnyy",
+      "peugeot"
+    ]
+  },
+  {
+    "mark": "Renault",
+    "slugs": [
+      "asmp",
+      "renault"
+    ]
+  }
+]

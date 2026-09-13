@@ -136,6 +136,15 @@ function mergeGalleries(pages: StaticPage[], redirects: Redirect[]) {
 
 type Redirect = { source: string; destination: string; permanent: true };
 
+/**
+ * Раздел «Галерея»: витрины по маркам шасси, собранные из страниц-сирот.
+ *
+ * Храним только слаги. Заголовок и снимки лежат в pages.json, и копировать их
+ * сюда нельзя: адреса фото переписывает localize-media уже после этого шага,
+ * так что копия осталась бы с адресами донора.
+ */
+type GalleryGroup = { mark: string; slugs: string[] };
+
 const FILE_EXT = /\.(docx?|pdf|xlsx?|pptx?|zip|rar)(\?|$)/i;
 
 /**
@@ -342,6 +351,38 @@ async function main() {
   // дополняет их заголовки маркой, чтобы в индексе не было одинаковых.
   mergeGalleries(staticPages, redirects);
 
+  /*
+   * Раздел «Галерея» (п. 20 бэклога). Три десятка страниц со снимками лежали
+   * вне навигации: попасть на них можно было только из поиска, хотя в
+   * sitemap.xml они есть. Собираем их в витрину по маркам шасси — марка
+   * берётся из раздела донора или из заголовка, а не придумывается.
+   */
+  const galleryPages = staticPages.filter(
+    (p) =>
+      p.slug !== 'galereya' &&
+      !p.body &&
+      p.images.length > 0 &&
+      (GALLERY_MARKS.includes(p.section) || p.section === 'Галерея'),
+  );
+
+  // Крупные подборки впереди: по ним видно, что завод делает чаще.
+  galleryPages.sort((a, b) => b.images.length - a.images.length);
+
+  const groups = new Map<string, string[]>();
+  for (const page of galleryPages) {
+    const mark =
+      GALLERY_MARKS.find((m) => m === page.section) ??
+      GALLERY_MARKS.find((m) => page.title.toLowerCase().includes(m.toLowerCase())) ??
+      'Разное';
+    groups.set(mark, [...(groups.get(mark) ?? []), page.slug]);
+  }
+
+  const gallery: GalleryGroup[] = [...groups]
+    .map(([mark, slugs]) => ({ mark, slugs }))
+    .sort((a, b) => b.slugs.length - a.slugs.length);
+
+  await writeFile(join(OUT, 'gallery.json'), JSON.stringify(gallery, null, 2), 'utf8');
+
   await writeFile(join(OUT, 'products.json'), JSON.stringify(products, null, 2), 'utf8');
   await writeFile(join(OUT, 'pages.json'), JSON.stringify(staticPages, null, 2), 'utf8');
   await writeFile(join(OUT, 'redirects.json'), JSON.stringify(redirects, null, 2), 'utf8');
@@ -365,6 +406,10 @@ async function main() {
   const withBody = staticPages.filter((p) => p.body);
   const bodyChars = withBody.reduce((sum, p) => sum + textLength(p.body), 0);
   console.log(`Прочих страниц: ${staticPages.length}`);
+  console.log(
+    `Галерея: ${gallery.length} марок, ${gallery.reduce((s, g) => s + g.slugs.length, 0)} витрин, ` +
+      `${galleryPages.reduce((s, p) => s + p.images.length, 0)} снимков`,
+  );
   console.log(`  с телом статьи: ${withBody.length}, суммарно ${bodyChars.toLocaleString('ru-RU')} знаков`);
   console.log('Индексов разделов: ' + sections.map((s) => `${s.slug} (${s.items.length})`).join(', '));
   console.log(`301-редиректов (снятый раздел «${REMOVED_DONOR_SECTION}»): ${redirects.length}`);

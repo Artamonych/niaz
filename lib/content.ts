@@ -7,6 +7,7 @@ import staticPages from '../data/content/pages.json';
 import landings from '../data/content/category-landings.json';
 import redirects from '../data/content/redirects.json';
 import sections from '../data/content/sections.json';
+import gallery from '../data/content/gallery.json';
 import { CATEGORIES, CATEGORY_BY_KEY, type CategoryKey } from './catalog';
 
 export type SpecRow = { no: string; text: string };
@@ -69,6 +70,19 @@ export const getLanding = (slug: string) => LANDINGS.find((p) => p.slug === slug
 export const getSection = (slug: string) => SECTIONS.find((p) => p.slug === slug);
 
 export const productsOf = (key: CategoryKey) => PRODUCTS.filter((p) => p.category === key);
+
+/** Витрина раздела «Галерея»: страницы со снимками, сгруппированные по маркам. */
+export type GalleryGroup = { mark: string; pages: StaticPage[] };
+
+/**
+ * Снимки берём из самих страниц, а не из gallery.json: адреса фото переписывает
+ * localize-media после сборки контента, и копия адреса устарела бы.
+ */
+export const galleryGroups = (): GalleryGroup[] =>
+  (gallery as { mark: string; slugs: string[] }[]).map(({ mark, slugs }) => ({
+    mark,
+    pages: slugs.map(getStaticPage).filter((p): p is StaticPage => !!p),
+  }));
 
 /** Марка базового шасси для фильтра: «Mercedes-Benz Sprinter Classic…» → «Mercedes-Benz». */
 export function chassisBrand(chassis: string): string {
