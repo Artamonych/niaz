@@ -15,6 +15,7 @@ import {
   verifyPassword,
 } from '@/lib/auth';
 import { can, canEditClient, canWorkLead, type Action } from '@/lib/roles';
+import { audit } from '@/lib/audit';
 import { slugify } from '@/lib/news-shared';
 import { removeNewsFiles } from '@/lib/uploads';
 import { parseVideo } from '@/lib/video';
@@ -58,6 +59,12 @@ export async function disconnectTelegramChat(chatId: string) {
   }
 
   await disconnectChat(chatId);
+  await audit(
+    user,
+    'telegram.disconnect',
+    `Чат ${chat.title}`,
+    chat.userId === user.id ? 'свой чат' : 'чат отдела или другого сотрудника',
+  );
   revalidatePath('/crm/settings');
 }
 
@@ -130,6 +137,8 @@ export async function moveLead(leadId: number, stageId: string) {
     }),
   ]);
 
+  await audit(user, 'lead.stage', `Заявка ${lead.num}`, `${from.title} → ${stage.title}`);
+
   revalidatePath('/crm');
   revalidatePath(`/crm/leads/${leadId}`);
 }
@@ -161,6 +170,8 @@ export async function assignLead(leadId: number, ownerId: string | null) {
   if (ownerId && ownerId !== user.id) {
     after(() => notifyLeadAssigned({ ...lead, ownerId }, ownerId));
   }
+
+  await audit(user, 'lead.assign', `Заявка ${lead.num}`, owner ? owner.fio : 'ответственный снят');
 
   revalidatePath('/crm');
   revalidatePath(`/crm/leads/${leadId}`);
@@ -223,6 +234,8 @@ export async function convertToClient(leadId: number) {
     },
   });
 
+  await audit(user, 'lead.convert', `Контрагент ${client.name}`, `из заявки ${lead.num}`);
+
   revalidatePath('/crm');
   revalidatePath('/crm/clients');
   redirect(`/crm/clients/${client.id}`);
@@ -264,6 +277,7 @@ export async function saveClient(
   if (!parsed.success) return { error: parsed.error.issues[0].message };
 
   await prisma.client.update({ where: { id: clientId }, data: parsed.data });
+  await audit(user, 'client.update', `Контрагент ${parsed.data.name}`);
 
   revalidatePath(`/crm/clients/${clientId}`);
   revalidatePath('/crm/clients');
@@ -276,7 +290,7 @@ const serviceSchema = z.object({
 });
 
 export async function saveService(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireAction('content:manage');
+  const actor = await requireAction('content:manage');
 
   const parsed = serviceSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -290,13 +304,16 @@ export async function saveService(_prev: ActionState, formData: FormData): Promi
     await prisma.service.create({ data: parsed.data });
   }
 
+  await audit(actor, 'service.save', `Услуга ${parsed.data.name}`, `${parsed.data.price} ₽`);
+
   revalidatePath('/crm/services');
   return { ok: 'Сохранено' };
 }
 
 export async function deleteService(id: string) {
-  await requireAction('content:manage');
-  await prisma.service.delete({ where: { id } });
+  const actor = await requireAction('content:manage');
+  const service = await prisma.service.delete({ where: { id } });
+  await audit(actor, 'service.delete', `Услуга ${service.name}`);
   revalidatePath('/crm/services');
 }
 
@@ -309,7 +326,7 @@ const employeeSchema = z.object({
 });
 
 export async function saveEmployee(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireAction('staff:manage');
+  const actor = await requireAction('staff:manage');
 
   const parsed = employeeSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -329,14 +346,22 @@ export async function saveEmployee(_prev: ActionState, formData: FormData): Prom
     await prisma.user.create({ data: { ...rest, passwordHash: await hashPassword(password) } });
   }
 
+  await audit(
+    actor,
+    'employee.save',
+    `Сотрудник ${rest.fio}`,
+    `${id ? 'изменён' : 'заведён'}, роль ${rest.role}${password ? ', задан пароль' : ''}`,
+  );
+
   revalidatePath('/crm/employees');
   return { ok: 'Сохранено' };
 }
 
 /** Сотрудников не удаляем: на них висят заявки и события. Отключаем доступ. */
 export async function toggleEmployee(id: string, active: boolean) {
-  await requireAction('staff:manage');
-  await prisma.user.update({ where: { id }, data: { active } });
+  const actor = await requireAction('staff:manage');
+  const employee = await prisma.user.update({ where: { id }, data: { active } });
+  await audit(actor, 'employee.block', `Сотрудник ${employee.fio}`, active ? 'доступ включён' : 'доступ отключён');
   revalidatePath('/crm/employees');
 }
 
@@ -367,6 +392,7 @@ export async function changePassword(
     where: { id: user.id },
     data: { passwordHash: await hashPassword(parsed.data.next) },
   });
+  await audit(user, 'password.change', `Сотрудник ${user.fio}`, 'сменил себе пароль');
 
   return { ok: 'Пароль изменён' };
 }
@@ -413,7 +439,7 @@ export async function saveNews(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
-  await requireAction('content:manage');
+  const actor = await requireAction('content:manage');
 
   const parsed = newsSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -430,38 +456,53 @@ export async function saveNews(
     publishedAt: new Date(`${publishedAt}T00:00:00Z`),
   };
 
+  const state = rest.status === 'PUBLISHED' ? 'опубликована' : 'черновик';
+
   if (postId) {
     await prisma.newsPost.update({ where: { id: postId }, data });
+    await audit(actor, 'news.save', `Новость «${rest.title}»`, `изменена, ${state}`);
     revalidatePath('/crm/news');
     revalidatePath(`/crm/news/${postId}`);
     return { ok: rest.status === 'PUBLISHED' ? 'Сохранено и опубликовано' : 'Черновик сохранён' };
   }
 
   const created = await prisma.newsPost.create({ data });
+  await audit(actor, 'news.save', `Новость «${rest.title}»`, `создана, ${state}`);
   revalidatePath('/crm/news');
   redirect(`/crm/news/${created.id}/`);
 }
 
 export async function deleteNews(postId: string) {
-  await requireAction('content:manage');
+  const actor = await requireAction('content:manage');
 
   const photos = await prisma.newsPhoto.findMany({ where: { postId }, select: { file: true } });
-  await prisma.newsPost.delete({ where: { id: postId } });
+  const post = await prisma.newsPost.delete({ where: { id: postId } });
   // Строки фото ушли каскадом, файлы на диске — нет: чистим сами.
   await removeNewsFiles(photos.map((p) => p.file));
+
+  await audit(
+    actor,
+    'news.delete',
+    `Новость «${post.title}»`,
+    photos.length ? `вместе с фото: ${photos.length}` : 'без фото',
+  );
 
   revalidatePath('/crm/news');
   redirect('/crm/news/');
 }
 
 export async function deleteNewsPhoto(photoId: string) {
-  await requireAction('content:manage');
+  const actor = await requireAction('content:manage');
 
-  const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
+  const photo = await prisma.newsPhoto.findUnique({
+    where: { id: photoId },
+    include: { post: { select: { title: true } } },
+  });
   if (!photo) return;
 
   await prisma.newsPhoto.delete({ where: { id: photoId } });
   await removeNewsFiles([photo.file]);
+  await audit(actor, 'news.photo', `Новость «${photo.post.title}»`, 'удалено фото');
 
   // Без превью лента показала бы новость без картинки — назначаем следующее фото.
   if (photo.isCover) {

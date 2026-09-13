@@ -41,6 +41,8 @@ export type Action =
   | 'staff:manage'
   /** Системные настройки: стадии, состояние базы, общий чат бота. */
   | 'settings:system'
+  /** Журнал действий: кто что изменил и удалил. */
+  | 'audit:view'
   /** Получать уведомления обо всех заявках, а не только о своих. */
   | 'notify:allLeads';
 
@@ -53,6 +55,7 @@ const MATRIX: Record<Action, RoleKey[]> = {
   'content:manage': ['ADMIN', 'HEAD'],
   'staff:manage': ['ADMIN'],
   'settings:system': ['ADMIN'],
+  'audit:view': ['ADMIN'],
   'notify:allLeads': ['ADMIN', 'HEAD'],
 };
 

@@ -13,6 +13,7 @@
  */
 import { prisma } from './db';
 import { can } from './roles';
+import { audit } from './audit';
 
 const env = (key: string) => process.env[key]?.trim() ?? '';
 const token = () => env('TG_BOT_TOKEN');
@@ -307,6 +308,7 @@ async function handleUpdate(update: Update) {
       `✅ Готово, ${esc(owner.fio)} — сюда будут приходить заявки с сайта НиАЗ.\n` +
         (can(owner.role, 'notify:allLeads') ? 'Вы получаете все заявки.' : 'Вы получаете заявки, назначенные вам.'),
     );
+    await audit(owner, 'telegram.connect', `Чат ${chatTitle(chat)}`, 'личный чат сотрудника');
     return;
   }
 
@@ -314,6 +316,7 @@ async function handleUpdate(update: Update) {
     attempts.delete(chat.id);
     await prisma.telegramChat.create({ data: { id, type: chat.type, title: chatTitle(chat) } });
     await send(id, '✅ Готово — сюда будут приходить все заявки с сайта НиАЗ.');
+    await audit(null, 'telegram.connect', `Чат ${chatTitle(chat)}`, 'общий чат отдела, подключён общим кодом');
     return;
   }
 
