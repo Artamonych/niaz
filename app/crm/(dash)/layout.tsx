@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { currentUser } from '@/lib/auth';
-import { roleTitle, canManageStaff } from '@/lib/roles';
+import { can, roleTitle, type Action } from '@/lib/roles';
 import { logout } from '../actions';
 import styles from './dash.module.css';
 
@@ -14,20 +14,28 @@ export const metadata: Metadata = {
 /** CRM всегда работает по живым данным — кеш страниц здесь вреден. */
 export const dynamic = 'force-dynamic';
 
-const NAV = [
+/** Разделы и право, которое их открывает. Без права пункт не показывается. */
+const NAV: { href: string; label: string; needs?: Action }[] = [
   { href: '/crm', label: 'Заявки' },
   { href: '/crm/clients', label: 'Контрагенты' },
-  { href: '/crm/services', label: 'Услуги' },
-  { href: '/crm/news', label: 'Новости' },
-  { href: '/crm/employees', label: 'Сотрудники', staffOnly: true },
-  { href: '/crm/settings', label: 'Настройки' },
+  { href: '/crm/services', label: 'Услуги', needs: 'content:manage' },
+  { href: '/crm/news', label: 'Новости', needs: 'content:manage' },
+  { href: '/crm/employees', label: 'Сотрудники', needs: 'staff:manage' },
 ];
 
 export default async function DashLayout({ children }: { children: React.ReactNode }) {
   const user = await currentUser();
   if (!user) redirect('/crm/login');
 
-  const items = NAV.filter((item) => !item.staffOnly || canManageStaff(user.role));
+  // Последним пунктом — настройки. У администратора там стадии, база и общий
+  // чат бота; у остальных только свой профиль, пароль и ссылка на бота.
+  const items = [
+    ...NAV.filter((item) => !item.needs || can(user.role, item.needs)),
+    {
+      href: '/crm/settings',
+      label: can(user.role, 'settings:system') ? 'Настройки' : 'Профиль',
+    },
+  ];
 
   return (
     <div className={styles.shell}>

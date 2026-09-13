@@ -1,9 +1,17 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
+import { currentUser } from '@/lib/auth';
+import { clientScope } from '@/lib/roles';
 import styles from '../ui.module.css';
 
 export default async function ClientsPage() {
+  const user = await currentUser();
+  if (!user) redirect('/crm/login');
+
+  // Менеджер видит только своих контрагентов, остальные — всех.
   const clients = await prisma.client.findMany({
+    where: clientScope(user),
     orderBy: { createdAt: 'desc' },
     include: {
       manager: { select: { fio: true } },

@@ -60,11 +60,14 @@ export function Board({
   leads,
   owners,
   editable,
+  canAssign,
 }: {
   stages: Stage[];
   leads: Lead[];
   owners: Owner[];
   editable: boolean;
+  /** Назначать ответственного могут администратор и руководитель. */
+  canAssign: boolean;
 }) {
   const [query, setQuery] = useState('');
   const [pending, startTransition] = useTransition();
@@ -148,25 +151,27 @@ export function Board({
 
                     {editable ? (
                       <div className={styles.controls}>
-                        <label className={styles.control}>
-                          <span className="sr-only">Ответственный</span>
-                          <select
-                            value={lead.ownerId ?? ''}
-                            className={styles.select}
-                            onChange={(e) =>
-                              startTransition(() => {
-                                assignLead(lead.id, e.target.value || null);
-                              })
-                            }
-                          >
-                            <option value="">Без ответственного</option>
-                            {owners.map((o) => (
-                              <option key={o.id} value={o.id}>
-                                {o.fio}
-                              </option>
-                            ))}
-                          </select>
-                        </label>
+                        {canAssign && (
+                          <label className={styles.control}>
+                            <span className="sr-only">Ответственный</span>
+                            <select
+                              value={lead.ownerId ?? ''}
+                              className={styles.select}
+                              onChange={(e) =>
+                                startTransition(() => {
+                                  assignLead(lead.id, e.target.value || null);
+                                })
+                              }
+                            >
+                              <option value="">Без ответственного</option>
+                              {owners.map((o) => (
+                                <option key={o.id} value={o.id}>
+                                  {o.fio}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        )}
 
                         <label className={styles.control}>
                           <span className="sr-only">Стадия</span>

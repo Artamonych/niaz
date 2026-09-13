@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import sharp from 'sharp';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can } from '@/lib/roles';
 import { NEWS_MAX_PHOTOS, NEWS_MAX_PHOTO_BYTES, NEWS_MAX_PHOTO_MB } from '@/lib/news-shared';
 import { ensureNewsDir, newsFilePath, removeNewsFiles } from '@/lib/uploads';
 
@@ -21,7 +21,7 @@ const OVER_LIMIT = `Не больше ${NEWS_MAX_PHOTOS} фото на ново�
  */
 export async function POST(request: Request, { params }: { params: Promise<{ postId: string }> }) {
   const user = await currentUser();
-  if (!user || !canEdit(user.role)) return fail('Нет прав на изменения', 403);
+  if (!user || !can(user.role, 'content:manage')) return fail('Нет прав на изменения', 403);
 
   const { postId } = await params;
   const post = await prisma.newsPost.findUnique({

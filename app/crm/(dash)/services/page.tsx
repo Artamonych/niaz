@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can } from '@/lib/roles';
 import { ServiceEditor } from './ServiceEditor';
 import styles from '../ui.module.css';
 
@@ -24,7 +24,7 @@ export default async function ServicesPage() {
         <span className={`mono ${styles.badge}`}>{services.length} услуг</span>
       </header>
 
-      <ServiceEditor services={services} editable={Boolean(user && canEdit(user.role))} />
+      <ServiceEditor services={services} editable={Boolean(user && can(user.role, 'content:manage'))} />
     </>
   );
 }

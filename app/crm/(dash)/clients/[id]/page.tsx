@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can, canEditClient } from '@/lib/roles';
 import { ClientForm } from './ClientForm';
 import styles from '../../ui.module.css';
 
@@ -25,7 +25,9 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
   ]);
 
   if (!client) notFound();
-  const editable = Boolean(user && canEdit(user.role));
+  // Чужая карточка менеджеру не показывается вовсе — не только запрещена правка.
+  if (!user || (!can(user.role, 'clients:viewAll') && client.managerId !== user.id)) notFound();
+  const editable = canEditClient(user, client);
 
   return (
     <>

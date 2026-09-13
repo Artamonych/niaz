@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can } from '@/lib/roles';
 import { formatNewsDate, isNewsLive, toDay } from '@/lib/news-shared';
 import styles from '../ui.module.css';
 
@@ -18,7 +19,9 @@ export default async function NewsListPage() {
       include: { _count: { select: { photos: true } } },
     }),
   ]);
-  const editable = Boolean(user && canEdit(user.role));
+  // Новости — внешнее лицо завода: раздел открыт администратору и руководителю.
+  if (!user || !can(user.role, 'content:manage')) redirect('/crm');
+  const editable = true;
 
   return (
     <>

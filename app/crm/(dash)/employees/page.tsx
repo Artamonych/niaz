@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canManageStaff } from '@/lib/roles';
+import { can } from '@/lib/roles';
 import { EmployeeEditor } from './EmployeeEditor';
 import styles from '../ui.module.css';
 
@@ -9,7 +9,7 @@ export default async function EmployeesPage() {
   const user = await currentUser();
   if (!user) redirect('/crm/login');
   // Список сотрудников — не для всех: там роли и доступы.
-  if (!canManageStaff(user.role)) redirect('/crm');
+  if (!can(user.role, 'staff:manage')) redirect('/crm');
 
   const employees = await prisma.user.findMany({
     orderBy: [{ active: 'desc' }, { fio: 'asc' }],

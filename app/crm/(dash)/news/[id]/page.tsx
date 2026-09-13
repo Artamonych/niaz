@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can } from '@/lib/roles';
 import { isNewsLive, newsPhotoUrl, toDay } from '@/lib/news-shared';
 import { NewsForm } from '../NewsForm';
 import { NewsPhotos } from '../NewsPhotos';
@@ -19,7 +19,9 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
   ]);
   if (!post) notFound();
 
-  const editable = Boolean(user && canEdit(user.role));
+  // Новости ведут администратор и руководитель; остальным раздел закрыт.
+  if (!user || !can(user.role, 'content:manage')) redirect('/crm');
+  const editable = true;
   const live = isNewsLive(post);
   // Адрес сайта абсолютный: у CRM может быть свой домен.
   const siteUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/novosti/${post.slug}/`;

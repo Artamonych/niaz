@@ -1,23 +1,31 @@
+import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can, leadScope } from '@/lib/roles';
 import { Board } from './Board';
 import styles from './board.module.css';
 
 export default async function LeadsPage() {
   const user = await currentUser();
+  if (!user) redirect('/crm/login');
+
+  const canAssign = can(user.role, 'leads:assign');
 
   const [stages, leads, owners] = await Promise.all([
     prisma.stage.findMany({ orderBy: { order: 'asc' } }),
+    // Менеджер видит только свои заявки; нераспределённые — у руководителя.
     prisma.lead.findMany({
+      where: leadScope(user),
       orderBy: { createdAt: 'desc' },
       include: { owner: { select: { id: true, fio: true } } },
     }),
-    prisma.user.findMany({
-      where: { active: true },
-      select: { id: true, fio: true },
-      orderBy: { fio: 'asc' },
-    }),
+    canAssign
+      ? prisma.user.findMany({
+          where: { active: true },
+          select: { id: true, fio: true },
+          orderBy: { fio: 'asc' },
+        })
+      : [],
   ]);
 
   const today = new Date();
@@ -50,7 +58,8 @@ export default async function LeadsPage() {
       <Board
         stages={stages}
         owners={owners}
-        editable={Boolean(user && canEdit(user.role))}
+        editable={can(user.role, 'leads:work')}
+        canAssign={canAssign}
         leads={leads.map((lead) => ({
           id: lead.id,
           num: lead.num,

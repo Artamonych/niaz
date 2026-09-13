@@ -1,6 +1,9 @@
 'use server';
 
+import { randomUUID } from 'node:crypto';
+
 import { revalidatePath } from 'next/cache';
+import { after } from 'next/server';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { prisma } from '@/lib/db';
@@ -11,34 +14,67 @@ import {
   hashPassword,
   verifyPassword,
 } from '@/lib/auth';
-import { canEdit, canManageStaff } from '@/lib/roles';
+import { can, canEditClient, canWorkLead, type Action } from '@/lib/roles';
 import { slugify } from '@/lib/news-shared';
 import { removeNewsFiles } from '@/lib/uploads';
 import { parseVideo } from '@/lib/video';
-import { disconnectChat } from '@/lib/telegram';
+import { disconnectChat, notifyLeadAssigned } from '@/lib/telegram';
 
 export type ActionState = { error?: string; ok?: string };
 
-/** Любое изменение в CRM проходит через эту проверку — наблюдатель только смотрит. */
-async function requireEditor() {
+/** Кто действует. Без сессии — на вход. */
+async function requireUser() {
   const user = await currentUser();
   if (!user) redirect('/crm/login');
-  if (!canEdit(user.role)) throw new Error('У роли «Наблюдатель» нет прав на изменения');
   return user;
 }
 
-async function requireStaffManager() {
-  const user = await currentUser();
-  if (!user) redirect('/crm/login');
-  if (!canManageStaff(user.role)) throw new Error('Недостаточно прав');
+/** Проверка по таблице прав (lib/roles.ts): роль либо может действие, либо нет. */
+async function requireAction(action: Action) {
+  const user = await requireUser();
+  if (!can(user.role, action)) throw new Error('Недостаточно прав');
   return user;
 }
 
-/** Отключить чат Telegram от заявок. Подключает его сам чат — кодом доступа. */
+/** Работа с конкретной заявкой: менеджеру — только со своей. */
+async function requireLead(leadId: number) {
+  const user = await requireUser();
+  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
+  if (!lead) throw new Error('Заявка не найдена');
+  if (!canWorkLead(user, lead)) throw new Error('Эта заявка назначена другому сотруднику');
+  return { user, lead };
+}
+
+/**
+ * Отключить чат Telegram от заявок. Свой чат отключает сам сотрудник, чужой
+ * и общий чат отдела — только тот, кому доступны системные настройки.
+ */
 export async function disconnectTelegramChat(chatId: string) {
-  await requireStaffManager();
+  const user = await requireUser();
+  const chat = await prisma.telegramChat.findUnique({ where: { id: chatId } });
+  if (!chat) return;
+  if (chat.userId !== user.id && !can(user.role, 'settings:system')) {
+    throw new Error('Недостаточно прав');
+  }
+
   await disconnectChat(chatId);
   revalidatePath('/crm/settings');
+}
+
+/**
+ * Личный токен для ссылки в бота. Выдаётся по требованию: пока сотрудник не
+ * захотел уведомления, токена у него нет и ссылку подсунуть некому.
+ * Повторный вызов выдаёт новый токен — старая ссылка перестаёт работать,
+ * уже привязанные чаты остаются.
+ */
+export async function refreshBotToken() {
+  const user = await requireUser();
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { tgToken: randomUUID().replace(/-/g, '').slice(0, 16) },
+  });
+  revalidatePath('/crm/settings');
+  revalidatePath('/crm/employees');
 }
 
 const loginSchema = z.object({
@@ -71,13 +107,13 @@ export async function logout() {
 }
 
 export async function moveLead(leadId: number, stageId: string) {
-  const user = await requireEditor();
+  const { user, lead } = await requireLead(leadId);
 
-  const [lead, stage] = await Promise.all([
-    prisma.lead.findUnique({ where: { id: leadId }, include: { stage: true } }),
+  const [stage, from] = await Promise.all([
     prisma.stage.findUnique({ where: { id: stageId } }),
+    prisma.stage.findUnique({ where: { id: lead.stageId } }),
   ]);
-  if (!lead || !stage) throw new Error('Заявка или стадия не найдены');
+  if (!stage || !from) throw new Error('Стадия не найдена');
   if (lead.stageId === stageId) return;
 
   await prisma.$transaction([
@@ -89,7 +125,7 @@ export async function moveLead(leadId: number, stageId: string) {
         clientId: lead.clientId,
         authorId: user.id,
         authorName: user.fio,
-        text: `Стадия заявки: ${lead.stage.title} → ${stage.title}`,
+        text: `Стадия заявки: ${from.title} → ${stage.title}`,
       },
     }),
   ]);
@@ -99,9 +135,13 @@ export async function moveLead(leadId: number, stageId: string) {
 }
 
 export async function assignLead(leadId: number, ownerId: string | null) {
-  const user = await requireEditor();
+  const user = await requireAction('leads:assign');
 
-  const owner = ownerId ? await prisma.user.findUnique({ where: { id: ownerId } }) : null;
+  const [owner, lead] = await Promise.all([
+    ownerId ? prisma.user.findUnique({ where: { id: ownerId } }) : null,
+    prisma.lead.findUnique({ where: { id: leadId } }),
+  ]);
+  if (!lead) throw new Error('Заявка не найдена');
 
   await prisma.$transaction([
     prisma.lead.update({ where: { id: leadId }, data: { ownerId } }),
@@ -116,6 +156,12 @@ export async function assignLead(leadId: number, ownerId: string | null) {
     }),
   ]);
 
+  // Менеджер не получал эту заявку, когда она пришла с сайта: ответственного
+  // ещё не было. Сообщаем ему теперь — и только ему.
+  if (ownerId && ownerId !== user.id) {
+    after(() => notifyLeadAssigned({ ...lead, ownerId }, ownerId));
+  }
+
   revalidatePath('/crm');
   revalidatePath(`/crm/leads/${leadId}`);
 }
@@ -127,18 +173,16 @@ export async function addComment(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
-  const user = await requireEditor();
+  const { user, lead } = await requireLead(leadId);
 
   const parsed = commentSchema.safeParse(formData.get('text'));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
-
-  const lead = await prisma.lead.findUnique({ where: { id: leadId }, select: { clientId: true } });
 
   await prisma.event.create({
     data: {
       kind: 'comment',
       leadId,
-      clientId: lead?.clientId,
+      clientId: lead.clientId,
       authorId: user.id,
       authorName: user.fio,
       text: parsed.data,
@@ -154,10 +198,7 @@ export async function addComment(
  * с ИНН и банковскими реквизитами, а не строка в канбане.
  */
 export async function convertToClient(leadId: number) {
-  const user = await requireEditor();
-
-  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
-  if (!lead) throw new Error('Заявка не найдена');
+  const { user, lead } = await requireLead(leadId);
   if (lead.clientId) redirect(`/crm/clients/${lead.clientId}`);
 
   const client = await prisma.client.create({
@@ -209,7 +250,15 @@ export async function saveClient(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
-  await requireEditor();
+  const user = await requireUser();
+  const client = await prisma.client.findUnique({
+    where: { id: clientId },
+    select: { managerId: true },
+  });
+  if (!client) return { error: 'Контрагент не найден' };
+  if (!canEditClient(user, client)) {
+    return { error: 'Этот контрагент закреплён за другим менеджером' };
+  }
 
   const parsed = clientSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -227,7 +276,7 @@ const serviceSchema = z.object({
 });
 
 export async function saveService(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireEditor();
+  await requireAction('content:manage');
 
   const parsed = serviceSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -246,7 +295,7 @@ export async function saveService(_prev: ActionState, formData: FormData): Promi
 }
 
 export async function deleteService(id: string) {
-  await requireEditor();
+  await requireAction('content:manage');
   await prisma.service.delete({ where: { id } });
   revalidatePath('/crm/services');
 }
@@ -260,7 +309,7 @@ const employeeSchema = z.object({
 });
 
 export async function saveEmployee(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireStaffManager();
+  await requireAction('staff:manage');
 
   const parsed = employeeSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -286,7 +335,7 @@ export async function saveEmployee(_prev: ActionState, formData: FormData): Prom
 
 /** Сотрудников не удаляем: на них висят заявки и события. Отключаем доступ. */
 export async function toggleEmployee(id: string, active: boolean) {
-  await requireStaffManager();
+  await requireAction('staff:manage');
   await prisma.user.update({ where: { id }, data: { active } });
   revalidatePath('/crm/employees');
 }
@@ -364,7 +413,7 @@ export async function saveNews(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
-  await requireEditor();
+  await requireAction('content:manage');
 
   const parsed = newsSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
@@ -394,7 +443,7 @@ export async function saveNews(
 }
 
 export async function deleteNews(postId: string) {
-  await requireEditor();
+  await requireAction('content:manage');
 
   const photos = await prisma.newsPhoto.findMany({ where: { postId }, select: { file: true } });
   await prisma.newsPost.delete({ where: { id: postId } });
@@ -406,7 +455,7 @@ export async function deleteNews(postId: string) {
 }
 
 export async function deleteNewsPhoto(photoId: string) {
-  await requireEditor();
+  await requireAction('content:manage');
 
   const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
   if (!photo) return;
@@ -427,7 +476,7 @@ export async function deleteNewsPhoto(photoId: string) {
 }
 
 export async function setNewsCover(photoId: string) {
-  await requireEditor();
+  await requireAction('content:manage');
 
   const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
   if (!photo) return;
@@ -441,7 +490,7 @@ export async function setNewsCover(photoId: string) {
 }
 
 export async function moveNewsPhoto(photoId: string, step: -1 | 1) {
-  await requireEditor();
+  await requireAction('content:manage');
 
   const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
   if (!photo) return;

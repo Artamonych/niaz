@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can, canWorkLead } from '@/lib/roles';
 import { convertToClient } from '../../../actions';
 import { CommentForm } from './CommentForm';
 import styles from './lead.module.css';
@@ -35,7 +35,9 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
   ]);
 
   if (!lead) notFound();
-  const editable = Boolean(user && canEdit(user.role));
+  // Чужая заявка менеджеру не показывается: в ней контакты клиента.
+  if (!user || (!can(user.role, 'leads:viewAll') && lead.ownerId !== user.id)) notFound();
+  const editable = canWorkLead(user, lead);
 
   const facts = [
     { k: 'Телефон', v: lead.phone, href: `tel:${lead.phone.replace(/[^\d+]/g, '')}` },

@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { currentUser } from '@/lib/auth';
-import { canEdit } from '@/lib/roles';
+import { can } from '@/lib/roles';
 import { NewsForm } from '../NewsForm';
 import styles from '../../ui.module.css';
 
 export default async function NewNewsPage() {
   const user = await currentUser();
-  if (!user || !canEdit(user.role)) redirect('/crm/news/');
+  if (!user || !can(user.role, 'content:manage')) redirect('/crm');
 
   return (
     <>

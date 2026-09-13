@@ -19,10 +19,14 @@ model User {
   role         String   @default("MANAGER")
   active       Boolean  @default(true)
   createdAt    DateTime @default(now())
+  /// Личный токен для привязки Telegram: ссылка t.me/<бот>?start=<токен>.
+  /// По нему бот понимает, чьи заявки слать в этот чат.
+  tgToken String? @unique
 
   leads    Lead[]
   clients  Client[]
   events   Event[]
+  tgChats  TelegramChat[]
 }
 
 /// Стадия канбана. Список стадий в прототипе редактируемый, поэтому хранится строкой.
@@ -150,10 +154,16 @@ model NewsPhoto {
 /// бота из чата.
 model TelegramChat {
   /// id чата строкой: у групп он отрицательный и больше 32 бит.
-  id        String   @id
-  type      String // private | group | supergroup
-  title     String
+  id    String @id
+  type  String // private | group | supergroup
+  title String
+  /// Чей это чат. null — общий чат отдела (подключён общим кодом), получает
+  /// все заявки. С владельцем — личный: состав заявок зависит от его роли.
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+
+  @@index([userId])
 }
 
 /// Служебное состояние бота: смещение опроса, имя бота, неделя последнего отчёта.

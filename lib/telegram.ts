@@ -12,6 +12,7 @@
  * посетителю не виден.
  */
 import { prisma } from './db';
+import { can } from './roles';
 
 const env = (key: string) => process.env[key]?.trim() ?? '';
 const token = () => env('TG_BOT_TOKEN');
@@ -72,8 +73,7 @@ const chatIsGone = (err: unknown) =>
   err instanceof TelegramError &&
   (err.code === 403 || (err.code === 400 && /chat not found/i.test(err.message)));
 
-async function broadcast(text: string, markup?: object) {
-  const chats = await prisma.telegramChat.findMany();
+async function broadcast(text: string, markup: object | undefined, chats: { id: string }[]) {
   for (const chat of chats) {
     try {
       await send(chat.id, text, markup);
@@ -92,6 +92,7 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 export type LeadNotice = {
   id: number;
   num: string;
+  ownerId?: string | null;
   fio: string;
   phone: string;
   email: string | null;
@@ -116,7 +117,24 @@ function crmBase() {
   return host ? `https://${host}` : env('NEXT_PUBLIC_SITE_URL');
 }
 
-/** Разослать заявку во все подключённые чаты. Ошибки только в лог. */
+/**
+ * Кому уходит заявка: общий чат отдела, личные чаты администраторов и
+ * руководителей (им — все заявки) и личный чат ответственного менеджера.
+ * Менеджер чужих заявок в Telegram не видит — в них персональные данные.
+ */
+async function leadRecipients(lead: LeadNotice) {
+  const chats = await prisma.telegramChat.findMany({
+    include: { user: { select: { id: true, role: true, active: true } } },
+  });
+
+  return chats.filter(({ user }) => {
+    if (!user) return true; // общий чат отдела
+    if (!user.active) return false; // доступ сотрудника отключён
+    return can(user.role, 'notify:allLeads') || user.id === lead.ownerId;
+  });
+}
+
+/** Разослать заявку тем, кому она полагается. Ошибки только в лог. */
 export async function notifyLead(lead: LeadNotice) {
   if (!botConfigured()) return;
   try {
@@ -143,9 +161,42 @@ export async function notifyLead(lead: LeadNotice) {
     }
     buttons.push([{ text: '✈️ Написать клиенту в Telegram', url: `tg://resolve?phone=${phone}` }]);
 
-    await broadcast(rows.join('\n'), { inline_keyboard: buttons });
+    await broadcast(rows.join('\n'), { inline_keyboard: buttons }, await leadRecipients(lead));
   } catch (err) {
     log(`заявка ${lead.num}: ${(err as Error).message}`);
+  }
+}
+
+/**
+ * Заявку назначили менеджеру — сообщаем ему. Заявка пришла на сайт раньше,
+ * и в тот момент менеджер её не получал: ответственного ещё не было.
+ */
+export async function notifyLeadAssigned(lead: LeadNotice, ownerId: string) {
+  if (!botConfigured()) return;
+  try {
+    const chats = await prisma.telegramChat.findMany({ where: { userId: ownerId } });
+    if (!chats.length) return;
+
+    const phone = phoneDigits(lead.phone);
+    const base = crmBase();
+    const buttons: { text: string; url: string }[][] = [];
+    if (base.startsWith('https://')) {
+      buttons.push([{ text: '📋 Открыть в CRM', url: `${base}/crm/leads/${lead.id}/` }]);
+    }
+    buttons.push([{ text: '✈️ Написать клиенту в Telegram', url: `tg://resolve?phone=${phone}` }]);
+
+    const rows = [
+      `📌 <b>Заявка ${esc(lead.num)} — теперь ваша</b>`,
+      lead.subject ? esc(lead.subject) : '',
+      '',
+      `👤 ${esc(lead.fio)}`,
+      `📞 +${phone}`,
+      lead.comment ? `💬 ${esc(lead.comment)}` : '',
+    ].filter((row, i) => row !== '' || i === 2);
+
+    await broadcast(rows.join('\n'), { inline_keyboard: buttons }, chats);
+  } catch (err) {
+    log(`назначение ${lead.num}: ${(err as Error).message}`);
   }
 }
 
@@ -168,6 +219,16 @@ async function setState(key: string, value: string) {
 }
 
 export const botUsername = () => getState('username');
+
+/**
+ * Ссылка-приглашение для сотрудника: он открывает её, жмёт «Старт», и чат
+ * привязывается к его учётной записи. Пока имя бота не получено (первый
+ * запуск опроса), ссылки нет.
+ */
+export async function botInviteLink(tgToken: string) {
+  const username = await botUsername();
+  return username ? `https://t.me/${username}?start=${tgToken}` : null;
+}
 
 // ─── Подключение чатов ───
 
@@ -233,10 +294,26 @@ async function handleUpdate(update: Update) {
   const tries = attempts.get(chat.id);
   if (tries && tries.until > Date.now()) return;
 
+  // Личный токен сотрудника: чат привязывается к его учётной записи, и состав
+  // заявок дальше определяет его роль. Общий код подключает чат отдела.
+  const owner = code ? await prisma.user.findFirst({ where: { tgToken: code, active: true } }) : null;
+  if (owner) {
+    attempts.delete(chat.id);
+    await prisma.telegramChat.create({
+      data: { id, type: chat.type, title: chatTitle(chat), userId: owner.id },
+    });
+    await send(
+      id,
+      `✅ Готово, ${esc(owner.fio)} — сюда будут приходить заявки с сайта НиАЗ.\n` +
+        (can(owner.role, 'notify:allLeads') ? 'Вы получаете все заявки.' : 'Вы получаете заявки, назначенные вам.'),
+    );
+    return;
+  }
+
   if (code && code === joinCode()) {
     attempts.delete(chat.id);
     await prisma.telegramChat.create({ data: { id, type: chat.type, title: chatTitle(chat) } });
-    await send(id, '✅ Готово — сюда будут приходить заявки с сайта НиАЗ.');
+    await send(id, '✅ Готово — сюда будут приходить все заявки с сайта НиАЗ.');
     return;
   }
 
@@ -281,8 +358,14 @@ async function maybeWeeklyReport() {
   }
 
   const dd = (d: Date) => new Date(d.getTime() + MSK).toISOString().slice(5, 10).split('-').reverse().join('.');
+  // Отчёт — сводка по отделу: общие чаты и те, кто видит все заявки.
+  const chats = await prisma.telegramChat.findMany({
+    include: { user: { select: { role: true, active: true } } },
+  });
   await broadcast(
     `📊 <b>Заявки с сайта НиАЗ</b>\n\nНеделя ${dd(lastMon)}–${dd(new Date(thisMon.getTime() - DAY))}: <b>${last}</b>\n${delta}`,
+    undefined,
+    chats.filter(({ user }) => !user || (user.active && can(user.role, 'notify:allLeads'))),
   );
 }
 
