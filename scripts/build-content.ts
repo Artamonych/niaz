@@ -9,6 +9,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { CATEGORIES, REMOVED_DONOR_SECTION, SECTION_INDEXES, type CategoryKey } from '../lib/catalog';
+import { cleanHtml, dropLeadingDuplicate, textLength } from './clean-html';
 
 const DONOR = join(process.cwd(), 'data', 'donor');
 const OUT = join(process.cwd(), 'data', 'content');
@@ -33,6 +34,8 @@ type Product = {
   category: CategoryKey;
   title: string;
   lead: string;
+  /** Описание исполнения из выгрузки донора. Пустое — текста не было. */
+  body: string;
   /** Базовое шасси вытаскиваем из первой содержательной строки комплектации. */
   chassis: string;
   spec: { no: string; text: string }[];
@@ -47,11 +50,38 @@ type StaticPage = {
   section: string;
   title: string;
   lead: string;
+  /**
+   * Тело статьи: очищенная разметка из выгрузки WP. Пустое — если текста нет
+   * или страница в списке исключений (см. SKIP_BODY).
+   */
+  body: string;
   images: string[];
   links: PageLink[];
   /** Дата публикации (YYYY-MM-DD) — есть только у записей WP, то есть у новостей. */
   date: string | null;
 };
+
+/**
+ * Чьи тела не выводим:
+ *   o-kompanii — на доноре там текст-генератор («сложившаяся структура
+ *     организации обеспечивает широкому кругу специалистов участие…»),
+ *     страницу нужно писать заново, см. п. 23 бэклога;
+ *   sitemap — карта сайта от плагина WordPress, её заменяет sitemap.xml.
+ */
+const SKIP_BODY = new Set(['o-kompanii', 'sitemap']);
+
+/** Меньше этого — не статья, а обрывок вроде подписи под картинкой. */
+const MIN_BODY = 200;
+
+/**
+ * Тело страницы для вывода: без первого абзаца, если он повторяет вводку.
+ * У донора вводка и есть первый абзац, поэтому иначе он идёт дважды подряд.
+ * Если после этого текста почти не осталось — тела у страницы нет.
+ */
+function bodyFor(bodies: Map<string, string>, slug: string, lead: string): string {
+  const body = dropLeadingDuplicate(bodies.get(slug) ?? '', lead);
+  return textLength(body) >= MIN_BODY ? body : '';
+}
 
 type Redirect = { source: string; destination: string; permanent: true };
 
@@ -152,18 +182,34 @@ async function main() {
   type WpPage = { slug: string; content?: { rendered?: string } };
   const wp: WpPage[] = JSON.parse(await readFile(join(DONOR, 'pages.json'), 'utf8'));
   const linksBySlug = new Map<string, PageLink[]>();
+  // Тело статьи берётся отсюда же: HTML-выгрузка сохранила только вводный
+  // абзац, из-за чего 53 страницы выглядели пустыми (п. 17 бэклога).
+  const bodyBySlug = new Map<string, string>();
+
   for (const w of wp) {
     if (!w.slug || w.slug === 'sitemap') continue; // карту сайта заменяет sitemap.xml
     const links = extractLinks(w.content?.rendered ?? '');
     if (links.length) linksBySlug.set(w.slug, links);
+
+    if (SKIP_BODY.has(w.slug)) continue;
+    const body = cleanHtml(w.content?.rendered ?? '');
+    if (textLength(body) >= MIN_BODY) bodyBySlug.set(w.slug, body);
   }
   // Даты публикации лежат только в выгрузке записей WP. HTML-выгрузка их
   // не сохранила, поэтому новости донора приезжали без дат.
-  type WpPost = { slug: string; date?: string };
+  type WpPost = { slug: string; date?: string; content?: { rendered?: string } };
   const posts: WpPost[] = JSON.parse(await readFile(join(DONOR, 'posts.json'), 'utf8'));
   const datesBySlug = new Map(
     posts.filter((p) => p.slug && p.date).map((p) => [p.slug, String(p.date).slice(0, 10)]),
   );
+
+  // Статьи информационного раздела и новости в WordPress — это записи, а не
+  // страницы: 52 материала и около 130 000 знаков лежат именно здесь.
+  for (const post of posts) {
+    if (!post.slug || SKIP_BODY.has(post.slug)) continue;
+    const body = cleanHtml(post.content?.rendered ?? '');
+    if (textLength(body) >= MIN_BODY) bodyBySlug.set(post.slug, body);
+  }
 
   await mkdir(OUT, { recursive: true });
 
@@ -171,7 +217,14 @@ async function main() {
   const staticPages: StaticPage[] = [];
   const redirects: Redirect[] = [];
   const unmapped: string[] = [];
-  const categoryLandings: { key: CategoryKey; slug: string; title: string; lead: string; images: string[] }[] = [];
+  const categoryLandings: {
+    key: CategoryKey;
+    slug: string;
+    title: string;
+    lead: string;
+    body: string;
+    images: string[];
+  }[] = [];
 
   for (const page of pages) {
     const section = sectionOf(page);
@@ -196,6 +249,7 @@ async function main() {
         slug: page.slug,
         title: page.h1 || page.title,
         lead: page.intro,
+        body: bodyFor(bodyBySlug, page.slug, page.intro),
         images: page.images,
       });
       continue;
@@ -209,6 +263,7 @@ async function main() {
         category,
         title: page.h1 || page.title,
         lead: page.intro,
+        body: bodyFor(bodyBySlug, page.slug, page.intro),
         chassis: extractChassis(page.spec),
         spec: page.spec,
         images: page.images,
@@ -223,6 +278,7 @@ async function main() {
       section: section || page.breadcrumbs[1]?.name || 'Информация',
       title: page.h1 || page.title,
       lead: page.intro,
+      body: bodyFor(bodyBySlug, page.slug, page.intro),
       images: page.images,
       links: linksBySlug.get(page.slug) ?? [],
       date: datesBySlug.get(page.slug) ?? null,
@@ -251,7 +307,10 @@ async function main() {
 
   console.log(`Товарных страниц: ${products.length}\n${byCat}`);
   console.log(`Посадочных страниц разделов: ${categoryLandings.length}`);
+  const withBody = staticPages.filter((p) => p.body);
+  const bodyChars = withBody.reduce((sum, p) => sum + textLength(p.body), 0);
   console.log(`Прочих страниц: ${staticPages.length}`);
+  console.log(`  с телом статьи: ${withBody.length}, суммарно ${bodyChars.toLocaleString('ru-RU')} знаков`);
   console.log('Индексов разделов: ' + sections.map((s) => `${s.slug} (${s.items.length})`).join(', '));
   console.log(`301-редиректов (снятый раздел «${REMOVED_DONOR_SECTION}»): ${redirects.length}`);
   console.log('  из них витрин галереи: ' + redirects.filter((r) => !r.destination.includes('produktsiya')).length);

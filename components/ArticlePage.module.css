@@ -23,6 +23,94 @@
   color: var(--text-on-light-dim);
 }
 
+/*
+ * Тело статьи: разметка донора после чистки (scripts/clean-html.ts).
+ * Колонка узкая — длинные строки читать тяжело; таблицы и заголовки
+ * выходят за неё, потому что это перечни дилеров и разделы текста.
+ */
+.body {
+  max-width: 78ch;
+  margin-top: clamp(24px, 3vw, 36px);
+  font-size: clamp(14px, 1.25vw, 16px);
+  line-height: 1.75;
+  color: var(--text-on-light);
+}
+
+.body p {
+  margin: 0 0 1.1em;
+}
+
+.body h2,
+.body h3,
+.body h4 {
+  margin: 1.8em 0 0.6em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.body h2 {
+  font-size: clamp(19px, 2vw, 26px);
+}
+
+.body h3 {
+  font-size: clamp(17px, 1.7vw, 21px);
+}
+
+.body h4 {
+  font-size: clamp(15px, 1.4vw, 18px);
+}
+
+.body ul,
+.body ol {
+  margin: 0 0 1.1em;
+  padding-inline-start: 1.3em;
+}
+
+.body li {
+  margin-bottom: 0.4em;
+}
+
+.body a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.body strong {
+  font-weight: 600;
+}
+
+/*
+ * Таблицы дилеров широкие: у партнёров это четыре колонки с адресами и
+ * телефонами. Делаем таблицу отдельно прокручиваемой — иначе страница
+ * уезжает вбок на телефоне.
+ */
+.body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0 0 1.4em;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.body td,
+.body th {
+  padding: 8px 12px;
+  border: 1px solid var(--paper-500);
+  vertical-align: top;
+  text-align: start;
+}
+
+.body th {
+  background: var(--paper-200);
+  font-weight: 600;
+}
+
 .gallery {
   display: grid;
   gap: clamp(10px, 1.2vw, 16px);

@@ -340,3 +340,65 @@
     max-width: none;
   }
 }
+
+/*
+ * Описание исполнения с донора: очищенная разметка (scripts/clean-html.ts).
+ * Оформление то же, что у статей, — читателю не должно быть заметно, что
+ * текст пришёл из другого источника.
+ */
+.body {
+  max-width: 78ch;
+  margin-top: 18px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text-on-light);
+}
+
+.body p {
+  margin: 0 0 1.1em;
+}
+
+.body h2,
+.body h3,
+.body h4 {
+  margin: 1.6em 0 0.5em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: clamp(17px, 1.7vw, 21px);
+}
+
+.body ul,
+.body ol {
+  margin: 0 0 1.1em;
+  padding-inline-start: 1.3em;
+}
+
+.body li {
+  margin-bottom: 0.4em;
+}
+
+.body a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Широкие таблицы прокручиваются сами, иначе страница уезжает вбок. */
+.body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0 0 1.4em;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.body td,
+.body th {
+  padding: 7px 11px;
+  border: 1px solid var(--paper-500);
+  vertical-align: top;
+  text-align: start;
+}

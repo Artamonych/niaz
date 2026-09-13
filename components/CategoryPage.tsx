@@ -42,6 +42,14 @@ export function CategoryPage({
         </div>
       </header>
 
+      {/*
+        Текст раздела с донора: очищенная разметка (scripts/clean-html.ts).
+        Стоит до каталога — это вводная часть страницы, а не примечание.
+      */}
+      {landing.body && (
+        <div className={styles.body} dangerouslySetInnerHTML={{ __html: landing.body }} />
+      )}
+
       <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
       <CatalogGrid items={items} showClass={category.key === 'asmp'} />

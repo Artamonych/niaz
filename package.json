@@ -14,7 +14,8 @@
     "check:urls": "tsx scripts/check-urls.ts",
     "smoke": "tsx scripts/smoke.ts",
     "db:inspect": "tsx scripts/inspect-db.ts",
-    "clean:test-leads": "tsx scripts/clean-test-leads.ts"
+    "clean:test-leads": "tsx scripts/clean-test-leads.ts",
+    "clean:photos": "tsx scripts/clean-orphan-photos.ts"
   },
   "dependencies": {
     "@prisma/adapter-better-sqlite3": "^7.10.0",

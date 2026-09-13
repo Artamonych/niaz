@@ -16,6 +16,8 @@ export type Product = {
   category: CategoryKey;
   title: string;
   lead: string;
+  /** Описание исполнения: очищенная разметка донора. Пусто — текста нет. */
+  body: string;
   chassis: string;
   spec: SpecRow[];
   images: string[];
@@ -29,6 +31,8 @@ export type StaticPage = {
   section: string;
   title: string;
   lead: string;
+  /** Тело статьи: очищенная разметка донора. Пустая строка — текста нет. */
+  body: string;
   images: string[];
   links: PageLink[];
   /** Дата публикации YYYY-MM-DD. Есть у записей WP — новостей; у страниц null. */
@@ -40,6 +44,8 @@ export type CategoryLanding = {
   slug: string;
   title: string;
   lead: string;
+  /** Текст посадочной страницы раздела. Пусто — текста не было. */
+  body: string;
   images: string[];
 };
 
@@ -70,12 +76,26 @@ export function chassisBrand(chassis: string): string {
   return brands.find((b) => chassis.toLowerCase().includes(b.toLowerCase())) ?? '';
 }
 
-/** Класс АСМП из названия: «…класса "В"» → «B». Латиница и кириллица смешаны в исходнике. */
+/**
+ * Класс АСМП из названия: «…класса "В"» → «B». В исходнике латиница и
+ * кириллица перемешаны: «класса А» может быть написано и той, и другой буквой.
+ *
+ * Границу слова `\b` использовать нельзя: в JavaScript она считает словом
+ * только латиницу, цифры и подчёркивание, поэтому «класса А» с кириллической
+ * «А» не распознавалось, и карточка оставалась без класса — а по нему идёт
+ * фильтр в каталоге. Проверяем соседний символ сами.
+ */
 export function asmpClass(title: string): 'A' | 'B' | 'C' | '' {
   const t = title.toLowerCase();
-  if (/класс\S*\s*[«"']?\s*[cс]\b|класса\s*[cс]\b/.test(t)) return 'C';
-  if (/класс\S*\s*[«"']?\s*[bвv]\b|класса\s*[bвv]\b/.test(t)) return 'B';
-  if (/класс\S*\s*[«"']?\s*[aа]\b|класса\s*[aа]\b/.test(t)) return 'A';
+  // Буква класса стоит отдельным словом или в кавычках: «класса А», класса "В".
+  // Без этого «представительского класса» читалось как класс A — буква
+  // подхватывалась из соседнего слова.
+  const rule = (letters: string) =>
+    new RegExp(`класс\\S*\\s+[«"'‹„]?[${letters}][»"'›“]?(?![a-zа-яё0-9])`);
+
+  if (rule('cс').test(t)) return 'C';
+  if (rule('bвv').test(t)) return 'B';
+  if (rule('aа').test(t)) return 'A';
   return '';
 }
 

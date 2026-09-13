@@ -123,6 +123,14 @@ export function ProductPage({ product }: { product: Product }) {
 
           {product.lead && <p className={styles.lead}>{product.lead}</p>}
 
+          {/*
+            Описание исполнения с донора. Разметку чистит scripts/clean-html.ts
+            на сборке контента — пользовательского ввода здесь нет.
+          */}
+          {product.body && (
+            <div className={styles.body} dangerouslySetInnerHTML={{ __html: product.body }} />
+          )}
+
           {groups.length > 0 && (
             <section className={styles.specSection}>
               <h2 className={styles.h2}>Комплектация исполнения</h2>
