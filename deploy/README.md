@@ -237,8 +237,12 @@ STARTTLS → подпись DKIM. Код — `lib/mailer.ts`, состав пи�
 
 1. Положить приватный ключ на том базы:
    `docker cp dkim-private.pem niaz-app:/app/data-db/` (том переживает деплой).
-2. В `~/apps/niaz/.env`: `MAIL_FROM=crm@niazcrm.ru`, `MAIL_HELO=mail.niazcrm.ru`,
+2. В `~/apps/niaz/.env`: `MAIL_FROM=noreply@niazcrm.ru`, `MAIL_HELO=mail.niazcrm.ru`,
    `DKIM_DOMAIN=niazcrm.ru`, `DKIM_SELECTOR=niaz`, при необходимости `MAIL_TO`.
+   Ящика `noreply@niazcrm.ru` не существует: приём почты на домене не
+   настроен, поле «куда отвечать» не ставится, а в тексте писем прямо
+   сказано, что отвечать не нужно. Отказы в доставке видны в CRM → «Почта»:
+   их сервис ловит в SMTP-диалоге, а не письмом.
 3. `docker compose -f docker-compose.vps.yml up -d --no-deps app` — правка
    только `.env`, пересборка не нужна.
 4. В логе появится `[mail] очередь запущена, отправитель …`. Пока `MAIL_FROM`
