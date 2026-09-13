@@ -22,7 +22,8 @@ export type AuditAction =
   | 'employee.block'
   | 'telegram.connect'
   | 'telegram.disconnect'
-  | 'password.change';
+  | 'password.change'
+  | 'mail.retry';
 
 /** Подписи для страницы журнала. */
 export const AUDIT_TITLES: Record<AuditAction, string> = {
@@ -41,6 +42,7 @@ export const AUDIT_TITLES: Record<AuditAction, string> = {
   'telegram.connect': 'Чат Telegram подключён',
   'telegram.disconnect': 'Чат Telegram отключён',
   'password.change': 'Смена пароля',
+  'mail.retry': 'Повторная отправка письма',
 };
 
 type Actor = { id: string; fio: string } | null;

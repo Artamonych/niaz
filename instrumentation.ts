@@ -10,4 +10,7 @@ export async function register() {
 
   const { startBot } = await import('./lib/telegram');
   startBot();
+
+  const { startMailQueue } = await import('./lib/mailer');
+  startMailQueue();
 }

@@ -1,69 +1,20 @@
 /**
- * Письма о заявках — второй канал к Telegram-боту (lib/telegram.ts).
+ * Что и кому писать. Сама отправка — в lib/mailer.ts: письма кладутся в
+ * очередь и уходят напрямую на почтовые узлы получателей.
  *
- * Кому что уходит, решают те же права, что и в боте: администратор и
- * руководитель получают все заявки, менеджер — только назначенные ему.
- * Пока в окружении нет ящика и пароля, отправка выключена и заявки живут
- * только в CRM: письма — дополнение, а не единственный путь.
- *
- * Провайдер российский (mail.ru, Яндекс) — персональные данные не должны
- * уходить за границу (152-ФЗ). Исходящий SMTP с VPS открыт, прокси не нужен.
+ * Кому что полагается, решают те же права, что и в Telegram-боте:
+ * администратор и руководитель получают все заявки, менеджер — назначенные
+ * ему. Почта — второй канал: пока она выключена или письмо не дошло, заявка
+ * всё равно лежит в CRM.
  */
-import nodemailer, { type Transporter } from 'nodemailer';
 import { prisma } from './db';
 import { can } from './roles';
 import { leadUrl } from './crm-url';
+import { mailerConfigured, queueMail } from './mailer';
 
 const env = (key: string) => process.env[key]?.trim() ?? '';
 
-export const mailConfigured = () => Boolean(env('MAIL_HOST') && env('MAIL_USER') && env('MAIL_PASS'));
-
-const log = (msg: string) => console.error(`[mail] ${msg}`);
-
-let warned = false;
-
-/**
- * Почта выключена? Молча пропускать нельзя: при неверных настройках письма
- * просто не приходят, и понять это неоткуда. Пишем в лог один раз за запуск.
- */
-function offline() {
-  if (mailConfigured()) return false;
-  if (!warned) {
-    warned = true;
-    log('не заданы MAIL_HOST / MAIL_USER / MAIL_PASS — письма не отправляются');
-  }
-  return true;
-}
-
-let cached: Transporter | null = null;
-
-function transport() {
-  if (!cached) {
-    // 465 — сразу TLS, 587 — STARTTLS: у mail.ru и Яндекса работают оба.
-    const port = Number(env('MAIL_PORT') || '465');
-    cached = nodemailer.createTransport({
-      host: env('MAIL_HOST'),
-      port,
-      secure: port === 465,
-      auth: { user: env('MAIL_USER'), pass: env('MAIL_PASS') },
-    });
-  }
-  return cached;
-}
-
-async function send(to: string[], subject: string, text: string) {
-  const recipients = [...new Set(to.filter(Boolean))];
-  if (!recipients.length) return;
-
-  await transport().sendMail({
-    from: env('MAIL_FROM') || env('MAIL_USER'),
-    to: recipients.join(', '),
-    subject,
-    text,
-  });
-}
-
-// ─── Заявки ───
+export const mailConfigured = mailerConfigured;
 
 export type LeadMail = {
   id: number;
@@ -87,7 +38,7 @@ export type LeadMail = {
 async function recipients(lead: LeadMail) {
   const shared = env('MAIL_TO')
     .split(',')
-    .map((a) => a.trim())
+    .map((address) => address.trim())
     .filter(Boolean);
 
   const staff = await prisma.user.findMany({
@@ -98,8 +49,8 @@ async function recipients(lead: LeadMail) {
   return [
     ...shared,
     ...staff
-      .filter((u) => can(u.role, 'notify:allLeads') || u.id === lead.ownerId)
-      .map((u) => u.email),
+      .filter((user) => can(user.role, 'notify:allLeads') || user.id === lead.ownerId)
+      .map((user) => user.email),
   ];
 }
 
@@ -129,37 +80,25 @@ function leadText(lead: LeadMail) {
     .join('\n\n');
 }
 
-/** Новая заявка с сайта. Ошибки только в лог: заявка уже сохранена в CRM. */
+/** Новая заявка с сайта. */
 export async function notifyLeadByMail(lead: LeadMail) {
-  if (offline()) return;
-  try {
-    await send(await recipients(lead), `Заявка ${lead.num} с сайта НиАЗ`, leadText(lead));
-  } catch (err) {
-    log(`заявка ${lead.num}: ${(err as Error).message}`);
-  }
+  await queueMail(await recipients(lead), `Заявка ${lead.num} с сайта НиАЗ`, leadText(lead));
 }
 
 /** Заявку назначили менеджеру — письмо только ему. */
 export async function notifyLeadAssignedByMail(lead: LeadMail, ownerId: string) {
-  if (offline()) return;
-  try {
-    const owner = await prisma.user.findFirst({
-      where: { id: ownerId, active: true },
-      select: { email: true },
-    });
-    if (!owner) return;
+  const owner = await prisma.user.findFirst({
+    where: { id: ownerId, active: true },
+    select: { email: true },
+  });
+  if (!owner) return;
 
-    await send(
-      [owner.email],
-      `Заявка ${lead.num} — теперь ваша`,
-      `Вас назначили ответственным по заявке.\n\n${leadText(lead)}`,
-    );
-  } catch (err) {
-    log(`назначение ${lead.num}: ${(err as Error).message}`);
-  }
+  await queueMail(
+    [owner.email],
+    `Заявка ${lead.num} — теперь ваша`,
+    `Вас назначили ответственным по заявке.\n\n${leadText(lead)}`,
+  );
 }
-
-// ─── Приглашение в бота ───
 
 /**
  * Письмо с личной ссылкой на бота: сотрудник переходит по ней, жмёт «Старт»,
@@ -167,9 +106,9 @@ export async function notifyLeadAssignedByMail(lead: LeadMail, ownerId: string) 
  * сказано прямо, пересылать её нельзя.
  */
 export async function sendBotInvite(to: string, fio: string, link: string) {
-  if (!mailConfigured()) throw new Error('Почта не настроена: письмо не отправлено');
+  if (!mailerConfigured()) throw new Error('Почта не настроена: письмо не отправлено');
 
-  await send(
+  await queueMail(
     [to],
     'Заявки НиАЗ в Telegram',
     [

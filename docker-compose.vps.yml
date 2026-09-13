@@ -46,13 +46,14 @@ services:
       TG_API_BASE: ${TG_API_BASE:-}
       TG_PROXY_SECRET: ${TG_PROXY_SECRET:-}
       TG_JOIN_CODE: ${TG_JOIN_CODE:-}
-      # Письма о заявках. Пусто — выключены (lib/mail.ts).
-      MAIL_HOST: ${MAIL_HOST:-}
-      MAIL_PORT: ${MAIL_PORT:-465}
-      MAIL_USER: ${MAIL_USER:-}
-      MAIL_PASS: ${MAIL_PASS:-}
+      # Письма о заявках: свой сервис отправки (lib/mailer.ts).
+      # Пусто — почта выключена. Ключ DKIM лежит на томе рядом с базой.
       MAIL_FROM: ${MAIL_FROM:-}
+      MAIL_HELO: ${MAIL_HELO:-}
       MAIL_TO: ${MAIL_TO:-}
+      DKIM_KEY_PATH: ${DKIM_KEY_PATH:-/app/data-db/dkim-private.pem}
+      DKIM_DOMAIN: ${DKIM_DOMAIN:-}
+      DKIM_SELECTOR: ${DKIM_SELECTOR:-niaz}
     volumes:
       - db:/app/data-db
       - uploads:/app/uploads

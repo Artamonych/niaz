@@ -21,6 +21,7 @@ import { removeNewsFiles } from '@/lib/uploads';
 import { parseVideo } from '@/lib/video';
 import { disconnectChat, notifyLeadAssigned } from '@/lib/telegram';
 import { notifyLeadAssignedByMail, sendBotInvite } from '@/lib/mail';
+import { retryMail } from '@/lib/mailer';
 import { botInviteLink } from '@/lib/telegram';
 
 export type ActionState = { error?: string; ok?: string };
@@ -46,6 +47,17 @@ async function requireLead(leadId: number) {
   if (!lead) throw new Error('Заявка не найдена');
   if (!canWorkLead(user, lead)) throw new Error('Эта заявка назначена другому сотруднику');
   return { user, lead };
+}
+
+/** Повторить отправку письма из очереди — вручную, из раздела «Почта». */
+export async function retryMailMessage(id: string) {
+  const user = await requireAction('settings:system');
+  const message = await prisma.mailMessage.findUnique({ where: { id }, select: { to: true } });
+  if (!message) return;
+
+  await retryMail(id);
+  await audit(user, 'mail.retry', `Письмо ${message.to}`);
+  revalidatePath('/crm/mail');
 }
 
 /**

@@ -22,6 +22,7 @@ const NAV: { href: string; label: string; needs?: Action }[] = [
   { href: '/crm/news', label: 'Новости', needs: 'content:manage' },
   { href: '/crm/employees', label: 'Сотрудники', needs: 'staff:manage' },
   { href: '/crm/audit', label: 'Журнал', needs: 'audit:view' },
+  { href: '/crm/mail', label: 'Почта', needs: 'settings:system' },
 ];
 
 export default async function DashLayout({ children }: { children: React.ReactNode }) {
