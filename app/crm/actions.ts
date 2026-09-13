@@ -280,8 +280,59 @@ export async function convertToClient(leadId: number) {
   redirect(`/crm/clients/${client.id}`);
 }
 
+/**
+ * Передача контрагента другому менеджеру. Вместе с карточкой переходят его
+ * заявки — иначе новый ответственный не увидит ни одной и не сможет работать.
+ *
+ * Авторство прошлых записей в истории не меняется: их писали другие люди, и
+ * подменять автора — значит испортить историю. Вместо этого добавляется
+ * отдельная запись о самой передаче.
+ */
+async function handOverClient(
+  user: { id: string; fio: string },
+  clientId: string,
+  clientName: string,
+  fromId: string | null,
+  toId: string | null,
+) {
+  const [from, to] = await Promise.all([
+    fromId ? prisma.user.findUnique({ where: { id: fromId }, select: { fio: true } }) : null,
+    toId ? prisma.user.findUnique({ where: { id: toId }, select: { fio: true } }) : null,
+  ]);
+
+  const was = from?.fio ?? 'без ответственного';
+  const now = to?.fio ?? 'без ответственного';
+  const text = `Контрагент передан: ${was} → ${now}`;
+
+  const leads = await prisma.lead.findMany({ where: { clientId }, select: { id: true } });
+
+  await prisma.$transaction([
+    prisma.lead.updateMany({ where: { clientId }, data: { ownerId: toId } }),
+    prisma.event.create({
+      data: { kind: 'system', clientId, authorId: user.id, authorName: user.fio, text },
+    }),
+    // По записи в ленту каждой заявки: менеджер смотрит заявку, а не карточку.
+    ...leads.map((lead) =>
+      prisma.event.create({
+        data: {
+          kind: 'system',
+          leadId: lead.id,
+          authorId: user.id,
+          authorName: user.fio,
+          text: `Ответственный: ${now} (вместе с контрагентом)`,
+        },
+      }),
+    ),
+  ]);
+
+  await audit(user, 'client.assign', `Контрагент ${clientName}`, `${was} → ${now}, заявок: ${leads.length}`);
+  revalidatePath('/crm');
+}
+
 const clientSchema = z.object({
   name: z.string().trim().min(2, 'Укажите название организации').max(200),
+  /** Ответственный менеджер. Меняют только те, кто вправе назначать заявки. */
+  managerId: z.string().trim().max(40).optional(),
   inn: z.string().trim().regex(/^(\d{10}|\d{12})?$/, 'ИНН — 10 или 12 цифр').optional(),
   kpp: z.string().trim().max(20).optional(),
   city: z.string().trim().max(100).optional(),
@@ -305,7 +356,7 @@ export async function saveClient(
   const user = await requireUser();
   const client = await prisma.client.findUnique({
     where: { id: clientId },
-    select: { managerId: true },
+    select: { managerId: true, name: true },
   });
   if (!client) return { error: 'Контрагент не найден' };
   if (!canEditClient(user, client)) {
@@ -315,8 +366,18 @@ export async function saveClient(
   const parsed = clientSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
 
-  await prisma.client.update({ where: { id: clientId }, data: parsed.data });
-  await audit(user, 'client.update', `Контрагент ${parsed.data.name}`);
+  const { managerId, ...fields } = parsed.data;
+  // Передавать контрагента другому вправе те же, кто назначает заявки.
+  const handover = can(user.role, 'leads:assign') && (managerId ?? '') !== (client.managerId ?? '');
+  const nextManagerId = handover ? managerId || null : undefined;
+
+  await prisma.client.update({
+    where: { id: clientId },
+    data: { ...fields, ...(nextManagerId !== undefined ? { managerId: nextManagerId } : {}) },
+  });
+
+  if (handover) await handOverClient(user, clientId, fields.name, client.managerId, nextManagerId ?? null);
+  else await audit(user, 'client.update', `Контрагент ${fields.name}`);
 
   revalidatePath(`/crm/clients/${clientId}`);
   revalidatePath('/crm/clients');
@@ -396,7 +457,52 @@ export async function saveEmployee(_prev: ActionState, formData: FormData): Prom
   return { ok: 'Сохранено' };
 }
 
-/** Сотрудников не удаляем: на них висят заявки и события. Отключаем доступ. */
+/**
+ * Удалить сотрудника насовсем. Пока на нём висят контрагенты — нельзя:
+ * сначала передайте их другому (карточка контрагента → «Ответственный»),
+ * вместе с ними перейдут и заявки.
+ *
+ * Заявки без контрагента становятся нераспределёнными, а история остаётся:
+ * имя автора хранится в событии строкой и переживает удаление учётной записи.
+ * Если удалять нечего — есть «Отключить»: доступ закрыт, данные на месте.
+ */
+export async function deleteEmployee(id: string): Promise<ActionState> {
+  const actor = await requireAction('staff:manage');
+  if (id === actor.id) return { error: 'Нельзя удалить самого себя' };
+
+  const employee = await prisma.user.findUnique({
+    where: { id },
+    select: { fio: true, _count: { select: { clients: true, leads: true } } },
+  });
+  if (!employee) return { error: 'Сотрудник не найден' };
+
+  if (employee._count.clients > 0) {
+    return {
+      error: `На сотруднике ${employee._count.clients} контрагент(ов) — сначала передайте их другому менеджеру`,
+    };
+  }
+
+  await prisma.$transaction([
+    // Заявки не удаляем: это история продаж. Просто снимаем ответственного.
+    prisma.lead.updateMany({ where: { ownerId: id }, data: { ownerId: null } }),
+    // Автор события остаётся подписью, ссылка на учётную запись обнуляется.
+    prisma.event.updateMany({ where: { authorId: id }, data: { authorId: null } }),
+    prisma.user.delete({ where: { id } }),
+  ]);
+
+  await audit(
+    actor,
+    'employee.delete',
+    `Сотрудник ${employee.fio}`,
+    employee._count.leads ? `заявок снято с ответственного: ${employee._count.leads}` : 'без заявок',
+  );
+
+  revalidatePath('/crm/employees');
+  revalidatePath('/crm');
+  return { ok: 'Сотрудник удалён' };
+}
+
+/** Отключить доступ, не удаляя: данные и история остаются на месте. */
 export async function toggleEmployee(id: string, active: boolean) {
   const actor = await requireAction('staff:manage');
   const employee = await prisma.user.update({ where: { id }, data: { active } });

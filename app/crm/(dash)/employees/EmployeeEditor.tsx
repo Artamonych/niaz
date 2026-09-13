@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState, useState, useTransition } from 'react';
-import { saveEmployee, toggleEmployee, type ActionState } from '../../actions';
+import { deleteEmployee, saveEmployee, toggleEmployee, type ActionState } from '../../actions';
 import { ROLES, ROLE_KEYS, roleTitle } from '@/lib/roles';
 import styles from '../ui.module.css';
 
@@ -26,10 +26,26 @@ export function EmployeeEditor({
   const [state, action, pending] = useActionState(saveEmployee, initial);
   const [editing, setEditing] = useState<Employee | null>(null);
   const [toggling, startToggle] = useTransition();
+  /** Кого удаляем: подтверждение спрашивается прямо в строке таблицы. */
+  const [confirming, setConfirming] = useState<string | null>(null);
+  const [removeError, setRemoveError] = useState<string | null>(null);
+
+  const remove = (id: string) =>
+    startToggle(async () => {
+      const result = await deleteEmployee(id);
+      setRemoveError(result?.error ?? null);
+      setConfirming(null);
+    });
 
   return (
     <div className={styles.grid}>
-      <div className={styles.tableWrap}>
+      <div>
+        {removeError && (
+          <p className={styles.error} style={{ marginBottom: 10 }}>
+            {removeError}
+          </p>
+        )}
+        <div className={styles.tableWrap}>
         <table className={styles.table} style={{ minWidth: 0 }}>
           <thead>
             <tr>
@@ -68,24 +84,61 @@ export function EmployeeEditor({
                   >
                     Изменить
                   </button>
-                  {/* Себя отключить нельзя — иначе можно потерять доступ к CRM. */}
-                  {employee.id !== currentUserId && (
-                    <button
-                      type="button"
-                      className={styles.ghost}
-                      disabled={toggling}
-                      onClick={() =>
-                        startToggle(() => toggleEmployee(employee.id, !employee.active))
-                      }
-                    >
-                      {employee.active ? 'Отключить' : 'Включить'}
-                    </button>
-                  )}
+                  {/* Себя отключить и удалить нельзя — потеряешь доступ к CRM. */}
+                  {employee.id !== currentUserId &&
+                    (confirming === employee.id ? (
+                      <>
+                        <span className={styles.dim} style={{ fontSize: 12.5, marginInlineEnd: 8 }}>
+                          Удалить насовсем?
+                        </span>
+                        <button
+                          type="button"
+                          className={styles.ghost}
+                          disabled={toggling}
+                          onClick={() => remove(employee.id)}
+                          style={{ marginInlineEnd: 8 }}
+                        >
+                          Да, удалить
+                        </button>
+                        <button
+                          type="button"
+                          className={styles.ghost}
+                          onClick={() => setConfirming(null)}
+                        >
+                          Нет
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          className={styles.ghost}
+                          disabled={toggling}
+                          onClick={() =>
+                            startToggle(() => toggleEmployee(employee.id, !employee.active))
+                          }
+                          style={{ marginInlineEnd: 8 }}
+                        >
+                          {employee.active ? 'Отключить' : 'Включить'}
+                        </button>
+                        <button
+                          type="button"
+                          className={styles.ghost}
+                          onClick={() => {
+                            setRemoveError(null);
+                            setConfirming(employee.id);
+                          }}
+                        >
+                          Удалить
+                        </button>
+                      </>
+                    ))}
                 </td>
               </tr>
             ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <section className={styles.panel}>

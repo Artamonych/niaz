@@ -12,7 +12,7 @@ const fmt = (d: Date) =>
 export default async function ClientPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  const [user, client] = await Promise.all([
+  const [user, client, managers] = await Promise.all([
     currentUser(),
     prisma.client.findUnique({
       where: { id },
@@ -21,6 +21,12 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
         leads: { include: { stage: true }, orderBy: { createdAt: 'desc' } },
         events: { orderBy: { createdAt: 'desc' }, take: 20 },
       },
+    }),
+    // Список для передачи контрагента другому менеджеру.
+    prisma.user.findMany({
+      where: { active: true },
+      select: { id: true, fio: true },
+      orderBy: { fio: 'asc' },
     }),
   ]);
 
@@ -47,7 +53,12 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
       </header>
 
       <div className={styles.grid}>
-        <ClientForm client={client} editable={editable} />
+        <ClientForm
+          client={client}
+          editable={editable}
+          managers={managers}
+          canAssign={can(user.role, 'leads:assign')}
+        />
 
         <div>
           <section className={styles.panel}>

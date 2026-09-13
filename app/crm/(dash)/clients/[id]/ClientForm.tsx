@@ -4,9 +4,12 @@ import { useActionState } from 'react';
 import { saveClient, type ActionState } from '../../../actions';
 import styles from '../../ui.module.css';
 
+type Manager = { id: string; fio: string };
+
 type Client = {
   id: string;
   name: string;
+  managerId: string | null;
   inn: string | null;
   kpp: string | null;
   city: string | null;
@@ -26,7 +29,18 @@ const initial: ActionState = {};
 
 const STATUSES = ['В работе', 'Активный', 'Приостановлен', 'Архив'];
 
-export function ClientForm({ client, editable }: { client: Client; editable: boolean }) {
+export function ClientForm({
+  client,
+  editable,
+  managers,
+  canAssign,
+}: {
+  client: Client;
+  editable: boolean;
+  managers: Manager[];
+  /** Передавать контрагента другому вправе администратор и руководитель. */
+  canAssign: boolean;
+}) {
   const [state, action, pending] = useActionState(saveClient.bind(null, client.id), initial);
 
   return (
@@ -60,6 +74,28 @@ export function ClientForm({ client, editable }: { client: Client; editable: boo
             <Field name="contact" label="Контактное лицо" defaultValue={client.contact} />
             <Field name="phone" label="Телефон" defaultValue={client.phone} />
           </div>
+
+          {canAssign && (
+            <label className={styles.field}>
+              <span className={styles.label}>Ответственный менеджер</span>
+              <select
+                name="managerId"
+                defaultValue={client.managerId ?? ''}
+                className={styles.select}
+              >
+                <option value="">Без ответственного</option>
+                {managers.map((manager) => (
+                  <option key={manager.id} value={manager.id}>
+                    {manager.fio}
+                  </option>
+                ))}
+              </select>
+              <span className={styles.dim} style={{ fontSize: 11.5, lineHeight: 1.5 }}>
+                При передаче другому менеджеру к нему перейдут и заявки этого
+                контрагента. История сохранится.
+              </span>
+            </label>
+          )}
 
           <Field name="email" label="Почта" defaultValue={client.email} type="email" />
           <Field name="address" label="Юридический адрес" defaultValue={client.address} />

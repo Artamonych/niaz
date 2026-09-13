@@ -20,6 +20,8 @@ export type AuditAction =
   | 'service.delete'
   | 'employee.save'
   | 'employee.block'
+  | 'employee.delete'
+  | 'client.assign'
   | 'telegram.connect'
   | 'telegram.disconnect'
   | 'password.change'
@@ -39,6 +41,8 @@ export const AUDIT_TITLES: Record<AuditAction, string> = {
   'service.delete': 'Услуга удалена',
   'employee.save': 'Сотрудник заведён или изменён',
   'employee.block': 'Доступ сотрудника',
+  'employee.delete': 'Сотрудник удалён',
+  'client.assign': 'Контрагент передан',
   'telegram.connect': 'Чат Telegram подключён',
   'telegram.disconnect': 'Чат Telegram отключён',
   'password.change': 'Смена пароля',
