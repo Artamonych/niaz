@@ -33,9 +33,12 @@ export function SiteMotion() {
     const lines = Array.from(document.querySelectorAll<HTMLElement>('[data-line]'));
     const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count]'));
 
+    // Разделители чертятся слева направо, направляющие колонок — сверху вниз.
+    const axis = (el: HTMLElement) => (el.dataset.line === 'y' ? 'scaleY' : 'scaleX');
+
     if (reduced) {
       lines.forEach((el) => {
-        el.style.transform = 'scaleX(1)';
+        el.style.transform = `${axis(el)}(1)`;
       });
       return () => {
         window.removeEventListener('scroll', onScroll);
@@ -47,14 +50,15 @@ export function SiteMotion() {
       (entries) => {
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
-          (e.target as HTMLElement).style.transform = 'scaleX(1)';
-          lineIo.unobserve(e.target);
+          const el = e.target as HTMLElement;
+          el.style.transform = `${axis(el)}(1)`;
+          lineIo.unobserve(el);
         });
       },
       { threshold: 0.2 },
     );
     lines.forEach((el) => {
-      el.style.transform = 'scaleX(0)';
+      el.style.transform = `${axis(el)}(0)`;
       lineIo.observe(el);
     });
 

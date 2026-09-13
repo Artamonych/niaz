@@ -54,6 +54,23 @@ const TEASERS = [
   },
 ];
 
+/**
+ * Направляющие колонок — «чертёжный» слой поверх фоновой сетки (п. 14 бэклога).
+ * Линии дочерчиваются сверху вниз, когда секция попадает в кадр: этим занят
+ * SiteMotion по data-line="y". Без JS и при prefers-reduced-motion они просто
+ * стоят на месте, поэтому вёрстка от анимации не зависит.
+ */
+function Guides() {
+  return (
+    <div className={styles.guides} aria-hidden="true">
+      <span data-line="y" />
+      <span data-line="y" />
+      <span data-line="y" />
+      <span data-line="y" />
+    </div>
+  );
+}
+
 export default async function HomePage() {
   // Лента читается на каждый запрос — почему, см. getNewsFeed.
   const news = await getNewsFeed(3);
@@ -61,13 +78,7 @@ export default async function HomePage() {
   return (
     <>
       <section className={`grid-bg ${styles.hero}`}>
-        {/* Направляющие колонок — «чертёжный» слой поверх сетки. */}
-        <div className={styles.guides} aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
+        <Guides />
 
         <div className={`shell ${styles.heroInner}`}>
           <div className={styles.heroText}>
@@ -132,6 +143,7 @@ export default async function HomePage() {
       </section>
 
       <section className={`grid-bg ${styles.countersBand}`}>
+        <Guides />
         <dl className={`shell ${styles.counters}`}>
           {COUNTERS.map((c) => (
             <div key={c.k} className={styles.counter}>
@@ -146,6 +158,7 @@ export default async function HomePage() {
       </section>
 
       <section className={`grid-bg ${styles.catsSection}`}>
+        <Guides />
         <div className="shell">
           <div className={styles.sectionHead}>
             <h2 className={styles.h2Dark}>Спецтехника</h2>
@@ -217,6 +230,7 @@ export default async function HomePage() {
 
       {news.length > 0 && (
         <section className={`grid-bg ${styles.newsSection}`}>
+          <Guides />
           <div className="shell">
             <div className={styles.sectionHead}>
               <h2 className={styles.h2Dark}>Новости завода</h2>
