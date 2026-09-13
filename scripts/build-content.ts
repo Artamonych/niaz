@@ -74,6 +74,28 @@ const SKIP_BODY = new Set(['o-kompanii', 'sitemap']);
 const MIN_BODY = 200;
 
 /**
+ * Парные фотогалереи донора: назывались одинаково и лежали двумя страницами.
+ * Снимки у них разные — пересечение один кадр из шести и одиннадцати, — но
+ * это одна и та же витрина, разбитая надвое. Сводим в одну: фотографии
+ * объединяются, второй адрес уходит 301-редиректом. Так пропадают и дубли
+ * заголовков (п. 22), и лишние страницы в индексе (п. 20).
+ *
+ * Порядок: [куда сводим, что присоединяем]. Оставляем ту, где снимков больше.
+ */
+const MERGE_GALLERIES: [string, string][] = [
+  ['asmp-3', 'asmp-2'],
+  ['sotsialnyy-3', 'sotsialnyy-2'],
+  ['volkswagen', 'volkswagen-3'],
+  // Две галереи ГАЗ: лежали в разных разделах донора («Информация» и
+  // «Галерея»), поэтому маркой не разводятся — заголовок у обеих и есть
+  // марка. Общих снимков нет вовсе, у первой их 18 против пяти.
+  ['gaz-2', 'gaz-3'],
+];
+
+/** Разделы донора, названные маркой шасси: это фотогалереи по маркам. */
+const GALLERY_MARKS = ['Volkswagen', 'ГАЗ', 'Mercedes', 'Renault', 'Peugeot', 'Citroen'];
+
+/**
  * Тело страницы для вывода: без первого абзаца, если он повторяет вводку.
  * У донора вводка и есть первый абзац, поэтому иначе он идёт дважды подряд.
  * Если после этого текста почти не осталось — тела у страницы нет.
@@ -81,6 +103,35 @@ const MIN_BODY = 200;
 function bodyFor(bodies: Map<string, string>, slug: string, lead: string): string {
   const body = dropLeadingDuplicate(bodies.get(slug) ?? '', lead);
   return textLength(body) >= MIN_BODY ? body : '';
+}
+
+/**
+ * Сводит парные фотогалереи и разводит одинаковые заголовки.
+ *
+ * Заголовок дополняется маркой из раздела («АСМП» → «АСМП — Renault») только
+ * у страниц без текста, то есть у самих галерей: у статей заголовки свои и
+ * трогать их незачем. Марка берётся из данных донора, а не выдумывается.
+ *
+ * Меняет переданные массивы: страницы и редиректы.
+ */
+function mergeGalleries(pages: StaticPage[], redirects: Redirect[]) {
+  for (const [keepSlug, mergeSlug] of MERGE_GALLERIES) {
+    const keep = pages.find((p) => p.slug === keepSlug);
+    const index = pages.findIndex((p) => p.slug === mergeSlug);
+    if (!keep || index === -1) continue;
+
+    const [merged] = pages.splice(index, 1);
+    // Снимки объединяем без повторов — общие кадры в парах единичны.
+    keep.images = [...new Set([...keep.images, ...merged.images])];
+    redirects.push({ source: `/${mergeSlug}`, destination: `/${keepSlug}/`, permanent: true });
+  }
+
+  for (const page of pages) {
+    if (page.body) continue;
+    const mark = GALLERY_MARKS.find((m) => m === page.section);
+    if (!mark || page.title.toLowerCase().includes(mark.toLowerCase())) continue;
+    page.title = `${page.title} — ${mark}`;
+  }
 }
 
 type Redirect = { source: string; destination: string; permanent: true };
@@ -287,6 +338,10 @@ async function main() {
     if (isProduct(page) && !category) unmapped.push(page.slug);
   }
 
+  // Слияние идёт после сбора всех страниц: объединяет парные галереи и
+  // дополняет их заголовки маркой, чтобы в индексе не было одинаковых.
+  mergeGalleries(staticPages, redirects);
+
   await writeFile(join(OUT, 'products.json'), JSON.stringify(products, null, 2), 'utf8');
   await writeFile(join(OUT, 'pages.json'), JSON.stringify(staticPages, null, 2), 'utf8');
   await writeFile(join(OUT, 'redirects.json'), JSON.stringify(redirects, null, 2), 'utf8');
@@ -316,6 +371,23 @@ async function main() {
   console.log('  из них витрин галереи: ' + redirects.filter((r) => !r.destination.includes('produktsiya')).length);
   const covered = products.length + staticPages.length + redirects.length + categoryLandings.length;
   console.log(`Покрыто URL: ${covered} из ${pages.length} (корень обслуживается главной)`);
+
+  /*
+   * Адреса картинок здесь ещё донорские: на свои их меняет второй шаг,
+   * scripts/localize-media.ts. Запускать эту сборку отдельно нельзя — данные
+   * с чужими адресами однажды уехали в коммит, и сайт снова потянул 1273
+   * файла с com-transport.ru. Поэтому предупреждаем прямо в выводе.
+   */
+  const donor = [...products, ...staticPages, ...categoryLandings].reduce(
+    (n, p) => n + p.images.filter((src) => src.includes('com-transport.ru')).length,
+    0,
+  );
+  if (donor) {
+    console.log(
+      `\n⚠ Картинок с адресами донора: ${donor}. Это промежуточное состояние — ` +
+        'запустите `npm run build:content`, иначе сайт будет тянуть фото с чужого сайта.',
+    );
+  }
   if (unmapped.length) console.log(`Без категории: ${unmapped.join(', ')}`);
 }
 

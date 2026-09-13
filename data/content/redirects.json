@@ -318,5 +318,25 @@
     "source": "/turisticheskiy-mikroavtobus-turist-lyuks-16-mest",
     "destination": "/produktsiya/",
     "permanent": true
+  },
+  {
+    "source": "/asmp-2",
+    "destination": "/asmp-3/",
+    "permanent": true
+  },
+  {
+    "source": "/sotsialnyy-2",
+    "destination": "/sotsialnyy-3/",
+    "permanent": true
+  },
+  {
+    "source": "/volkswagen-3",
+    "destination": "/volkswagen/",
+    "permanent": true
+  },
+  {
+    "source": "/gaz-3",
+    "destination": "/gaz-2/",
+    "permanent": true
   }
 ]
