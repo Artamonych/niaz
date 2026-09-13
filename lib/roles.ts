@@ -31,6 +31,10 @@ export type Action =
   | 'leads:assign'
   /** Работать с заявкой: стадия, комментарии, контрагент из заявки. */
   | 'leads:work'
+  /** Убрать заявку в корзину и вернуть обратно. */
+  | 'leads:delete'
+  /** Стереть заявку из корзины насовсем — обратного хода нет. */
+  | 'leads:purge'
   /** Видеть всех контрагентов, а не только своих. */
   | 'clients:viewAll'
   /** Править карточки контрагентов. */
@@ -50,6 +54,8 @@ const MATRIX: Record<Action, RoleKey[]> = {
   'leads:viewAll': ['ADMIN', 'HEAD', 'VIEWER'],
   'leads:assign': ['ADMIN', 'HEAD'],
   'leads:work': ['ADMIN', 'HEAD', 'MANAGER'],
+  'leads:delete': ['ADMIN', 'HEAD'],
+  'leads:purge': ['ADMIN'],
   'clients:viewAll': ['ADMIN', 'HEAD', 'VIEWER'],
   'clients:edit': ['ADMIN', 'HEAD', 'MANAGER'],
   'content:manage': ['ADMIN', 'HEAD'],

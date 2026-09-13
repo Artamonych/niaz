@@ -21,6 +21,7 @@ const NAV: { href: string; label: string; needs?: Action }[] = [
   { href: '/crm/services', label: 'Услуги', needs: 'content:manage' },
   { href: '/crm/news', label: 'Новости', needs: 'content:manage' },
   { href: '/crm/employees', label: 'Сотрудники', needs: 'staff:manage' },
+  { href: '/crm/leads/trash', label: 'Корзина', needs: 'leads:delete' },
   { href: '/crm/audit', label: 'Журнал', needs: 'audit:view' },
   { href: '/crm/mail', label: 'Почта', needs: 'settings:system' },
 ];

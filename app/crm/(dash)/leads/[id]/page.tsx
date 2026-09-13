@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
 import { can, canWorkLead } from '@/lib/roles';
 import { convertToClient } from '../../../actions';
+import { TrashActions } from '../TrashActions';
 import { CommentForm } from './CommentForm';
 import styles from './lead.module.css';
 
@@ -37,7 +38,10 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
   if (!lead) notFound();
   // Чужая заявка менеджеру не показывается: в ней контакты клиента.
   if (!user || (!can(user.role, 'leads:viewAll') && lead.ownerId !== user.id)) notFound();
-  const editable = canWorkLead(user, lead);
+  // Заявка в корзине только читается: работать с ней можно после возврата.
+  const trashed = lead.deletedAt !== null;
+  const editable = canWorkLead(user, lead) && !trashed;
+  const canTrash = can(user.role, 'leads:delete');
 
   const facts = [
     { k: 'Телефон', v: lead.phone, href: `tel:${lead.phone.replace(/[^\d+]/g, '')}` },
@@ -82,8 +86,23 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
               </form>
             )
           )}
+
+          {canTrash && (
+            <TrashActions
+              leadId={lead.id}
+              deleted={trashed}
+              canPurge={can(user.role, 'leads:purge')}
+            />
+          )}
         </div>
       </header>
+
+      {trashed && (
+        <p className={styles.trashed}>
+          Заявка в корзине{lead.deletedBy ? `, убрал её ${lead.deletedBy}` : ''}. На доске её нет;
+          чтобы снова работать с ней, верните её из корзины.
+        </p>
+      )}
 
       <div className={styles.grid}>
         <section>

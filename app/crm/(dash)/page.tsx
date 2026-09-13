@@ -14,8 +14,9 @@ export default async function LeadsPage() {
   const [stages, leads, owners] = await Promise.all([
     prisma.stage.findMany({ orderBy: { order: 'asc' } }),
     // Менеджер видит только свои заявки; нераспределённые — у руководителя.
+    // Убранные в корзину не показываются никому: их место в /crm/leads/trash.
     prisma.lead.findMany({
-      where: leadScope(user),
+      where: { ...leadScope(user), deletedAt: null },
       orderBy: { createdAt: 'desc' },
       include: { owner: { select: { id: true, fio: true } } },
     }),

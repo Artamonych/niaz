@@ -24,7 +24,7 @@ export default async function SettingsPage() {
     prisma.user.findUnique({ where: { id: user.id }, select: { tgToken: true } }),
     prisma.telegramChat.findMany({ where: { userId: user.id }, orderBy: { createdAt: 'asc' } }),
     isAdmin ? prisma.stage.findMany({ orderBy: { order: 'asc' } }) : [],
-    isAdmin ? prisma.lead.count() : 0,
+    isAdmin ? prisma.lead.count({ where: { deletedAt: null } }) : 0,
     isAdmin ? prisma.client.count() : 0,
     isAdmin
       ? prisma.telegramChat.findMany({

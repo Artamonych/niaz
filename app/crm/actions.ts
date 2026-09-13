@@ -216,6 +216,85 @@ export async function assignLead(leadId: number, ownerId: string | null) {
   revalidatePath(`/crm/leads/${leadId}`);
 }
 
+/**
+ * Корзина заявок (п. 30 бэклога). Заявка — персональные данные и история
+ * работы с клиентом, поэтому удаление обратимо: заявка уходит с доски и из
+ * счётчиков, но лежит в «Корзине», пока её не вернут или не сотрут.
+ */
+export async function trashLead(leadId: number) {
+  const user = await requireAction('leads:delete');
+  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
+  if (!lead || lead.deletedAt) return;
+
+  await prisma.$transaction([
+    prisma.lead.update({
+      where: { id: leadId },
+      data: { deletedAt: new Date(), deletedBy: user.fio },
+    }),
+    // Запись остаётся в ленте контрагента: там видно, что заявку убрали.
+    prisma.event.create({
+      data: {
+        kind: 'system',
+        leadId,
+        clientId: lead.clientId,
+        authorId: user.id,
+        authorName: user.fio,
+        text: 'Заявка убрана в корзину',
+      },
+    }),
+  ]);
+
+  await audit(user, 'lead.trash', `Заявка ${lead.num}`, lead.fio);
+
+  revalidatePath('/crm');
+  revalidatePath('/crm/leads/trash');
+  revalidatePath(`/crm/leads/${leadId}`);
+}
+
+export async function restoreLead(leadId: number) {
+  const user = await requireAction('leads:delete');
+  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
+  if (!lead || !lead.deletedAt) return;
+
+  await prisma.$transaction([
+    prisma.lead.update({ where: { id: leadId }, data: { deletedAt: null, deletedBy: null } }),
+    prisma.event.create({
+      data: {
+        kind: 'system',
+        leadId,
+        clientId: lead.clientId,
+        authorId: user.id,
+        authorName: user.fio,
+        text: 'Заявка возвращена из корзины',
+      },
+    }),
+  ]);
+
+  await audit(user, 'lead.restore', `Заявка ${lead.num}`, lead.fio);
+
+  revalidatePath('/crm');
+  revalidatePath('/crm/leads/trash');
+  revalidatePath(`/crm/leads/${leadId}`);
+}
+
+/**
+ * Стереть насовсем — только из корзины и только администратором. Лента
+ * событий заявки уходит каскадом; контрагент, заведённый из неё, остаётся.
+ */
+export async function purgeLead(leadId: number) {
+  const user = await requireAction('leads:purge');
+  const lead = await prisma.lead.findUnique({ where: { id: leadId } });
+  if (!lead) return;
+  if (!lead.deletedAt) throw new Error('Сначала уберите заявку в корзину');
+
+  await prisma.lead.delete({ where: { id: leadId } });
+  await audit(user, 'lead.purge', `Заявка ${lead.num}`, `${lead.fio}, стёрта насовсем`);
+
+  revalidatePath('/crm');
+  revalidatePath('/crm/leads/trash');
+  redirect('/crm/leads/trash/');
+}
+
 const commentSchema = z.string().trim().min(1, 'Комментарий пустой').max(4000);
 
 export async function addComment(

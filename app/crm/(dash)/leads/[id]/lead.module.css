@@ -142,6 +142,17 @@
   color: var(--text-on-dark);
 }
 
+/* Заявка в корзине: работать с ней нельзя, пока не вернут. */
+.trashed {
+  margin: 0 0 22px;
+  padding: 12px 16px;
+  background: rgba(217, 105, 79, 0.1);
+  border-inline-start: 2px solid var(--danger);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-on-dark-dim);
+}
+
 .commentForm {
   display: grid;
   gap: 10px;

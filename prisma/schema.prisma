@@ -68,10 +68,17 @@ model Lead {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  /// Корзина: заявка — персональные данные и история работы с клиентом, поэтому
+  /// удаление обратимо. Пока дата стоит, заявки нет ни на доске, ни в счётчиках.
+  deletedAt DateTime?
+  /// Кто удалил — строкой, чтобы подпись пережила удаление учётной записи.
+  deletedBy String?
+
   events Event[]
 
   @@index([stageId])
   @@index([createdAt])
+  @@index([deletedAt])
 }
 
 model Client {

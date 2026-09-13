@@ -344,8 +344,9 @@ async function maybeWeeklyReport() {
   const lastMon = new Date(thisMon.getTime() - 7 * DAY);
   const prevMon = new Date(thisMon.getTime() - 14 * DAY);
   const [last, prev] = await Promise.all([
-    prisma.lead.count({ where: { createdAt: { gte: lastMon, lt: thisMon } } }),
-    prisma.lead.count({ where: { createdAt: { gte: prevMon, lt: lastMon } } }),
+    // Убранные в корзину из счёта выпадают: в отчёте нужны живые заявки.
+    prisma.lead.count({ where: { createdAt: { gte: lastMon, lt: thisMon }, deletedAt: null } }),
+    prisma.lead.count({ where: { createdAt: { gte: prevMon, lt: lastMon }, deletedAt: null } }),
   ]);
 
   let delta: string;
