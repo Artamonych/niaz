@@ -1943,16 +1943,6 @@
     "date": null
   },
   {
-    "slug": "sitemap",
-    "section": "Информация",
-    "title": "Карта сайта",
-    "lead": "",
-    "body": "",
-    "images": [],
-    "links": [],
-    "date": null
-  },
-  {
     "slug": "sluzhba-krovi",
     "section": "Новости",
     "title": "Служба крови",
@@ -2162,16 +2152,6 @@
     "images": [],
     "links": [],
     "date": "2019-07-16"
-  },
-  {
-    "slug": "video",
-    "section": "Информация",
-    "title": "Видео",
-    "lead": "",
-    "body": "",
-    "images": [],
-    "links": [],
-    "date": null
   },
   {
     "slug": "vo-chto-mozhno-pereoborudovat-mikroavtobus-crafter",

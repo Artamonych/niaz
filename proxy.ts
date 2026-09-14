@@ -11,7 +11,22 @@ import { NextResponse, type NextRequest } from 'next/server';
  * получил бы полную копию сайта на втором адресе, — а вход в CRM оставался бы
  * доступен на публичном домене.
  */
+/**
+ * Адреса, снятые с сайта насовсем (п. 21 бэклога). 410 говорит поиску, что
+ * страницы больше нет: она выпадает из индекса быстрее, чем при 404, и робот
+ * не ищет ей замену. Держим со слэшем и без — trailingSlash добавляет свой
+ * редирект, а отвечать нужно одинаково.
+ */
+const GONE = new Set(['/video', '/video/']);
+
 export function proxy(request: NextRequest) {
+  if (GONE.has(request.nextUrl.pathname)) {
+    return new NextResponse('Страница удалена', {
+      status: 410,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+  }
+
   const crmHost = process.env.CRM_HOST?.trim().toLowerCase();
   if (!crmHost) return NextResponse.next();
 

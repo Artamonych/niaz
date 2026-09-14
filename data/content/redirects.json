@@ -215,6 +215,11 @@
     "permanent": true
   },
   {
+    "source": "/sitemap",
+    "destination": "/",
+    "permanent": true
+  },
+  {
     "source": "/turist",
     "destination": "/produktsiya/",
     "permanent": true
