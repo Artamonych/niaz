@@ -34,6 +34,12 @@ export function BrandLogo({
         width={file.width}
         height={file.height}
         priority
+        /*
+         * Без оптимизатора намеренно: файл и так 8 КБ, а браузеру без
+         * поддержки webp оптимизатор отдаёт JPEG — формат без прозрачности,
+         * и вместо знака на светлой шапке появлялась чёрная плашка.
+         */
+        unoptimized
         className={styles.mark}
       />
       {sub && <span className={`mono ${styles.sub}`}>{sub}</span>}
