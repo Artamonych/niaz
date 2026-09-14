@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { BrandLogo } from './BrandLogo';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { CATEGORIES, MENU } from '@/lib/catalog';
@@ -45,11 +46,9 @@ export function SiteHeader() {
     >
       <div className={`shell ${styles.bar}`}>
         <Link href="/" className={styles.logo}>
-          <span className={styles.markBox} aria-hidden="true">
-            Н
-          </span>
+          {/* На главной шапка тёмная, на остальных страницах светлая. */}
+          <BrandLogo size={20} tone={dark ? 'dark' : 'light'} />
           <span>
-            <span className={styles.mark}>НиАЗ</span>
             <span className={`mono ${styles.markSub}`}>
               Нижегородский
               <br />

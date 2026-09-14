@@ -44,18 +44,6 @@
   flex: none;
 }
 
-/* Знак: буква в квадратных скобках — скобки рисуются псевдоэлементами. */
-.markBox {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  font: 800 13px/1 var(--font-display);
-  color: var(--line);
-}
-
 .markBox::before,
 .markBox::after {
   content: '';
@@ -75,13 +63,6 @@
   right: 0;
   border: 1px solid var(--line);
   border-left: 0;
-}
-
-.mark {
-  display: block;
-  font: 700 14px/1.1 var(--font-display);
-  letter-spacing: 0.04em;
-  color: var(--fg);
 }
 
 /*

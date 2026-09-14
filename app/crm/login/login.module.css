@@ -20,18 +20,6 @@
   margin-bottom: 24px;
 }
 
-.mark {
-  font: 700 22px/1 var(--font-display);
-  letter-spacing: 0.04em;
-  color: var(--text-on-dark);
-}
-
-.markSub {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-}
-
 .h1 {
   font: 700 24px/1.15 var(--font-display);
   color: var(--text-on-dark);

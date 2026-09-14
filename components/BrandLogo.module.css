@@ -1,0 +1,19 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--logo-size) * 0.4);
+}
+
+/* Высота знака кратна кеглю соседнего текста: так он не выпадает из строки. */
+.mark {
+  display: block;
+  width: auto;
+  height: calc(var(--logo-size) * 1.5);
+}
+
+.sub {
+  align-self: center;
+  font-size: calc(var(--logo-size) * 0.45);
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}

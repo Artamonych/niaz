@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { prisma } from '@/lib/db';
 import { currentUser } from '@/lib/auth';
 import { can, roleTitle, type Action } from '@/lib/roles';
+import { BrandLogo } from '@/components/BrandLogo';
 import { logout } from '../actions';
 import styles from './dash.module.css';
 
@@ -52,8 +53,7 @@ export default async function DashLayout({ children }: { children: React.ReactNo
     <div className={styles.shell}>
       <aside className={styles.side}>
         <Link href="/crm/" className={styles.brand}>
-          <span className={styles.mark}>НиАЗ</span>
-          <span className={`mono ${styles.markSub}`}>CRM</span>
+          <BrandLogo sub="CRM" size={20} />
         </Link>
 
         <nav className={styles.nav}>
