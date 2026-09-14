@@ -34,7 +34,7 @@ export default function CatalogRootPage() {
               <div className={styles.catHead}>
                 <span className={`mono ${styles.no}`}>{category.no}</span>
                 <h2 className={styles.catTitle}>
-                  <Link href={`/${category.slug}`}>{category.title}</Link>
+                  <Link href={`/${category.slug}/`}>{category.title}</Link>
                 </h2>
                 <p className={styles.catLead}>{category.lead}</p>
               </div>
@@ -42,14 +42,14 @@ export default function CatalogRootPage() {
               <ul className={styles.items}>
                 {items.slice(0, 6).map((item) => (
                   <li key={item.slug}>
-                    <Link href={`/${item.slug}`} className={styles.item}>
+                    <Link href={`/${item.slug}/`} className={styles.item}>
                       {item.title}
                     </Link>
                   </li>
                 ))}
               </ul>
 
-              <Link href={`/${category.slug}`} className={`mono ${styles.more}`}>
+              <Link href={`/${category.slug}/`} className={`mono ${styles.more}`}>
                 Все исполнения — {items.length} →
               </Link>
             </section>

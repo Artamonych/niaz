@@ -6,7 +6,13 @@ import { prisma } from './db';
 const COOKIE = 'niaz_session';
 const MAX_AGE = 60 * 60 * 8; // рабочая смена
 
-export type Session = { userId: string; role: string; fio: string };
+/**
+ * Что лежит в куке. `pv` — поколение пароля на момент входа: после смены
+ * пароля номер в базе растёт, и все выданные раньше куки перестают подходить
+ * (п. 34 бэклога). Роль и ФИО здесь только для удобства — при проверке прав
+ * они всё равно перечитываются из базы.
+ */
+export type Session = { userId: string; role: string; fio: string; pv: number };
 
 function secret(): Uint8Array {
   const value = process.env.AUTH_SECRET;
@@ -56,8 +62,20 @@ export async function currentUser() {
 
   const user = await prisma.user.findUnique({
     where: { id: session.userId },
-    select: { id: true, fio: true, email: true, role: true, active: true },
+    select: {
+      id: true,
+      fio: true,
+      email: true,
+      role: true,
+      active: true,
+      passwordVersion: true,
+    },
   });
 
-  return user?.active ? user : null;
+  if (!user?.active) return null;
+  // Пароль сменили (сам сотрудник или администратор сбросом) — старая кука
+  // больше не пускает, даже если её срок ещё не вышел.
+  if (user.passwordVersion !== session.pv) return null;
+
+  return user;
 }

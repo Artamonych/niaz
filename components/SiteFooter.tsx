@@ -19,7 +19,7 @@ export function SiteFooter() {
           <ul className={styles.list}>
             {CATEGORIES.map((c) => (
               <li key={c.key}>
-                <Link href={`/${c.slug}`} className={`u-underline ${styles.link}`}>
+                <Link href={`/${c.slug}/`} className={`u-underline ${styles.link}`}>
                   {c.short}
                 </Link>
               </li>
@@ -31,37 +31,37 @@ export function SiteFooter() {
           <p className={styles.colTitle}>Заказчикам</p>
           <ul className={styles.list}>
             <li>
-              <Link href="/tendery" className={`u-underline ${styles.link}`}>
+              <Link href="/tendery/" className={`u-underline ${styles.link}`}>
                 Тендерам
               </Link>
             </li>
             <li>
-              <Link href="/inzheneriya" className={`u-underline ${styles.link}`}>
+              <Link href="/inzheneriya/" className={`u-underline ${styles.link}`}>
                 Инженерия и производство
               </Link>
             </li>
             <li>
-              <Link href="/sertifikatsiya" className={`u-underline ${styles.link}`}>
+              <Link href="/sertifikatsiya/" className={`u-underline ${styles.link}`}>
                 Сертификация
               </Link>
             </li>
             <li>
-              <Link href="/garantii" className={`u-underline ${styles.link}`}>
+              <Link href="/garantii/" className={`u-underline ${styles.link}`}>
                 Гарантии
               </Link>
             </li>
             <li>
-              <Link href="/partnery" className={`u-underline ${styles.link}`}>
+              <Link href="/partnery/" className={`u-underline ${styles.link}`}>
                 Партнёры
               </Link>
             </li>
             <li>
-              <Link href="/o-kompanii" className={`u-underline ${styles.link}`}>
+              <Link href="/o-kompanii/" className={`u-underline ${styles.link}`}>
                 О заводе
               </Link>
             </li>
             <li>
-              <Link href="/novosti" className={`u-underline ${styles.link}`}>
+              <Link href="/novosti/" className={`u-underline ${styles.link}`}>
                 Новости
               </Link>
             </li>
@@ -81,7 +81,7 @@ export function SiteFooter() {
           </p>
           <ul className={styles.list}>
             <li>
-              <Link href="/kontakty" className={`u-underline ${styles.link}`}>
+              <Link href="/kontakty/" className={`u-underline ${styles.link}`}>
                 Адрес и реквизиты
               </Link>
             </li>
@@ -91,7 +91,7 @@ export function SiteFooter() {
 
       <div className={`shell ${styles.legal}`}>
         <span>© {new Date().getFullYear()} ООО «Нижегородский автомобильный завод»</span>
-        <Link href="/politika-konfidentsialnosti" className={styles.legalLink}>
+        <Link href="/politika-konfidentsialnosti/" className={styles.legalLink}>
           Политика конфиденциальности
         </Link>
       </div>

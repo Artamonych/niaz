@@ -72,7 +72,7 @@ export default async function ClientPage({ params }: { params: Promise<{ id: str
                     {client.leads.map((lead) => (
                       <tr key={lead.id}>
                         <td>
-                          <Link href={`/crm/leads/${lead.id}`} className={`mono ${styles.rowLink}`}>
+                          <Link href={`/crm/leads/${lead.id}/`} className={`mono ${styles.rowLink}`}>
                             {lead.num}
                           </Link>
                         </td>

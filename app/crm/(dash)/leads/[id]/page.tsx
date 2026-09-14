@@ -57,7 +57,7 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
 
   return (
     <>
-      <Link href="/crm" className={`mono ${styles.back}`}>
+      <Link href="/crm/" className={`mono ${styles.back}`}>
         ← Все заявки
       </Link>
 
@@ -74,7 +74,7 @@ export default async function LeadPage({ params }: { params: Promise<{ id: strin
           </span>
 
           {lead.client ? (
-            <Link href={`/crm/clients/${lead.client.id}`} className={styles.clientLink}>
+            <Link href={`/crm/clients/${lead.client.id}/`} className={styles.clientLink}>
               Контрагент: {lead.client.name}
             </Link>
           ) : (

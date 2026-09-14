@@ -109,7 +109,7 @@ export function LeadForm({ subject }: Props) {
         <input type="checkbox" name="consent" required />
         <span>
           Согласен на обработку персональных данных в соответствии с{' '}
-          <Link href="/politika-konfidentsialnosti" className={styles.consentLink}>
+          <Link href="/politika-konfidentsialnosti/" className={styles.consentLink}>
             политикой конфиденциальности
           </Link>
         </span>

@@ -3,6 +3,7 @@
 import { randomBytes, randomUUID } from 'node:crypto';
 
 import { revalidatePath } from 'next/cache';
+import { headers } from 'next/headers';
 import { after } from 'next/server';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
@@ -134,6 +135,38 @@ const loginSchema = z.object({
   password: z.string().min(1, 'Введите пароль'),
 });
 
+/**
+ * Защита от перебора пароля (п. 34 бэклога).
+ *
+ * Счёт ведётся в памяти процесса: приложение одно, отдельная таблица ради
+ * этого не нужна, а запись в базу на каждую попытку сама стала бы рычагом
+ * нагрузки. После перезапуска счёт обнуляется — для CRM отдела это приемлемо.
+ * Считаем и по учётной записи (подбор пароля к конкретному человеку), и по
+ * адресу в сети (перебор учёток подряд).
+ */
+const LOGIN_LIMIT = { windowMs: 15 * 60_000, max: 10 };
+const loginFails = new Map<string, number[]>();
+
+const freshFails = (key: string, now: number) =>
+  (loginFails.get(key) ?? []).filter((t) => now - t < LOGIN_LIMIT.windowMs);
+
+function loginBlocked(keys: string[]): boolean {
+  const now = Date.now();
+  return keys.some((key) => freshFails(key, now).length >= LOGIN_LIMIT.max);
+}
+
+function loginFailed(keys: string[]) {
+  const now = Date.now();
+  for (const key of keys) loginFails.set(key, [...freshFails(key, now), now]);
+}
+
+/**
+ * Хеш, с которым сверяется пароль, когда учётной записи нет. Без него ответ на
+ * несуществующий адрес приходит заметно быстрее, и по задержке видно, заведён
+ * ли такой сотрудник.
+ */
+let absentHash: Promise<string> | null = null;
+
 export async function login(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const parsed = loginSchema.safeParse({
     email: formData.get('email'),
@@ -143,13 +176,35 @@ export async function login(_prev: ActionState, formData: FormData): Promise<Act
     return { error: parsed.error.issues[0].message };
   }
 
+  const head = await headers();
+  const ip = head.get('x-forwarded-for')?.split(',')[0].trim() ?? head.get('x-real-ip') ?? 'unknown';
+  const keys = [`email:${parsed.data.email}`, `ip:${ip}`];
+
+  if (loginBlocked(keys)) {
+    return { error: 'Слишком много попыток входа. Попробуйте через четверть часа.' };
+  }
+
   const user = await prisma.user.findUnique({ where: { email: parsed.data.email } });
   // Одна формулировка на «нет пользователя» и «неверный пароль»: не подсказываем перебором.
-  if (!user || !user.active || !(await verifyPassword(parsed.data.password, user.passwordHash))) {
+  if (!user || !user.active) {
+    absentHash ??= hashPassword(randomUUID());
+    await verifyPassword(parsed.data.password, await absentHash);
+    loginFailed(keys);
+    return { error: 'Неверная почта или пароль' };
+  }
+  if (!(await verifyPassword(parsed.data.password, user.passwordHash))) {
+    loginFailed(keys);
     return { error: 'Неверная почта или пароль' };
   }
 
-  await createSession({ userId: user.id, role: user.role, fio: user.fio });
+  for (const key of keys) loginFails.delete(key);
+
+  await createSession({
+    userId: user.id,
+    role: user.role,
+    fio: user.fio,
+    pv: user.passwordVersion,
+  });
   redirect('/crm');
 }
 
@@ -538,7 +593,13 @@ async function issueTempPassword(
 
   await prisma.user.update({
     where: { id: user.id },
-    data: { passwordHash: await hashPassword(password), mustChangePassword: true, tgToken },
+    data: {
+      passwordHash: await hashPassword(password),
+      mustChangePassword: true,
+      tgToken,
+      // Сброс доступа обязан выбить того, кто сидит по старому паролю.
+      passwordVersion: { increment: 1 },
+    },
   });
 
   const loginUrl = crmBase() ? `${crmBase()}/crm/login/` : '';
@@ -636,9 +697,30 @@ export async function setInitialPassword(
   const parsed = firstPasswordSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { error: parsed.error.issues[0].message };
 
-  await prisma.user.update({
+  // Действие годится только для временного пароля: текущий здесь не
+  // спрашивается, и без этой проверки чужой открытой сессии хватило бы, чтобы
+  // назначить свой пароль и закрепиться в ней (п. 34 бэклога).
+  const record = await prisma.user.findUnique({
     where: { id: user.id },
-    data: { passwordHash: await hashPassword(parsed.data.next), mustChangePassword: false },
+    select: { mustChangePassword: true },
+  });
+  if (!record?.mustChangePassword) redirect('/crm');
+
+  const updated = await prisma.user.update({
+    where: { id: user.id },
+    data: {
+      passwordHash: await hashPassword(parsed.data.next),
+      mustChangePassword: false,
+      passwordVersion: { increment: 1 },
+    },
+    select: { role: true, fio: true, passwordVersion: true },
+  });
+  // Своя же кука помнит прежнее поколение пароля — выдаём её заново.
+  await createSession({
+    userId: user.id,
+    role: updated.role,
+    fio: updated.fio,
+    pv: updated.passwordVersion,
   });
   await audit(user, 'password.change', `Сотрудник ${user.fio}`, 'заменил временный пароль');
 
@@ -721,9 +803,20 @@ export async function changePassword(
     return { error: 'Текущий пароль неверен' };
   }
 
-  await prisma.user.update({
+  const updated = await prisma.user.update({
     where: { id: user.id },
-    data: { passwordHash: await hashPassword(parsed.data.next) },
+    data: {
+      passwordHash: await hashPassword(parsed.data.next),
+      passwordVersion: { increment: 1 },
+    },
+    select: { role: true, fio: true, passwordVersion: true },
+  });
+  // Прочие сессии — забытый браузер, чужое устройство — после смены не работают.
+  await createSession({
+    userId: user.id,
+    role: updated.role,
+    fio: updated.fio,
+    pv: updated.passwordVersion,
   });
   await audit(user, 'password.change', `Сотрудник ${user.fio}`, 'сменил себе пароль');
 
@@ -850,9 +943,12 @@ export async function deleteNewsPhoto(photoId: string) {
 }
 
 export async function setNewsCover(photoId: string) {
-  await requireAction('content:manage');
+  const user = await requireAction('content:manage');
 
-  const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
+  const photo = await prisma.newsPhoto.findUnique({
+    where: { id: photoId },
+    include: { post: { select: { title: true } } },
+  });
   if (!photo) return;
 
   await prisma.$transaction([
@@ -860,13 +956,18 @@ export async function setNewsCover(photoId: string) {
     prisma.newsPhoto.update({ where: { id: photoId }, data: { isCover: true } }),
   ]);
 
+  await audit(user, 'news.photo', `Новость «${photo.post.title}»`, 'выбрано превью');
+
   revalidatePath(`/crm/news/${photo.postId}`);
 }
 
 export async function moveNewsPhoto(photoId: string, step: -1 | 1) {
-  await requireAction('content:manage');
+  const user = await requireAction('content:manage');
 
-  const photo = await prisma.newsPhoto.findUnique({ where: { id: photoId } });
+  const photo = await prisma.newsPhoto.findUnique({
+    where: { id: photoId },
+    include: { post: { select: { title: true } } },
+  });
   if (!photo) return;
 
   const photos = await prisma.newsPhoto.findMany({
@@ -882,6 +983,8 @@ export async function moveNewsPhoto(photoId: string, step: -1 | 1) {
   await prisma.$transaction(
     photos.map((p, order) => prisma.newsPhoto.update({ where: { id: p.id }, data: { order } })),
   );
+
+  await audit(user, 'news.photo', `Новость «${photo.post.title}»`, 'переставлено фото');
 
   revalidatePath(`/crm/news/${photo.postId}`);
 }

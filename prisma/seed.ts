@@ -2,7 +2,10 @@
  * Наполнение CRM: стадии канбана, услуги и учётные записи отдела продаж.
  * Демо-заявки и контрагенты повторяют прототип — чтобы заказчику было что смотреть.
  *
- * Запуск: npx prisma db seed
+ * Только для разработки: на бою базу наполняет bootstrap.ts, где учётная
+ * запись администратора заводится из ADMIN_EMAIL/ADMIN_PASSWORD.
+ *
+ * Запуск: SEED_PASSWORD=... npx tsx prisma/seed.ts
  */
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { PrismaClient } from '../lib/generated/prisma/client';
@@ -69,8 +72,16 @@ async function main() {
     });
   }
 
-  // Единый стартовый пароль: заказчик меняет его при первом входе.
-  const passwordHash = await bcrypt.hash('niaz2026', 10);
+  // Пароля в коде нет намеренно (п. 34 бэклога): скрипт, запущенный по ошибке
+  // против боевой базы, завёл бы учётные записи с общеизвестным паролем.
+  const password = process.env.SEED_PASSWORD;
+  if (!password) {
+    throw new Error(
+      'SEED_PASSWORD не задан. Это скрипт демо-данных для разработки: ' +
+        'задайте пароль в переменной окружения. Боевую базу наполняет bootstrap.ts.',
+    );
+  }
+  const passwordHash = await bcrypt.hash(password, 10);
   for (const person of STAFF) {
     await prisma.user.upsert({
       where: { email: person.email },
@@ -107,7 +118,7 @@ async function main() {
     заявки: await prisma.lead.count(),
   };
   console.log('База наполнена:', counts);
-  console.log('Вход: admin@niaz.ru / niaz2026');
+  console.log('Вход: admin@niaz.ru, пароль — из SEED_PASSWORD.');
 }
 
 main()

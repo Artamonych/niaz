@@ -29,21 +29,21 @@ const TEASERS = [
   {
     label: 'Предприятие',
     title: 'О заводе',
-    href: '/o-kompanii/',
+    href: '/o-kompanii//',
     more: 'О компании',
     items: MENU.about[0].items,
   },
   {
     label: 'Сервис',
     title: 'АСМП-сервис',
-    href: '/garantii/',
+    href: '/garantii//',
     more: 'Гарантии и документы',
     items: MENU.service[0].items,
   },
   {
     label: 'Собственное производство',
     title: 'Инженерия',
-    href: '/inzheneriya/',
+    href: '/inzheneriya//',
     more: 'Производственные мощности',
     // Участки со страницы «Инженерия» — оборудование подтверждено съёмкой цехов.
     items: [
@@ -123,10 +123,10 @@ export default async function HomePage() {
             </p>
 
             <div className={styles.heroActions}>
-              <Link href="/produktsiya" className={styles.primary}>
+              <Link href="/produktsiya/" className={styles.primary}>
                 Каталог продукции
               </Link>
-              <Link href="/tendery" className={`u-corner ${styles.secondary}`}>
+              <Link href="/tendery/" className={`u-corner ${styles.secondary}`}>
                 Тендерам и госзаказчикам
               </Link>
             </div>
@@ -171,7 +171,7 @@ export default async function HomePage() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <h2 className={styles.h2Dark}>Спецтехника</h2>
-            <Link href="/produktsiya" className={`u-underline ${styles.allLink}`}>
+            <Link href="/produktsiya/" className={`u-underline ${styles.allLink}`}>
               Весь каталог →
             </Link>
           </div>
@@ -183,7 +183,7 @@ export default async function HomePage() {
               const photo = items.find((p) => p.images[0])?.images[0];
 
               return (
-                <Link key={c.key} href={`/${c.slug}`} className={`u-corner ${styles.cat}`}>
+                <Link key={c.key} href={`/${c.slug}/`} className={`u-corner ${styles.cat}`}>
                   <span className={styles.catPhoto}>
                     {photo ? (
                       <Image

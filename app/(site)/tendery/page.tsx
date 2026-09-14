@@ -39,13 +39,13 @@ const DOCS = [
     t: 'Положение о гарантийных обязательствах',
     note: 'сроки и объём гарантии завода',
     ready: true,
-    href: '/polozhenie-o-garantiynyh-obyazatelstvah',
+    href: '/polozhenie-o-garantiynyh-obyazatelstvah/',
   },
   {
     t: 'Порядок обращения при гарантийном случае',
     note: 'регламент и контакты службы качества',
     ready: true,
-    href: '/poryadok-obrascheniya-pri-garantiynom-sluchae',
+    href: '/poryadok-obrascheniya-pri-garantiynom-sluchae/',
   },
   {
     t: 'Шаблон технического задания',

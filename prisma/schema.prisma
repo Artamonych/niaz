@@ -21,6 +21,10 @@ model User {
   /// Пароль выдан системой и его нужно сменить при первом входе: временный
   /// пароль уходит письмом, а письмо — не место для постоянного пароля.
   mustChangePassword Boolean @default(false)
+  /// Номер поколения пароля. Он попадает в сессию, и после смены пароля все
+  /// ранее выданные куки перестают подходить — иначе украденная сессия живёт
+  /// своей жизнью ещё восемь часов.
+  passwordVersion Int @default(0)
   createdAt    DateTime @default(now())
   /// Личный токен для привязки Telegram: ссылка t.me/<бот>?start=<токен>.
   /// По нему бот понимает, чьи заявки слать в этот чат.
@@ -82,6 +86,9 @@ model Lead {
   @@index([stageId])
   @@index([createdAt])
   @@index([deletedAt])
+  // Доска менеджера фильтрует по ответственному, карточка контрагента — по нему.
+  @@index([ownerId])
+  @@index([clientId])
 }
 
 model Client {
@@ -111,6 +118,10 @@ model Client {
 
   leads  Lead[]
   events Event[]
+
+  // Список контрагентов фильтруется по ответственному и сортируется по дате.
+  @@index([managerId])
+  @@index([createdAt])
 }
 
 model Service {

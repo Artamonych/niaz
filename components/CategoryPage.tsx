@@ -25,7 +25,7 @@ export function CategoryPage({
 
   return (
     <div className="shell">
-      <Breadcrumbs items={[{ name: 'Продукция', href: '/produktsiya' }, { name: category.short }]} />
+      <Breadcrumbs items={[{ name: 'Продукция', href: '/produktsiya/' }, { name: category.short }]} />
 
       <header className={styles.head}>
         <span className={`mono ${styles.no}`}>{category.no}</span>
@@ -33,7 +33,7 @@ export function CategoryPage({
         <p className={styles.lead}>{landing.lead || category.lead}</p>
 
         <div className={styles.actions}>
-          <Link href="/tendery" className={`u-corner ${styles.ghost}`}>
+          <Link href="/tendery/" className={`u-corner ${styles.ghost}`}>
             Документы для закупки
           </Link>
           <Link href="#zapros" className={`u-corner ${styles.ghost}`}>

@@ -298,6 +298,10 @@ async function handleUpdate(update: Update) {
     await prisma.telegramChat.create({
       data: { id, type: chat.type, title: chatTitle(chat), userId: owner.id },
     });
+    // Ссылка одноразовая: пересланная кому-то, она иначе привязала бы чужой чат
+    // к этой учётной записи, и человек начал бы получать заявки с контактами
+    // клиентов (п. 34 бэклога). Новую ссылку сотрудник выдаёт себе в «Профиле».
+    await prisma.user.update({ where: { id: owner.id }, data: { tgToken: null } });
     await send(
       id,
       `✅ Готово, ${esc(owner.fio)} — сюда будут приходить заявки с сайта НиАЗ.\n` +

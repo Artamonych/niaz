@@ -76,7 +76,7 @@ export function CatalogGrid({ items, showClass }: { items: CatalogItem[]; showCl
         ) : (
           <div className={styles.grid}>
             {filtered.map((item) => (
-              <Link key={item.slug} href={`/${item.slug}`} className={`u-corner ${styles.card}`}>
+              <Link key={item.slug} href={`/${item.slug}/`} className={`u-corner ${styles.card}`}>
                 <span className={styles.photo}>
                   {item.image ? (
                     <Image

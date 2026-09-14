@@ -150,7 +150,7 @@ export default function EngineeringPage() {
           <p className={styles.ctaLead}>
             Опишите задачу — конструкторы завода предложат исполнение на подходящем шасси
             и рассчитают сроки. Смотрите также{' '}
-            <Link href="/produktsiya" className={styles.inlineLink}>
+            <Link href="/produktsiya/" className={styles.inlineLink}>
               каталог продукции
             </Link>
             .

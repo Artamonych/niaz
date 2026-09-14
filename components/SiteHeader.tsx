@@ -73,21 +73,21 @@ export function SiteHeader() {
             </button>
           ))}
           <Link
-            href="/inzheneriya"
+            href="/inzheneriya/"
             className={`u-underline ${styles.tab}`}
             onMouseEnter={() => setOpen(null)}
           >
             Инженерия
           </Link>
           <Link
-            href="/tendery"
+            href="/tendery/"
             className={`u-underline ${styles.tab}`}
             onMouseEnter={() => setOpen(null)}
           >
             Тендерам
           </Link>
           <Link
-            href="/kontakty"
+            href="/kontakty/"
             className={`u-underline ${styles.tab}`}
             onMouseEnter={() => setOpen(null)}
           >
@@ -157,13 +157,13 @@ export function SiteHeader() {
           <div className={styles.panelRule} aria-hidden="true" />
           <div className={`shell ${styles.mobileInner}`}>
             {[
-              { label: 'Спецтехника', href: '/produktsiya' },
-              { label: 'Инженерия', href: '/inzheneriya' },
-              { label: 'Тендерам', href: '/tendery' },
-              { label: 'Гарантии', href: '/garantii' },
-              { label: 'О заводе', href: '/o-kompanii' },
-              { label: 'Новости', href: '/novosti' },
-              { label: 'Контакты', href: '/kontakty' },
+              { label: 'Спецтехника', href: '/produktsiya/' },
+              { label: 'Инженерия', href: '/inzheneriya/' },
+              { label: 'Тендерам', href: '/tendery/' },
+              { label: 'Гарантии', href: '/garantii/' },
+              { label: 'О заводе', href: '/o-kompanii/' },
+              { label: 'Новости', href: '/novosti/' },
+              { label: 'Контакты', href: '/kontakty/' },
             ].map((item, i) => (
               <Link
                 key={item.href}
@@ -181,7 +181,7 @@ export function SiteHeader() {
               {CATEGORIES.map((c, i) => (
                 <Link
                   key={c.key}
-                  href={`/${c.slug}`}
+                  href={`/${c.slug}/`}
                   className={styles.mobileCat}
                   style={{ animationDelay: `${0.24 + i * 0.04}s` }}
                   onClick={() => setMobile(false)}

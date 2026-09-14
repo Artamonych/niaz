@@ -6,6 +6,7 @@ import { VideoEmbed } from '@/components/VideoEmbed';
 import { getPublishedPost } from '@/lib/news';
 import { formatNewsDate, newsPhotoUrl, toDay } from '@/lib/news-shared';
 import styles from './post.module.css';
+import { jsonLdScript } from '@/lib/json-ld';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -60,9 +61,9 @@ export default async function NewsPostPage({ params }: Props) {
 
   return (
     <div className="shell">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }} />
 
-      <Breadcrumbs items={[{ name: 'Новости завода', href: '/novosti/' }, { name: post.title }]} />
+      <Breadcrumbs items={[{ name: 'Новости завода', href: '/novosti//' }, { name: post.title }]} />
 
       <article className={styles.article}>
         <header className={styles.head}>

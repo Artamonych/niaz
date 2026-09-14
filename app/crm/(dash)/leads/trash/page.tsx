@@ -66,7 +66,7 @@ export default async function TrashPage() {
               {leads.map((lead) => (
                 <tr key={lead.id}>
                   <td>
-                    <Link href={`/crm/leads/${lead.id}`} className={styles.rowLink}>
+                    <Link href={`/crm/leads/${lead.id}/`} className={styles.rowLink}>
                       {lead.fio}
                     </Link>
                     <div className={`mono ${styles.dim}`} style={{ fontSize: 11.5 }}>

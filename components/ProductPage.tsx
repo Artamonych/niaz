@@ -5,6 +5,7 @@ import { asmpClass, chassisBrand, type Product, type SpecRow } from '@/lib/conte
 import { Breadcrumbs } from './Breadcrumbs';
 import { LeadForm } from './LeadForm';
 import styles from './ProductPage.module.css';
+import { jsonLdScript } from '@/lib/json-ld';
 
 type Group = { title: string; rows: SpecRow[] };
 
@@ -30,10 +31,10 @@ function groupSpec(spec: SpecRow[]): Group[] {
 
 /** Документы, которые уже опубликованы на сайте — их и показываем в блоке закупки. */
 const PURCHASE_DOCS = [
-  { fmt: 'СТР', t: 'Положение о гарантийных обязательствах', href: '/polozhenie-o-garantiynyh-obyazatelstvah' },
-  { fmt: 'СТР', t: 'Порядок обращения при гарантийном случае', href: '/poryadok-obrascheniya-pri-garantiynom-sluchae' },
-  { fmt: 'СТР', t: 'Сертификация', href: '/sertifikatsiya' },
-  { fmt: 'СТР', t: 'Пакет документов для тендера', href: '/tendery' },
+  { fmt: 'СТР', t: 'Положение о гарантийных обязательствах', href: '/polozhenie-o-garantiynyh-obyazatelstvah/' },
+  { fmt: 'СТР', t: 'Порядок обращения при гарантийном случае', href: '/poryadok-obrascheniya-pri-garantiynom-sluchae/' },
+  { fmt: 'СТР', t: 'Сертификация', href: '/sertifikatsiya/' },
+  { fmt: 'СТР', t: 'Пакет документов для тендера', href: '/tendery/' },
 ];
 
 export function ProductPage({ product }: { product: Product }) {
@@ -72,12 +73,12 @@ export function ProductPage({ product }: { product: Product }) {
     <div className="shell">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       <Breadcrumbs
         items={[
-          { name: 'Продукция', href: '/produktsiya' },
+          { name: 'Продукция', href: '/produktsiya/' },
           { name: category.short, href: `/${category.slug}` },
           { name: product.title },
         ]}

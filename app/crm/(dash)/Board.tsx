@@ -134,13 +134,13 @@ export function Board({
                     onDragEnd={() => setDragged(null)}
                   >
                     <div className={styles.cardTop}>
-                      <Link href={`/crm/leads/${lead.id}`} className={`mono ${styles.num}`}>
+                      <Link href={`/crm/leads/${lead.id}/`} className={`mono ${styles.num}`}>
                         {lead.num}
                       </Link>
                       <span className={`mono ${styles.date}`}>{fmtDate(lead.createdAt)}</span>
                     </div>
 
-                    <Link href={`/crm/leads/${lead.id}`} className={styles.name}>
+                    <Link href={`/crm/leads/${lead.id}/`} className={styles.name}>
                       {lead.fio}
                     </Link>
                     {lead.org && <p className={styles.org}>{lead.org}</p>}

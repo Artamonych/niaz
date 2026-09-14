@@ -54,7 +54,7 @@ export default async function ClientsPage() {
               {clients.map((client) => (
                 <tr key={client.id}>
                   <td>
-                    <Link href={`/crm/clients/${client.id}`} className={styles.rowLink}>
+                    <Link href={`/crm/clients/${client.id}/`} className={styles.rowLink}>
                       {client.name}
                     </Link>
                     {client.city && <div className={styles.dim}>{client.city}</div>}

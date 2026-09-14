@@ -17,14 +17,14 @@ export const dynamic = 'force-dynamic';
 
 /** Разделы и право, которое их открывает. Без права пункт не показывается. */
 const NAV: { href: string; label: string; needs?: Action }[] = [
-  { href: '/crm', label: 'Заявки' },
-  { href: '/crm/clients', label: 'Контрагенты' },
-  { href: '/crm/services', label: 'Услуги', needs: 'content:manage' },
-  { href: '/crm/news', label: 'Новости', needs: 'content:manage' },
-  { href: '/crm/employees', label: 'Сотрудники', needs: 'staff:manage' },
-  { href: '/crm/leads/trash', label: 'Корзина', needs: 'leads:delete' },
-  { href: '/crm/audit', label: 'Журнал', needs: 'audit:view' },
-  { href: '/crm/mail', label: 'Почта', needs: 'settings:system' },
+  { href: '/crm/', label: 'Заявки' },
+  { href: '/crm/clients/', label: 'Контрагенты' },
+  { href: '/crm/services/', label: 'Услуги', needs: 'content:manage' },
+  { href: '/crm/news/', label: 'Новости', needs: 'content:manage' },
+  { href: '/crm/employees/', label: 'Сотрудники', needs: 'staff:manage' },
+  { href: '/crm/leads/trash/', label: 'Корзина', needs: 'leads:delete' },
+  { href: '/crm/audit/', label: 'Журнал', needs: 'audit:view' },
+  { href: '/crm/mail/', label: 'Почта', needs: 'settings:system' },
 ];
 
 export default async function DashLayout({ children }: { children: React.ReactNode }) {
@@ -43,7 +43,7 @@ export default async function DashLayout({ children }: { children: React.ReactNo
   const items = [
     ...NAV.filter((item) => !item.needs || can(user.role, item.needs)),
     {
-      href: '/crm/settings',
+      href: '/crm/settings/',
       label: can(user.role, 'settings:system') ? 'Настройки' : 'Профиль',
     },
   ];
@@ -51,7 +51,7 @@ export default async function DashLayout({ children }: { children: React.ReactNo
   return (
     <div className={styles.shell}>
       <aside className={styles.side}>
-        <Link href="/crm" className={styles.brand}>
+        <Link href="/crm/" className={styles.brand}>
           <span className={styles.mark}>НиАЗ</span>
           <span className={`mono ${styles.markSub}`}>CRM</span>
         </Link>
