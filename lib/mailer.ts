@@ -135,6 +135,9 @@ export async function queueMail(to: string[], subject: string, body: string) {
   await prisma.mailMessage.createMany({
     data: list.map((address) => ({ to: address, subject, body })),
   });
+
+  // Письмо уходит сразу, а не ждёт очередного прохода очереди.
+  wakeMailQueue();
 }
 
 /** Отправить одно письмо из очереди и записать исход. */
@@ -194,20 +197,45 @@ export async function retryMail(id: string) {
 
 const worker = globalThis as typeof globalThis & { __niazMailStarted?: boolean };
 
+/**
+ * Проход по очереди: по событию (положили письмо) и страховочным тиком.
+ *
+ * Раньше очередь опрашивала базу каждую минуту круглые сутки — полторы тысячи
+ * запросов в день даже при пустой очереди (п. 35 бэклога). Теперь проход
+ * начинается сразу после постановки письма, а тик нужен только для повторов
+ * после временных отказов почтовых узлов.
+ */
+let queueRunning = false;
+let wakeTimer: ReturnType<typeof setTimeout> | null = null;
+
+async function runQueue() {
+  if (queueRunning) return;
+  queueRunning = true;
+  try {
+    await processMailQueue();
+  } catch (err) {
+    log(`очередь: ${(err as Error).message}`);
+  } finally {
+    queueRunning = false;
+  }
+}
+
+/** Разбудить очередь: письмо только что положили. */
+export function wakeMailQueue() {
+  if (!worker.__niazMailStarted) return;
+  if (wakeTimer) clearTimeout(wakeTimer);
+  // Полсекунды — чтобы запись успела закрыться, и пачка писем ушла одним проходом.
+  wakeTimer = setTimeout(() => void runQueue(), 500);
+}
+
 /** Запускается один раз при старте сервера (instrumentation.ts). */
 export function startMailQueue() {
   if (worker.__niazMailStarted || !mailerConfigured()) return;
   worker.__niazMailStarted = true;
 
-  const tick = async () => {
-    try {
-      await processMailQueue();
-    } catch (err) {
-      log(`очередь: ${(err as Error).message}`);
-    }
-  };
-
   log(`очередь запущена, отправитель ${env('MAIL_FROM')}, представляемся ${helo()}`);
-  void tick();
-  setInterval(tick, 60_000);
+  void runQueue();
+  // Тик держит расписание повторов (2, 10, 30, 120, 360 минут): новые письма
+  // уходят по событию, а этот проход подбирает отложенные.
+  setInterval(() => void runQueue(), 120_000);
 }

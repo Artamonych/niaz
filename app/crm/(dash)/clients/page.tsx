@@ -5,19 +5,27 @@ import { currentUser } from '@/lib/auth';
 import { clientScope } from '@/lib/roles';
 import styles from '../ui.module.css';
 
+/** Сколько карточек показывать списком: остальные ищутся через заявки. */
+const CLIENTS_LIMIT = 200;
+
 export default async function ClientsPage() {
   const user = await currentUser();
   if (!user) redirect('/crm/login');
 
   // Менеджер видит только своих контрагентов, остальные — всех.
-  const clients = await prisma.client.findMany({
-    where: clientScope(user),
-    orderBy: { createdAt: 'desc' },
-    include: {
-      manager: { select: { fio: true } },
-      _count: { select: { leads: true } },
-    },
-  });
+  const scope = clientScope(user);
+  const [clients, total] = await Promise.all([
+    prisma.client.findMany({
+      where: scope,
+      orderBy: { createdAt: 'desc' },
+      take: CLIENTS_LIMIT,
+      include: {
+        manager: { select: { fio: true } },
+        _count: { select: { leads: true } },
+      },
+    }),
+    prisma.client.count({ where: scope }),
+  ]);
 
   return (
     <>
@@ -30,7 +38,9 @@ export default async function ClientsPage() {
             заключении контракта.
           </p>
         </div>
-        <span className={`mono ${styles.badge}`}>{clients.length} записей</span>
+        <span className={`mono ${styles.badge}`}>
+          {total > clients.length ? `${clients.length} из ${total}` : `${total} записей`}
+        </span>
       </header>
 
       {clients.length === 0 ? (

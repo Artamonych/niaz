@@ -57,6 +57,10 @@ services:
     volumes:
       - db:/app/data-db
       - uploads:/app/uploads
+      # Пережатые картинки. Без тома кеш живёт внутри контейнера и пропадает
+      # при каждом деплое — sharp заново перекодирует 1178 снимков по мере
+      # обхода сайта (п. 35 бэклога).
+      - image-cache:/app/.next/cache/images
     # Только на петлю: снаружи контейнер недоступен, всё идёт через nginx.
     ports:
       - '127.0.0.1:3010:3000'
@@ -64,3 +68,4 @@ services:
 volumes:
   db:
   uploads:
+  image-cache:

@@ -84,6 +84,7 @@ export function ArticlePage({ page }: { page: StaticPage }) {
                 alt={`${page.title} — фотография ${i + 1}`}
                 width={800}
                 height={510}
+                sizes="(max-width: 900px) 100vw, 800px"
                 className={styles.photo}
               />
             ))}

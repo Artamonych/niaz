@@ -2,6 +2,9 @@ import type { MetadataRoute } from 'next';
 import { LANDINGS, PRODUCTS, STATIC_PAGES, RESERVED_SLUGS } from '@/lib/content';
 import { getPublishedNewsUrls } from '@/lib/news';
 
+// Карта сайта: её читают роботы, час свежести достаточно.
+export const revalidate = 3600;
+
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://com-transport.ru';
 
 /**

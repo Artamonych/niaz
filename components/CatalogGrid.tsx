@@ -84,6 +84,7 @@ export function CatalogGrid({ items, showClass }: { items: CatalogItem[]; showCl
                       alt={item.title}
                       width={800}
                       height={500}
+                      sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 350px"
                       className={styles.img}
                     />
                   ) : (

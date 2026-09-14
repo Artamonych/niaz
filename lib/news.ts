@@ -33,12 +33,30 @@ function donorNews(): NewsItem[] {
   }));
 }
 
-async function crmNews(): Promise<NewsItem[]> {
-  const posts = await prisma.newsPost.findMany({
-    where: published(),
-    orderBy: { publishedAt: 'desc' },
-    include: { photos: { where: { isCover: true }, take: 1 } },
-  });
+async function crmNews(limit?: number): Promise<NewsItem[]> {
+  // База лежит на томе и на сборке образа недоступна. Раньше от этого спасал
+  // connection(), но он же делал главную динамической — теперь читаем с
+  // подстраховкой: на сборке лента соберётся из новостей донора, а новости
+  // CRM подтянутся при первой же пересборке страницы на сервере (п. 35).
+  const posts = await prisma.newsPost
+    .findMany({
+      where: published(),
+      orderBy: { publishedAt: 'desc' },
+      // Лента на главной показывает три карточки — незачем поднимать все.
+      take: limit,
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        excerpt: true,
+        publishedAt: true,
+        photos: { where: { isCover: true }, take: 1, select: { file: true } },
+      },
+    })
+    .catch((err: unknown) => {
+      console.error('[news] база недоступна, лента только из архива:', err);
+      return [];
+    });
 
   return posts.map((p) => ({
     key: `crm:${p.id}`,
@@ -53,13 +71,13 @@ async function crmNews(): Promise<NewsItem[]> {
 /**
  * Общая лента: CRM и донор вперемешку, по дате.
  *
- * connection() обязателен. Запросы better-sqlite3 синхронные и иначе
- * выполнились бы на этапе сборки, когда базы в образе нет: страница
- * собралась бы без новостей из CRM и так отдавалась бы после каждого деплоя.
+ * Страницы, где она выводится, пересобираются по времени (revalidate) и сразу
+ * после правки новости в CRM — поэтому читать базу на каждый заход не нужно.
  */
 export async function getNewsFeed(limit?: number): Promise<NewsItem[]> {
-  await connection();
-  const feed = [...(await crmNews()), ...donorNews()].sort((a, b) => b.date.localeCompare(a.date));
+  const feed = [...(await crmNews(limit)), ...donorNews()].sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
   return limit ? feed.slice(0, limit) : feed;
 }
 
@@ -78,6 +96,10 @@ export const getPublishedPost = cache(async (slug: string) => {
 
 /** Адреса опубликованных новостей — для sitemap.xml. */
 export async function getPublishedNewsUrls() {
-  await connection();
-  return prisma.newsPost.findMany({ where: published(), select: { slug: true, updatedAt: true } });
+  return prisma.newsPost
+    .findMany({ where: published(), select: { slug: true, updatedAt: true } })
+    .catch((err: unknown) => {
+      console.error('[news] карта сайта собирается без новостей CRM:', err);
+      return [];
+    });
 }

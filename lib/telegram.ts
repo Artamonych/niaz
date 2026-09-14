@@ -396,11 +396,13 @@ async function poll() {
 
   for (;;) {
     try {
-      // Долгий опрос: Telegram держит запрос до 25 с, пока нет новостей.
+      // Долгий опрос: Telegram держит запрос до 50 с, пока нет новостей. Чем
+      // дольше ожидание, тем меньше запросов в сутки — при 25 секундах их было
+      // около трёх с половиной тысяч в покое (п. 35 бэклога).
       const updates = await tg<Update[]>(
         'getUpdates',
-        { offset, timeout: 25, allowed_updates: ['message', 'my_chat_member'] },
-        40_000,
+        { offset, timeout: 50, allowed_updates: ['message', 'my_chat_member'] },
+        70_000,
       );
       for (const update of updates) {
         offset = update.update_id + 1;

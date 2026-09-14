@@ -25,11 +25,16 @@ export default async function TrashPage() {
   if (!user) redirect('/crm/login');
   if (!can(user.role, 'leads:delete')) notFound();
 
-  const leads = await prisma.lead.findMany({
-    where: { deletedAt: { not: null } },
-    orderBy: { deletedAt: 'desc' },
-    include: { owner: { select: { fio: true } } },
-  });
+  // Корзина не чистится сама, поэтому растёт всегда: показываем последние.
+  const [leads, total] = await Promise.all([
+    prisma.lead.findMany({
+      where: { deletedAt: { not: null } },
+      orderBy: { deletedAt: 'desc' },
+      take: 200,
+      include: { owner: { select: { fio: true } } },
+    }),
+    prisma.lead.count({ where: { deletedAt: { not: null } } }),
+  ]);
 
   const canPurge = can(user.role, 'leads:purge');
 
@@ -45,7 +50,9 @@ export default async function TrashPage() {
               : 'Заявку можно вернуть на доску. Стирает насовсем администратор.'}
           </p>
         </div>
-        <span className={`mono ${styles.badge}`}>{leads.length} в корзине</span>
+        <span className={`mono ${styles.badge}`}>
+          {total > leads.length ? `${leads.length} из ${total}` : `${total} в корзине`}
+        </span>
       </header>
 
       {leads.length === 0 ? (

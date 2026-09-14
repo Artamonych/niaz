@@ -29,6 +29,7 @@ import {
   sendRegistrationInvite,
 } from '@/lib/mail';
 import { crmBase } from '@/lib/crm-url';
+import { loginBlocked, loginFailed, loginSucceeded } from '@/lib/login-limit';
 import { retryMail } from '@/lib/mailer';
 import { botInviteLink } from '@/lib/telegram';
 
@@ -136,31 +137,6 @@ const loginSchema = z.object({
 });
 
 /**
- * Защита от перебора пароля (п. 34 бэклога).
- *
- * Счёт ведётся в памяти процесса: приложение одно, отдельная таблица ради
- * этого не нужна, а запись в базу на каждую попытку сама стала бы рычагом
- * нагрузки. После перезапуска счёт обнуляется — для CRM отдела это приемлемо.
- * Считаем и по учётной записи (подбор пароля к конкретному человеку), и по
- * адресу в сети (перебор учёток подряд).
- */
-const LOGIN_LIMIT = { windowMs: 15 * 60_000, max: 10 };
-const loginFails = new Map<string, number[]>();
-
-const freshFails = (key: string, now: number) =>
-  (loginFails.get(key) ?? []).filter((t) => now - t < LOGIN_LIMIT.windowMs);
-
-function loginBlocked(keys: string[]): boolean {
-  const now = Date.now();
-  return keys.some((key) => freshFails(key, now).length >= LOGIN_LIMIT.max);
-}
-
-function loginFailed(keys: string[]) {
-  const now = Date.now();
-  for (const key of keys) loginFails.set(key, [...freshFails(key, now), now]);
-}
-
-/**
  * Хеш, с которым сверяется пароль, когда учётной записи нет. Без него ответ на
  * несуществующий адрес приходит заметно быстрее, и по задержке видно, заведён
  * ли такой сотрудник.
@@ -197,7 +173,7 @@ export async function login(_prev: ActionState, formData: FormData): Promise<Act
     return { error: 'Неверная почта или пароль' };
   }
 
-  for (const key of keys) loginFails.delete(key);
+  loginSucceeded(keys);
 
   await createSession({
     userId: user.id,
@@ -823,6 +799,18 @@ export async function changePassword(
   return { ok: 'Пароль изменён' };
 }
 
+/**
+ * Публичные страницы, где видна новость. Лента теперь пересобирается по
+ * расписанию, поэтому после правки в CRM её нужно обновить сразу — иначе
+ * посетитель увидит изменение с задержкой (п. 35 бэклога).
+ */
+function revalidateNews(slug?: string) {
+  revalidatePath('/');
+  revalidatePath('/novosti');
+  if (slug) revalidatePath(`/novosti/${slug}`);
+  revalidatePath('/sitemap.xml');
+}
+
 /*
  * Новости. Публичные страницы ленты рендерятся на каждый запрос, поэтому после
  * правок сбрасывается только кэш экранов CRM — сайт увидит изменения сам.
@@ -889,12 +877,14 @@ export async function saveNews(
     await audit(actor, 'news.save', `Новость «${rest.title}»`, `изменена, ${state}`);
     revalidatePath('/crm/news');
     revalidatePath(`/crm/news/${postId}`);
+    revalidateNews(data.slug);
     return { ok: rest.status === 'PUBLISHED' ? 'Сохранено и опубликовано' : 'Черновик сохранён' };
   }
 
   const created = await prisma.newsPost.create({ data });
   await audit(actor, 'news.save', `Новость «${rest.title}»`, `создана, ${state}`);
   revalidatePath('/crm/news');
+  revalidateNews(data.slug);
   redirect(`/crm/news/${created.id}/`);
 }
 
@@ -914,6 +904,7 @@ export async function deleteNews(postId: string) {
   );
 
   revalidatePath('/crm/news');
+  revalidateNews(post.slug);
   redirect('/crm/news/');
 }
 
@@ -922,7 +913,7 @@ export async function deleteNewsPhoto(photoId: string) {
 
   const photo = await prisma.newsPhoto.findUnique({
     where: { id: photoId },
-    include: { post: { select: { title: true } } },
+    include: { post: { select: { title: true, slug: true } } },
   });
   if (!photo) return;
 
@@ -947,7 +938,7 @@ export async function setNewsCover(photoId: string) {
 
   const photo = await prisma.newsPhoto.findUnique({
     where: { id: photoId },
-    include: { post: { select: { title: true } } },
+    include: { post: { select: { title: true, slug: true } } },
   });
   if (!photo) return;
 
@@ -958,7 +949,9 @@ export async function setNewsCover(photoId: string) {
 
   await audit(user, 'news.photo', `Новость «${photo.post.title}»`, 'выбрано превью');
 
+  // Превью видно в ленте — обновляем и её.
   revalidatePath(`/crm/news/${photo.postId}`);
+  revalidateNews(photo.post.slug);
 }
 
 export async function moveNewsPhoto(photoId: string, step: -1 | 1) {
@@ -966,7 +959,7 @@ export async function moveNewsPhoto(photoId: string, step: -1 | 1) {
 
   const photo = await prisma.newsPhoto.findUnique({
     where: { id: photoId },
-    include: { post: { select: { title: true } } },
+    include: { post: { select: { title: true, slug: true } } },
   });
   if (!photo) return;
 

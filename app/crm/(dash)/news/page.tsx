@@ -14,8 +14,10 @@ function statusOf(post: { status: string; publishedAt: Date }) {
 export default async function NewsListPage() {
   const [user, posts] = await Promise.all([
     currentUser(),
+    // Список растёт с каждой публикацией: показываем последние сто.
     prisma.newsPost.findMany({
       orderBy: { publishedAt: 'desc' },
+      take: 100,
       include: { _count: { select: { photos: true } } },
     }),
   ]);
@@ -31,7 +33,7 @@ export default async function NewsListPage() {
           <h1 className={styles.h1}>Новости завода</h1>
           <p className={styles.lead}>
             Публикуются на сайте — в ленте на главной и в разделе «Новости». Черновики
-            видны только здесь.
+            видны только здесь. В списке — сто последних.
           </p>
         </div>
         {editable && (

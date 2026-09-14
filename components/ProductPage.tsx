@@ -99,7 +99,15 @@ export function ProductPage({ product }: { product: Product }) {
         <div className={styles.main}>
           <div className={styles.gallery}>
             {photo ? (
-              <Image src={photo} alt={alt} width={800} height={510} className={styles.photo} priority />
+              <Image
+                src={photo}
+                alt={alt}
+                width={800}
+                height={510}
+                sizes="(max-width: 900px) 100vw, 700px"
+                className={styles.photo}
+                priority
+              />
             ) : (
               <div className={styles.noPhoto}>
                 <span className="mono">ФОТО ГОТОВИТСЯ</span>
@@ -116,6 +124,7 @@ export function ProductPage({ product }: { product: Product }) {
                   alt={`${product.title} — ракурс ${i + 2}`}
                   width={300}
                   height={225}
+                  sizes="(max-width: 900px) 25vw, 120px"
                   className={styles.thumb}
                 />
               ))}

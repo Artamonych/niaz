@@ -117,7 +117,7 @@ export default function EngineeringPage() {
                 width={1600}
                 height={1067}
                 className={styles.photo}
-                sizes="(max-width: 700px) 100vw, 50vw"
+                sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 640px"
                 priority={i < 2}
               />
               <figcaption className={`mono ${styles.caption}`}>{s.caption}</figcaption>

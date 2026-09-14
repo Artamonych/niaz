@@ -71,10 +71,10 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Каталоги под базу и загрузки монтируются томами, иначе умрут с контейнером.
-# Создаются заранее от имени nextjs: пустой том при первом подключении
-# наследует эти права, и приложение может в него писать.
-RUN mkdir -p /app/data-db /app/uploads && chown nextjs:nodejs /app/data-db /app/uploads
+# Каталоги под тома: база, загрузки и кеш пережатых картинок. Создаются
+# заранее от имени nextjs — пустой том при первом подключении наследует эти
+# права, иначе он оказался бы у root и приложение не смогло бы в него писать.
+RUN mkdir -p /app/data-db /app/uploads /app/.next/cache/images  && chown -R nextjs:nodejs /app/data-db /app/uploads /app/.next/cache
 
 USER nextjs
 EXPOSE 3000

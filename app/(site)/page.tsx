@@ -8,6 +8,10 @@ import { NewsCard } from '@/components/NewsCard';
 import { getNewsFeed } from '@/lib/news';
 import styles from './home.module.css';
 
+// Главная: лента новостей обновляется раз в пять минут, а при
+// публикации из CRM — сразу (см. revalidateNews в app/crm/actions.ts).
+export const revalidate = 300;
+
 const COUNTERS = [
   { n: 30, suffix: '+', k: 'лет производства' },
   { n: PRODUCTS.length, suffix: '', k: 'исполнений в каталоге' },
@@ -191,6 +195,7 @@ export default async function HomePage() {
                         alt={`${c.title} — продукция завода`}
                         width={800}
                         height={500}
+                        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 290px"
                         className={styles.catImg}
                       />
                     ) : (

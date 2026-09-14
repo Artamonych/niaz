@@ -5,19 +5,29 @@ import { can, leadScope } from '@/lib/roles';
 import { Board } from './Board';
 import styles from './board.module.css';
 
+/**
+ * Сколько заявок поднимать на доску. Все они уезжают в браузер целиком, и с
+ * ростом базы доска встала бы первой (п. 35 бэклога). Счётчик «всего» при этом
+ * остаётся честным — он считается в базе.
+ */
+const BOARD_LIMIT = 300;
+
 export default async function LeadsPage() {
   const user = await currentUser();
   if (!user) redirect('/crm/login');
 
   const canAssign = can(user.role, 'leads:assign');
 
-  const [stages, leads, owners] = await Promise.all([
+  const scope = { ...leadScope(user), deletedAt: null };
+
+  const [stages, leads, owners, total] = await Promise.all([
     prisma.stage.findMany({ orderBy: { order: 'asc' } }),
     // Менеджер видит только свои заявки; нераспределённые — у руководителя.
     // Убранные в корзину не показываются никому: их место в /crm/leads/trash.
     prisma.lead.findMany({
-      where: { ...leadScope(user), deletedAt: null },
+      where: scope,
       orderBy: { createdAt: 'desc' },
+      take: BOARD_LIMIT,
       include: { owner: { select: { id: true, fio: true } } },
     }),
     canAssign
@@ -27,6 +37,7 @@ export default async function LeadsPage() {
           orderBy: { fio: 'asc' },
         })
       : [],
+    prisma.lead.count({ where: scope }),
   ]);
 
   const today = new Date();
@@ -43,7 +54,7 @@ export default async function LeadsPage() {
         <dl className={styles.stats}>
           <div className={styles.stat}>
             <dt className={styles.statK}>Всего</dt>
-            <dd className={`mono ${styles.statV}`}>{leads.length}</dd>
+            <dd className={`mono ${styles.statV}`}>{total}</dd>
           </div>
           <div className={styles.stat}>
             <dt className={styles.statK}>Сегодня</dt>
@@ -55,6 +66,13 @@ export default async function LeadsPage() {
           </div>
         </dl>
       </header>
+
+      {total > leads.length && (
+        <p className={styles.limited}>
+          На доске последние {leads.length} заявок из {total}. Остальные открываются из
+          карточки контрагента и через поиск по номеру.
+        </p>
+      )}
 
       <Board
         stages={stages}

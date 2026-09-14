@@ -48,7 +48,7 @@ export function GalleryIndex({ page, groups }: { page: StaticPage; groups: Galle
                       alt={item.title}
                       width={800}
                       height={510}
-                      sizes="(max-width: 700px) 100vw, 33vw"
+                      sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
                       className={styles.img}
                     />
                   </span>
@@ -80,7 +80,7 @@ export function GalleryIndex({ page, groups }: { page: StaticPage; groups: Galle
                 alt={`Галерея — фотография ${i + 1}`}
                 width={800}
                 height={510}
-                sizes="(max-width: 700px) 100vw, 33vw"
+                sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
                 className={styles.looseImg}
               />
             ))}

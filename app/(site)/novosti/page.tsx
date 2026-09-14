@@ -5,6 +5,9 @@ import { getSection } from '@/lib/content';
 import { getNewsFeed } from '@/lib/news';
 import styles from './novosti.module.css';
 
+// Лента новостей: то же правило, что на главной.
+export const revalidate = 300;
+
 const SECTION = getSection('novosti');
 const TITLE = SECTION?.title ?? 'Новости завода';
 
