@@ -9,6 +9,7 @@ import redirects from '../data/content/redirects.json';
 import sections from '../data/content/sections.json';
 import gallery from '../data/content/gallery.json';
 import categoryPhotos from '../data/content/category-photos.json';
+import covers from '../data/content/covers.json';
 import { CATEGORIES, CATEGORY_BY_KEY, type CategoryKey } from './catalog';
 
 export type SpecRow = { no: string; text: string };
@@ -77,18 +78,15 @@ export const productsOf = (key: CategoryKey) => PRODUCTS.filter((p) => p.categor
 /**
  * Обложка раздела на главной и в каталоге — кадр из своей съёмки.
  *
- * Выбран вручную: нужен общий план машины, по которому раздел узнаётся с
- * первого взгляда. Автоматически первый снимок не годится — в сериях попадают
- * интерьеры и детали. У грузопассажирских своей съёмки нет, поэтому там
- * остаётся фотография из каталога старого сайта, пока завод не передаст свою.
+ * Кадры выбраны вручную и подрезаны заранее (scripts/prep-covers.ts): нужен
+ * общий план машины, по которому раздел узнаётся с первого взгляда. В именах
+ * файлов стоит отпечаток содержимого — картинки отдаются с годовым кешем, и
+ * под прежним именем новая обложка на сайте не появилась бы.
+ *
+ * У грузопассажирских своей съёмки нет, поэтому там остаётся фотография из
+ * каталога старого сайта, пока завод не передаст свою.
  */
-const COVERS: Partial<Record<CategoryKey, string>> = {
-  asmp: '/media/covers/asmp.webp',
-  mgn: '/media/covers/mgn.webp',
-  spec: '/media/covers/spec.webp',
-  van: '/media/covers/van.webp',
-  ritual: '/media/covers/ritual.webp',
-};
+const COVERS = covers as Partial<Record<CategoryKey, string>>;
 
 /**
  * Что показывать на карточке раздела: своя съёмка, если она есть, иначе —

@@ -12,19 +12,28 @@
  *
  * Запуск: npx tsx scripts/prep-covers.ts
  */
-import { mkdir } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
 
 const SRC = join(process.cwd(), 'public', 'media', 'razdely');
 const OUT = join(process.cwd(), 'public', 'media', 'covers');
+const MAP = join(process.cwd(), 'data', 'content', 'covers.json');
 
-/** Ширина и высота обложки: та же пропорция, что у карточки на главной. */
-const W = 1200;
-const H = 750;
+/**
+ * Размер обложки: пропорция карточки на главной. Ширины 1024 хватает с запасом
+ * даже на экране с удвоенной плотностью — карточка там около 580 точек. Брать
+ * больше нельзя: живые снимки с площадки мельче студийных, и растянутый кадр
+ * выглядит хуже честного.
+ */
+const W = 1024;
+const H = 640;
 
 const COVERS: { key: string; file: string; note: string }[] = [
-  { key: 'asmp', file: 'asmp-klass-b-04.webp', note: 'студийный кадр, светлый фон' },
+  // Студийная визуализация на сером фоне заказчику не подошла: раздел должен
+  // показывать живую машину, а не картинку из конфигуратора.
+  { key: 'asmp', file: 'asmp-klass-b-11.webp', note: 'живой снимок с площадки завода' },
   { key: 'mgn', file: 'mgn-04.webp', note: 'разложенная аппарель — суть раздела видна сразу' },
   { key: 'spec', file: 'punkt-pitaniya-01.webp', note: 'автолавка: цветом отличается от скорой' },
   { key: 'van', file: 'furgon-izotermicheskiy-01.webp', note: 'изотермический кузов' },
@@ -32,19 +41,32 @@ const COVERS: { key: string; file: string; note: string }[] = [
 ];
 
 async function main() {
+  // Папка пересобирается целиком: имена меняются вместе с содержимым.
+  await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
 
+  const map: Record<string, string> = {};
+
   for (const { key, file, note } of COVERS) {
-    const path = join(OUT, `${key}.webp`);
-    const info = await sharp(join(SRC, file))
+    const image = await sharp(join(SRC, file))
       // attention оставляет самую содержательную часть кадра — на этих
       // снимках это сама машина, а не забор и не небо.
       .resize(W, H, { fit: 'cover', position: sharp.strategy.attention })
       .webp({ quality: 82 })
-      .toFile(path);
+      .toBuffer();
 
-    console.log(`${key.padEnd(7)} ← ${file.padEnd(34)} ${info.width}×${info.height}  (${note})`);
+    // Отпечаток содержимого в имени: картинки отдаются с годовым кешем, и
+    // файл под прежним именем на сайте не обновится — ни у посетителя в
+    // браузере, ни в кеше оптимизатора.
+    const hash = createHash('sha1').update(image).digest('hex').slice(0, 8);
+    const name = `${key}-${hash}.webp`;
+    await writeFile(join(OUT, name), image);
+    map[key] = `/media/covers/${name}`;
+
+    console.log(`${key.padEnd(7)} ← ${file.padEnd(34)} ${W}×${H}  ${name}  (${note})`);
   }
+
+  await writeFile(MAP, JSON.stringify(map, null, 2), 'utf8');
 
   console.log('\nГрузопассажирские: своей съёмки нет, обложка остаётся из каталога донора.');
 }
