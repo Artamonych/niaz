@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { CATEGORIES, MENU } from '@/lib/catalog';
-import { PRODUCTS, productsOf } from '@/lib/content';
+import { categoryCover, PRODUCTS, productsOf } from '@/lib/content';
 import { BusBlueprint } from '@/components/BusBlueprint';
 import { LeadForm } from '@/components/LeadForm';
 import { NewsCard } from '@/components/NewsCard';
@@ -33,21 +33,21 @@ const TEASERS = [
   {
     label: 'Предприятие',
     title: 'О заводе',
-    href: '/o-kompanii//',
+    href: '/o-kompanii/',
     more: 'О компании',
     items: MENU.about[0].items,
   },
   {
     label: 'Сервис',
     title: 'АСМП-сервис',
-    href: '/garantii//',
+    href: '/garantii/',
     more: 'Гарантии и документы',
     items: MENU.service[0].items,
   },
   {
     label: 'Собственное производство',
     title: 'Инженерия',
-    href: '/inzheneriya//',
+    href: '/inzheneriya/',
     more: 'Производственные мощности',
     // Участки со страницы «Инженерия» — оборудование подтверждено съёмкой цехов.
     items: [
@@ -184,7 +184,8 @@ export default async function HomePage() {
           <div className={styles.cats}>
             {CATEGORIES.map((c) => {
               const items = productsOf(c.key);
-              const photo = items.find((p) => p.images[0])?.images[0];
+              // Обложка раздела: своя съёмка, а не кадр со старого сайта.
+              const photo = categoryCover(c.key);
 
               return (
                 <Link key={c.key} href={`/${c.slug}/`} className={`u-corner ${styles.cat}`}>

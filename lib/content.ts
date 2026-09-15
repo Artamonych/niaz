@@ -74,6 +74,30 @@ export const getSection = (slug: string) => SECTIONS.find((p) => p.slug === slug
 
 export const productsOf = (key: CategoryKey) => PRODUCTS.filter((p) => p.category === key);
 
+/**
+ * Обложка раздела на главной и в каталоге — кадр из своей съёмки.
+ *
+ * Выбран вручную: нужен общий план машины, по которому раздел узнаётся с
+ * первого взгляда. Автоматически первый снимок не годится — в сериях попадают
+ * интерьеры и детали. У грузопассажирских своей съёмки нет, поэтому там
+ * остаётся фотография из каталога старого сайта, пока завод не передаст свою.
+ */
+const COVERS: Partial<Record<CategoryKey, string>> = {
+  asmp: '/media/razdely/asmp-klass-b-04.webp',
+  mgn: '/media/razdely/mgn-04.webp',
+  spec: '/media/razdely/spetsavtomobil-laboratoriya-05.webp',
+  van: '/media/razdely/furgon-izotermicheskiy-01.webp',
+  ritual: '/media/razdely/ritual-06.webp',
+};
+
+/**
+ * Что показывать на карточке раздела: своя съёмка, если она есть, иначе —
+ * фотография первого исполнения из каталога донора.
+ */
+export function categoryCover(key: CategoryKey): string | undefined {
+  return COVERS[key] ?? productsOf(key).find((p) => p.images[0])?.images[0];
+}
+
 /** Снимок раздела: своя съёмка завода, подпись — из папки, в которой он лежал. */
 export type CategoryPhoto = { src: string; caption: string; w: number; h: number };
 
