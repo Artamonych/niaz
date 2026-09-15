@@ -127,3 +127,64 @@
   vertical-align: top;
   text-align: start;
 }
+
+/* Фотографии раздела: своя съёмка завода (scripts/prep-catalog-photos.ts). */
+.photos {
+  margin-top: clamp(40px, 5vw, 72px);
+  padding-top: clamp(28px, 3.4vw, 48px);
+  border-top: 1px solid var(--paper-500);
+}
+
+.photosHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.photosCount {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-on-light-dim2);
+}
+
+.photosLead {
+  margin: 10px 0 0;
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-on-light-dim);
+}
+
+.photoGrid {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  align-items: start;
+  margin-top: clamp(18px, 2.2vw, 28px);
+}
+
+.photo {
+  margin: 0;
+  background: var(--paper-200);
+  border: 1px solid var(--paper-500);
+}
+
+.photoImg {
+  display: block;
+  width: 100%;
+  /* Единая пропорция: в съёмке вперемешку горизонтальные и вертикальные кадры,
+     и без этого ряды рвутся, а рядом с высоким снимком зияет пустота. */
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+}
+
+.photoCaption {
+  display: block;
+  padding: 9px 12px 11px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-on-light-dim2);
+}

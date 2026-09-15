@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Category } from '@/lib/catalog';
-import { asmpClass, chassisBrand, productsOf, type CategoryLanding } from '@/lib/content';
+import { asmpClass, chassisBrand, photosOf, productsOf, type CategoryLanding } from '@/lib/content';
 import { Breadcrumbs } from './Breadcrumbs';
 import { CatalogGrid, type CatalogItem } from './CatalogGrid';
 import { LeadForm } from './LeadForm';
@@ -22,6 +23,9 @@ export function CategoryPage({
     specCount: p.spec.length,
     image: p.images[0],
   }));
+
+  // Своя съёмка завода по этому разделу — она честнее фотографий старого сайта.
+  const photos = photosOf(category.key);
 
   return (
     <div className="shell">
@@ -53,6 +57,36 @@ export function CategoryPage({
       <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
       <CatalogGrid items={items} showClass={category.key === 'asmp'} />
+
+      {photos.length > 0 && (
+        <section className={styles.photos}>
+          <div className={styles.photosHead}>
+            <h2 className={styles.h2}>Фотографии раздела</h2>
+            <span className={`mono ${styles.photosCount}`}>{photos.length} снимков</span>
+          </div>
+          <p className={styles.photosLead}>
+            Съёмка завода. Подписи говорят только то, что известно про кадр: исполнение по
+            снимку не определить, поэтому фотографии показаны на уровне раздела.
+          </p>
+
+          <div className={styles.photoGrid}>
+            {photos.map((photo, i) => (
+              <figure key={photo.src} className={styles.photo}>
+                <Image
+                  src={photo.src}
+                  alt={`${photo.caption} — производство ООО «Нижегородский автомобильный завод»`}
+                  width={photo.w}
+                  height={photo.h}
+                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 340px"
+                  className={styles.photoImg}
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                />
+                <figcaption className={`mono ${styles.photoCaption}`}>{photo.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className={styles.cta} id="zapros">
         <div>

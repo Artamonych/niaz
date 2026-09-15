@@ -8,6 +8,7 @@ import landings from '../data/content/category-landings.json';
 import redirects from '../data/content/redirects.json';
 import sections from '../data/content/sections.json';
 import gallery from '../data/content/gallery.json';
+import categoryPhotos from '../data/content/category-photos.json';
 import { CATEGORIES, CATEGORY_BY_KEY, type CategoryKey } from './catalog';
 
 export type SpecRow = { no: string; text: string };
@@ -70,6 +71,17 @@ export const getLanding = (slug: string) => LANDINGS.find((p) => p.slug === slug
 export const getSection = (slug: string) => SECTIONS.find((p) => p.slug === slug);
 
 export const productsOf = (key: CategoryKey) => PRODUCTS.filter((p) => p.category === key);
+
+/** Снимок раздела: своя съёмка завода, подпись — из папки, в которой он лежал. */
+export type CategoryPhoto = { src: string; caption: string; w: number; h: number };
+
+/**
+ * Фотографии раздела (scripts/prep-catalog-photos.ts). Живут на уровне
+ * раздела, а не карточки: по снимку не определить, какое из 131 исполнения
+ * на нём снято, и приписывать наугад нельзя.
+ */
+export const photosOf = (key: CategoryKey): CategoryPhoto[] =>
+  (categoryPhotos as Record<string, CategoryPhoto[]>)[key] ?? [];
 
 /** Витрина раздела «Галерея»: страницы со снимками, сгруппированные по маркам. */
 export type GalleryGroup = { mark: string; pages: StaticPage[] };

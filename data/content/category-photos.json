@@ -1,0 +1,972 @@
+{
+  "asmp": [
+    {
+      "src": "/media/razdely/asmp-klass-a-01.webp",
+      "caption": "АСМП класса A",
+      "w": 1600,
+      "h": 1200
+    },
+    {
+      "src": "/media/razdely/asmp-klass-a-02.webp",
+      "caption": "АСМП класса A",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-01.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1066
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-02.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-03.webp",
+      "caption": "АСМП класса B",
+      "w": 1152,
+      "h": 768
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-04.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-05.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-06.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-07.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-08.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-09.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-10.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-11.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-12.webp",
+      "caption": "АСМП класса B",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-13.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-14.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-klass-b-15.webp",
+      "caption": "АСМП класса B",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-01.webp",
+      "caption": "АСМП класса C",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-02.webp",
+      "caption": "АСМП класса C",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-03.webp",
+      "caption": "АСМП класса C",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-04.webp",
+      "caption": "АСМП класса C",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-05.webp",
+      "caption": "АСМП класса C",
+      "w": 640,
+      "h": 480
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-06.webp",
+      "caption": "АСМП класса C",
+      "w": 640,
+      "h": 480
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-07.webp",
+      "caption": "АСМП класса C",
+      "w": 640,
+      "h": 480
+    },
+    {
+      "src": "/media/razdely/asmp-klass-c-08.webp",
+      "caption": "АСМП класса C",
+      "w": 640,
+      "h": 480
+    },
+    {
+      "src": "/media/razdely/asmp-salon-01.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 955
+    },
+    {
+      "src": "/media/razdely/asmp-salon-02.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1244
+    },
+    {
+      "src": "/media/razdely/asmp-salon-03.webp",
+      "caption": "Медицинский салон",
+      "w": 1038,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/asmp-salon-04.webp",
+      "caption": "Медицинский салон",
+      "w": 1040,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/asmp-salon-05.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-06.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-07.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1066
+    },
+    {
+      "src": "/media/razdely/asmp-salon-08.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-09.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-10.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-11.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-12.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/asmp-salon-13.webp",
+      "caption": "Медицинский салон",
+      "w": 1600,
+      "h": 1067
+    }
+  ],
+  "mgn": [
+    {
+      "src": "/media/razdely/mgn-01.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/mgn-02.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/mgn-03.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/mgn-04.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/mgn-05.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/mgn-06.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1024,
+      "h": 681
+    },
+    {
+      "src": "/media/razdely/mgn-07.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-08.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-09.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-10.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-11.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-12.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-13.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-14.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-15.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-16.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-17.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-18.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-19.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-20.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-21.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-22.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-23.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/mgn-24.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-25.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-26.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-27.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-28.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-29.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/mgn-30.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-31.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-32.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-33.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/mgn-34.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-35.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/mgn-36.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/mgn-37.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1600,
+      "h": 1067
+    },
+    {
+      "src": "/media/razdely/mgn-38.webp",
+      "caption": "Транспорт для маломобильных граждан",
+      "w": 1067,
+      "h": 1600
+    }
+  ],
+  "spec": [
+    {
+      "src": "/media/razdely/punkt-pitaniya-01.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-02.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-03.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-04.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-05.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-06.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-07.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-08.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-09.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-10.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-11.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-12.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-13.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-14.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-15.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-16.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-17.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-18.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-19.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-20.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-21.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-22.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-23.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-24.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-25.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-26.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-27.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-28.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-29.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-30.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-31.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-32.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-33.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-34.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-35.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-36.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-37.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-38.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-39.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-40.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/punkt-pitaniya-41.webp",
+      "caption": "Передвижной пункт питания",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-01.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1024,
+      "h": 558
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-02.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1024,
+      "h": 720
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-03.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1024,
+      "h": 768
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-04.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-05.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-06.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-07.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-08.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-09.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-10.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-11.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-12.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-13.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-14.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-15.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-16.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-17.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-18.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-19.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-20.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-21.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-22.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-23.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-24.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-25.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-26.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-27.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1600,
+      "h": 1064
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-28.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1064,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-29.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 768,
+      "h": 1024
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-30.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 768,
+      "h": 1024
+    },
+    {
+      "src": "/media/razdely/spetsavtomobil-laboratoriya-31.webp",
+      "caption": "Спецавтомобиль и лаборатория",
+      "w": 1024,
+      "h": 764
+    }
+  ],
+  "van": [
+    {
+      "src": "/media/razdely/furgon-izotermicheskiy-01.webp",
+      "caption": "Изотермический фургон",
+      "w": 1250,
+      "h": 938
+    }
+  ],
+  "ritual": [
+    {
+      "src": "/media/razdely/ritual-01.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/ritual-02.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/ritual-03.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/ritual-04.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/ritual-05.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/ritual-06.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1200,
+      "h": 1600
+    },
+    {
+      "src": "/media/razdely/ritual-07.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "src": "/media/razdely/ritual-08.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "src": "/media/razdely/ritual-09.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 960,
+      "h": 1280
+    },
+    {
+      "src": "/media/razdely/ritual-10.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "src": "/media/razdely/ritual-11.webp",
+      "caption": "Автомобиль для ритуальных услуг",
+      "w": 1280,
+      "h": 960
+    }
+  ]
+}
