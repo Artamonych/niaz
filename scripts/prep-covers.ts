@@ -35,7 +35,9 @@ const COVERS: { key: string; file: string; note: string }[] = [
   // показывать живую машину, а не картинку из конфигуратора.
   { key: 'asmp', file: 'asmp-klass-b-11.webp', note: 'живой снимок с площадки завода' },
   { key: 'mgn', file: 'mgn-04.webp', note: 'разложенная аппарель — суть раздела видна сразу' },
-  { key: 'spec', file: 'punkt-pitaniya-01.webp', note: 'автолавка: цветом отличается от скорой' },
+  // Кадр выбран заказчиком (DSC_0007 в его папке): дорожная лаборатория в
+  // профиль, надпись на борту читается.
+  { key: 'spec', file: 'spetsavtomobil-laboratoriya-06.webp', note: 'дорожная лаборатория, выбор заказчика' },
   { key: 'van', file: 'furgon-izotermicheskiy-01.webp', note: 'изотермический кузов' },
   { key: 'ritual', file: 'ritual-11.webp', note: 'один из двух горизонтальных кадров серии' },
 ];
