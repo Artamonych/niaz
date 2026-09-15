@@ -155,6 +155,7 @@ export const MENU: Record<string, MenuColumn[]> = {
         { label: 'Достижения', href: '/dostizheniya' },
         { label: 'Сертификация', href: '/sertifikatsiya' },
         { label: 'Галерея', href: '/galereya' },
+        { label: 'Чудеса: уникальные проекты', href: '/chudesa' },
       ],
     },
     {
