@@ -48,8 +48,17 @@ export function proxy(request: NextRequest) {
   }
   if (pathname === '/') return NextResponse.redirect(`https://${crmHost}/crm/`);
 
-  // CRM показывает фото новостей и иконку — их тоже отдаём здесь.
-  if (isCrm || pathname.startsWith('/media/') || pathname === '/favicon.ico' || pathname.startsWith('/icon')) {
+  // CRM показывает фото новостей, знак завода и иконку — их тоже отдаём здесь.
+  // Без /brand/ логотип уходил редиректом на публичный домен, а политика
+  // безопасности (img-src 'self') такую картинку не пускает — в шапке CRM
+  // оставался битый значок.
+  if (
+    isCrm ||
+    pathname.startsWith('/media/') ||
+    pathname.startsWith('/brand/') ||
+    pathname === '/favicon.ico' ||
+    pathname.startsWith('/icon')
+  ) {
     return NextResponse.next();
   }
 
