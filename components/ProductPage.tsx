@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { CATEGORY_BY_KEY } from '@/lib/catalog';
-import { asmpClass, chassisBrand, type Product, type SpecRow } from '@/lib/content';
+import { asmpClass, type Product, type SpecRow } from '@/lib/content';
 import { Breadcrumbs } from './Breadcrumbs';
 import { LeadForm } from './LeadForm';
 import styles from './ProductPage.module.css';
@@ -40,7 +40,7 @@ const PURCHASE_DOCS = [
 export function ProductPage({ product }: { product: Product }) {
   const category = CATEGORY_BY_KEY[product.category];
   const groups = groupSpec(product.spec);
-  const brand = chassisBrand(product.chassis);
+  const brand = product.brand;
   const cls = asmpClass(product.title);
   const photo = product.images[0];
   const thumbs = product.images.slice(1, 6);

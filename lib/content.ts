@@ -21,6 +21,8 @@ export type Product = {
   /** Описание исполнения: очищенная разметка донора. Пусто — текста нет. */
   body: string;
   chassis: string;
+  /** Марка шасси: из комплектации, а где её нет — из названия исполнения. */
+  brand: string;
   spec: SpecRow[];
   images: string[];
 };
@@ -95,12 +97,6 @@ export const galleryGroups = (): GalleryGroup[] =>
     mark,
     pages: slugs.map(getStaticPage).filter((p): p is StaticPage => !!p),
   }));
-
-/** Марка базового шасси для фильтра: «Mercedes-Benz Sprinter Classic…» → «Mercedes-Benz». */
-export function chassisBrand(chassis: string): string {
-  const brands = ['Mercedes-Benz', 'Volkswagen', 'Peugeot', 'Renault', 'Citroen', 'Citroën', 'ГАЗ', 'DONGFENG', 'FOTON', 'Isuzu', 'КАМАЗ', 'Соболь'];
-  return brands.find((b) => chassis.toLowerCase().includes(b.toLowerCase())) ?? '';
-}
 
 /**
  * Класс АСМП из названия: «…класса "В"» → «B». В исходнике латиница и

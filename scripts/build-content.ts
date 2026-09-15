@@ -38,6 +38,8 @@ type Product = {
   body: string;
   /** Базовое шасси вытаскиваем из первой содержательной строки комплектации. */
   chassis: string;
+  /** Марка шасси для фильтра: из комплектации, а если её нет — из названия. */
+  brand: string;
   spec: { no: string; text: string }[];
   images: string[];
 };
@@ -219,6 +221,47 @@ function extractChassis(spec: DonorPage['spec']): string {
 }
 
 /**
+ * Марка базового шасси для фильтра в каталоге (п. 10 бэклога).
+ *
+ * Раньше её брали только из комплектации, а комплектация есть у 32 карточек из
+ * 131 — и марка определялась ровно у двух, из-за чего фильтр «Шасси» не
+ * появлялся вовсе. Название исполнения марку почти всегда содержит
+ * («…на базе Volkswagen Crafter 35, 50»), оттуда и берём: это данные донора,
+ * а не наша догадка.
+ */
+/*
+ * Кириллические марки ограничиваем не ``, а соседними символами: граница
+ * слова в JavaScript считает словом только латиницу и цифры, поэтому «ГАЗ» в
+ * «Автомобили Скорой Медицинской Помощи ГАЗ» ею не ловится. Та же ловушка уже
+ * попадалась с классом АСМП (см. asmpClass в lib/content.ts).
+ */
+const ru = (word: string) => new RegExp(`(^|[^а-яё])${word}([^а-яё]|$)`, 'i');
+
+const CHASSIS_BRANDS: { name: string; re: RegExp }[] = [
+  { name: 'Mercedes-Benz', re: /mercedes(-|\s)?benz|mercedes|sprinter|vito|v-?class|мерседес/i },
+  { name: 'Volkswagen', re: /volkswagen|vw|crafter|transporter|caddy|amarok|multivan|фольксваген/i },
+  { name: 'Peugeot', re: /peugeot|boxer|partner|expert|пежо/i },
+  { name: 'Renault', re: /renault|master|trafic|dokker|рено/i },
+  { name: 'Citroen', re: /citro[eё]n|jumper|jumpy|berlingo|ситроен/i },
+  { name: 'Hyundai', re: /hyundai|хендай|хёндэ|porter|county/i },
+  { name: 'Isuzu', re: /isuzu|исузу/i },
+  { name: 'Ford', re: /ford|transit|форд/i },
+  { name: 'Fiat', re: /fiat|ducato|фиат/i },
+  { name: 'DONGFENG', re: /dongfeng|донгфенг|донг ?фенг/i },
+  { name: 'FOTON', re: /foton|фотон/i },
+  { name: 'ГАЗ', re: new RegExp(`${ru('газ').source}|газель|соболь|валдай|садко|\bnext\b`, 'i') },
+  { name: 'КАМАЗ', re: new RegExp(`${ru('камаз').source}|kamaz`, 'i') },
+  { name: 'УАЗ', re: new RegExp(`${ru('уаз').source}|патриот|профи`, 'i') },
+  { name: 'Урал', re: ru('урал') },
+];
+
+function chassisBrandOf(title: string, chassis: string): string {
+  // Комплектация точнее названия: если базовое шасси выписано, верим ей.
+  const hay = `${chassis} ${title}`;
+  return CHASSIS_BRANDS.find((b) => b.re.test(hay))?.name ?? '';
+}
+
+/**
  * Куда уводить снятый раздел. Заказчик выбрал «по смыслу, с откатом в каталог»:
  * исполнения, у которых есть живой аналог, идут в свою линейку, остальное — в корень.
  */
@@ -348,6 +391,7 @@ async function main() {
         lead: page.intro,
         body: bodyFor(bodyBySlug, page.slug, page.intro),
         chassis: extractChassis(page.spec),
+        brand: chassisBrandOf(page.h1 || page.title, extractChassis(page.spec)),
         spec: page.spec,
         images: page.images,
       });

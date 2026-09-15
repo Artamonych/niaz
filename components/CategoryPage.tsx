@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Category } from '@/lib/catalog';
-import { asmpClass, chassisBrand, photosOf, productsOf, type CategoryLanding } from '@/lib/content';
+import { asmpClass, photosOf, productsOf, type CategoryLanding } from '@/lib/content';
 import { Breadcrumbs } from './Breadcrumbs';
 import { CatalogGrid, type CatalogItem } from './CatalogGrid';
 import { LeadForm } from './LeadForm';
@@ -18,7 +18,7 @@ export function CategoryPage({
     slug: p.slug,
     title: p.title,
     chassis: p.chassis,
-    brand: chassisBrand(p.chassis),
+    brand: p.brand,
     cls: asmpClass(p.title),
     specCount: p.spec.length,
     image: p.images[0],
