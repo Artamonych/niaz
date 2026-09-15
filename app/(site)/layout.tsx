@@ -1,4 +1,5 @@
 import { CallButton } from '@/components/CallButton';
+import { CookieBanner } from '@/components/CookieBanner';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteMotion } from '@/components/SiteMotion';
@@ -11,6 +12,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <main>{children}</main>
       <SiteFooter />
       <CallButton />
+      <CookieBanner />
     </>
   );
 }

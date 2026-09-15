@@ -97,7 +97,10 @@ export function SiteFooter() {
       <div className={`shell ${styles.legal}`}>
         <span>© {new Date().getFullYear()} ООО «Нижегородский автомобильный завод»</span>
         <Link href="/politika-konfidentsialnosti/" className={styles.legalLink}>
-          Политика конфиденциальности
+          Обработка персональных данных
+        </Link>
+        <Link href="/politika-cookie/" className={styles.legalLink}>
+          Файлы cookie
         </Link>
       </div>
     </footer>
