@@ -83,11 +83,11 @@ export const productsOf = (key: CategoryKey) => PRODUCTS.filter((p) => p.categor
  * остаётся фотография из каталога старого сайта, пока завод не передаст свою.
  */
 const COVERS: Partial<Record<CategoryKey, string>> = {
-  asmp: '/media/razdely/asmp-klass-b-04.webp',
-  mgn: '/media/razdely/mgn-04.webp',
-  spec: '/media/razdely/spetsavtomobil-laboratoriya-05.webp',
-  van: '/media/razdely/furgon-izotermicheskiy-01.webp',
-  ritual: '/media/razdely/ritual-06.webp',
+  asmp: '/media/covers/asmp.webp',
+  mgn: '/media/covers/mgn.webp',
+  spec: '/media/covers/spec.webp',
+  van: '/media/covers/van.webp',
+  ritual: '/media/covers/ritual.webp',
 };
 
 /**
