@@ -11,7 +11,7 @@
 
 .badgeSolid {
   background: var(--text-on-light);
-  color: #fff;
+  color: var(--ink-900);
   padding: 7px 12px;
   font-size: 10px;
   line-height: 1.4;
@@ -216,7 +216,7 @@
   text-align: center;
   background: var(--accent-deep);
   border: 1px solid var(--accent-deep);
-  color: #fff;
+  color: var(--ink-900);
   font: 600 13px/1 var(--font-body);
   transition: background 0.25s, border-color 0.25s;
 }
@@ -253,8 +253,8 @@
 
 .docsCard {
   margin-top: 14px;
-  border: 1px solid var(--text-on-light);
-  background: var(--text-on-light);
+  border: 1px solid var(--ink-400);
+  background: var(--ink-900);
   padding: 24px;
 }
 

@@ -6,7 +6,7 @@
   backdrop-filter: blur(14px);
 }
 
-.dark {
+.header {
   background: rgba(14, 18, 20, 0.93);
   border-bottom: 1px solid var(--ink-400);
   --line: var(--accent);
@@ -16,18 +16,6 @@
   --panel-border: var(--ink-400);
   --panel-rule: var(--ink-500);
   --item-border: var(--ink-560);
-}
-
-.light {
-  background: rgba(216, 221, 223, 0.92);
-  border-bottom: 1px solid #dbe0e2;
-  --line: var(--accent-deep);
-  --fg: var(--text-on-light);
-  --fg-dim: var(--text-on-light-dim2);
-  --panel-bg: var(--paper-100);
-  --panel-border: #dbe0e2;
-  --panel-rule: #dbe0e2;
-  --item-border: var(--paper-500);
 }
 
 .bar {
@@ -121,8 +109,8 @@
   white-space: nowrap;
 }
 
-/* Тёмная шапка: контурная кнопка с дочерчиванием угла. */
-.dark .cta {
+/* Контурная кнопка с дочерчиванием угла. */
+.cta {
   --u-line: var(--accent);
   background-color: transparent;
   border: 1px solid var(--ink-400);
@@ -132,24 +120,8 @@
   white-space: nowrap;
 }
 
-.dark .cta:hover {
+.cta:hover {
   border-color: var(--accent);
-}
-
-/* Светлая шапка: залитая кнопка. */
-.light .cta {
-  background-color: var(--text-on-light);
-  border: 1px solid var(--text-on-light);
-  color: #fff;
-  padding: 11px 18px;
-  font: 500 11.5px/1 var(--font-body);
-  white-space: nowrap;
-  background-image: none;
-}
-
-.light .cta:hover {
-  background-color: var(--accent-deep);
-  border-color: var(--accent-deep);
 }
 
 .mobileBar {
@@ -198,7 +170,9 @@
   overflow: hidden;
 }
 
+/* Страница под панелью тоже тёмная — край панели держит акцентная линия. */
 .mobilePanel {
+  border-bottom-color: var(--line);
   max-height: 70vh;
   overflow-y: auto;
 }

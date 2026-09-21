@@ -104,7 +104,7 @@
   padding: 15px 28px;
   border: 1px solid var(--accent-deep);
   background: var(--accent-deep);
-  color: #fff;
+  color: var(--ink-900);
   font: 600 13px/1 var(--font-body);
   cursor: pointer;
   transition: background 0.25s, border-color 0.25s;

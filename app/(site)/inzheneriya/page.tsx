@@ -8,15 +8,15 @@ import styles from './inzheneriya.module.css';
 export const metadata: Metadata = {
   title: 'Инженерия и производство',
   description:
-    'Производственные мощности Нижегородского автомобильного завода: участки раскроя панелей, лазерной резки и листообработки, станки с ЧПУ.',
+    'Производственные мощности Нижегородского автомобильного завода: раскрой панелей, лазерная резка, листообработка, станки с ЧПУ. Криволинейный раскрой, мебель и интерьер для автомобилей и прицепов, 3D-формы и оснастка.',
   alternates: { canonical: '/inzheneriya' },
 };
 
 /**
  * Раздел из карты сайта заказчика. Собран на том, что подтверждено съёмкой
  * цехов: подписи называют только оборудование, читаемое на самих кадрах.
- * Три других подраздела карты — конструкторский центр, дизайн-центр и
- * перечень услуг — ждут текста завода, см. BACKLOG.md.
+ * Конструкторский центр и дизайн-центр по правкам от 21.09.2026 стоят первыми;
+ * их подразделы и тексты завод передаст сам, пока это заглушки.
  */
 const SHOPS = [
   {
@@ -72,11 +72,17 @@ const EQUIPMENT = [
   { t: 'Раскрой панелей', d: 'портальные станки с ЧПУ Beaver 3021AVLT8 и 2130ZW' },
 ];
 
-/** Подразделы карты сайта, для которых завод ещё не передал материалы. */
-const PENDING = [
-  { t: 'Конструкторский центр', d: 'разработка исполнений под техническое задание' },
-  { t: 'Дизайн-центр', d: 'проработка внешнего вида и планировки салона' },
-  { t: 'Предоставляемые услуги', d: 'переоборудование, восстановление, модернизация' },
+/** Услуги производства — формулировки завода из правок от 21.09.2026. */
+const SERVICES = [
+  'Криволинейный раскрой листовых материалов на станках с ЧПУ',
+  'Изготовление мебели и элементов интерьера для автомобилей и прицепов',
+  'Изготовление 3D-форм и оснастки',
+];
+
+/** Центры инженерии: страницы есть, материалы завод ещё не передал. */
+const CENTERS = [
+  { t: 'Конструкторский центр', d: 'разработка исполнений под техническое задание', href: '/konstruktorskiy-tsentr/' },
+  { t: 'Дизайн-центр', d: 'проработка внешнего вида и планировки салона', href: '/dizayn-tsentr/' },
 ];
 
 export default function EngineeringPage() {
@@ -96,6 +102,20 @@ export default function EngineeringPage() {
 
       <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
+      <section className={styles.section}>
+        <ul className={styles.pending}>
+          {CENTERS.map((c) => (
+            <li key={c.t}>
+              <Link href={c.href} className={styles.pendingItem}>
+                <span className={styles.pendingTitle}>{c.t}</span>
+                <span className={styles.pendingText}>{c.d}</span>
+                <span className={`mono ${styles.pendingState}`}>Готовится</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className={styles.section} id="moshchnosti">
         <h2 className={styles.h2}>Производственные мощности</h2>
 
@@ -104,6 +124,17 @@ export default function EngineeringPage() {
             <li key={e.t} className={styles.equipmentItem}>
               <p className={`mono ${styles.equipmentTitle}`}>{e.t}</p>
               <p className={styles.equipmentText}>{e.d}</p>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className={styles.h3} id="uslugi">
+          Услуги
+        </h3>
+        <ul className={styles.pending}>
+          {SERVICES.map((t) => (
+            <li key={t} className={styles.pendingItem}>
+              <span className={styles.pendingTitle}>{t}</span>
             </li>
           ))}
         </ul>
@@ -124,23 +155,6 @@ export default function EngineeringPage() {
             </figure>
           ))}
         </div>
-      </section>
-
-      <section className={styles.section}>
-        <h2 className={styles.h2}>Готовится к публикации</h2>
-        <p className={styles.pendingLead}>
-          Эти подразделы предусмотрены картой сайта. Материалы завода по ним ещё не
-          переданы — как только появятся описания и цифры, страницы будут опубликованы.
-        </p>
-        <ul className={styles.pending}>
-          {PENDING.map((p) => (
-            <li key={p.t} className={styles.pendingItem}>
-              <span className={styles.pendingTitle}>{p.t}</span>
-              <span className={styles.pendingText}>{p.d}</span>
-              <span className={`mono ${styles.pendingState}`}>Готовится</span>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section className={styles.cta} id="zapros">

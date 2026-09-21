@@ -7,18 +7,22 @@ import { useEffect, useState } from 'react';
 import { CATEGORIES, MENU } from '@/lib/catalog';
 import styles from './SiteHeader.module.css';
 
-const TABS: { key: keyof typeof MENU; label: string }[] = [
-  { key: 'tech', label: 'Спецтехника' },
+type MenuKey = keyof typeof MENU;
+
+const TABS: { key: MenuKey; label: string }[] = [
+  { key: 'tech', label: 'Продукция' },
   { key: 'service', label: 'АСМП-сервис' },
   { key: 'about', label: 'О заводе' },
+  { key: 'engineering', label: 'Инженерия' },
 ];
+
+// Грузопассажирские сняты из шапки по правкам заказчика; страницы остаются.
+const MOBILE_CATS = CATEGORIES.filter((c) => c.key !== 'gp');
 
 export function SiteHeader() {
   const pathname = usePathname();
-  // Главная — тёмная зона прототипа, остальные страницы — светлая.
-  const dark = pathname === '/';
 
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<MenuKey | null>(null);
   const [mobile, setMobile] = useState(false);
 
   // Меню закрывается по Escape — иначе с клавиатуры из него не выйти.
@@ -41,13 +45,12 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`${styles.header} ${dark ? styles.dark : styles.light}`}
+      className={styles.header}
       onMouseLeave={() => setOpen(null)}
     >
       <div className={`shell ${styles.bar}`}>
         <Link href="/" className={styles.logo}>
-          {/* На главной шапка тёмная, на остальных страницах светлая. */}
-          <BrandLogo size={20} tone={dark ? 'dark' : 'light'} />
+          <BrandLogo size={20} tone="dark" />
           <span>
             <span className={`mono ${styles.markSub}`}>
               Нижегородский
@@ -71,13 +74,6 @@ export function SiteHeader() {
               {tab.label}
             </button>
           ))}
-          <Link
-            href="/inzheneriya/"
-            className={`u-underline ${styles.tab}`}
-            onMouseEnter={() => setOpen(null)}
-          >
-            Инженерия
-          </Link>
           <Link
             href="/tendery/"
             className={`u-underline ${styles.tab}`}
@@ -156,7 +152,7 @@ export function SiteHeader() {
           <div className={styles.panelRule} aria-hidden="true" />
           <div className={`shell ${styles.mobileInner}`}>
             {[
-              { label: 'Спецтехника', href: '/produktsiya/' },
+              { label: 'Продукция', href: '/produktsiya/' },
               { label: 'Инженерия', href: '/inzheneriya/' },
               { label: 'Тендерам', href: '/tendery/' },
               { label: 'Гарантии', href: '/garantii/' },
@@ -177,7 +173,7 @@ export function SiteHeader() {
 
             <p className={`label ${styles.mobileCatsTitle}`}>Категории</p>
             <div className={styles.mobileCats}>
-              {CATEGORIES.map((c, i) => (
+              {MOBILE_CATS.map((c, i) => (
                 <Link
                   key={c.key}
                   href={`/${c.slug}/`}

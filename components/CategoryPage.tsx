@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Category } from '@/lib/catalog';
+import { Suspense } from 'react';
+import { KINDS, type Category } from '@/lib/catalog';
 import { asmpClass, photosOf, productsOf, type CategoryLanding } from '@/lib/content';
 import { Breadcrumbs } from './Breadcrumbs';
-import { CatalogGrid, type CatalogItem } from './CatalogGrid';
+import { CatalogGrid, CatalogGridFromUrl, type CatalogItem } from './CatalogGrid';
 import { LeadForm } from './LeadForm';
 import styles from './CategoryPage.module.css';
 
@@ -14,15 +15,23 @@ export function CategoryPage({
   category: Category;
   landing: CategoryLanding;
 }) {
+  const kinds = KINDS[category.key] ?? [];
   const items: CatalogItem[] = productsOf(category.key).map((p) => ({
     slug: p.slug,
     title: p.title,
     chassis: p.chassis,
     brand: p.brand,
     cls: asmpClass(p.title),
+    kinds: kinds.filter((k) => k.match(p)).map((k) => k.key),
     specCount: p.spec.length,
     image: p.images[0],
   }));
+
+  const grid = {
+    items,
+    showClass: category.key === 'asmp',
+    kinds: kinds.map(({ key, label }) => ({ key, label })),
+  };
 
   // Своя съёмка завода по этому разделу — она честнее фотографий старого сайта.
   const photos = photosOf(category.key);
@@ -56,7 +65,10 @@ export function CategoryPage({
 
       <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
-      <CatalogGrid items={items} showClass={category.key === 'asmp'} />
+      {/* Запасной вариант — та же сетка без фильтра: он и уходит в HTML. */}
+      <Suspense fallback={<CatalogGrid {...grid} />}>
+        <CatalogGridFromUrl {...grid} />
+      </Suspense>
 
       {photos.length > 0 && (
         <section className={styles.photos}>

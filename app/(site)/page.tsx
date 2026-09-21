@@ -19,8 +19,6 @@ const COUNTERS = [
   { n: 85, suffix: '', k: 'регионов поставок' },
 ];
 
-const MARKS = ['ОТТС · ТР ТС 018/2011', 'ГОСТ 33665-2024', '44-ФЗ · 223-ФЗ'];
-
 /**
  * Разделы завода — все три блока одной схемы: перечень того, что в разделе уже
  * есть. Текстов-описаний у завода по ним нет, поэтому ничего не сочиняем.
@@ -40,8 +38,8 @@ const TEASERS = [
   {
     label: 'Сервис',
     title: 'АСМП-сервис',
-    href: '/garantii/',
-    more: 'Гарантии и документы',
+    href: MENU.service[0].items[0].href,
+    more: MENU.service[0].items[0].label,
     items: MENU.service[0].items,
   },
   {
@@ -113,19 +111,6 @@ export default async function HomePage() {
               под ваши задачи
             </h1>
 
-            {/*
-              Первый абзац отвечает сразу двум задачам: держит поисковые запросы
-              по видам техники и даёт прямой ответ, чем занят завод. Суть —
-              разработка исполнения под требования заказчика; закупки по 44 и
-              223-ФЗ названы как канал поставки, а не как род занятий.
-            */}
-            <p className={styles.heroLead}>
-              Разрабатываем и производим спецтранспорт по техническому заданию:
-              автомобили скорой помощи классов A, B и C по ГОСТ 33665-2024, транспорт
-              для маломобильных граждан, фургоны, мобильные лаборатории. Поставка
-              в том числе по 44-ФЗ и 223-ФЗ.
-            </p>
-
             <div className={styles.heroActions}>
               <Link href="/produktsiya/" className={styles.primary}>
                 Каталог продукции
@@ -134,12 +119,6 @@ export default async function HomePage() {
                 Тендерам и госзаказчикам
               </Link>
             </div>
-
-            <p className={`mono ${styles.marks}`}>
-              {MARKS.map((m) => (
-                <span key={m}>{m}</span>
-              ))}
-            </p>
           </div>
 
           {/* Чертёж: рамка с угловыми маркерами, внутри — анимация листа. */}
@@ -174,7 +153,7 @@ export default async function HomePage() {
         <Guides delay="5s" />
         <div className="shell">
           <div className={styles.sectionHead}>
-            <h2 className={styles.h2Dark}>Спецтехника</h2>
+            <h2 className={styles.h2Dark}>Продукция</h2>
             <Link href="/produktsiya/" className={`u-underline ${styles.allLink}`}>
               Весь каталог →
             </Link>

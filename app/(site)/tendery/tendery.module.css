@@ -152,7 +152,7 @@ a.docLink:hover {
 .docsFootCta {
   background: var(--text-on-light);
   border: 1px solid var(--text-on-light);
-  color: #fff;
+  color: var(--ink-900);
   padding: 13px 20px;
   font: 600 12px/1 var(--font-body);
   transition: background 0.25s, border-color 0.25s;

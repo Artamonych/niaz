@@ -32,6 +32,17 @@
   color: var(--text-on-light);
 }
 
+.h3 {
+  margin: 0 0 14px;
+  scroll-margin-top: 90px;
+  font: 700 clamp(17px, 1.8vw, 22px)/1.2 var(--font-display);
+  color: var(--text-on-light);
+}
+
+.h3 + .pending {
+  margin-bottom: clamp(22px, 2.6vw, 36px);
+}
+
 /* Оборудование: сухая таблица, как в остальных технических блоках. */
 .equipment {
   list-style: none;
@@ -95,15 +106,7 @@
   color: var(--text-on-light-dim2);
 }
 
-/* Подразделы, ждущие материалов завода. */
-.pendingLead {
-  margin: 0 0 18px;
-  max-width: 62ch;
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--text-on-light-dim);
-}
-
+/* Центры инженерии и услуги: строки-перечень. */
 .pending {
   list-style: none;
   margin: 0;
@@ -120,6 +123,11 @@
   padding: 16px 20px;
 }
 
+a.pendingItem:hover .pendingTitle {
+  color: var(--accent-deep);
+}
+
+li + li > .pendingItem,
 .pendingItem + .pendingItem {
   border-top: 1px solid var(--paper-400);
 }

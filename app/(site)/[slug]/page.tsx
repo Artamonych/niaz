@@ -18,6 +18,8 @@ import { ProductPage } from '@/components/ProductPage';
 import { ArticlePage } from '@/components/ArticlePage';
 import { GalleryIndex } from '@/components/GalleryIndex';
 import { SectionPage } from '@/components/SectionPage';
+import { PlannedPage } from '@/components/PlannedPage';
+import { getPlannedPage, PLANNED_PAGES } from '@/lib/catalog';
 
 /** Страница, которая собирает витрины по маркам, а не показывает свой текст. */
 const GALLERY_SLUG = 'galereya';
@@ -34,11 +36,23 @@ export function generateStaticParams() {
     ...LANDINGS.map((l) => ({ slug: l.slug })),
     ...PRODUCTS.map((p) => ({ slug: p.slug })),
     ...STATIC_PAGES.filter((p) => !RESERVED_SLUGS.has(p.slug)).map((p) => ({ slug: p.slug })),
+    ...PLANNED_PAGES.map((p) => ({ slug: p.slug })),
   ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+
+  // Заглушка раздела без материалов: в индекс не идёт, пока нечего индексировать.
+  const planned = getPlannedPage(slug);
+  if (planned) {
+    return {
+      title: planned.title,
+      description: planned.lead,
+      robots: { index: false, follow: true },
+    };
+  }
+
   const landing = getLanding(slug);
   const product = getProduct(slug);
   const page = getStaticPage(slug);
@@ -74,6 +88,9 @@ export default async function Page({ params }: Props) {
 
   const product = getProduct(slug);
   if (product) return <ProductPage product={product} />;
+
+  const planned = getPlannedPage(slug);
+  if (planned) return <PlannedPage page={planned} />;
 
   const page = getStaticPage(slug);
   if (page) {

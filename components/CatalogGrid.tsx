@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import styles from './CatalogGrid.module.css';
 
 export type CatalogItem = {
@@ -11,19 +12,52 @@ export type CatalogItem = {
   chassis: string;
   brand: string;
   cls: string;
+  /** Подразделы категории (KINDS), в которые попадает исполнение. */
+  kinds: string[];
   specCount: number;
   image?: string;
 };
 
 const ALL = 'Все';
 
+type GridProps = {
+  items: CatalogItem[];
+  showClass: boolean;
+  kinds: { key: string; label: string }[];
+};
+
+/**
+ * Каталог с фильтрами из адреса: пункты меню ведут на /<категория>?tip=… и
+ * ?cls=…, и страница открывается с уже выбранным подразделом или классом.
+ * Адрес читается только в браузере — на сервере рендерится полный список
+ * (см. Suspense в CategoryPage), чтобы все карточки были в HTML для поиска.
+ */
+export function CatalogGridFromUrl(props: GridProps) {
+  const params = useSearchParams();
+  const tip = params.get('tip') ?? '';
+  const cls = params.get('cls') ?? '';
+  // key пересоздаёт сетку при переходе по меню внутри той же категории.
+  return <CatalogGrid key={`${tip}|${cls}`} {...props} initialKind={tip} initialCls={cls} />;
+}
+
 /**
  * Каталог по образцу прототипа: слева — колонка фильтров и блок подбора под ТЗ,
  * справа — карточки с фотографией, ключевыми строками и переходом в карточку.
  */
-export function CatalogGrid({ items, showClass }: { items: CatalogItem[]; showClass: boolean }) {
+export function CatalogGrid({
+  items,
+  showClass,
+  kinds,
+  initialKind = '',
+  initialCls = '',
+}: GridProps & { initialKind?: string; initialCls?: string }) {
+  const kindLabels = [ALL, ...kinds.map((k) => k.label)];
+  const labelOf = (key: string) => kinds.find((k) => k.key === key)?.label;
+
   const [brand, setBrand] = useState(ALL);
-  const [cls, setCls] = useState(ALL);
+  const [cls, setCls] = useState(showClass && /^[ABC]$/.test(initialCls) ? initialCls : ALL);
+  const [kind, setKind] = useState(labelOf(initialKind) ?? ALL);
+  const kindKey = kinds.find((k) => k.label === kind)?.key;
 
   const brands = useMemo(
     () => [ALL, ...[...new Set(items.map((i) => i.brand).filter(Boolean))].sort()],
@@ -35,12 +69,18 @@ export function CatalogGrid({ items, showClass }: { items: CatalogItem[]; showCl
   );
 
   const filtered = items.filter(
-    (i) => (brand === ALL || i.brand === brand) && (cls === ALL || i.cls === cls),
+    (i) =>
+      (brand === ALL || i.brand === brand) &&
+      (cls === ALL || i.cls === cls) &&
+      (!kindKey || i.kinds.includes(kindKey)),
   );
 
   return (
     <div className={styles.layout}>
       <aside className={styles.aside}>
+        {kinds.length > 0 && (
+          <FilterRow label="Вид" options={kindLabels} value={kind} onChange={setKind} />
+        )}
         {showClass && classes.length > 2 && (
           <FilterRow label="Класс по ГОСТ" options={classes} value={cls} onChange={setCls} />
         )}

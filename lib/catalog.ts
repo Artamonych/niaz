@@ -95,13 +95,80 @@ export const CATEGORY_BY_KEY = Object.fromEntries(
 /** Раздел донора, который снят с сайта: все его URL уходят в 301. */
 export const REMOVED_DONOR_SECTION = 'Автобусы';
 
+/**
+ * Подразделы внутри категории: в меню это отдельные пункты, на странице
+ * категории — фильтр «Вид». Ссылка вида /<категория>?tip=<key> открывает
+ * категорию с уже выбранным подразделом. Своих URL у подразделов нет: товары
+ * остаются на адресах донора, а раскладка — лишь срез по названиям.
+ */
+export type CategoryKind = {
+  key: string;
+  label: string;
+  match: (p: { slug: string; title: string }) => boolean;
+};
+
+const bySlug =
+  (...slugs: string[]) =>
+  (p: { slug: string }) =>
+    slugs.includes(p.slug);
+
+export const KINDS: Partial<Record<CategoryKey, CategoryKind[]>> = {
+  spec: [
+    {
+      key: 'laboratorii',
+      label: 'Лаборатории',
+      match: (p) =>
+        p.slug === 'dorozhnaya-laboratoriya-volkswagen-crafter' ||
+        p.slug === 'spets-avtomobil-peugeot' ||
+        p.slug.startsWith('spets-avtomobili-i-laboratorii-'),
+    },
+    {
+      key: 'avtolavki',
+      label: 'Автолавки',
+      match: bySlug('avtolavka', 'avtolavka-mercedes-benz-sprinter-classic-311', 'kofe-s-soboy'),
+    },
+    {
+      key: 'kompleksy',
+      label: 'Мобильные комплексы',
+      match: bySlug(
+        'peugeot-boxer-peredvizhnoy-kompleks-mvd',
+        'avtomobil-dlya-radiokompanii',
+        'sobol-4h4-avtokemper',
+      ),
+    },
+    {
+      key: 'medsluzhba',
+      label: 'Медицинская служба',
+      match: bySlug(
+        'skoraya-meditsinskaya-pomosch-klassa-s-reanimatsiya',
+        'skoraya-meditsinskaya-pomosch-klassa-v',
+        'peredvizhnoy-punkt-meditsinskogo-osvidetelstvovaniya-volkswagen-crafter',
+      ),
+    },
+  ],
+  van: [
+    { key: 'izotermicheskie', label: 'Изотермические', match: (p) => /изотерм/i.test(p.title) },
+    {
+      key: 'obschego-naznacheniya',
+      label: 'Общего назначения',
+      match: (p) => /общего назначения|промтоварн|хлебн|мороженовоз/i.test(p.title),
+    },
+  ],
+};
+
 export type MenuColumn = { title: string; items: { label: string; href: string }[] };
 
+const SPEC = '/spets-avtomobili-i-laboratorii';
+const VAN = '/furgony-izotermicheskie-i-obschego-naznacheniya';
+
 /**
- * Мегаменю. Колонка «АВТОБУСЫ» удалена целиком, «Транспорт для МГН» переехал
- * под АСМП, строки «На шасси ГАЗ» и «На шасси DONGFENG» убраны.
+ * Мегаменю после правок заказчика от 21.09.2026: «Спецтехника» стала
+ * «Продукцией», грузопассажирские из меню сняты (страницы остаются — на них
+ * индексация), «Фургоны и спецтехника» разбиты надвое, «Транспорт для МГН»
+ * переехал в соцтранспорт как «Социальное такси», добавлены прицепы,
+ * у АСМП-сервиса и инженерии — новые подразделы.
  */
-export const MENU: Record<string, MenuColumn[]> = {
+export const MENU = {
   tech: [
     {
       title: 'АСМП',
@@ -109,41 +176,45 @@ export const MENU: Record<string, MenuColumn[]> = {
         { label: 'Класс A', href: '/avtomobili-skoroy-meditsinskoy-pomoschi?cls=A' },
         { label: 'Класс B', href: '/avtomobili-skoroy-meditsinskoy-pomoschi?cls=B' },
         { label: 'Класс C', href: '/avtomobili-skoroy-meditsinskoy-pomoschi?cls=C' },
-        { label: 'Транспорт для МГН', href: '/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami' },
       ],
     },
     {
-      title: 'ГРУЗОПАССАЖИРСКИЕ',
+      title: 'ФУРГОНЫ',
       items: [
-        { label: 'Все исполнения', href: '/gruzopassazhirskie-mikroavtobusy' },
-        { label: 'Комби с остеклением', href: '/gruzopassazhirskie-mikroavtobusy?ispolnenie=kombi' },
+        { label: 'Изотермические фургоны', href: `${VAN}?tip=izotermicheskie` },
+        { label: 'Фургоны общего назначения', href: `${VAN}?tip=obschego-naznacheniya` },
       ],
     },
     {
-      title: 'ФУРГОНЫ И СПЕЦТЕХНИКА',
+      title: 'СПЕЦТЕХНИКА',
       items: [
-        { label: 'Изотермические фургоны', href: '/furgony-izotermicheskie-i-obschego-naznacheniya?tip=izotermicheskiy' },
-        { label: 'Фургоны общего назначения', href: '/furgony-izotermicheskie-i-obschego-naznacheniya' },
-        { label: 'Спецавтомобили и лаборатории', href: '/spets-avtomobili-i-laboratorii' },
-        { label: 'Автомобили для ритуальных услуг', href: '/avtomobili-dlya-ritualnyy-uslug' },
+        { label: 'Лаборатории', href: `${SPEC}?tip=laboratorii` },
+        { label: 'Автолавки', href: `${SPEC}?tip=avtolavki` },
+        { label: 'Мобильные комплексы', href: `${SPEC}?tip=kompleksy` },
+        { label: 'Ритуальные услуги', href: '/avtomobili-dlya-ritualnyy-uslug' },
+        { label: 'Медицинская служба', href: `${SPEC}?tip=medsluzhba` },
       ],
     },
     {
-      title: 'СОЦИАЛЬНЫЙ ТРАНСПОРТ',
+      title: 'СОЦТРАНСПОРТ',
       items: [
-        { label: 'Автолавки', href: '/spets-avtomobili-i-laboratorii?tip=avtolavka' },
-        { label: 'Мобильные комплексы', href: '/spets-avtomobili-i-laboratorii?tip=kompleks' },
+        {
+          label: 'Социальное такси',
+          href: '/avtomobili-dlya-perevozki-lits-s-ogranichennymi-vozmozhnostyami',
+        },
       ],
+    },
+    {
+      title: 'ПРИЦЕПЫ',
+      items: [{ label: 'Прицепы', href: '/pritsepy' }],
     },
   ],
   service: [
     {
       title: 'АСМП-СЕРВИС',
       items: [
-        { label: 'Гарантии', href: '/garantii' },
-        { label: 'Положение о гарантийных обязательствах', href: '/polozhenie-o-garantiynyh-obyazatelstvah' },
-        { label: 'Порядок обращения при гарантийном случае', href: '/poryadok-obrascheniya-pri-garantiynom-sluchae' },
-        { label: 'Электрические схемы', href: '/elektricheskie-shemy' },
+        { label: 'Ремонт и восстановление', href: '/remont-i-vosstanovlenie' },
+        { label: 'Обновление и модернизация', href: '/obnovlenie-i-modernizatsiya' },
       ],
     },
   ],
@@ -167,7 +238,65 @@ export const MENU: Record<string, MenuColumn[]> = {
       ],
     },
   ],
+  engineering: [
+    {
+      title: 'ИНЖЕНЕРИЯ',
+      items: [
+        { label: 'Конструкторский центр', href: '/konstruktorskiy-tsentr' },
+        { label: 'Дизайн-центр', href: '/dizayn-tsentr' },
+        { label: 'Производственные мощности', href: '/inzheneriya#moshchnosti' },
+        { label: 'Услуги производства', href: '/inzheneriya#uslugi' },
+      ],
+    },
+  ],
+} satisfies Record<string, MenuColumn[]>;
+
+/**
+ * Подразделы, которые заказчик завёл в меню, но материалы по ним ещё не
+ * передал. Страница есть, чтобы пункт меню не вёл в 404, но в индекс она не
+ * идёт и в sitemap не попадает — пока там нечего индексировать.
+ */
+export type PlannedPage = {
+  slug: string;
+  title: string;
+  lead: string;
+  parent: { name: string; href?: string };
 };
+
+export const PLANNED_PAGES: PlannedPage[] = [
+  {
+    slug: 'pritsepy',
+    title: 'Прицепы',
+    lead: 'Прицепы производства завода.',
+    parent: { name: 'Продукция', href: '/produktsiya/' },
+  },
+  {
+    slug: 'remont-i-vosstanovlenie',
+    title: 'Ремонт и восстановление',
+    lead: 'Ремонт и восстановление автомобилей скорой медицинской помощи.',
+    parent: { name: 'АСМП-сервис' },
+  },
+  {
+    slug: 'obnovlenie-i-modernizatsiya',
+    title: 'Обновление и модернизация',
+    lead: 'Обновление и модернизация автомобилей скорой медицинской помощи.',
+    parent: { name: 'АСМП-сервис' },
+  },
+  {
+    slug: 'konstruktorskiy-tsentr',
+    title: 'Конструкторский центр',
+    lead: 'Разработка исполнений под техническое задание.',
+    parent: { name: 'Инженерия', href: '/inzheneriya/' },
+  },
+  {
+    slug: 'dizayn-tsentr',
+    title: 'Дизайн-центр',
+    lead: 'Проработка внешнего вида и планировки салона.',
+    parent: { name: 'Инженерия', href: '/inzheneriya/' },
+  },
+];
+
+export const getPlannedPage = (slug: string) => PLANNED_PAGES.find((p) => p.slug === slug);
 
 /**
  * Разделы, у которых на доноре была только архивная страница WordPress
