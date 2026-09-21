@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CATEGORIES, MENU } from '@/lib/catalog';
 import { categoryCover, PRODUCTS, productsOf } from '@/lib/content';
-import { BusBlueprint } from '@/components/BusBlueprint';
+import { VanBlueprint } from '@/components/VanBlueprint';
 import { LeadForm } from '@/components/LeadForm';
 import { NewsCard } from '@/components/NewsCard';
 import { getNewsFeed } from '@/lib/news';
@@ -149,7 +149,7 @@ export default async function HomePage() {
             <span className={`${styles.bracket} ${styles.bracketBl}`} aria-hidden="true" />
             <span className={`${styles.bracket} ${styles.bracketBr}`} aria-hidden="true" />
             <div className={styles.sheetInner}>
-              <BusBlueprint sheetTitle="СПЕЦТРАНСПОРТ" />
+              <VanBlueprint />
             </div>
           </div>
         </div>

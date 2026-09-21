@@ -1,14 +1,15 @@
 'use client';
 
 /**
- * Порт анимации `bus-blueprint.jsx` из прототипа: чертёж, который рисуется
- * по сценам — сетка листа, построение, обводка, размеры, итог.
+ * Порт анимации `van-blueprint-standalone.jsx` из прототипа («Чертёж фургона»):
+ * чертёж, который рисуется по сценам — сетка листа, построение, обводка,
+ * размеры, итог. Все размеры взяты с листа (мм).
  * Движок прототипа (animations-v2-engine) заменён минимальным таймлайном:
  * нужны только последовательность сцен, прогресс внутри сцены и один проход.
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { BUS_STROKES } from '@/lib/bus-strokes';
+import { VAN_STROKES } from '@/lib/van-strokes';
 
 const W = 1920;
 const H = 1080;
@@ -17,15 +18,35 @@ const INK = '#eef4f8';
 const GRAPHITE = '#14181b';
 
 // Геометрия листа и артворка — из прототипа без изменений.
-const K = 1.04;
-const AX = 300;
-const AY = 60;
-const sx = (v: number) => AX + (v - AX) * K;
-const sy = (v: number) => AY + (v - AY) * K;
-const IMG = { l: sx(278), t: sy(22), w: 1304 * K, h: 866 * K };
-const BB = { x1: sx(352), y1: sy(80), x2: sx(1530), y2: sy(817) };
-const FW = { cx: sx(853), cy: sy(691), rx: 77 * K, ry: 92 * K };
-const RW = { cx: sx(1393), cy: sy(548), rx: 37 * K, ry: 63 * K };
+// Линовка — 1530×545 px исходного листа, размещена в масштабе 0.9.
+const IMG = { l: 300, t: 240, w: 1377, h: 491 };
+
+const NOSE = 308;
+const REAR = 1292;
+const FAX = 426;
+const RAX = 980;
+const BODY_F = 641;
+const BODY_R = 1266;
+const CH1 = 1132;
+const CH2 = 1242;
+const FB_L = 1366;
+const FB_R = 1664;
+const TR_L = 1403;
+const TR_R = 1626;
+const ROOF = 262;
+const BODY_T = 270;
+const FLOOR = 554;
+const GND = 724;
+const INNER_T = 271;
+const INNER_B = 542;
+const MAXH = 542;
+const TOPD = 200;
+const CHAIN = 782;
+const TOTAL_Y = 836;
+
+const BB = { x1: NOSE, y1: ROOF, x2: REAR, y2: GND };
+const FW = { cx: FAX, cy: 661, r: 63 };
+const RW = { cx: RAX, cy: 661, r: 63 };
 const FR = { x: 44, y: 44, w: 1832, h: 992 };
 const TB = { x: 1560, y: 880, w: 316, h: 156 };
 
@@ -42,16 +63,17 @@ const draw = (p: number) => easeInOutCubic(clamp(p, 0, 1));
 const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a), 0, 1);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const type = (s: string, p: number) => s.slice(0, Math.round(s.length * clamp(p, 0, 1)));
-const ell = (rx: number, ry: number) =>
-  Math.PI * (3 * (rx + ry) - Math.sqrt((3 * rx + ry) * (rx + 3 * ry)));
+
+const SUBTITLE = 'ШАССИ · КУЗОВ · ГИДРОБОРТ';
 
 const SPEC: [string, string][] = [
-  ['ДЛИНА', '7 340'],
-  ['ШИРИНА', '1 993'],
-  ['ВЫСОТА', '2 800'],
-  ['БАЗА', '4 325'],
-  ['МЕСТ', '19 + 1'],
-  ['ШИНЫ', '235/65 R16C'],
+  ['ДЛИНА', '8026'],
+  ['ШИРИНА', '2430'],
+  ['ВЫСОТА', '3770'],
+  ['БАЗА', '4516'],
+  ['КОЛЕЯ', '1820'],
+  ['КУЗОВ', '5100'],
+  ['ВНУТРИ', '2213'],
 ];
 
 type Rule = ['v' | 'h', number];
@@ -61,6 +83,11 @@ for (let y = FR.y; y <= FR.y + FR.h + 1; y += 48) FINE.push(['h', y]);
 const BOLD: Rule[] = [];
 for (let x = FR.x; x <= FR.x + FR.w + 1; x += 240) BOLD.push(['v', x]);
 for (let y = FR.y; y <= FR.y + FR.h + 1; y += 240) BOLD.push(['h', y]);
+
+const thin = { stroke: 'rgba(238,244,248,0.55)', strokeWidth: 1.4, strokeLinecap: 'round' as const };
+const hair = { stroke: 'rgba(238,244,248,0.45)', strokeWidth: 1.2, strokeLinecap: 'round' as const };
+const dash = { stroke: 'rgba(238,244,248,0.4)', strokeWidth: 1.2, strokeDasharray: '7 7' };
+const tickS = { stroke: 'rgba(238,244,248,0.3)', strokeWidth: 1 };
 
 /** Отрезок, который «дорисовывается» от начала к концу. */
 function G(
@@ -72,6 +99,60 @@ function G(
   extra: React.SVGProps<SVGLineElement>,
 ) {
   return <line x1={x1} y1={y1} x2={x1 + (x2 - x1) * p} y2={y1 + (y2 - y1) * p} {...extra} />;
+}
+
+/** Горизонтальная размерная стрелка, dir = ±1 — куда смотрит остриё. */
+const arrow = (x: number, y: number, dir: number) => (
+  <polygon
+    points={`${x + dir},${y} ${x + dir * 14},${y - 5} ${x + dir * 14},${y + 5}`}
+  />
+);
+/** Вертикальная размерная стрелка. */
+const arrowV = (x: number, y: number, dir: number) => (
+  <polygon
+    points={`${x},${y + dir} ${x - 5},${y + dir * 14} ${x + 5},${y + dir * 14}`}
+  />
+);
+
+/** Размерная надпись на плашке цвета листа — перекрывает размерную линию. */
+function Label({
+  p,
+  x,
+  y,
+  t,
+  w = 150,
+  h = 32,
+  fs = 24,
+  rot = false,
+}: {
+  p: number;
+  x: number;
+  y: number;
+  t: string;
+  w?: number;
+  h?: number;
+  fs?: number;
+  rot?: boolean;
+}) {
+  return (
+    <g
+      opacity={seg(p, 0.55, 1)}
+      transform={rot ? `translate(${x} ${y}) rotate(-90)` : `translate(${x} ${y})`}
+    >
+      <rect x={-w / 2} y={-h / 2} width={w} height={h} fill={GRAPHITE} />
+      <text
+        x="0"
+        y={fs * 0.36}
+        textAnchor="middle"
+        fill={INK}
+        fontFamily={MONO}
+        fontSize={fs}
+        letterSpacing="2"
+      >
+        {type(t, seg(p, 0.55, 1))}
+      </text>
+    </g>
+  );
 }
 
 type SheetProps = {
@@ -119,9 +200,12 @@ function Sheet(props: SheetProps) {
 
   // Штамп узкий: длинная подпись вылезает за край листа и обрезается
   // границей SVG. Кегль подбираем под доступную ширину.
-  const titleFs = Math.min(20, Math.floor(298 / (0.75 * Math.max(sheetTitle.length, 1))));
+  const fitFs = (s: string, max: number) =>
+    Math.min(max, Math.floor(298 / (0.75 * Math.max(s.length, 1))));
+  const titleFs = fitFs(sheetTitle, 20);
+  const subFs = fitFs(SUBTITLE, 17);
 
-  const ST = BUS_STROKES;
+  const ST = VAN_STROKES;
   const strokeP = (i: number, n: number) => {
     const win = 0.17;
     const st = (i / n) * (1 - win);
@@ -129,16 +213,11 @@ function Sheet(props: SheetProps) {
   };
 
   const planOp = 1 - 0.6 * boxDim;
-  const dimLen = draw(seg(dims, 0, 0.34));
-  const dimBase = draw(seg(dims, 0.3, 0.62));
-  const dimHt = draw(seg(dims, 0.55, 0.88));
-
-  const thin = {
-    stroke: 'rgba(238,244,248,0.55)',
-    strokeWidth: 1.4,
-    strokeLinecap: 'round' as const,
-  };
-  const dash = { stroke: 'rgba(238,244,248,0.4)', strokeWidth: 1.2, strokeDasharray: '7 7' };
+  const dimLen = draw(seg(dims, 0, 0.3));
+  const dimBase = draw(seg(dims, 0.24, 0.52));
+  const dimHt = draw(seg(dims, 0.44, 0.7));
+  const dimBody = draw(seg(dims, 0.6, 0.86));
+  const dimFront = draw(seg(dims, 0.72, 1));
 
   return (
     <div style={{ position: 'absolute', inset: 0, background: GRAPHITE, overflow: 'hidden' }}>
@@ -199,27 +278,35 @@ function Sheet(props: SheetProps) {
           viewBox={`0 0 ${W} ${H}`}
           style={{ position: 'absolute', inset: 0, opacity: planOp }}
         >
-          {G(draw(seg(plan, 0, 0.4)), 440, 912, 1700, 512, {
+          {/* линия земли — общая для обоих видов */}
+          {G(draw(seg(plan, 0, 0.4)), 268, GND, 1700, GND, {
             stroke: 'rgba(238,244,248,0.3)',
             strokeWidth: 1.2,
             strokeDasharray: '14 10',
           })}
+          {/* габарит вида сбоку */}
           <g>
             {G(draw(seg(plan, 0.12, 0.5)), BB.x1, BB.y1, BB.x2, BB.y1, dash)}
             {G(draw(seg(plan, 0.35, 0.7)), BB.x2, BB.y1, BB.x2, BB.y2, dash)}
             {G(draw(seg(plan, 0.55, 0.9)), BB.x2, BB.y2, BB.x1, BB.y2, dash)}
             {G(draw(seg(plan, 0.72, 1)), BB.x1, BB.y2, BB.x1, BB.y1, dash)}
           </g>
+          {/* габарит вида спереди */}
+          <g>
+            {G(draw(seg(plan, 0.3, 0.62)), FB_L, BB.y1, FB_R, BB.y1, dash)}
+            {G(draw(seg(plan, 0.5, 0.8)), FB_R, BB.y1, FB_R, BB.y2, dash)}
+            {G(draw(seg(plan, 0.68, 1)), FB_L, BB.y1, FB_L, BB.y2, dash)}
+          </g>
+          {/* построение колёс */}
           {[FW, RW].map((w, i) => {
-            const c = ell(w.rx, w.ry);
+            const c = 2 * Math.PI * w.r;
             const p = draw(seg(wheels, i * 0.22, 0.78 + i * 0.22));
             return (
-              <g key={`w${i}`} transform={`rotate(-8 ${w.cx} ${w.cy})`} opacity={p > 0 ? 1 : 0}>
-                <ellipse
+              <g key={`w${i}`} opacity={p > 0 ? 1 : 0}>
+                <circle
                   cx={w.cx}
                   cy={w.cy}
-                  rx={w.rx}
-                  ry={w.ry}
+                  r={w.r}
                   fill="none"
                   stroke={acc}
                   strokeOpacity="0.55"
@@ -228,9 +315,9 @@ function Sheet(props: SheetProps) {
                   strokeDashoffset={c * (1 - p)}
                 />
                 <line
-                  x1={w.cx - w.rx - 16}
+                  x1={w.cx - w.r - 16}
                   y1={w.cy}
-                  x2={w.cx - w.rx - 16 + (2 * w.rx + 32) * p}
+                  x2={w.cx - w.r - 16 + (2 * w.r + 32) * p}
                   y2={w.cy}
                   stroke={acc}
                   strokeOpacity="0.4"
@@ -239,9 +326,9 @@ function Sheet(props: SheetProps) {
                 />
                 <line
                   x1={w.cx}
-                  y1={w.cy - w.ry - 16}
+                  y1={w.cy - w.r - 16}
                   x2={w.cx}
-                  y2={w.cy - w.ry - 16 + (2 * w.ry + 32) * p}
+                  y2={w.cy - w.r - 16 + (2 * w.r + 32) * p}
                   stroke={acc}
                   strokeOpacity="0.4"
                   strokeWidth="1"
@@ -259,21 +346,29 @@ function Sheet(props: SheetProps) {
           viewBox={`0 0 ${W} ${H}`}
           style={{ position: 'absolute', inset: 0 }}
         >
-          <g stroke={acc} strokeOpacity="0.3" strokeWidth="1" strokeDasharray="14 5 2 5">
-            {[BB.x1, FW.cx, RW.cx, BB.x2].map((x, i) => {
-              const p = draw(seg(ext, i * 0.1, 0.62 + i * 0.1));
-              return <line key={`vx${i}`} x1={x} y1={64} x2={x} y2={64 + (1006 - 64) * p} />;
+          <g stroke={acc} strokeOpacity="0.28" strokeWidth="1" strokeDasharray="14 5 2 5">
+            {[NOSE, FAX, RAX, CH1, CH2, REAR, TR_L, TR_R].map((x, i) => {
+              const p = draw(seg(ext, (i % 4) * 0.08, 0.6 + (i % 4) * 0.08));
+              return (
+                <line
+                  key={`vx${i}`}
+                  x1={x}
+                  y1={ROOF - 46}
+                  x2={x}
+                  y2={ROOF - 46 + (862 - (ROOF - 46)) * p}
+                />
+              );
             })}
           </g>
-          <g stroke="rgba(238,244,248,0.22)" strokeWidth="1" strokeDasharray="14 5 2 5">
-            {[BB.y1, BB.y2].map((y, i) => {
-              const p = draw(seg(ext, 0.18 + i * 0.1, 0.75 + i * 0.1));
-              return <line key={`hy${i}`} x1={228} y1={y} x2={228 + (1620 - 228) * p} y2={y} />;
+          <g stroke="rgba(238,244,248,0.2)" strokeWidth="1" strokeDasharray="14 5 2 5">
+            {[ROOF, BODY_T, FLOOR, GND].map((y, i) => {
+              const p = draw(seg(ext, 0.16 + i * 0.08, 0.74 + i * 0.08));
+              return <line key={`hy${i}`} x1={250} y1={y} x2={250 + 1450 * p} y2={y} />;
             })}
             {[FW, RW].map((w, i) => {
               const p = draw(seg(ext, 0.34 + i * 0.1, 0.9 + i * 0.1));
-              const x0 = w.cx - w.rx - 90;
-              const x1 = w.cx + w.rx + 130;
+              const x0 = w.cx - w.r - 90;
+              const x1 = w.cx + w.r + 130;
               return <line key={`ax${i}`} x1={x0} y1={w.cy} x2={x0 + (x1 - x0) * p} y2={w.cy} />;
             })}
           </g>
@@ -299,7 +394,7 @@ function Sheet(props: SheetProps) {
             <g
               fill="none"
               stroke="#f4f9fc"
-              strokeWidth="3.1"
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             >
@@ -318,7 +413,7 @@ function Sheet(props: SheetProps) {
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/blueprint/bus-lines.png"
+          src="/blueprint/van-lines.png"
           alt=""
           style={{
             position: 'absolute',
@@ -331,135 +426,181 @@ function Sheet(props: SheetProps) {
           }}
         />
 
-        {/* размеры */}
+        {/* размеры — значения с листа */}
         <svg
           width={W}
           height={H}
           viewBox={`0 0 ${W} ${H}`}
           style={{ position: 'absolute', inset: 0 }}
         >
+          {/* габаритная длина 8026 */}
           <g>
-            {G(dimLen, BB.x1, 940, BB.x2, 940, thin)}
-            {[BB.x1, BB.x2].map((x, i) => (
+            {G(dimLen, NOSE, TOTAL_Y, REAR, TOTAL_Y, thin)}
+            {[NOSE, REAR].map((x, i) => (
+              <line key={`tl${i}`} x1={x} y1={GND + 8} x2={x} y2={TOTAL_Y + 12} {...tickS} opacity={dimLen} />
+            ))}
+            <g opacity={seg(dimLen, 0.8, 1)} fill="rgba(238,244,248,0.7)">
+              {arrow(NOSE, TOTAL_Y, 1)}
+              {arrow(REAR, TOTAL_Y, -1)}
+            </g>
+            <Label p={dimLen} x={(NOSE + REAR) / 2} y={TOTAL_Y} t="8026" w={132} h={34} fs={26} />
+          </g>
+
+          {/* цепочка: база 4516 / 1242 / удлинение 900 */}
+          <g>
+            {G(dimBase, FAX, CHAIN, CH2, CHAIN, hair)}
+            {[FAX, RAX, CH1, CH2].map((x, i) => (
               <line
-                key={`lt${i}`}
+                key={`cl${i}`}
                 x1={x}
-                y1={BB.y2 + 8}
+                y1={i < 2 ? 661 : FLOOR}
                 x2={x}
-                y2={952}
-                stroke="rgba(238,244,248,0.35)"
-                strokeWidth="1"
-                opacity={dimLen}
+                y2={CHAIN + 10}
+                {...tickS}
+                opacity={dimBase * 0.8}
+                strokeDasharray="6 6"
               />
             ))}
-            <g opacity={seg(dimLen, 0.85, 1)} fill="rgba(238,244,248,0.7)">
-              <polygon points={`${BB.x1 + 1},940 ${BB.x1 + 15},935 ${BB.x1 + 15},945`} />
-              <polygon points={`${BB.x2 - 1},940 ${BB.x2 - 15},935 ${BB.x2 - 15},945`} />
+            <g opacity={seg(dimBase, 0.8, 1)} fill="rgba(238,244,248,0.6)">
+              {arrow(FAX, CHAIN, 1)}
+              {arrow(RAX, CHAIN, -1)}
+              {arrow(RAX, CHAIN, 1)}
+              {arrow(CH1, CHAIN, -1)}
+              {arrow(CH1, CHAIN, 1)}
+              {arrow(CH2, CHAIN, -1)}
             </g>
-            <g opacity={seg(dimLen, 0.6, 1)}>
-              <rect x="826" y="923" width="208" height="34" fill={GRAPHITE} />
-              <text
-                x="930"
-                y="947"
-                textAnchor="middle"
-                fill={INK}
-                fontFamily={MONO}
-                fontSize="26"
-                letterSpacing="3"
-              >
-                {type('7 340 мм', seg(dimLen, 0.6, 1))}
-              </text>
-            </g>
+            <Label p={dimBase} x={(FAX + RAX) / 2} y={CHAIN} t="4516" w={112} h={32} fs={24} />
+            <Label p={seg(dimBase, 0.15, 1)} x={(RAX + CH1) / 2} y={CHAIN} t="1242" w={104} h={30} fs={21} />
+            <Label
+              p={seg(dimBase, 0.3, 1)}
+              x={(CH1 + CH2) / 2 + 6}
+              y={CHAIN - 34}
+              t="Удлинение 900"
+              w={218}
+              h={28}
+              fs={18}
+            />
           </g>
 
+          {/* габаритная высота 3770 */}
           <g>
-            {G(dimBase, FW.cx, 862, RW.cx, 862, thin)}
-            <line
-              x1={FW.cx}
-              y1={FW.cy}
-              x2={FW.cx}
-              y2={FW.cy + (874 - FW.cy) * dimBase}
-              stroke={acc}
-              strokeOpacity="0.3"
-              strokeWidth="1"
-              strokeDasharray="6 6"
-            />
-            <line
-              x1={RW.cx}
-              y1={RW.cy}
-              x2={RW.cx}
-              y2={RW.cy + (874 - RW.cy) * dimBase}
-              stroke={acc}
-              strokeOpacity="0.3"
-              strokeWidth="1"
-              strokeDasharray="6 6"
-            />
-            <g opacity={seg(dimBase, 0.6, 1)}>
-              <rect x="1039" y="845" width="168" height="32" fill={GRAPHITE} />
-              <text
-                x="1123"
-                y="868"
-                textAnchor="middle"
-                fill={INK}
-                fontFamily={MONO}
-                fontSize="24"
-                letterSpacing="3"
-              >
-                {type('4 325', seg(dimBase, 0.6, 1))}
-              </text>
-            </g>
-          </g>
-
-          <g>
-            {G(dimHt, 286, BB.y1, 286, BB.y2, thin)}
-            {[BB.y1, BB.y2].map((y, i) => (
-              <line
-                key={`ht${i}`}
-                x1={274}
-                y1={y}
-                x2={BB.x1 - 8}
-                y2={y}
-                stroke="rgba(238,244,248,0.35)"
-                strokeWidth="1"
-                opacity={dimHt}
-              />
+            {G(dimHt, 272, ROOF, 272, GND, thin)}
+            {[ROOF, GND].map((y, i) => (
+              <line key={`hl${i}`} x1={262} y1={y} x2={NOSE - 10} y2={y} {...tickS} opacity={dimHt} />
             ))}
-            <g opacity={seg(dimHt, 0.6, 1)} transform="translate(286 448) rotate(-90)">
-              <rect x="-104" y="-17" width="208" height="34" fill={GRAPHITE} />
-              <text
-                x="0"
-                y="8"
-                textAnchor="middle"
-                fill={INK}
-                fontFamily={MONO}
-                fontSize="26"
-                letterSpacing="3"
-              >
-                {type('2 800 мм', seg(dimHt, 0.6, 1))}
-              </text>
+            <g opacity={seg(dimHt, 0.8, 1)} fill="rgba(238,244,248,0.7)">
+              {arrowV(272, ROOF, 1)}
+              {arrowV(272, GND, -1)}
             </g>
+            <Label p={dimHt} x={272} y={(ROOF + GND) / 2} t="3770" w={132} h={34} fs={26} rot />
           </g>
 
+          {/* кузов: длина 5100, высота 2380, внутри 2213 */}
           <g>
-            {G(draw(seg(callout, 0, 0.55)), 1256, 109, 1420, 86, {
+            {G(dimBody, BODY_F, TOPD, BODY_R, TOPD, thin)}
+            {[BODY_F, BODY_R].map((x, i) => (
+              <line key={`bl${i}`} x1={x} y1={BODY_T - 10} x2={x} y2={TOPD - 12} {...tickS} opacity={dimBody} />
+            ))}
+            <g opacity={seg(dimBody, 0.8, 1)} fill="rgba(238,244,248,0.7)">
+              {arrow(BODY_F, TOPD, 1)}
+              {arrow(BODY_R, TOPD, -1)}
+            </g>
+            <Label p={dimBody} x={(BODY_F + BODY_R) / 2} y={TOPD} t="5100" w={124} h={32} fs={24} />
+
+            {G(seg(dimBody, 0.2, 1), 1305, BODY_T, 1305, FLOOR, hair)}
+            <g opacity={seg(dimBody, 0.85, 1)} fill="rgba(238,244,248,0.6)">
+              {arrowV(1305, BODY_T, 1)}
+              {arrowV(1305, FLOOR, -1)}
+            </g>
+            <Label
+              p={seg(dimBody, 0.25, 1)}
+              x={1305}
+              y={(BODY_T + FLOOR) / 2}
+              t="2380"
+              w={104}
+              h={30}
+              fs={21}
+              rot
+            />
+
+            {G(seg(dimBody, 0.35, 1), 1150, INNER_T, 1150, INNER_B, hair)}
+            <Label
+              p={seg(dimBody, 0.4, 1)}
+              x={1150}
+              y={(INNER_T + INNER_B) / 2}
+              t="Внутри 2213"
+              w={184}
+              h={28}
+              fs={18}
+              rot
+            />
+          </g>
+
+          {/* вид спереди: ширина 2430, колея 1820, гидроборт max/min */}
+          <g>
+            {G(dimFront, FB_L, TOPD, FB_R, TOPD, thin)}
+            {[FB_L, FB_R].map((x, i) => (
+              <line key={`fl${i}`} x1={x} y1={ROOF - 10} x2={x} y2={TOPD - 12} {...tickS} opacity={dimFront} />
+            ))}
+            <g opacity={seg(dimFront, 0.8, 1)} fill="rgba(238,244,248,0.7)">
+              {arrow(FB_L, TOPD, 1)}
+              {arrow(FB_R, TOPD, -1)}
+            </g>
+            <Label p={dimFront} x={(FB_L + FB_R) / 2} y={TOPD} t="2430" w={124} h={32} fs={24} />
+
+            {G(seg(dimFront, 0.2, 1), TR_L, CHAIN, TR_R, CHAIN, hair)}
+            {[TR_L, TR_R].map((x, i) => (
+              <line key={`trl${i}`} x1={x} y1={GND + 8} x2={x} y2={CHAIN + 10} {...tickS} opacity={dimFront} />
+            ))}
+            <g opacity={seg(dimFront, 0.85, 1)} fill="rgba(238,244,248,0.6)">
+              {arrow(TR_L, CHAIN, 1)}
+              {arrow(TR_R, CHAIN, -1)}
+            </g>
+            <Label
+              p={seg(dimFront, 0.25, 1)}
+              x={(TR_L + TR_R) / 2}
+              y={CHAIN}
+              t="1820"
+              w={112}
+              h={30}
+              fs={22}
+            />
+
+            {G(seg(dimFront, 0.4, 1), 1345, MAXH, 1345, GND, hair)}
+            <Label
+              p={seg(dimFront, 0.45, 1)}
+              x={1345}
+              y={(MAXH + GND) / 2}
+              t="Max 1492 / Min 1292"
+              w={266}
+              h={26}
+              fs={17}
+              rot
+            />
+          </g>
+
+          {/* выноска на гидроборт */}
+          <g>
+            {G(draw(seg(callout, 0, 0.5)), 1262, 556, 1216, 492, {
               stroke: 'rgba(238,244,248,0.5)',
               strokeWidth: 1.2,
             })}
-            {G(draw(seg(callout, 0.45, 0.8)), 1420, 86, 1520, 86, {
+            {G(draw(seg(callout, 0.4, 0.75)), 1216, 492, 1150, 492, {
               stroke: 'rgba(238,244,248,0.5)',
               strokeWidth: 1.2,
             })}
-            <circle cx="1256" cy="109" r="4" fill={acc} opacity={seg(callout, 0, 0.2)} />
+            <circle cx="1262" cy="556" r="4" fill={acc} opacity={seg(callout, 0, 0.2)} />
             <text
-              x="1536"
-              y="94"
+              x="1142"
+              y="498"
+              textAnchor="end"
               fill={INK}
               fontFamily={MONO}
-              fontSize="22"
-              letterSpacing="4"
+              fontSize="20"
+              letterSpacing="3"
               opacity="0.9"
             >
-              {type('ВЫСОКАЯ КРЫША H3', seg(callout, 0.6, 1))}
+              {type('ГИДРОБОРТ', seg(callout, 0.55, 1))}
             </text>
           </g>
         </svg>
@@ -476,7 +617,7 @@ function Sheet(props: SheetProps) {
         }}
       />
 
-      {/* рамка листа, тех. данные и штамп */}
+      {/* рамка листа, тех. данные, примечание и штамп */}
       <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0 }}>
         <rect
           x={FR.x}
@@ -510,18 +651,18 @@ function Sheet(props: SheetProps) {
             letterSpacing="5"
             opacity={seg(spec, 0, 0.15)}
           >
-            ТЕХ. ДАННЫЕ
+            ТЕХ. ДАННЫЕ, ММ
           </text>
           <line
             x1="80"
             y1="118"
-            x2={80 + 186 * draw(seg(spec, 0.02, 0.25))}
+            x2={80 + 160 * draw(seg(spec, 0.02, 0.25))}
             y2="118"
             stroke="rgba(238,244,248,0.3)"
             strokeWidth="1"
           />
           {SPEC.map((r, i) => {
-            const p = seg(spec, 0.1 + i * 0.12, 0.4 + i * 0.12);
+            const p = seg(spec, 0.08 + i * 0.1, 0.36 + i * 0.1);
             return (
               <g key={`s${i}`} opacity={p}>
                 <text
@@ -535,7 +676,7 @@ function Sheet(props: SheetProps) {
                   {r[0]}
                 </text>
                 <text
-                  x="266"
+                  x="240"
                   y={154 + i * 34}
                   textAnchor="end"
                   fill={INK}
@@ -548,6 +689,25 @@ function Sheet(props: SheetProps) {
               </g>
             );
           })}
+        </g>
+
+        {/* примечание с листа */}
+        <g
+          opacity={seg(callout, 0.5, 1)}
+          fill="rgba(238,244,248,0.5)"
+          fontFamily={MONO}
+          fontSize="16"
+          letterSpacing="1.5"
+        >
+          <text x="80" y="944">
+            {type('Лопата гидроборта ляжет на землю только', seg(callout, 0.5, 0.8))}
+          </text>
+          <text x="80" y="970">
+            {type('в максимально опущенном положении', seg(callout, 0.66, 0.92))}
+          </text>
+          <text x="80" y="996">
+            {type('пневмоподвески', seg(callout, 0.82, 1))}
+          </text>
         </g>
 
         <g opacity={frame > 0.4 ? 1 : 0}>
@@ -593,10 +753,10 @@ function Sheet(props: SheetProps) {
             y={TB.y + 86}
             fill="rgba(238,244,248,0.62)"
             fontFamily={MONO}
-            fontSize="17"
-            letterSpacing="2"
+            fontSize={subFs}
+            letterSpacing={(subFs * 0.12).toFixed(1)}
           >
-            {type('ШАССИ · ОБЩИЙ ВИД', seg(title, 0.45, 0.85))}
+            {type(SUBTITLE, seg(title, 0.45, 0.85))}
           </text>
           <text
             x={TB.x + 18}
@@ -606,7 +766,7 @@ function Sheet(props: SheetProps) {
             fontSize="15"
             letterSpacing="2"
           >
-            {type('М 1:20   ЛИСТ 1/1', seg(title, 0.62, 1))}
+            {type('М 1:25   ЛИСТ 1/1', seg(title, 0.62, 1))}
           </text>
         </g>
       </svg>
@@ -678,10 +838,10 @@ function frameAt(t: number, accent: string, sheetTitle: string): SheetProps {
         boxDim: 1,
         glow: 0.35,
         raster: 1,
-        ext: draw(seg(p, 0, 0.5)),
-        dims: draw(seg(p, 0.12, 0.86)),
-        spec: seg(p, 0.28, 0.98),
-        callout: draw(seg(p, 0.42, 0.98)),
+        ext: draw(seg(p, 0, 0.42)),
+        dims: draw(seg(p, 0.1, 0.9)),
+        spec: seg(p, 0.22, 0.95),
+        callout: draw(seg(p, 0.5, 1)),
         cam: lerp(1.015, 1.03, draw(p)),
       };
     default: {
@@ -708,9 +868,9 @@ function frameAt(t: number, accent: string, sheetTitle: string): SheetProps {
   }
 }
 
-export function BusBlueprint({
+export function VanBlueprint({
   accent = '#3FA9C9',
-  sheetTitle = 'СПЕЦТРАНСПОРТ · ОБЩИЙ ВИД',
+  sheetTitle = 'ФУРГОН · ОБЩИЙ ВИД',
 }: {
   accent?: string;
   sheetTitle?: string;
@@ -735,12 +895,14 @@ export function BusBlueprint({
     const el = box.current;
     if (!el) return;
 
+    let raf = 0;
+
+    // Без анимации — сразу итоговый лист.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setT(TOTAL);
-      return;
+      raf = requestAnimationFrame(() => setT(TOTAL));
+      return () => cancelAnimationFrame(raf);
     }
 
-    let raf = 0;
     let started = 0;
 
     const tick = (now: number) => {
