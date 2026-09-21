@@ -20,6 +20,12 @@ const COUNTERS = [
 ];
 
 /**
+ * Плитки продукции на главной. Грузопассажирские сняты по просьбе заказчика
+ * от 21.09.2026 — как и в шапке; сам раздел и его страницы на сайте остаются.
+ */
+const HOME_CATEGORIES = CATEGORIES.filter((c) => c.key !== 'gp');
+
+/**
  * Разделы завода — все три блока одной схемы: перечень того, что в разделе уже
  * есть. Текстов-описаний у завода по ним нет, поэтому ничего не сочиняем.
  * Фото есть только у инженерии, так что снимков нет ни у одного — иначе блоки
@@ -161,7 +167,7 @@ export default async function HomePage() {
           <div className={`rule rule-dark ${styles.headRule}`} data-line="1" aria-hidden="true" />
 
           <div className={styles.cats}>
-            {CATEGORIES.map((c) => {
+            {HOME_CATEGORIES.map((c, i) => {
               const items = productsOf(c.key);
               // Обложка раздела: своя съёмка, а не кадр со старого сайта.
               const photo = categoryCover(c.key);
@@ -183,7 +189,8 @@ export default async function HomePage() {
                     )}
                   </span>
                   <span className={styles.catBody}>
-                    <span className={`mono ${styles.catNo}`}>{c.no}</span>
+                    {/* Нумерация сквозная по плиткам, без дыры на месте снятого раздела. */}
+                    <span className={`mono ${styles.catNo}`}>{String(i + 1).padStart(2, '0')}</span>
                     <span className={styles.catTitle}>{c.short}</span>
                     <span className={styles.catLead}>{c.lead}</span>
                     <span className={`mono ${styles.catCount}`}>
