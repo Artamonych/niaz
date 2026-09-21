@@ -9,11 +9,17 @@ import styles from './SiteHeader.module.css';
 
 type MenuKey = keyof typeof MENU;
 
-const TABS: { key: MenuKey; label: string }[] = [
-  { key: 'tech', label: 'Продукция' },
-  { key: 'service', label: 'АСМП-сервис' },
-  { key: 'about', label: 'О заводе' },
-  { key: 'engineering', label: 'Инженерия' },
+/**
+ * Пункты шапки по порядку: у вкладки с `menu` — выпадающая панель, у `href` —
+ * обычная ссылка. «О заводе» стоит перед «Контактами» — правка заказчика 21.09.2026.
+ */
+const NAV: ({ label: string } & ({ menu: MenuKey } | { href: string }))[] = [
+  { label: 'Продукция', menu: 'tech' },
+  { label: 'АСМП-сервис', menu: 'service' },
+  { label: 'Инженерия', menu: 'engineering' },
+  { label: 'Тендерам', href: '/tendery/' },
+  { label: 'О заводе', menu: 'about' },
+  { label: 'Контакты', href: '/kontakty/' },
 ];
 
 // Грузопассажирские сняты из шапки по правкам заказчика; страницы остаются.
@@ -61,33 +67,30 @@ export function SiteHeader() {
         </Link>
 
         <nav className={styles.nav} aria-label="Основная навигация">
-          {TABS.map((tab) => (
-            <button
-              key={tab.key}
-              type="button"
-              className={`u-underline ${styles.tab}`}
-              aria-expanded={open === tab.key}
-              onMouseEnter={() => setOpen(tab.key)}
-              onFocus={() => setOpen(tab.key)}
-              onClick={() => setOpen(open === tab.key ? null : tab.key)}
-            >
-              {tab.label}
-            </button>
-          ))}
-          <Link
-            href="/tendery/"
-            className={`u-underline ${styles.tab}`}
-            onMouseEnter={() => setOpen(null)}
-          >
-            Тендерам
-          </Link>
-          <Link
-            href="/kontakty/"
-            className={`u-underline ${styles.tab}`}
-            onMouseEnter={() => setOpen(null)}
-          >
-            Контакты
-          </Link>
+          {NAV.map((item) =>
+            'menu' in item ? (
+              <button
+                key={item.label}
+                type="button"
+                className={`u-underline ${styles.tab}`}
+                aria-expanded={open === item.menu}
+                onMouseEnter={() => setOpen(item.menu)}
+                onFocus={() => setOpen(item.menu)}
+                onClick={() => setOpen(open === item.menu ? null : item.menu)}
+              >
+                {item.label}
+              </button>
+            ) : (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`u-underline ${styles.tab}`}
+                onMouseEnter={() => setOpen(null)}
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
 
         <div className={styles.contact}>
