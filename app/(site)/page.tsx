@@ -121,8 +121,8 @@ export default async function HomePage() {
               <Link href="/produktsiya/" className={styles.primary}>
                 Каталог продукции
               </Link>
-              <Link href="/tendery/" className={`u-corner ${styles.secondary}`}>
-                Тендерам и госзаказчикам
+              <Link href="#zapros" className={`u-corner ${styles.secondary}`}>
+                Запросить КП
               </Link>
             </div>
           </div>

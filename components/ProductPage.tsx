@@ -34,7 +34,6 @@ const PURCHASE_DOCS = [
   { fmt: 'СТР', t: 'Положение о гарантийных обязательствах', href: '/polozhenie-o-garantiynyh-obyazatelstvah/' },
   { fmt: 'СТР', t: 'Порядок обращения при гарантийном случае', href: '/poryadok-obrascheniya-pri-garantiynom-sluchae/' },
   { fmt: 'СТР', t: 'Сертификация', href: '/sertifikatsiya/' },
-  { fmt: 'СТР', t: 'Пакет документов для тендера', href: '/tendery/' },
 ];
 
 export function ProductPage({ product }: { product: Product }) {
@@ -179,9 +178,9 @@ export function ProductPage({ product }: { product: Product }) {
             <a href="#zapros" className={styles.cta}>
               Получить КП
             </a>
-            <Link href="/tendery#zapros" className={`u-corner ${styles.ctaGhost}`}>
+            <a href="#zapros" className={`u-corner ${styles.ctaGhost}`}>
               Подобрать под ТЗ
-            </Link>
+            </a>
             <p className={`mono ${styles.contacts}`}>
               <a href="tel:88005504455">8 800 550-44-55</a>
               <br />

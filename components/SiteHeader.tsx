@@ -17,13 +17,23 @@ const NAV: ({ label: string } & ({ menu: MenuKey } | { href: string }))[] = [
   { label: 'Продукция', menu: 'tech' },
   { label: 'АСМП-сервис', menu: 'service' },
   { label: 'Инженерия', menu: 'engineering' },
-  { label: 'Тендерам', href: '/tendery/' },
   { label: 'О заводе', menu: 'about' },
   { label: 'Контакты', href: '/kontakty/' },
 ];
 
 // Грузопассажирские сняты из шапки по правкам заказчика; страницы остаются.
 const MOBILE_CATS = CATEGORIES.filter((c) => c.key !== 'gp');
+
+/**
+ * «Запросить КП»: если на странице своя форма заявки — прокручиваем к ней,
+ * иначе ссылка ведёт к форме на главной.
+ */
+function toLeadForm(e: React.MouseEvent) {
+  const form = document.getElementById('zapros');
+  if (!form) return;
+  e.preventDefault();
+  form.scrollIntoView({ behavior: 'smooth' });
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -97,7 +107,7 @@ export function SiteHeader() {
           <a href="tel:88005504455" className={`mono ${styles.phone}`}>
             8 800 550-44-55
           </a>
-          <Link href="/tendery#zapros" className={`u-corner ${styles.cta}`}>
+          <Link href="/#zapros" className={`u-corner ${styles.cta}`} onClick={toLeadForm}>
             Запросить КП
           </Link>
         </div>
@@ -157,7 +167,6 @@ export function SiteHeader() {
             {[
               { label: 'Продукция', href: '/produktsiya/' },
               { label: 'Инженерия', href: '/inzheneriya/' },
-              { label: 'Тендерам', href: '/tendery/' },
               { label: 'Гарантии', href: '/garantii/' },
               { label: 'О заводе', href: '/o-kompanii/' },
               { label: 'Новости', href: '/novosti/' },

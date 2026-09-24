@@ -152,7 +152,6 @@ export type { CategoryKey };
  */
 export const RESERVED_SLUGS = new Set([
   'produktsiya',
-  'tendery',
   'inzheneriya',
   'novosti',
   'chudesa',

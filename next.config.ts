@@ -47,7 +47,11 @@ const nextConfig: NextConfig = {
       permanent: true,
     }));
 
-    return [...busRedirects, ...aliases];
+    // Раздел «Тендерам» снят по решению заказчика от 22.09.2026. Адреса у
+    // донора не было — это наша страница, поэтому ведём на главную.
+    const removed = [{ source: '/tendery', destination: '/', permanent: true }];
+
+    return [...busRedirects, ...aliases, ...removed];
   },
 };
 

@@ -46,9 +46,6 @@ export function CategoryPage({
         <p className={styles.lead}>{landing.lead || category.lead}</p>
 
         <div className={styles.actions}>
-          <Link href="/tendery/" className={`u-corner ${styles.ghost}`}>
-            Документы для закупки
-          </Link>
           <Link href="#zapros" className={`u-corner ${styles.ghost}`}>
             Подобрать под ТЗ
           </Link>

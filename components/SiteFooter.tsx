@@ -31,11 +31,6 @@ export function SiteFooter() {
           <p className={styles.colTitle}>Заказчикам</p>
           <ul className={styles.list}>
             <li>
-              <Link href="/tendery/" className={`u-underline ${styles.link}`}>
-                Тендерам
-              </Link>
-            </li>
-            <li>
               <Link href="/inzheneriya/" className={`u-underline ${styles.link}`}>
                 Инженерия и производство
               </Link>
@@ -87,7 +82,12 @@ export function SiteFooter() {
           <ul className={styles.list}>
             <li>
               <Link href="/kontakty/" className={`u-underline ${styles.link}`}>
-                Адрес и реквизиты
+                Адрес на карте
+              </Link>
+            </li>
+            <li>
+              <Link href="/rekvizity/" className={`u-underline ${styles.link}`}>
+                Реквизиты
               </Link>
             </li>
           </ul>

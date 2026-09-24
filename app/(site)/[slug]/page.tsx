@@ -19,10 +19,14 @@ import { ArticlePage } from '@/components/ArticlePage';
 import { GalleryIndex } from '@/components/GalleryIndex';
 import { SectionPage } from '@/components/SectionPage';
 import { PlannedPage } from '@/components/PlannedPage';
+import { PartnersPage } from '@/components/PartnersPage';
 import { getPlannedPage, PLANNED_PAGES } from '@/lib/catalog';
 
 /** Страница, которая собирает витрины по маркам, а не показывает свой текст. */
 const GALLERY_SLUG = 'galereya';
+
+/** Раздел, который показывает плитки марок, а не текст донора (он пуст). */
+const PARTNERS_SLUG = 'partnery';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -96,11 +100,10 @@ export default async function Page({ params }: Props) {
   if (page) {
     // «Галерея» — витрина по маркам: три десятка страниц со снимками иначе
     // остаются вне навигации, доступные только из поиска (п. 20 бэклога).
-    return slug === GALLERY_SLUG ? (
-      <GalleryIndex page={page} groups={galleryGroups()} />
-    ) : (
-      <ArticlePage page={page} />
-    );
+    if (slug === GALLERY_SLUG) return <GalleryIndex page={page} groups={galleryGroups()} />;
+    // «Партнёры» — плитки марок: своего текста у страницы донора нет.
+    if (slug === PARTNERS_SLUG) return <PartnersPage page={page} />;
+    return <ArticlePage page={page} />;
   }
 
   notFound();
