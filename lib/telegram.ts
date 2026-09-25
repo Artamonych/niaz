@@ -384,13 +384,32 @@ export function startBot() {
   void poll();
 }
 
+/**
+ * Шаг запуска, который трогает базу, — с повтором до успеха.
+ *
+ * Сразу после выкладки база бывает недоступна долю секунды: контейнер миграций
+ * только что её закрыл (25.09.2026: SQLITE_IOERR_SHMSIZE). Ошибка здесь роняла
+ * весь опрос, а флаг «бот запущен» уже стоял — бот молча не работал до
+ * следующего перезапуска, и уведомления о заявках не приходили.
+ */
+async function untilDone<T>(what: string, step: () => Promise<T>): Promise<T> {
+  for (let pause = 1_000; ; pause = Math.min(pause * 2, 60_000)) {
+    try {
+      return await step();
+    } catch (err) {
+      log(`${what}: ${(err as Error).message.trim().split('\n').pop()}; повтор через ${pause / 1000} с`);
+      await sleep(pause);
+    }
+  }
+}
+
 async function poll() {
   // Опрос и вебхук в Telegram взаимоисключающие: снимаем вебхук, если был.
   await tg('deleteWebhook', { drop_pending_updates: false }).catch((e) => log(e.message));
   const me = await tg<{ username: string }>('getMe', {}).catch(() => null);
-  if (me) await setState('username', me.username);
+  if (me) await untilDone('имя бота', () => setState('username', me.username));
 
-  let offset = Number((await getState('offset')) ?? 0);
+  let offset = Number((await untilDone('смещение опроса', () => getState('offset'))) ?? 0);
   let pause = 0;
   log(`опрос запущен${me ? ` (@${me.username})` : ''}`);
 

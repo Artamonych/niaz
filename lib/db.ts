@@ -20,6 +20,9 @@ const PRAGMAS = [
   'PRAGMA busy_timeout = 5000',
 ];
 
+/** Попыток с паузой 1, 2, 4, 8 с: гонка при старте длится доли секунды. */
+const PRAGMA_ATTEMPTS = 5;
+
 function createClient() {
   const url = process.env.DATABASE_URL ?? 'file:./dev.db';
   const client = new PrismaClient({ adapter: new PrismaBetterSqlite3({ url }) });
@@ -27,11 +30,25 @@ function createClient() {
   // Настройки применяются к соединению, поэтому запускаем их сразу при создании
   // клиента. Ошибку не глотаем молча: без WAL приложение работает, но об этом
   // нужно знать по логам.
+  //
+  // С повтором: сразу после выкладки база бывает недоступна долю секунды —
+  // контейнер миграций только что её закрыл (25.09.2026: SQLITE_IOERR_SHMSIZE
+  // на первой же команде). Без повтора остальные настройки не выполнялись, и
+  // процесс жил до следующей выкладки без busy_timeout: одновременная запись
+  // заявки, бота и почтовой очереди получала бы «database is locked».
   void (async () => {
-    try {
-      for (const pragma of PRAGMAS) await client.$queryRawUnsafe(pragma);
-    } catch (err) {
-      console.error('SQLite: не удалось применить настройки соединения:', err);
+    for (let attempt = 1, pause = 1_000; ; attempt++, pause *= 2) {
+      try {
+        for (const pragma of PRAGMAS) await client.$queryRawUnsafe(pragma);
+        if (attempt > 1) console.error(`SQLite: настройки соединения применены с ${attempt}-й попытки`);
+        return;
+      } catch (err) {
+        if (attempt >= PRAGMA_ATTEMPTS) {
+          console.error('SQLite: не удалось применить настройки соединения:', err);
+          return;
+        }
+        await new Promise((r) => setTimeout(r, pause));
+      }
     }
   })();
 
