@@ -175,3 +175,13 @@ li + li > .pendingItem,
   color: var(--accent-deep);
   text-decoration: underline;
 }
+
+/* Переход к прайсу под списком услуг: отступ заменяет тот, что был у списка. */
+.h3 + .pending:has(+ .priceLink) {
+  margin-bottom: 0;
+}
+
+.priceLink {
+  margin: 14px 0 clamp(22px, 2.6vw, 36px);
+  font-size: 14.5px;
+}

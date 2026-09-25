@@ -2,13 +2,14 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CATEGORIES } from '@/lib/catalog';
 import { PRODUCTS, productsOf } from '@/lib/content';
+import { plural } from '@/lib/plural';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import styles from './produktsiya.module.css';
 
 export const metadata: Metadata = {
   title: 'Продукция',
   description:
-    'Каталог специализированного транспорта Нижегородского автомобильного завода: автомобили скорой медицинской помощи, транспорт для маломобильных граждан, грузопассажирские автомобили, фургоны, спецавтомобили и лаборатории.',
+    'Каталог специализированного транспорта Нижегородского автомобильного завода: автомобили скорой медицинской помощи, транспорт для маломобильных граждан, грузопассажирские автомобили, фургоны, спецавтомобили и лаборатории, жилые прицепы.',
   alternates: { canonical: '/produktsiya' },
 };
 
@@ -21,7 +22,8 @@ export default function CatalogRootPage() {
         <p className="label label-deep">Каталог</p>
         <h1 className={styles.h1}>Продукция завода</h1>
         <p className={styles.lead}>
-          {PRODUCTS.length} исполнений в шести производственных линейках. Любое из них
+          {PRODUCTS.length} {plural(PRODUCTS.length, 'исполнение', 'исполнения', 'исполнений')} в {CATEGORIES.length}{' '}
+          {plural(CATEGORIES.length, 'производственной линейке', 'производственных линейках', 'производственных линейках')}. Любое из них
           комплектуется под техническое задание заказчика.
         </p>
       </header>

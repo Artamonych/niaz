@@ -1,0 +1,42 @@
+{
+  "kompleks-card": {
+    "src": "/media/pritsepy/kompleks-card-57d8cf1e.webp",
+    "w": 1600,
+    "h": 1000
+  },
+  "kompleks-plan": {
+    "src": "/media/pritsepy/kompleks-plan-5f799fc2.webp",
+    "w": 1600,
+    "h": 705
+  },
+  "kompleks-karavan": {
+    "src": "/media/pritsepy/kompleks-karavan-b9a52eab.webp",
+    "w": 1600,
+    "h": 490
+  },
+  "kompleks-fahverk": {
+    "src": "/media/pritsepy/kompleks-fahverk-a03f33b6.webp",
+    "w": 1600,
+    "h": 581
+  },
+  "kemper-card": {
+    "src": "/media/pritsepy/kemper-card-752e8e0d.webp",
+    "w": 1600,
+    "h": 1000
+  },
+  "kemper-plan": {
+    "src": "/media/pritsepy/kemper-plan-05e78563.webp",
+    "w": 1600,
+    "h": 847
+  },
+  "kemper-razrez-a2": {
+    "src": "/media/pritsepy/kemper-razrez-a2-24ccc181.webp",
+    "w": 1600,
+    "h": 977
+  },
+  "kemper-razrez-a1": {
+    "src": "/media/pritsepy/kemper-razrez-a1-bd73ca7f.webp",
+    "w": 1600,
+    "h": 948
+  }
+}

@@ -138,6 +138,11 @@ export default function EngineeringPage() {
             </li>
           ))}
         </ul>
+        <p className={styles.priceLink}>
+          <Link href="/inzheneriya/uslugi/" className={styles.inlineLink}>
+            Цены на фрезеровку, лазерную резку и гравировку →
+          </Link>
+        </p>
 
         <div className={styles.gallery}>
           {SHOPS.map((s, i) => (

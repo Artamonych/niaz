@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { CATEGORIES, MENU } from '@/lib/catalog';
+import { plural } from '@/lib/plural';
 import { categoryCover, PRODUCTS, productsOf } from '@/lib/content';
 import { VanBlueprint } from '@/components/VanBlueprint';
 import { LeadForm } from '@/components/LeadForm';
@@ -14,8 +15,12 @@ export const revalidate = 300;
 
 const COUNTERS = [
   { n: 30, suffix: '+', k: 'лет производства' },
-  { n: PRODUCTS.length, suffix: '', k: 'исполнений в каталоге' },
-  { n: CATEGORIES.length, suffix: '', k: 'продуктовых линеек' },
+  { n: PRODUCTS.length, suffix: '', k: `${plural(PRODUCTS.length, 'исполнение', 'исполнения', 'исполнений')} в каталоге` },
+  {
+    n: CATEGORIES.length,
+    suffix: '',
+    k: plural(CATEGORIES.length, 'продуктовая линейка', 'продуктовые линейки', 'продуктовых линеек'),
+  },
   { n: 85, suffix: '', k: 'регионов поставок' },
 ];
 
@@ -194,7 +199,7 @@ export default async function HomePage() {
                     <span className={styles.catTitle}>{c.short}</span>
                     <span className={styles.catLead}>{c.lead}</span>
                     <span className={`mono ${styles.catCount}`}>
-                      {items.length} исполнений
+                      {items.length} {plural(items.length, 'исполнение', 'исполнения', 'исполнений')}
                     </span>
                   </span>
                 </Link>

@@ -11,8 +11,12 @@ import gallery from '../data/content/gallery.json';
 import categoryPhotos from '../data/content/category-photos.json';
 import covers from '../data/content/covers.json';
 import { CATEGORIES, CATEGORY_BY_KEY, type CategoryKey } from './catalog';
+import { TRAILER_LANDING, TRAILER_PRODUCTS } from './trailers';
 
 export type SpecRow = { no: string; text: string };
+
+/** Лист чертежа в карточке: показывается целиком, во всю ширину, с подписью. */
+export type Drawing = { src: string; caption: string; w: number; h: number };
 
 export type Product = {
   slug: string;
@@ -26,6 +30,11 @@ export type Product = {
   brand: string;
   spec: SpecRow[];
   images: string[];
+  /**
+   * Чертежи вместо фотографий — у собственных изделий завода без съёмки
+   * (lib/trailers.ts). У донорских товаров поля нет.
+   */
+  drawings?: Drawing[];
 };
 
 /** Ссылка со страницы донора: документ для скачивания или переход по сайту. */
@@ -62,9 +71,10 @@ export type SectionIndex = {
   items: { slug: string; title: string; lead: string }[];
 };
 
-export const PRODUCTS = products as Product[];
+// Донорский каталог плюс собственные разделы завода, которых у донора не было.
+export const PRODUCTS = [...(products as Product[]), ...TRAILER_PRODUCTS];
 export const STATIC_PAGES = staticPages as StaticPage[];
-export const LANDINGS = landings as CategoryLanding[];
+export const LANDINGS = [...(landings as CategoryLanding[]), TRAILER_LANDING];
 export const REDIRECTS = redirects as { source: string; destination: string; permanent: true }[];
 export const SECTIONS = sections as SectionIndex[];
 

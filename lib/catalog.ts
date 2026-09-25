@@ -8,7 +8,7 @@
  * самостоятельный раздел на 18 товарных страниц, а не подраздел автобусов.
  */
 
-export type CategoryKey = 'asmp' | 'gp' | 'mgn' | 'spec' | 'van' | 'ritual';
+export type CategoryKey = 'asmp' | 'gp' | 'mgn' | 'spec' | 'van' | 'ritual' | 'trailer';
 
 export type Category = {
   key: CategoryKey;
@@ -85,6 +85,18 @@ export const CATEGORIES: Category[] = [
     short: 'Ритуальные',
     lead: 'Катафалки и автомобили сопровождения, специализированная отделка салона.',
     donorSections: ['Автомобили для ритуальных услуг'],
+  },
+  {
+    // Собственный раздел завода, у донора его не было: слаг наш, не донорский,
+    // и под ним уже стоял пункт меню. Товары — в lib/trailers.ts.
+    key: 'trailer',
+    no: '07',
+    slug: 'pritsepy',
+    alias: 'pricepy',
+    title: 'Прицепы',
+    short: 'Прицепы',
+    lead: 'Жилые прицепы собственной разработки: кемпер и передвижной жилой комплекс.',
+    donorSections: [],
   },
 ];
 
@@ -245,7 +257,7 @@ export const MENU = {
         { label: 'Конструкторский центр', href: '/konstruktorskiy-tsentr' },
         { label: 'Дизайн-центр', href: '/dizayn-tsentr' },
         { label: 'Производственные мощности', href: '/inzheneriya#moshchnosti' },
-        { label: 'Услуги производства', href: '/inzheneriya#uslugi' },
+        { label: 'Услуги производства', href: '/inzheneriya/uslugi' },
       ],
     },
   ],
@@ -264,12 +276,6 @@ export type PlannedPage = {
 };
 
 export const PLANNED_PAGES: PlannedPage[] = [
-  {
-    slug: 'pritsepy',
-    title: 'Прицепы',
-    lead: 'Прицепы производства завода.',
-    parent: { name: 'Продукция', href: '/produktsiya/' },
-  },
   {
     slug: 'remont-i-vosstanovlenie',
     title: 'Ремонт и восстановление',

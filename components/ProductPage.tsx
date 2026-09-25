@@ -166,6 +166,35 @@ export function ProductPage({ product }: { product: Product }) {
               </div>
             </section>
           )}
+
+          {/*
+            Чертежи вместо фотографий (lib/trailers.ts). Лист во всю ширину и
+            ссылка на оригинал: на миниатюре размерные числа не прочитать.
+          */}
+          {product.drawings && product.drawings.length > 0 && (
+            <section className={styles.specSection}>
+              <h2 className={styles.h2}>Чертежи</h2>
+              <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
+
+              <div className={styles.drawings}>
+                {product.drawings.map((d) => (
+                  <figure key={d.src} className={styles.drawing}>
+                    <a href={d.src} target="_blank" rel="noopener" className={styles.drawingLink}>
+                      <Image
+                        src={d.src}
+                        alt={`${product.title} — ${d.caption}`}
+                        width={d.w}
+                        height={d.h}
+                        sizes="(max-width: 900px) 100vw, 700px"
+                        className={styles.drawingImg}
+                      />
+                    </a>
+                    <figcaption className={`mono ${styles.drawingCaption}`}>{d.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         <aside className={styles.aside}>
