@@ -6,7 +6,8 @@ import { LeadForm } from '@/components/LeadForm';
 import styles from './chudesa.module.css';
 
 export const metadata: Metadata = {
-  title: 'Чудеса — уникальные проекты завода',
+  // До 25.09.2026 раздел назывался «Чудеса»; адрес /chudesa/ оставлен — на нём ссылки и индексация.
+  title: 'Уникальные проекты завода',
   description:
     'Штучные проекты Нижегородского автомобильного завода: мобильный госпиталь на базе городского автобуса и мобильная баня на полноприводном шасси.',
   alternates: { canonical: '/chudesa' },
@@ -98,11 +99,11 @@ const url = (name: string) => `/media/chudesa/${name}.webp`;
 export default function ChudesaPage() {
   return (
     <div className="shell">
-      <Breadcrumbs items={[{ name: 'Чудеса' }]} />
+      <Breadcrumbs items={[{ name: 'Уникальные проекты' }]} />
 
       <header className={styles.head}>
-        <p className="label label-deep">Уникальные проекты завода</p>
-        <h1 className={styles.h1}>Чудеса</h1>
+        <p className="label label-deep">О заводе</p>
+        <h1 className={styles.h1}>Уникальные проекты</h1>
         <p className={styles.lead}>
           Машины, которых нет в каталоге: их собирали под конкретную задачу, по одной штуке.
           Здесь то, что видно на съёмке, — конструкция, компоновка и решения, ради которых эти

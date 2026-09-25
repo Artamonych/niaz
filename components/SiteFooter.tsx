@@ -57,7 +57,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link href="/chudesa/" className={`u-underline ${styles.link}`}>
-                Чудеса
+                Уникальные проекты
               </Link>
             </li>
             <li>
