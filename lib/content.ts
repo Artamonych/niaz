@@ -164,7 +164,7 @@ export const RESERVED_SLUGS = new Set([
   'produktsiya',
   'inzheneriya',
   'novosti',
-  'chudesa',
+  'unikalnye-proekty',
   // Правовые документы: у донора по этому адресу лежала политика чужого сайта.
   'politika-konfidentsialnosti',
   'politika-cookie',

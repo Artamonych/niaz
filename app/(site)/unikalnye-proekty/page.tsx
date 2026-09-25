@@ -3,14 +3,15 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { LeadForm } from '@/components/LeadForm';
-import styles from './chudesa.module.css';
+import styles from './unikalnye-proekty.module.css';
 
 export const metadata: Metadata = {
-  // До 25.09.2026 раздел назывался «Чудеса»; адрес /chudesa/ оставлен — на нём ссылки и индексация.
+  // До 25.09.2026 раздел назывался «Чудеса» и жил на /chudesa/ — оттуда 301 (next.config.ts).
+  // Снимки остались в /media/chudesa/: это адрес файлов, посетитель его не видит.
   title: 'Уникальные проекты завода',
   description:
     'Штучные проекты Нижегородского автомобильного завода: мобильный госпиталь на базе городского автобуса и мобильная баня на полноприводном шасси.',
-  alternates: { canonical: '/chudesa' },
+  alternates: { canonical: '/unikalnye-proekty' },
 };
 
 /**
@@ -96,7 +97,7 @@ const PROJECTS: Project[] = [
 
 const url = (name: string) => `/media/chudesa/${name}.webp`;
 
-export default function ChudesaPage() {
+export default function UniqueProjectsPage() {
   return (
     <div className="shell">
       <Breadcrumbs items={[{ name: 'Уникальные проекты' }]} />

@@ -51,7 +51,11 @@ const nextConfig: NextConfig = {
     // донора не было — это наша страница, поэтому ведём на главную.
     const removed = [{ source: '/tendery', destination: '/', permanent: true }];
 
-    return [...busRedirects, ...aliases, ...removed];
+    // «Чудеса» переименованы в «Уникальные проекты» 25.09.2026 вместе с адресом.
+    // Индексации тогда не было, но ссылка на тестовый стенд могла уйти заказчику.
+    const renamed = [{ source: '/chudesa', destination: '/unikalnye-proekty/', permanent: true }];
+
+    return [...busRedirects, ...aliases, ...removed, ...renamed];
   },
 };
 

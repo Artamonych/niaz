@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url('/produktsiya/'), changeFrequency: 'weekly', priority: 0.9 },
     { url: url('/inzheneriya/'), changeFrequency: 'monthly', priority: 0.7 },
     { url: url('/inzheneriya/uslugi/'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: url('/unikalnye-proekty/'), changeFrequency: 'monthly', priority: 0.6 },
     { url: url('/novosti/'), changeFrequency: 'weekly', priority: 0.7 },
     { url: url('/rekvizity/'), changeFrequency: 'yearly', priority: 0.5 },
 
