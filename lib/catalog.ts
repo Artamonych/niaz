@@ -244,7 +244,7 @@ export const SUBSECTIONS: Subsection[] = [
     slug: 'meditsinskaya-sluzhba',
     title: 'Медицинская служба',
     short: 'Медицинская служба',
-    lead: 'Медицинские автомобили и передвижные кабинеты: пункт медицинского освидетельствования, мобильный стоматологический кабинет, комплекс службы крови.',
+    lead: 'Медицинские автомобили и передвижные кабинеты: пункт медицинского освидетельствования, мобильный стоматологический кабинет.',
     filter: { kind: 'medsluzhba' },
   },
   {
@@ -315,6 +315,7 @@ export const MENU = {
         { label: 'Мобильные комплексы', href: `${SPEC}/mobilnye-kompleksy` },
         { label: 'Ритуальные услуги', href: '/avtomobili-dlya-ritualnyy-uslug' },
         { label: 'Медицинская служба', href: `${SPEC}/meditsinskaya-sluzhba` },
+        { label: 'Мобильные офисы', href: '/mobilnye-ofisy' },
       ],
     },
     {

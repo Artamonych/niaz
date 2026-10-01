@@ -46,6 +46,8 @@ type Folder = {
   tags?: Tags;
   /** Метки по номеру кадра в папке (с единицы), когда папка смешанная. */
   tagsAt?: (index: number) => Tags;
+  /** Своя подпись для части кадров смешанной папки. */
+  captionAt?: (index: number) => string | undefined;
   /** Брать только эти файлы: остальное в папке — другой раздел или неудачный кадр. */
   only?: string[];
   /** Исходник сам лежит боком или вверх ногами (EXIF не помогает). */
@@ -97,6 +99,9 @@ const FOLDERS: Folder[] = [
     caption: 'Транспорт для маломобильных граждан',
     // Кадр снят вверх ногами (mgn-37 на сайте до 01.10.2026).
     rotate: { 'IMG_7831.JPG': 180 },
+    // 24–38 — междугородный автобус с подъёмником, остальное — микроавтобусы.
+    // Автобус оставлен в МГН по решению заказчика от 01.10.2026.
+    captionAt: (i) => (i >= 24 ? 'Автобус с подъёмником для маломобильных граждан' : undefined),
   },
   { root: 'old', path: 'Фургонгы и Спецтехника/Автомобили для ритуальных услуг', name: 'ritual', key: 'ritual', caption: 'Автомобиль для ритуальных услуг' },
   { root: 'new', path: 'Автомобили для ритуальных услуг', name: 'ritual-foton', key: 'ritual', caption: 'Автомобиль для ритуальных услуг', tags: { brand: 'Foton' } },
@@ -142,16 +147,8 @@ const FOLDERS: Folder[] = [
     // стоматологическим кабинетом: это медицинская служба.
     tagsAt: (i) => (i <= 14 ? { kind: 'laboratorii' } : { kind: 'medsluzhba' }),
   },
-  {
-    root: 'new',
-    path: 'Служба крови',
-    name: 'sluzhba-krovi',
-    key: 'spec',
-    caption: 'Мобильный комплекс службы крови',
-    tags: { kind: 'medsluzhba', brand: MB },
-    // DSC_00021 — тот же кадр, что DSC_0002, пересохранённый.
-    only: ['DSC_0002.JPG', 'DSC_0005.JPG', 'DSC_0006.JPG', 'DSC_0008.JPG', 'DSC_0010.JPG'],
-  },
+  // «Служба крови» — не здесь: по правке от 01.10.2026 это уникальный проект
+  // (scripts/prep-projects.ts).
 ];
 
 type Photo = { src: string; caption: string; w: number; h: number } & Tags;
@@ -210,7 +207,8 @@ async function main() {
       const src = `/media/razdely/${name}`;
       const tags = { ...folder.tags, ...folder.tagsAt?.(index) };
       const list = byKey.get(folder.key) ?? [];
-      list.push({ src, caption: folder.caption, w: info.width, h: info.height, ...tags });
+      const caption = folder.captionAt?.(index) ?? folder.caption;
+      list.push({ src, caption, w: info.width, h: info.height, ...tags });
       byKey.set(folder.key, list);
       for (const slug of folder.products ?? []) (byProduct[slug] ??= []).push(src);
     }

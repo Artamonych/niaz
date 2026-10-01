@@ -19,7 +19,14 @@ import { COMPANIES } from './company';
 import { LANDINGS, PRODUCTS, STATIC_PAGES } from './content';
 import { getNewsFeed } from './news';
 import { PARTNERS } from './partners';
+import { MOBILE_OFFICES, UNIQUE_PROJECTS, type Project } from './projects';
 import { PRICE_SECTIONS } from './uslugi';
+
+/** Текст штучных проектов для индекса: названия, базы, вводки и решения. */
+const projectsText = (projects: Project[]) =>
+  projects
+    .map((p) => [p.title, p.base, p.lead, ...p.features.map((f) => `${f.t} ${f.d}`)].join(' '))
+    .join(' ');
 
 export type SearchDoc = {
   href: string;
@@ -79,7 +86,13 @@ function ownPages(): SearchDoc[] {
       href: '/unikalnye-proekty/',
       title: 'Уникальные проекты',
       kind: 'Страница',
-      text: 'Штучные проекты завода: мобильный госпиталь на базе городского автобуса, мобильная баня на полноприводном шасси.',
+      text: projectsText(UNIQUE_PROJECTS),
+    },
+    {
+      href: '/mobilnye-ofisy/',
+      title: 'Мобильные офисы',
+      kind: 'Каталог',
+      text: `Представительские микроавтобусы, VIP. ${projectsText(MOBILE_OFFICES)}`,
     },
     {
       href: '/interery-asmp/',

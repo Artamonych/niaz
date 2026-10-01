@@ -1,0 +1,397 @@
+{
+  "gospital-01-modul-podnyat": {
+    "src": "/media/chudesa/gospital-01-modul-podnyat.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-02-raskrytie": {
+    "src": "/media/chudesa/gospital-02-raskrytie.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-03-razvorachivanie": {
+    "src": "/media/chudesa/gospital-03-razvorachivanie.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-04-palatka-raskladka": {
+    "src": "/media/chudesa/gospital-04-palatka-raskladka.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-05-palatka-nadutaya": {
+    "src": "/media/chudesa/gospital-05-palatka-nadutaya.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-06-kompleks": {
+    "src": "/media/chudesa/gospital-06-kompleks.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-07-obschiy-plan": {
+    "src": "/media/chudesa/gospital-07-obschiy-plan.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-08-stykovka": {
+    "src": "/media/chudesa/gospital-08-stykovka.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-09-perehod": {
+    "src": "/media/chudesa/gospital-09-perehod.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-10-nosilki": {
+    "src": "/media/chudesa/gospital-10-nosilki.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-11-salon": {
+    "src": "/media/chudesa/gospital-11-salon.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-12-reanimaciya": {
+    "src": "/media/chudesa/gospital-12-reanimaciya.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-13-schit": {
+    "src": "/media/chudesa/gospital-13-schit.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "gospital-14-sanuzel": {
+    "src": "/media/chudesa/gospital-14-sanuzel.webp",
+    "w": 681,
+    "h": 1024
+  },
+  "gospital-15-interier-modulya": {
+    "src": "/media/chudesa/gospital-15-interier-modulya.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "banya-01-obschiy-vid": {
+    "src": "/media/chudesa/banya-01-obschiy-vid.webp",
+    "w": 1280,
+    "h": 958
+  },
+  "banya-02-vid-sboku": {
+    "src": "/media/chudesa/banya-02-vid-sboku.webp",
+    "w": 1280,
+    "h": 958
+  },
+  "banya-03-topka": {
+    "src": "/media/chudesa/banya-03-topka.webp",
+    "w": 958,
+    "h": 1280
+  },
+  "banya-04-vhod": {
+    "src": "/media/chudesa/banya-04-vhod.webp",
+    "w": 958,
+    "h": 1280
+  },
+  "banya-05-razdevalka": {
+    "src": "/media/chudesa/banya-05-razdevalka.webp",
+    "w": 958,
+    "h": 1280
+  },
+  "banya-06-voda": {
+    "src": "/media/chudesa/banya-06-voda.webp",
+    "w": 958,
+    "h": 1280
+  },
+  "banya-07-kamenka": {
+    "src": "/media/chudesa/banya-07-kamenka.webp",
+    "w": 958,
+    "h": 1280
+  },
+  "banya-08-dver-parnoy": {
+    "src": "/media/chudesa/banya-08-dver-parnoy.webp",
+    "w": 958,
+    "h": 1280
+  },
+  "velo-01-obschiy-vid": {
+    "src": "/media/chudesa/velo-01-obschiy-vid.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-02-speredi": {
+    "src": "/media/chudesa/velo-02-speredi.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-03-salon-dver": {
+    "src": "/media/chudesa/velo-03-salon-dver.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-04-kresla": {
+    "src": "/media/chudesa/velo-04-kresla.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-05-ryad-kresel": {
+    "src": "/media/chudesa/velo-05-ryad-kresel.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-06-salon": {
+    "src": "/media/chudesa/velo-06-salon.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-07-televizor": {
+    "src": "/media/chudesa/velo-07-televizor.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-08-polki": {
+    "src": "/media/chudesa/velo-08-polki.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-09-otsek": {
+    "src": "/media/chudesa/velo-09-otsek.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-10-otsek-velosiped": {
+    "src": "/media/chudesa/velo-10-otsek-velosiped.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-11-derzhatel-kolesa": {
+    "src": "/media/chudesa/velo-11-derzhatel-kolesa.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "velo-12-krepleniya": {
+    "src": "/media/chudesa/velo-12-krepleniya.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "krov-01-obschiy-vid": {
+    "src": "/media/chudesa/krov-01-obschiy-vid.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "krov-02-kresla": {
+    "src": "/media/chudesa/krov-02-kresla.webp",
+    "w": 1064,
+    "h": 1600
+  },
+  "krov-03-salon": {
+    "src": "/media/chudesa/krov-03-salon.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "krov-04-prohod": {
+    "src": "/media/chudesa/krov-04-prohod.webp",
+    "w": 1064,
+    "h": 1600
+  },
+  "krov-05-holodilniki": {
+    "src": "/media/chudesa/krov-05-holodilniki.webp",
+    "w": 1064,
+    "h": 1600
+  },
+  "ofis-1-01-speredi": {
+    "src": "/media/mobilnye-ofisy/ofis-1-01-speredi.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-02-sboku": {
+    "src": "/media/mobilnye-ofisy/ofis-1-02-sboku.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-03-szadi": {
+    "src": "/media/mobilnye-ofisy/ofis-1-03-szadi.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-04-profil": {
+    "src": "/media/mobilnye-ofisy/ofis-1-04-profil.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-05-dver": {
+    "src": "/media/mobilnye-ofisy/ofis-1-05-dver.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-06-zadnie-dveri": {
+    "src": "/media/mobilnye-ofisy/ofis-1-06-zadnie-dveri.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-07-salon": {
+    "src": "/media/mobilnye-ofisy/ofis-1-07-salon.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-08-kresla": {
+    "src": "/media/mobilnye-ofisy/ofis-1-08-kresla.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-09-televizor": {
+    "src": "/media/mobilnye-ofisy/ofis-1-09-televizor.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-10-prohod": {
+    "src": "/media/mobilnye-ofisy/ofis-1-10-prohod.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-11-konsol": {
+    "src": "/media/mobilnye-ofisy/ofis-1-11-konsol.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-12-stolik": {
+    "src": "/media/mobilnye-ofisy/ofis-1-12-stolik.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-1-13-audio": {
+    "src": "/media/mobilnye-ofisy/ofis-1-13-audio.webp",
+    "w": 1600,
+    "h": 1064
+  },
+  "ofis-2-01-speredi": {
+    "src": "/media/mobilnye-ofisy/ofis-2-01-speredi.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-02-sboku": {
+    "src": "/media/mobilnye-ofisy/ofis-2-02-sboku.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-03-szadi": {
+    "src": "/media/mobilnye-ofisy/ofis-2-03-szadi.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-04-dver": {
+    "src": "/media/mobilnye-ofisy/ofis-2-04-dver.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-05-stupen": {
+    "src": "/media/mobilnye-ofisy/ofis-2-05-stupen.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-06-divan-stol": {
+    "src": "/media/mobilnye-ofisy/ofis-2-06-divan-stol.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-07-stol-kresla": {
+    "src": "/media/mobilnye-ofisy/ofis-2-07-stol-kresla.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-08-stol": {
+    "src": "/media/mobilnye-ofisy/ofis-2-08-stol.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-09-kresla": {
+    "src": "/media/mobilnye-ofisy/ofis-2-09-kresla.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-10-prohod": {
+    "src": "/media/mobilnye-ofisy/ofis-2-10-prohod.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-11-mediakonsol": {
+    "src": "/media/mobilnye-ofisy/ofis-2-11-mediakonsol.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-12-kreslo": {
+    "src": "/media/mobilnye-ofisy/ofis-2-12-kreslo.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-2-13-skladnoy-stol": {
+    "src": "/media/mobilnye-ofisy/ofis-2-13-skladnoy-stol.webp",
+    "w": 1024,
+    "h": 681
+  },
+  "ofis-3-01-speredi": {
+    "src": "/media/mobilnye-ofisy/ofis-3-01-speredi.webp",
+    "w": 761,
+    "h": 636
+  },
+  "ofis-3-02-speredi-den": {
+    "src": "/media/mobilnye-ofisy/ofis-3-02-speredi-den.webp",
+    "w": 1200,
+    "h": 1600
+  },
+  "ofis-3-03-szadi": {
+    "src": "/media/mobilnye-ofisy/ofis-3-03-szadi.webp",
+    "w": 1200,
+    "h": 1600
+  },
+  "ofis-3-04-szadi-profil": {
+    "src": "/media/mobilnye-ofisy/ofis-3-04-szadi-profil.webp",
+    "w": 768,
+    "h": 1024
+  },
+  "ofis-3-05-dver": {
+    "src": "/media/mobilnye-ofisy/ofis-3-05-dver.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-06-zadnie-dveri": {
+    "src": "/media/mobilnye-ofisy/ofis-3-06-zadnie-dveri.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-07-salon": {
+    "src": "/media/mobilnye-ofisy/ofis-3-07-salon.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-08-divan": {
+    "src": "/media/mobilnye-ofisy/ofis-3-08-divan.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-09-potolok": {
+    "src": "/media/mobilnye-ofisy/ofis-3-09-potolok.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-10-kresla-stol": {
+    "src": "/media/mobilnye-ofisy/ofis-3-10-kresla-stol.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-11-stolik": {
+    "src": "/media/mobilnye-ofisy/ofis-3-11-stolik.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-12-pult": {
+    "src": "/media/mobilnye-ofisy/ofis-3-12-pult.webp",
+    "w": 1600,
+    "h": 1200
+  },
+  "ofis-3-13-kresla-den": {
+    "src": "/media/mobilnye-ofisy/ofis-3-13-kresla-den.webp",
+    "w": 1200,
+    "h": 1600
+  }
+}

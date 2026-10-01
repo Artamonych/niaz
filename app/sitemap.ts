@@ -25,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url('/inzheneriya/uslugi/'), changeFrequency: 'monthly', priority: 0.7 },
     { url: url('/unikalnye-proekty/'), changeFrequency: 'monthly', priority: 0.6 },
     { url: url('/interery-asmp/'), changeFrequency: 'monthly', priority: 0.6 },
+    { url: url('/mobilnye-ofisy/'), changeFrequency: 'monthly', priority: 0.7 },
 
     // Подразделы каталога: «Автолавки», «Класс B» — со своими страницами.
     ...SUBSECTIONS.map((s) => ({
