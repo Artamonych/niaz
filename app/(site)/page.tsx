@@ -7,6 +7,7 @@ import { VanBlueprint } from '@/components/VanBlueprint';
 import { LeadForm } from '@/components/LeadForm';
 import { NewsCard } from '@/components/NewsCard';
 import { getNewsFeed } from '@/lib/news';
+import { MOBILE_OFFICES_LINE } from '@/lib/projects';
 import styles from './home.module.css';
 
 // Главная: лента новостей обновляется раз в пять минут, а при
@@ -17,9 +18,10 @@ const COUNTERS = [
   { n: 30, suffix: '+', k: 'лет производства' },
   { n: PRODUCTS.length, suffix: '', k: `${plural(PRODUCTS.length, 'исполнение', 'исполнения', 'исполнений')} в каталоге` },
   {
-    n: CATEGORIES.length,
+    // Разделы каталога и «Мобильные офисы» — направление без карточек каталога.
+    n: CATEGORIES.length + 1,
     suffix: '',
-    k: plural(CATEGORIES.length, 'продуктовая линейка', 'продуктовые линейки', 'продуктовых линеек'),
+    k: plural(CATEGORIES.length + 1, 'продуктовая линейка', 'продуктовые линейки', 'продуктовых линеек'),
   },
   { n: 85, suffix: '', k: 'регионов поставок' },
 ];
@@ -205,6 +207,31 @@ export default async function HomePage() {
                 </Link>
               );
             })}
+
+            {/* «Мобильные офисы» — направление продукции без карточек каталога. */}
+            <Link href={`${MOBILE_OFFICES_LINE.href}/`} className={`u-corner ${styles.cat}`}>
+              <span className={styles.catPhoto}>
+                <Image
+                  src={MOBILE_OFFICES_LINE.cover.src}
+                  alt={`${MOBILE_OFFICES_LINE.title} — продукция завода`}
+                  width={MOBILE_OFFICES_LINE.cover.w}
+                  height={MOBILE_OFFICES_LINE.cover.h}
+                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 290px"
+                  className={styles.catImg}
+                />
+              </span>
+              <span className={styles.catBody}>
+                <span className={`mono ${styles.catNo}`}>
+                  {String(HOME_CATEGORIES.length + 1).padStart(2, '0')}
+                </span>
+                <span className={styles.catTitle}>{MOBILE_OFFICES_LINE.short}</span>
+                <span className={styles.catLead}>{MOBILE_OFFICES_LINE.lead}</span>
+                <span className={`mono ${styles.catCount}`}>
+                  {MOBILE_OFFICES_LINE.projects.length}{' '}
+                  {plural(MOBILE_OFFICES_LINE.projects.length, 'проект', 'проекта', 'проектов')}
+                </span>
+              </span>
+            </Link>
           </div>
         </div>
       </section>

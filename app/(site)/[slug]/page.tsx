@@ -2,12 +2,12 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import {
   CATEGORIES,
-  galleryGroups,
   LANDINGS,
   PRODUCTS,
   STATIC_PAGES,
   SECTIONS,
   RESERVED_SLUGS,
+  GALLERY_SLUGS,
   getLanding,
   getSection,
   getProduct,
@@ -20,6 +20,7 @@ import { GalleryIndex } from '@/components/GalleryIndex';
 import { SectionPage } from '@/components/SectionPage';
 import { PlannedPage } from '@/components/PlannedPage';
 import { PartnersPage } from '@/components/PartnersPage';
+import { factoryGallery } from '@/lib/gallery';
 import { getPlannedPage, PLANNED_PAGES } from '@/lib/catalog';
 
 /** Страница, которая собирает витрины по маркам, а не показывает свой текст. */
@@ -39,7 +40,10 @@ export function generateStaticParams() {
     ...SECTIONS.filter((s) => !RESERVED_SLUGS.has(s.slug)).map((s) => ({ slug: s.slug })),
     ...LANDINGS.map((l) => ({ slug: l.slug })),
     ...PRODUCTS.map((p) => ({ slug: p.slug })),
-    ...STATIC_PAGES.filter((p) => !RESERVED_SLUGS.has(p.slug)).map((p) => ({ slug: p.slug })),
+    // Пустые страницы «Галереи» донора не собираем: их адреса ведут 301 на /galereya/.
+    ...STATIC_PAGES.filter((p) => !RESERVED_SLUGS.has(p.slug) && !GALLERY_SLUGS.has(p.slug)).map((p) => ({
+      slug: p.slug,
+    })),
     ...PLANNED_PAGES.map((p) => ({ slug: p.slug })),
   ];
 }
@@ -100,7 +104,7 @@ export default async function Page({ params }: Props) {
   if (page) {
     // «Галерея» — витрина по маркам: три десятка страниц со снимками иначе
     // остаются вне навигации, доступные только из поиска (п. 20 бэклога).
-    if (slug === GALLERY_SLUG) return <GalleryIndex page={page} groups={galleryGroups()} />;
+    if (slug === GALLERY_SLUG) return <GalleryIndex page={page} groups={factoryGallery()} />;
     // «Партнёры» — плитки марок: своего текста у страницы донора нет.
     if (slug === PARTNERS_SLUG) return <PartnersPage page={page} />;
     return <ArticlePage page={page} />;

@@ -187,18 +187,13 @@ export const photosOf = (key: CategoryKey): CategoryPhoto[] => PHOTOS[key] ?? []
 /** Снимки раздела «Интерьеры АСМП» — салоны, без привязки к классу или карточке. */
 export const interiorPhotos = (): CategoryPhoto[] => PHOTOS['asmp-interery'] ?? [];
 
-/** Витрина раздела «Галерея»: страницы со снимками, сгруппированные по маркам. */
-export type GalleryGroup = { mark: string; pages: StaticPage[] };
-
 /**
- * Снимки берём из самих страниц, а не из gallery.json: адреса фото переписывает
- * localize-media после сборки контента, и копия адреса устарела бы.
+ * Страницы «Галереи» старого сайта по маркам: в них были только фото донора,
+ * текста нет. Фото сняты 01.10.2026, страницы опустели — их адреса ведут 301
+ * на /galereya/ (next.config.ts), а в сборку, карту сайта и поиск они не идут.
+ * Сама «Галерея» теперь из съёмки завода (lib/gallery.ts).
  */
-export const galleryGroups = (): GalleryGroup[] =>
-  (gallery as { mark: string; slugs: string[] }[]).map(({ mark, slugs }) => ({
-    mark,
-    pages: slugs.map(getStaticPage).filter((p): p is StaticPage => !!p),
-  }));
+export const GALLERY_SLUGS = new Set((gallery as { slugs: string[] }[]).flatMap((g) => g.slugs));
 
 /**
  * Класс АСМП из названия: «…класса "В"» → «B». В исходнике латиница и

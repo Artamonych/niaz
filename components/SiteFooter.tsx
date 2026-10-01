@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/lib/catalog';
+import { MOBILE_OFFICES_LINE } from '@/lib/projects';
 import styles from './SiteFooter.module.css';
 
 export function SiteFooter() {
@@ -24,6 +25,11 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href={`${MOBILE_OFFICES_LINE.href}/`} className={`u-underline ${styles.link}`}>
+                {MOBILE_OFFICES_LINE.short}
+              </Link>
+            </li>
           </ul>
         </div>
 

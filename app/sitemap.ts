@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { LANDINGS, PRODUCTS, STATIC_PAGES, RESERVED_SLUGS } from '@/lib/content';
+import { GALLERY_SLUGS, LANDINGS, PRODUCTS, STATIC_PAGES, RESERVED_SLUGS } from '@/lib/content';
 import { SUBSECTIONS, subsectionHref } from '@/lib/catalog';
 import { getPublishedNewsUrls } from '@/lib/news';
 
@@ -48,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })),
 
-    ...STATIC_PAGES.filter((p) => !RESERVED_SLUGS.has(p.slug)).map((p) => ({
+    ...STATIC_PAGES.filter((p) => !RESERVED_SLUGS.has(p.slug) && !GALLERY_SLUGS.has(p.slug)).map((p) => ({
       url: url(`/${p.slug}/`),
       changeFrequency: 'monthly' as const,
       priority: 0.5,

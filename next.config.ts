@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import { CATEGORIES } from './lib/catalog';
 import busRedirects from './data/content/redirects.json';
+import gallery from './data/content/gallery.json';
 
 /**
  * Редиректы — несущее требование §6.1 ТЗ, а не удобство:
@@ -59,7 +60,13 @@ const nextConfig: NextConfig = {
     // реквизитов, где лежат актуальные карточки обоих юрлиц.
     const files = [{ source: '/files/rekvizity-kompanii.pdf', destination: '/rekvizity/', permanent: true }];
 
-    return [...busRedirects, ...aliases, ...removed, ...renamed, ...files];
+    // Страницы «Галереи» старого сайта по маркам: в них были только фото донора,
+    // сняты 01.10.2026. Текста не было — ведём на «Галерею» из съёмки завода.
+    const emptyGalleries = gallery
+      .flatMap((g) => g.slugs)
+      .map((slug) => ({ source: `/${slug}`, destination: '/galereya/', permanent: true }));
+
+    return [...busRedirects, ...aliases, ...removed, ...renamed, ...files, ...emptyGalleries];
   },
 };
 

@@ -1,23 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { GalleryGroup, StaticPage } from '@/lib/content';
+import type { StaticPage } from '@/lib/content';
+import type { GalleryGroup } from '@/lib/gallery';
+import { plural } from '@/lib/plural';
 import { Breadcrumbs } from './Breadcrumbs';
 import { LeadForm } from './LeadForm';
 import styles from './GalleryIndex.module.css';
 
+/** Сколько кадров группы показать здесь; остальные — на странице раздела. */
+const PREVIEW = 8;
+
 /**
- * Раздел «Галерея» (п. 20 бэклога).
+ * Раздел «Галерея» — съёмка завода по разделам сайта (lib/gallery.ts).
  *
- * Три десятка страниц со снимками лежали вне навигации: попасть на них можно
- * было только из поиска, хотя в sitemap.xml они есть. Здесь они собраны в
- * витрину по маркам шасси — марка берётся из данных донора.
- *
- * Плитки со снимком, а не список заголовков: у этих страниц нет текста,
- * и единственное, чем они различаются, — сами фотографии.
+ * До 01.10.2026 здесь была витрина страниц старого сайта по маркам шасси;
+ * фото старого сайта сняты, и витрина собрана заново из своей съёмки. У группы
+ * превью и переход в раздел, где лежат все кадры.
  */
 export function GalleryIndex({ page, groups }: { page: StaticPage; groups: GalleryGroup[] }) {
-  const shots = (pages: GalleryGroup['pages']) => pages.reduce((n, p) => n + p.images.length, 0);
-  const total = groups.reduce((sum, g) => sum + shots(g.pages), 0);
+  const total = groups.reduce((n, g) => n + g.photos.length, 0);
 
   return (
     <div className="shell">
@@ -26,52 +27,47 @@ export function GalleryIndex({ page, groups }: { page: StaticPage; groups: Galle
       <header className={styles.head}>
         <h1 className={styles.h1}>{page.title}</h1>
         <p className={styles.lead}>
-          Фотографии выпущенной техники по маркам базового шасси
-          {total > 0 ? `: ${total} снимков.` : '. Снимки готовятся.'}
+          Съёмка завода по разделам: {total} {plural(total, 'снимок', 'снимка', 'снимков')} выпущенной
+          техники, салонов и штучных проектов.
         </p>
       </header>
 
       {groups.map((group) => (
-        <section key={group.mark} className={styles.group}>
+        <section key={group.href} className={styles.group}>
           <div className={styles.groupHead}>
-            <h2 className={styles.h2}>{group.mark}</h2>
-            <span className={`mono ${styles.count}`}>{shots(group.pages)} фото</span>
+            <h2 className={styles.h2}>
+              <Link href={group.href}>{group.title}</Link>
+            </h2>
+            <span className={`mono ${styles.count}`}>
+              {group.photos.length} {plural(group.photos.length, 'снимок', 'снимка', 'снимков')}
+            </span>
           </div>
           <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 
-          <ul className={styles.grid}>
-            {group.pages.map((item) => (
-              <li key={item.slug}>
-                <Link href={`/${item.slug}/`} className={`u-corner ${styles.card}`}>
-                  <span className={styles.photo}>
-                    {/* Фото старого сайта сняты 01.10.2026 — до своей съёмки плейсхолдер. */}
-                    {item.images[0] ? (
-                      <Image
-                        src={item.images[0]}
-                        alt={item.title}
-                        width={800}
-                        height={510}
-                        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
-                        className={styles.img}
-                      />
-                    ) : (
-                      <span className={`mono ${styles.photoStub}`}>ФОТО ГОТОВИТСЯ</span>
-                    )}
-                  </span>
-                  <span className={styles.body}>
-                    <span className={styles.title}>{item.title}</span>
-                    {item.images.length > 0 && (
-                      <span className={`mono ${styles.badge}`}>{item.images.length} фото</span>
-                    )}
-                  </span>
-                </Link>
-              </li>
+          <div className={styles.grid}>
+            {group.photos.slice(0, PREVIEW).map((photo) => (
+              <figure key={photo.src} className={styles.card}>
+                <Image
+                  src={photo.src}
+                  alt={`${photo.caption} — производство ООО «Нижегородский автомобильный завод»`}
+                  width={photo.w}
+                  height={photo.h}
+                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
+                  className={styles.img}
+                  loading="lazy"
+                />
+                <figcaption className={`mono ${styles.caption}`}>{photo.caption}</figcaption>
+              </figure>
             ))}
-          </ul>
+          </div>
+
+          {group.photos.length > PREVIEW && (
+            <Link href={group.href} className={`u-underline ${styles.more}`}>
+              Все снимки раздела «{group.title}» →
+            </Link>
+          )}
         </section>
       ))}
-
-      {/* Блок «Разное» (снимки самой страницы «Галерея») снят по правке от 01.10.2026. */}
 
       <section className={styles.cta} id="zapros">
         <div>

@@ -16,7 +16,7 @@
  */
 import { CATEGORY_BY_KEY, SUBSECTIONS, subsectionHref } from './catalog';
 import { COMPANIES } from './company';
-import { LANDINGS, PRODUCTS, STATIC_PAGES } from './content';
+import { GALLERY_SLUGS, LANDINGS, PRODUCTS, STATIC_PAGES } from './content';
 import { getNewsFeed } from './news';
 import { PARTNERS } from './partners';
 import { MOBILE_OFFICES, UNIQUE_PROJECTS, type Project } from './projects';
@@ -89,6 +89,12 @@ function ownPages(): SearchDoc[] {
       text: projectsText(UNIQUE_PROJECTS),
     },
     {
+      href: '/galereya/',
+      title: 'Галерея',
+      kind: 'Страница',
+      text: 'Фотографии выпущенной техники, салонов и штучных проектов: съёмка завода по разделам.',
+    },
+    {
       href: '/mobilnye-ofisy/',
       title: 'Мобильные офисы',
       kind: 'Каталог',
@@ -142,7 +148,8 @@ function buildStaticIndex(): SearchDoc[] {
     text: s.lead,
   }));
 
-  const pages: SearchDoc[] = STATIC_PAGES.map((p) => ({
+  // Страницы «Галереи» донора пусты и ведут 301 на /galereya/ — в индекс не берём.
+  const pages: SearchDoc[] = STATIC_PAGES.filter((p) => !GALLERY_SLUGS.has(p.slug)).map((p) => ({
     href: `/${p.slug}/`,
     title: p.title,
     kind: p.section === 'Новости' ? 'Новость' : 'Статья',

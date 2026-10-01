@@ -45,7 +45,7 @@
   margin-top: 12px;
 }
 
-/* Плитки: у этих страниц нет текста, различаются они только снимками. */
+/* Превью группы: снимки своей съёмки плиткой. */
 .grid {
   list-style: none;
   margin: clamp(16px, 2vw, 24px) 0 0;
@@ -56,55 +56,38 @@
 }
 
 .card {
-  --u-line: var(--accent-deep);
-  display: block;
+  margin: 0;
   background-color: var(--paper-200);
   border: 1px solid var(--paper-500);
 }
 
-.photo {
-  display: block;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--paper-300);
-  border-bottom: 1px solid var(--paper-500);
-}
-
+/* Единая пропорция: в съёмке вперемешку горизонтальные и вертикальные кадры. */
 .img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
-.body {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 14px 16px 16px;
-}
-
-.title {
-  font: 600 14.5px/1.35 var(--font-display);
-  color: var(--text-on-light);
-}
-
-.badge {
-  flex: none;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--text-on-light-dim);
-}
-
-/* Плейсхолдер вместо фото старого сайта (сняты 01.10.2026). */
-.photoStub {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
+.caption {
+  display: block;
+  padding: 9px 12px 11px;
+  font-size: 10.5px;
+  line-height: 1.5;
   color: var(--text-on-light-dim2);
+}
+
+.h2 a:hover {
+  color: var(--accent);
+}
+
+.more {
+  --u-line: var(--accent);
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--accent);
 }
 
 .cta {

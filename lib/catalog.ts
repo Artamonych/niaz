@@ -315,7 +315,6 @@ export const MENU = {
         { label: 'Мобильные комплексы', href: `${SPEC}/mobilnye-kompleksy` },
         { label: 'Ритуальные услуги', href: '/avtomobili-dlya-ritualnyy-uslug' },
         { label: 'Медицинская служба', href: `${SPEC}/meditsinskaya-sluzhba` },
-        { label: 'Мобильные офисы', href: '/mobilnye-ofisy' },
       ],
     },
     {
@@ -330,6 +329,11 @@ export const MENU = {
     {
       title: 'ПРИЦЕПЫ',
       items: [{ label: 'Прицепы', href: '/pritsepy' }],
+    },
+    {
+      // На уровне продукции, не в спецтехнике (правка от 01.10.2026).
+      title: 'МОБИЛЬНЫЕ ОФИСЫ',
+      items: [{ label: 'Мобильные офисы', href: '/mobilnye-ofisy' }],
     },
   ],
   service: [
