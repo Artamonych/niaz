@@ -97,20 +97,14 @@
   color: var(--text-on-light-dim);
 }
 
-/* Снимки самой страницы «Галерея»: без карточек, просто сетка. */
-.loose {
+/* Плейсхолдер вместо фото старого сайта (сняты 01.10.2026). */
+.photoStub {
   display: grid;
-  gap: clamp(12px, 1.4vw, 18px);
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  margin-top: clamp(16px, 2vw, 24px);
-}
-
-.looseImg {
-  display: block;
-  width: 100%;
-  height: auto;
-  background: var(--paper-300);
-  border: 1px solid var(--paper-500);
+  place-items: center;
+  height: 100%;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--text-on-light-dim2);
 }
 
 .cta {

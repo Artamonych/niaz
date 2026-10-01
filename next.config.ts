@@ -55,7 +55,11 @@ const nextConfig: NextConfig = {
     // Индексации тогда не было, но ссылка на тестовый стенд могла уйти заказчику.
     const renamed = [{ source: '/chudesa', destination: '/unikalnye-proekty/', permanent: true }];
 
-    return [...busRedirects, ...aliases, ...removed, ...renamed];
+    // PDF реквизитов донора устарел и удалён 01.10.2026: адрес ведёт на страницу
+    // реквизитов, где лежат актуальные карточки обоих юрлиц.
+    const files = [{ source: '/files/rekvizity-kompanii.pdf', destination: '/rekvizity/', permanent: true }];
+
+    return [...busRedirects, ...aliases, ...removed, ...renamed, ...files];
   },
 };
 

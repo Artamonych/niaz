@@ -26,7 +26,8 @@ export function GalleryIndex({ page, groups }: { page: StaticPage; groups: Galle
       <header className={styles.head}>
         <h1 className={styles.h1}>{page.title}</h1>
         <p className={styles.lead}>
-          Фотографии выпущенной техники по маркам базового шасси: {total} снимков.
+          Фотографии выпущенной техники по маркам базового шасси
+          {total > 0 ? `: ${total} снимков.` : '. Снимки готовятся.'}
         </p>
       </header>
 
@@ -43,18 +44,25 @@ export function GalleryIndex({ page, groups }: { page: StaticPage; groups: Galle
               <li key={item.slug}>
                 <Link href={`/${item.slug}/`} className={`u-corner ${styles.card}`}>
                   <span className={styles.photo}>
-                    <Image
-                      src={item.images[0]}
-                      alt={item.title}
-                      width={800}
-                      height={510}
-                      sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
-                      className={styles.img}
-                    />
+                    {/* Фото старого сайта сняты 01.10.2026 — до своей съёмки плейсхолдер. */}
+                    {item.images[0] ? (
+                      <Image
+                        src={item.images[0]}
+                        alt={item.title}
+                        width={800}
+                        height={510}
+                        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
+                        className={styles.img}
+                      />
+                    ) : (
+                      <span className={`mono ${styles.photoStub}`}>ФОТО ГОТОВИТСЯ</span>
+                    )}
                   </span>
                   <span className={styles.body}>
                     <span className={styles.title}>{item.title}</span>
-                    <span className={`mono ${styles.badge}`}>{item.images.length} фото</span>
+                    {item.images.length > 0 && (
+                      <span className={`mono ${styles.badge}`}>{item.images.length} фото</span>
+                    )}
                   </span>
                 </Link>
               </li>
@@ -63,30 +71,7 @@ export function GalleryIndex({ page, groups }: { page: StaticPage; groups: Galle
         </section>
       ))}
 
-      {/* Снимки самой страницы «Галерея» — они были на ней у донора. */}
-      {page.images.length > 0 && (
-        <section className={styles.group}>
-          <div className={styles.groupHead}>
-            <h2 className={styles.h2}>Разное</h2>
-            <span className={`mono ${styles.count}`}>{page.images.length} фото</span>
-          </div>
-          <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
-
-          <div className={styles.loose}>
-            {page.images.map((src, i) => (
-              <Image
-                key={src}
-                src={src}
-                alt={`Галерея — фотография ${i + 1}`}
-                width={800}
-                height={510}
-                sizes="(max-width: 700px) 100vw, (max-width: 1100px) 33vw, 280px"
-                className={styles.looseImg}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Блок «Разное» (снимки самой страницы «Галерея») снят по правке от 01.10.2026. */}
 
       <section className={styles.cta} id="zapros">
         <div>

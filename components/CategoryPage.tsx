@@ -1,62 +1,115 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { KINDS, type Category } from '@/lib/catalog';
+import { KINDS, subsectionHref, subsectionsOf, type Category, type Subsection } from '@/lib/catalog';
 import { asmpClass, photosOf, productsOf, type CategoryLanding } from '@/lib/content';
 import { Breadcrumbs } from './Breadcrumbs';
 import { CatalogGrid, CatalogGridFromUrl, type CatalogItem } from './CatalogGrid';
 import { LeadForm } from './LeadForm';
 import styles from './CategoryPage.module.css';
 
+/**
+ * Страница раздела каталога — или его подраздела (sub): «Автолавки», «Класс B».
+ *
+ * У подраздела свой заголовок и описание, а карточки и снимки отобраны под
+ * него заранее; фильтр по тому же признаку на его странице не нужен. Текст
+ * донора у подраздела не показываем: он про весь раздел — именно из-за него
+ * «Автолавки» читались как «Спецавтомобили» (правка от 01.10.2026).
+ */
 export function CategoryPage({
   category,
   landing,
+  sub,
 }: {
   category: Category;
   landing: CategoryLanding;
+  sub?: Subsection;
 }) {
   const kinds = KINDS[category.key] ?? [];
-  const items: CatalogItem[] = productsOf(category.key).map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    chassis: p.chassis,
-    brand: p.brand,
-    cls: asmpClass(p.title),
-    kinds: kinds.filter((k) => k.match(p)).map((k) => k.key),
-    specCount: p.spec.length,
-    image: p.images[0],
-  }));
+  const subKind = sub && 'kind' in sub.filter ? sub.filter.kind : undefined;
+  const subCls = sub && 'cls' in sub.filter ? sub.filter.cls : undefined;
+
+  const items: CatalogItem[] = productsOf(category.key)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      chassis: p.chassis,
+      brand: p.brand,
+      cls: asmpClass(p.title),
+      kinds: kinds.filter((k) => k.match(p)).map((k) => k.key),
+      specCount: p.spec.length,
+      image: p.images[0],
+    }))
+    .filter((i) => (!subKind || i.kinds.includes(subKind)) && (!subCls || i.cls === subCls));
+
+  // Своя съёмка завода по этому разделу — она честнее фотографий старого сайта.
+  const photos = photosOf(category.key).filter(
+    (p) => (!subKind || p.kind === subKind) && (!subCls || p.cls === subCls),
+  );
 
   const grid = {
     items,
-    showClass: category.key === 'asmp',
-    kinds: kinds.map(({ key, label }) => ({ key, label })),
+    // На странице класса фильтр по классу лишний, на странице вида — по виду.
+    showClass: category.key === 'asmp' && !subCls,
+    kinds: subKind ? [] : kinds.map(({ key, label }) => ({ key, label })),
+    photos,
+    photosLead:
+      'Съёмка завода. Подписи говорят только то, что известно про кадр: исполнение по снимку не определить, поэтому фотографии показаны на уровне раздела.',
   };
 
-  // Своя съёмка завода по этому разделу — она честнее фотографий старого сайта.
-  const photos = photosOf(category.key);
+  const subs = sub ? [] : subsectionsOf(category.key);
 
   return (
     <div className="shell">
-      <Breadcrumbs items={[{ name: 'Продукция', href: '/produktsiya/' }, { name: category.short }]} />
+      <Breadcrumbs
+        items={
+          sub
+            ? [
+                { name: 'Продукция', href: '/produktsiya/' },
+                { name: category.short, href: `/${category.slug}/` },
+                { name: sub.short },
+              ]
+            : [{ name: 'Продукция', href: '/produktsiya/' }, { name: category.short }]
+        }
+      />
 
       <header className={styles.head}>
         <span className={`mono ${styles.no}`}>{category.no}</span>
-        <h1 className={styles.h1}>{landing.title || category.title}</h1>
-        <p className={styles.lead}>{landing.lead || category.lead}</p>
+        <h1 className={styles.h1}>{sub ? sub.title : landing.title || category.title}</h1>
+        <p className={styles.lead}>{sub ? sub.lead : landing.lead || category.lead}</p>
 
         <div className={styles.actions}>
           <Link href="#zapros" className={`u-corner ${styles.ghost}`}>
             Подобрать под ТЗ
           </Link>
+          {sub && (
+            <Link href={`/${category.slug}/`} className={`u-corner ${styles.ghost}`}>
+              Весь раздел «{category.short}»
+            </Link>
+          )}
         </div>
+
+        {subs.length > 0 && (
+          <nav className={styles.subs} aria-label="Подразделы">
+            {subs.map((s) => (
+              <Link key={s.slug} href={`${subsectionHref(s)}/`} className={`u-corner mono ${styles.subLink}`}>
+                {s.short}
+              </Link>
+            ))}
+            {/* Салоны АСМП — отдельный раздел (правка от 01.10.2026). */}
+            {category.key === 'asmp' && (
+              <Link href="/interery-asmp/" className={`u-corner mono ${styles.subLink}`}>
+                Интерьеры
+              </Link>
+            )}
+          </nav>
+        )}
       </header>
 
       {/*
         Текст раздела с донора: очищенная разметка (scripts/clean-html.ts).
         Стоит до каталога — это вводная часть страницы, а не примечание.
       */}
-      {landing.body && (
+      {!sub && landing.body && (
         <div className={styles.body} dangerouslySetInnerHTML={{ __html: landing.body }} />
       )}
 
@@ -67,36 +120,6 @@ export function CategoryPage({
         <CatalogGridFromUrl {...grid} />
       </Suspense>
 
-      {photos.length > 0 && (
-        <section className={styles.photos}>
-          <div className={styles.photosHead}>
-            <h2 className={styles.h2}>Фотографии раздела</h2>
-            <span className={`mono ${styles.photosCount}`}>{photos.length} снимков</span>
-          </div>
-          <p className={styles.photosLead}>
-            Съёмка завода. Подписи говорят только то, что известно про кадр: исполнение по
-            снимку не определить, поэтому фотографии показаны на уровне раздела.
-          </p>
-
-          <div className={styles.photoGrid}>
-            {photos.map((photo, i) => (
-              <figure key={photo.src} className={styles.photo}>
-                <Image
-                  src={photo.src}
-                  alt={`${photo.caption} — производство ООО «Нижегородский автомобильный завод»`}
-                  width={photo.w}
-                  height={photo.h}
-                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 340px"
-                  className={styles.photoImg}
-                  loading={i < 3 ? 'eager' : 'lazy'}
-                />
-                <figcaption className={`mono ${styles.photoCaption}`}>{photo.caption}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-      )}
-
       <section className={styles.cta} id="zapros">
         <div>
           <p className="label label-deep">Подбор исполнения</p>
@@ -106,7 +129,7 @@ export function CategoryPage({
             предложат исполнение и рассчитают сроки.
           </p>
         </div>
-        <LeadForm subject={category.title} />
+        <LeadForm subject={sub ? sub.title : category.title} />
       </section>
     </div>
   );

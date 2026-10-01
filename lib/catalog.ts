@@ -108,10 +108,10 @@ export const CATEGORY_BY_KEY = Object.fromEntries(
 export const REMOVED_DONOR_SECTION = 'Автобусы';
 
 /**
- * Подразделы внутри категории: в меню это отдельные пункты, на странице
- * категории — фильтр «Вид». Ссылка вида /<категория>?tip=<key> открывает
- * категорию с уже выбранным подразделом. Своих URL у подразделов нет: товары
- * остаются на адресах донора, а раскладка — лишь срез по названиям.
+ * Виды внутри категории — срез карточек по названиям: на странице категории
+ * это фильтр «Вид». Товары остаются на адресах донора. У каждого вида есть и
+ * своя страница-подраздел (SUBSECTIONS ниже); старые ссылки вида
+ * /<категория>?tip=<key> по-прежнему открывают категорию с выбранным видом.
  */
 export type CategoryKind = {
   key: string;
@@ -168,8 +168,117 @@ export const KINDS: Partial<Record<CategoryKey, CategoryKind[]>> = {
   ],
 };
 
+/**
+ * Подразделы со своей страницей: /<категория>/<подраздел>/.
+ *
+ * До 01.10.2026 пункты меню «Автолавки», «Лаборатории», «Класс B» вели на
+ * страницу категории с фильтром в адресе — и показывали её заголовок и текст:
+ * у «Автолавок» стоял текст про спецавтомобили. Теперь у подраздела свой
+ * заголовок и описание, а карточки и снимки отобраны под него.
+ *
+ * Описания — по тому, что лежит в карточках подраздела; классы АСМП — по
+ * определениям ГОСТ 33665-2024. Ничего сверх этого не утверждаем.
+ */
+export type Subsection = {
+  category: CategoryKey;
+  slug: string;
+  title: string;
+  /** Короткое имя для крошек и меню. */
+  short: string;
+  lead: string;
+  /** Отбор: вид из KINDS или класс АСМП. */
+  filter: { kind: string } | { cls: 'A' | 'B' | 'C' };
+};
+
+export const SUBSECTIONS: Subsection[] = [
+  {
+    category: 'asmp',
+    slug: 'klass-a',
+    title: 'АСМП класса A',
+    short: 'Класс A',
+    lead: 'Автомобили скорой медицинской помощи класса A по ГОСТ 33665-2024 — для транспортировки пациентов, которым не требуется экстренная помощь в пути.',
+    filter: { cls: 'A' },
+  },
+  {
+    category: 'asmp',
+    slug: 'klass-b',
+    title: 'АСМП класса B',
+    short: 'Класс B',
+    lead: 'Автомобили скорой медицинской помощи класса B по ГОСТ 33665-2024 — для лечебных мероприятий силами врачебной или фельдшерской бригады, транспортировки и наблюдения за пациентом в пути.',
+    filter: { cls: 'B' },
+  },
+  {
+    category: 'asmp',
+    slug: 'klass-c',
+    title: 'АСМП класса C',
+    short: 'Класс C',
+    lead: 'Реанимобили — автомобили скорой медицинской помощи класса C по ГОСТ 33665-2024: для лечебных мероприятий силами реанимационной бригады, транспортировки и мониторинга пациента.',
+    filter: { cls: 'C' },
+  },
+  {
+    category: 'spec',
+    slug: 'laboratorii',
+    title: 'Передвижные лаборатории',
+    short: 'Лаборатории',
+    lead: 'Лаборатории на базе микроавтобусов и фургонов — от дорожной лаборатории до исполнения под задачу заказчика: рабочие места, оборудование и электрика салона.',
+    filter: { kind: 'laboratorii' },
+  },
+  {
+    category: 'spec',
+    slug: 'avtolavki',
+    title: 'Автолавки и передвижные пункты питания',
+    short: 'Автолавки',
+    lead: 'Автолавки и передвижные пункты питания: торговые витрины, холодильное оборудование, мойка и раздача — для торговли и выездного питания.',
+    filter: { kind: 'avtolavki' },
+  },
+  {
+    category: 'spec',
+    slug: 'mobilnye-kompleksy',
+    title: 'Мобильные комплексы',
+    short: 'Мобильные комплексы',
+    lead: 'Передвижные комплексы под конкретную службу: служебные и штабные автомобили, машина для радиокомпании, автокемпер на полноприводном шасси.',
+    filter: { kind: 'kompleksy' },
+  },
+  {
+    category: 'spec',
+    slug: 'meditsinskaya-sluzhba',
+    title: 'Медицинская служба',
+    short: 'Медицинская служба',
+    lead: 'Медицинские автомобили и передвижные кабинеты: пункт медицинского освидетельствования, мобильный стоматологический кабинет, комплекс службы крови.',
+    filter: { kind: 'medsluzhba' },
+  },
+  {
+    category: 'van',
+    slug: 'izotermicheskie',
+    title: 'Изотермические фургоны',
+    short: 'Изотермические',
+    lead: 'Изотермические фургоны для перевозки продуктов и грузов, которым нужен температурный режим: утеплённый кузов на шасси или цельнометаллической базе.',
+    filter: { kind: 'izotermicheskie' },
+  },
+  {
+    category: 'van',
+    slug: 'obschego-naznacheniya',
+    title: 'Фургоны общего назначения',
+    short: 'Общего назначения',
+    lead: 'Фургоны общего назначения: промтоварные, хлебные, мороженовозы и универсальные кузова на шасси грузовиков и микроавтобусов.',
+    filter: { kind: 'obschego-naznacheniya' },
+  },
+];
+
+export const subsectionsOf = (key: CategoryKey) => SUBSECTIONS.filter((s) => s.category === key);
+
+export const getSubsection = (categorySlug: string, slug: string) => {
+  const category = CATEGORIES.find((c) => c.slug === categorySlug);
+  return category ? SUBSECTIONS.find((s) => s.category === category.key && s.slug === slug) : undefined;
+};
+
+/** Адрес подраздела: от канонического слага категории. */
+export const subsectionHref = (s: Subsection) => `/${CATEGORY_BY_KEY[s.category].slug}/${s.slug}`;
+
 export type MenuColumn = { title: string; items: { label: string; href: string }[] };
 
+// Пункты подразделов ведут на их страницы (SUBSECTIONS), а не на фильтр в адресе.
+const ASMP = '/avtomobili-skoroy-meditsinskoy-pomoschi';
 const SPEC = '/spets-avtomobili-i-laboratorii';
 const VAN = '/furgony-izotermicheskie-i-obschego-naznacheniya';
 
@@ -185,26 +294,27 @@ export const MENU = {
     {
       title: 'АСМП',
       items: [
-        { label: 'Класс A', href: '/avtomobili-skoroy-meditsinskoy-pomoschi?cls=A' },
-        { label: 'Класс B', href: '/avtomobili-skoroy-meditsinskoy-pomoschi?cls=B' },
-        { label: 'Класс C', href: '/avtomobili-skoroy-meditsinskoy-pomoschi?cls=C' },
+        { label: 'Класс A', href: `${ASMP}/klass-a` },
+        { label: 'Класс B', href: `${ASMP}/klass-b` },
+        { label: 'Класс C', href: `${ASMP}/klass-c` },
+        { label: 'Интерьеры', href: '/interery-asmp' },
       ],
     },
     {
       title: 'ФУРГОНЫ',
       items: [
-        { label: 'Изотермические фургоны', href: `${VAN}?tip=izotermicheskie` },
-        { label: 'Фургоны общего назначения', href: `${VAN}?tip=obschego-naznacheniya` },
+        { label: 'Изотермические фургоны', href: `${VAN}/izotermicheskie` },
+        { label: 'Фургоны общего назначения', href: `${VAN}/obschego-naznacheniya` },
       ],
     },
     {
       title: 'СПЕЦТЕХНИКА',
       items: [
-        { label: 'Лаборатории', href: `${SPEC}?tip=laboratorii` },
-        { label: 'Автолавки', href: `${SPEC}?tip=avtolavki` },
-        { label: 'Мобильные комплексы', href: `${SPEC}?tip=kompleksy` },
+        { label: 'Лаборатории', href: `${SPEC}/laboratorii` },
+        { label: 'Автолавки', href: `${SPEC}/avtolavki` },
+        { label: 'Мобильные комплексы', href: `${SPEC}/mobilnye-kompleksy` },
         { label: 'Ритуальные услуги', href: '/avtomobili-dlya-ritualnyy-uslug' },
-        { label: 'Медицинская служба', href: `${SPEC}?tip=medsluzhba` },
+        { label: 'Медицинская служба', href: `${SPEC}/meditsinskaya-sluzhba` },
       ],
     },
     {
@@ -246,6 +356,7 @@ export const MENU = {
       items: [
         { label: 'Новости', href: '/novosti' },
         { label: 'Партнёры', href: '/partnery' },
+        { label: 'Реквизиты', href: '/rekvizity' },
         { label: 'Контакты', href: '/kontakty' },
       ],
     },

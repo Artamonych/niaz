@@ -59,6 +59,16 @@
   margin-top: 16px;
 }
 
+.download {
+  --u-line: var(--accent-deep);
+  flex: none;
+  padding: 8px 12px;
+  border: 1px solid var(--paper-500);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-on-light);
+}
+
 .list {
   margin: 0;
   padding: 0;

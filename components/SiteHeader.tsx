@@ -104,6 +104,16 @@ export function SiteHeader() {
         </nav>
 
         <div className={styles.contact}>
+          {/* Поиск по сайту (правка от 01.10.2026): обычная форма — работает и без JS. */}
+          <form action="/poisk/" method="get" role="search" className={styles.search}>
+            <input
+              type="search"
+              name="q"
+              placeholder="Поиск"
+              aria-label="Поиск по сайту"
+              className={styles.searchInput}
+            />
+          </form>
           <a href="tel:88005504455" className={`mono ${styles.phone}`}>
             8 800 550-44-55
           </a>
@@ -164,6 +174,15 @@ export function SiteHeader() {
         <div className={styles.mobilePanel}>
           <div className={styles.panelRule} aria-hidden="true" />
           <div className={`shell ${styles.mobileInner}`}>
+            <form action="/poisk/" method="get" role="search" className={styles.mobileSearch}>
+              <input
+                type="search"
+                name="q"
+                placeholder="Поиск по сайту"
+                aria-label="Поиск по сайту"
+                className={styles.searchInput}
+              />
+            </form>
             {[
               { label: 'Продукция', href: '/produktsiya/' },
               { label: 'Инженерия', href: '/inzheneriya/' },

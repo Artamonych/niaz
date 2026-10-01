@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { LANDINGS, PRODUCTS, STATIC_PAGES, RESERVED_SLUGS } from '@/lib/content';
+import { SUBSECTIONS, subsectionHref } from '@/lib/catalog';
 import { getPublishedNewsUrls } from '@/lib/news';
 
 // Карта сайта: её читают роботы, час свежести достаточно.
@@ -23,6 +24,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url('/inzheneriya/'), changeFrequency: 'monthly', priority: 0.7 },
     { url: url('/inzheneriya/uslugi/'), changeFrequency: 'monthly', priority: 0.7 },
     { url: url('/unikalnye-proekty/'), changeFrequency: 'monthly', priority: 0.6 },
+    { url: url('/interery-asmp/'), changeFrequency: 'monthly', priority: 0.6 },
+
+    // Подразделы каталога: «Автолавки», «Класс B» — со своими страницами.
+    ...SUBSECTIONS.map((s) => ({
+      url: url(`${subsectionHref(s)}/`),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    })),
     { url: url('/novosti/'), changeFrequency: 'weekly', priority: 0.7 },
     { url: url('/rekvizity/'), changeFrequency: 'yearly', priority: 0.5 },
 

@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { COMPANIES } from '@/lib/company';
+
+/** PDF карточек — scripts/prep-rekvizity-pdf.ts, из тех же данных. */
+const PDF: Record<string, string> = {
+  gk: '/files/rekvizity-ooo-gk-niaz.pdf',
+  niaz: '/files/rekvizity-ooo-niaz.pdf',
+};
 import styles from './rekvizity.module.css';
 
 export const metadata: Metadata = {
@@ -38,6 +44,11 @@ export default function Page() {
               <p className={styles.full}>{company.full}</p>
             </div>
             <span className={`mono ${styles.role}`}>{company.role}</span>
+            {PDF[company.key] && (
+              <a href={PDF[company.key]} download className={`u-corner mono ${styles.download}`}>
+                Скачать PDF ↓
+              </a>
+            )}
           </div>
           <div className={`rule ${styles.rule}`} data-line="1" aria-hidden="true" />
 

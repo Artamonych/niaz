@@ -263,6 +263,41 @@
   font: 600 13px/1 var(--font-body);
 }
 
+/* Поиск по сайту: узкое поле в шапке, в мобильном меню — во всю ширину. */
+.search {
+  display: flex;
+}
+
+.searchInput {
+  width: clamp(110px, 10vw, 180px);
+  padding: 10px 12px;
+  border: 1px solid var(--ink-400);
+  background: transparent;
+  color: var(--text-on-dark);
+  font: 400 13px/1 var(--font-body);
+  transition: border-color 0.25s;
+}
+
+.searchInput::placeholder {
+  color: var(--text-on-dark-dim);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.mobileSearch {
+  display: flex;
+  padding: 16px 0 6px;
+}
+
+.mobileSearch .searchInput {
+  width: 100%;
+  padding: 13px 14px;
+  font-size: 16px;
+}
+
 @media (max-width: 1180px) {
   .nav,
   .contact {
